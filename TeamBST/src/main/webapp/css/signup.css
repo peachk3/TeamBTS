@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+    body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    
+    }
+
+    .signup-box {
+    position: relative;
+    width: 500px; /* 폼의 너비 넓힘*/
+    padding: 80px; /* 패딩 늘려서 내부 여백 확보*/
+    height: 95%;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background: #fff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+
+    }
+
+    .social-login {
+    text-align: center;
+    margin-bottom: 30px;
+    }
+
+    .social-login p {
+    margin: 0;
+    font-size: 17px;
+    }
+
+    .social-login img {
+    width: 40px; 
+    height: 40px;
+    margin-top: 20px;
+    }
+
+    hr.hr-5 {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 10px 5;
+    }
+
+    h2 {
+    text-align: center;
+    color: #fff;
+    background-color: #007bff;
+    padding: 8px; /* 패딩을 늘려서 제목의 크기를 키움 */
+    border-radius: 5px;
+    margin-bottom: 20px;
+    }
+
+
+    .form-group label {
+    display: block;
+    margin-bottom: 5px; /* 레이블 하단 여백을 늘려서 간격 확대 */
+    font-weight: bold;
+    border: 1px;
+    
+    }
+
+    .in-b,
+    .btn-group input[type="text"],
+    .btn-group input[type="email"],
+    .btn-group input[type="tel"] {
+    width: 80%; /* 입력 필드 너비 확대 */
+    padding: 15px; /* 패딩을 늘려서 입력 필드 높이 확대 */
+    margin-bottom: 1px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #000; /* 입력 필드 텍스트 색상 */
+    }
+
+    .btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1px; /* 하단 여백 확대 */
+    
+    }
+
+    .btn-group button{
+    width: 66px;
+    height: 50px;
+    border: none;
+    background-color: #4d647c;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 8px;
+    margin-left: 2px; /* 입력 필드와 버튼 사이 간격 */
+    cursor: pointer; /* 버튼 눌릴 때 손가락 모양 해주는 센스*/
+    }
+
+    .check-button:hover,
+    .verifyCode:hover,
+    .resendCode:hover {
+    background-color: #0056b3; /* 버튼 위에 올렸을 때 색깔 변하게*/
+    }
+    
+    .terms, .privacy { /*개인정보 수집 & 이용약관 수집 */
+    margin: 15px 0;
+    font-size: 14px;
+    }  
+    
+    #signup_n_login .submit-btn,
+    #signup_n_login .login-btn{
+    display: inline;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px; /* 상단 여백 확대 */
+    margin-bottom: 20px;
+    padding: 15px 60px;/* 패딩을 늘려서 제목의 크기를 키움 */
+    border-radius: 8px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    cursor: pointer;
+
+    }
+
+    #submit-btn:hover,
+    #login-btn:hover {
+    background-color: #0056b3;
+    }
+
+  
+  
+ 
+ 
