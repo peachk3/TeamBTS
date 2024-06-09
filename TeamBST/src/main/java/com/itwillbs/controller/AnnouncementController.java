@@ -17,4 +17,17 @@ public class AnnouncementController {
 		logger.debug("거래게시판 호출");
 
 	}
+	
+	
+	@RequestMapping(value="/bulletin",method=RequestMethod.GET)
+	public void announcementBulletin() {
+		logger.debug("문의게시판 호출");
+
+	}
+	@RequestMapping(value="/bulletinWrite",method=RequestMethod.GET)
+	public void announcementBulletinWrite() {
+		logger.debug("문의게시판 호출");
+
+	}
+	
 }

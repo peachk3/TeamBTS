@@ -48,6 +48,7 @@
         <button type="button" class="community" onclick="location.href='/announcement/announcement'">공지사항</button> <br>
         <button type="button" class="community" onclick="location.href='/announcement/bulletin'">문의게시판</button>
 
+        <button onclick="location.href='/announcement/bulletinWrite'">글쓰기</button>
 
 
 </body>

@@ -30,3 +30,6 @@ function autoAdvance(sliderIndex) {
 for (let i = 0; i < slideContainers.length; i++) {
     autoAdvance(i);
 }
+
+
+

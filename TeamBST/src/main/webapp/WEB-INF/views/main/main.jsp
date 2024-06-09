@@ -40,10 +40,11 @@
     <!-- 아직 구현못함, 햄버거 버튼, 그냥 일단 텍스트로 -->
     <ul>
       
-      <a href="#stadium">구장</a>
       <p>
+      <a href="#stadium">구장</a>
+      <br>
         <!-- 필터링된 ui 5페이지 -->
-        			<!-- AJAX 어떻게 구현하는지 공부하기 -->
+ 			<!-- AJAX 어떻게 구현하는지 공부하기 -->
         <a href="/ticketing/ticketing">고척 스카이돔</a> <br>
         <a href="/ticketing/ticketing">광주 챔피언스 필드</a> <br>
         <a href="/ticketing/ticketing">대구 라이온즈파크</a> <br>
@@ -55,9 +56,9 @@
         <a href="/ticketing/ticketing">창원 NC파크</a> <br>
       </p>
       
-      <br>
-      <a href="/main/team">구단</a>
       <p>
+      <a href="/main/team">구단</a>
+      <br>
         <!-- 필터링된 ui 4페이지 -->
         <a href="/main/team/kia">KIA</a> <br>
         <a href="/main/team/lg">LG</a> <br>

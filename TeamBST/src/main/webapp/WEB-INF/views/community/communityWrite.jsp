@@ -37,17 +37,13 @@
     </ul>
     
     <hr>
-    
-
+		
           <form action="#">
-            <select name="state" id="state">
-              <option value="all">전체 게시글</option>
-              <option value="sell">판매중</option>
-              <option value="selldone">판매 완료</option>
+            <select name="selltype" id="selltype">
+              <option value="how">거래방식</option>
+              <option value="meet">직거래</option>
+              <option value="send">티켓전송</option>
             </select>
-
-            
-
             <select name="stadium" id="stad">
               <option value="select">구장을 선택하세요</option>
               <option value="gochuck">고척 스카이돔</option>
@@ -60,23 +56,21 @@
               <option value="incheon">인천 랜더스필드</option>
               <option value="changwon">창원 NC파크</option>
             </select>
+
+
+
+
           </form>
+            <br><br><br>
+		
 
+		  <form action="/community/community" method="post">
 
-
-            <div>
-                <input type="text" placeholder="검색어 입력">
-                <button>검색</button>
-            </div>
-
-            <br>
-            
-        
-            <button onclick="location.href='/community/communityWrite'">글쓰기</button>
-
-
-
-
-
-</body>
+		    <label> 파일선택 <input type="file"> </label> <br><br>
+			<input type="button" onclick="location.href='/community/community'" value="취소">
+			<input type="button" onclick="location.href='/community/community'" value="등록"> <br>
+		</form>
+		
+		
+		</body>
 </html>

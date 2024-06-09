@@ -37,20 +37,10 @@
       
       <hr>
 
-
-      <button type="button" class="community" onclick="location.href='/admin/adminMember'">회원현황</button> <br>
-      <button type="button" class="community" onclick="location.href='/admin/adminGeneralMember'">일반회원</button> <br>
-      <button type="button" class="community" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
+      <button type="button" class="community" onclick="location.href='/admin/adminSchedule'">경기일정</button> <br>
 
 
-
-
-
-
-
-
-
-
+      <button onclick="location.href='/admin/adminScheduleUpload'">등록</button>
 
 
 

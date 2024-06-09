@@ -37,17 +37,18 @@
       
       <hr>
 
-
-      <button type="button" class="community" onclick="location.href='/admin/adminMember'">회원현황</button> <br>
-      <button type="button" class="community" onclick="location.href='/admin/adminGeneralMember'">일반회원</button> <br>
-      <button type="button" class="community" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
+      
 
 
+          
+		  <form action="community.html" method="post">
 
-
-
-
-
+		    <label> 파일선택 <input type="file"> </label> <br><br>
+			<input type="button" onclick="location.href='/admin/adminNotice'" value="취소">
+			<input type="button" onclick="location.href='/admin/adminNotice'" value="등록"> <br>
+		</form>
+		
+		
 
 
 
