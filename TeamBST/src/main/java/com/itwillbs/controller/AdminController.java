@@ -20,23 +20,23 @@ public class AdminController {
 	
 	@RequestMapping(value="/adminBulletin",method=RequestMethod.GET)
 	public void adminWithdrawBulletin() {
-		logger.debug("관리자 페이지 호출");
+		logger.debug("관리자 공지사항 호출");
 
 	}
 	
 	@RequestMapping(value="/adminBulletinWrite",method=RequestMethod.GET)
 	public void adminBulletinWrite() {
-		logger.debug("관리자 페이지 호출");
+		logger.debug("관리자 공지사항 글쓰기 호출");
 
 	}	
 	@RequestMapping(value="/adminGeneralMember",method=RequestMethod.GET)
 	public void adminGeneralMember() {
-		logger.debug("관리자 페이지 호출");
+		logger.debug("관리자 일반회원 호출");
 
 	}	
 	@RequestMapping(value="/adminMember",method=RequestMethod.GET)
 	public void adminMember() {
-		logger.debug("관리자 페이지 호출");
+		logger.debug("관리자 회원정보 호출");
 
 	}
 	
@@ -52,18 +52,18 @@ public class AdminController {
 	}	
 	@RequestMapping(value="/adminSchedule",method=RequestMethod.GET)
 	public void adminSchedule() {
-		logger.debug("관리자 페이지 호출");
+		logger.debug("관리자 경기일정 호출");
 
 	}	
 	@RequestMapping(value="/adminScheduleUpload",method=RequestMethod.GET)
 	public void adminScheduleUpload() {
-		logger.debug("관리자 페이지 호출");
+		logger.debug("관리자 경기일정 업로드 호출");
 
 	}
 	
 	@RequestMapping(value="/adminWithdrawMember",method=RequestMethod.GET)
 	public void adminWithdrawMember() {
-		logger.debug("관리자 페이지 호출");
+		logger.debug("관리자 탈퇴회원 호출");
 
 	}
 	

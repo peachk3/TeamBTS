@@ -14,19 +14,19 @@ public class AnnouncementController {
 
 	@RequestMapping(value="/announcement",method=RequestMethod.GET)
 	public void AnnouncementMain() {
-		logger.debug("거래게시판 호출");
+		logger.debug("공지 게시판 호출");
 
 	}
 	
 	
 	@RequestMapping(value="/bulletin",method=RequestMethod.GET)
 	public void announcementBulletin() {
-		logger.debug("문의게시판 호출");
+		logger.debug("문의 게시판 호출");
 
 	}
 	@RequestMapping(value="/bulletinWrite",method=RequestMethod.GET)
 	public void announcementBulletinWrite() {
-		logger.debug("문의게시판 호출");
+		logger.debug("문의 게시판 글쓰기 호출");
 
 	}
 	
