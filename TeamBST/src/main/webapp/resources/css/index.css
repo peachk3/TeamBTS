@@ -85,9 +85,58 @@ input::-moz-placeholder{color:#a8a8a8;}
 
 
   
-  
-  
-  
-  
-  
-  
+ /* 햄버거 버튼 꾸미기 */ 
+        .hamburger-menu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      .hamburger-button {
+        cursor: pointer;
+        background-color: #00255C;
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 24px;
+        border-radius: 5px;
+        margin-top:80px;
+      }
+
+      .hamburger-dropdown {
+        display: none;
+        position: absolute;
+        top: 138px;
+        right: 0;
+        background-color: white;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        width: 400px; /* 두 열을 포함할 수 있는 폭 */
+      }
+
+      .hamburger-dropdown .menu-columns {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .hamburger-dropdown .menu-column {
+        flex: 1;
+        padding: 10px;
+        background-color:#00255C;
+      }
+
+      .hamburger-dropdown .menu-column a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 5px 0;
+      }
+
+      .hamburger-dropdown .menu-column a:hover {
+        background-color: #ddd;
+      }
+
+      .menu-divider {
+        border-top: 1px solid #ccc;
+        margin: 10px 0;
+      }
