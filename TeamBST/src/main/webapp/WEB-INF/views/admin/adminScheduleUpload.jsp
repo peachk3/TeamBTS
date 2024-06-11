@@ -37,19 +37,6 @@
       
       <hr>
           
-          <form action="#">
-            <select name="stadium" id="stad">
-              <option value="select">경기장</option>
-              <option value="gochuck">고척 스카이돔</option>
-              <option value="gwangju">광주 챔피언스 필드</option>
-              <option value="daegu">대구 라이온즈파크</option>
-              <option value="daejun">대전 이글스파크</option>
-              <option value="busan">부산 사직야구장</option>
-              <option value="seoul">서울 잠실야구장</option>
-              <option value="suwon">수원 KT위즈파크</option>
-              <option value="incheon">인천 랜더스필드</option>
-              <option value="changwon">창원 NC파크</option>
-            </select>
             <select name="hometeam" id="hometeam">
               <option value="home">홈팀</option>
               <option value="nc">nc 다이노스</option>

@@ -88,6 +88,7 @@ public class AdminController {
 	@RequestMapping(value="/adminScheduleUpload",method=RequestMethod.GET)
 	public void adminScheduleUpload_GET() {
 		logger.debug("관리자 경기일정 업로드 호출");
+		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
 
 	}
 	

@@ -8,8 +8,14 @@
 		
 		<!-- 공지사항 작성 -->
 		<insert id="noticeJoin">
-			insert into Notice_boardDTO (notice_id, admin_id, notice_sub, notice_cont, notice_cre_date, photo_url)
-			values (#{now()}, #{admin_id}, #{username}, #{useremail})
+			insert into notice_board (admin_id, notice_sub, notice_cont, notice_cre_date, photo_url, notice_del_at)
+			values (#{admin_id}, #{notice_sub}, #{notice_cont}, now(), #{photo_url}, 'N')
+		</insert>
+		
+		<!-- 경기일정 등록 -->
+		<insert id="scheduleJoin">
+			insert into notice_board (admin_id, notice_sub, notice_cont, notice_cre_date, photo_url, notice_del_at)
+			values (#{admin_id}, #{notice_sub}, #{notice_cont}, now(), #{photo_url}, 'N')
 		</insert>
 		
 		
