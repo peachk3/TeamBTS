@@ -47,7 +47,6 @@ public class TicketingController {
 		model.addAttribute("TeamScheduleList", TeamScheduleList);
 
 		
-		
 	}
 	
 	
