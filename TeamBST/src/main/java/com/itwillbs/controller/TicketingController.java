@@ -11,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Team_n_stadiumDTO;
 import com.itwillbs.service.ScheduleService;
 
 @Controller
@@ -29,19 +31,26 @@ public class TicketingController {
 	public void MainTicketing() {
 		logger.debug("티켓팅 홈 페이지");
 
-	}
-	@RequestMapping(value="/team/{name}",method=RequestMethod.GET)
-	public void teamTicketing(@PathVariable("name") String name,Model model) {
-		logger.debug(name+"티켓팅 페이지");
 		
-		// list 호출
-		List<Game_scheduleDTO> GameScheduleList = sService.gameScheduleList(name);
+	}
+	
+	@RequestMapping(value="/ticketing",method=RequestMethod.POST)
+	public void TeamTicketing(@RequestParam("stad_id") String stad_id,Model model) {
+		logger.debug("티켓팅 홈 페이지");
+		
+		logger.debug("stad_id : " + stad_id);
+
+		List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
 		
 //		logger.debug(" GameScheduleList : "+GameScheduleList.size());
 
-		model.addAttribute("GameScheduleList", GameScheduleList);
+		model.addAttribute("TeamScheduleList", TeamScheduleList);
+
 		
 		
 	}
+	
+	
+	
 	
 }
