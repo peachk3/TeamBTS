@@ -13,7 +13,7 @@
 <body>
     <div class="login-box">
     <h2>Login</h2>
-     <form action="./loginPage" method="post" id="login-form">
+     <form id="loginForm" action="/member/loginPage" method="post" >
 
         <!-- 아이디 입력-->
         <label for="userId"></label>
@@ -25,7 +25,7 @@
 
         <!-- 아이디 저장-->
         <div class="save-id">
-            <input type="checkbox" id="rememberId" class="checked">
+            <input type="checkbox" id="rememberId" class="checked" >
             <label for="rememberId">아이디 저장하기</label>
         </div>
 
@@ -34,8 +34,8 @@
 
         <!-- 아이디찾기 비밀번호찾기 회원가입 화면 이동 버튼-->
         <div class="options">
-            <a href="#">아이디 찾기</a> 
-            <a href="#">비밀번호 찾기</a>
+            <a href="findid.html">아이디 찾기</a> 
+            <a href="findpw.html">비밀번호 찾기</a>
             <a href="signupPage">회원가입</a>
         </div>
     </form>
