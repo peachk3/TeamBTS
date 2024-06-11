@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -41,19 +41,20 @@
     
 
           <form action="#">
-            <select name="stadium" id="stad"  onchange="if(this.value) location.href=(this.value);">
-              <option value="/ticketing/ticketing">구장을 선택하세요</option>
-              <option value="GC">고척 스카이돔</option>
-              <option value="">광주 챔피언스 필드</option>
-              <option value="/ticketing/team/daegu">대구 라이온즈파크</option>
-              <option value="/ticketing/team/daejun">대전 이글스파크</option>
-              <option value="/ticketing/team/sajic">부산 사직야구장</option>
-              <option value="/ticketing/team/jamsil">서울 잠실야구장</option>
-              <option value="/ticketing/team/suwon">수원 KT위즈파크</option>
-              <option value="/ticketing/team/incheon">인천 랜더스필드</option>
-              <option value="/ticketing/team/changwon">창원 NC파크</option>
+            <select name="stadium" id="stad">
+              <option value="select">구장을 선택하세요</option>
+              <option value="gochuck">고척 스카이돔</option>
+              <option value="gwangju">광주 챔피언스 필드</option>
+              <option value="daegu">대구 라이온즈파크</option>
+              <option value="daejun" selected>대전 이글스파크</option>
+              <option value="sajic">부산 사직야구장</option>
+              <option value="jamsil">서울 잠실야구장</option>
+              <option value="suwon">수원 KT위즈파크</option>
+              <option value="incheon">인천 랜더스필드</option>
+              <option value="changwon">창원 NC파크</option>
             </select>
           </form>
+
 	<table border="1">
 		<tr>
 			<td>경기번호</td>
@@ -64,8 +65,6 @@
 			<td>홈팀</td>
 			<td>예매하기</td>
 		</tr>
-
-
 
 		<c:forEach var="vo" items="${GameScheduleList}">
 			<tr>
@@ -80,7 +79,6 @@
 		</c:forEach>
 
 	</table>
-        
 
 
 </body>

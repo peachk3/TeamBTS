@@ -1,16 +1,18 @@
 package com.itwillbs.domain;
 
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 @Data
 public class Question_commendDTO {
 	
-	private long comm_id;
-	private long quest_id;
+	private Integer comm_id;
+	private Integer quest_id;
 	private String comm_cont;
-	private String comm_cre_date;
+	private Timestamp comm_cre_date;
 	private String comm_del_at;
-	private String comm_del_date;
-	private long admin_id;
+	private Timestamp comm_del_date;
+	private String admin_id;
 	
 }

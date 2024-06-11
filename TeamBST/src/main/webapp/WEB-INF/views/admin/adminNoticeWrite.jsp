@@ -19,34 +19,36 @@
           <a href="/admin/admin">관리자페이지/</a>
           로그인시간 ( 58: 00 ) 
         </h6>
-      </nav>
+    </nav>
   
       
 
-      <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/admin/adminSchedule">경기일정</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/adminMember">회원</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/adminNotice">고객센터</a>
-        </li>
-      </ul>
-      
-      <hr>
+    <ul class="nav">
+       <li class="nav-item">
+         <a class="nav-link active" aria-current="page" href="/admin/adminSchedule">경기일정</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="/admin/adminMember">회원</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="/admin/adminNotice">고객센터</a>
+       </li>
+	</ul>
+	 
+	<hr>
 
       
-
-
           
-		  <form action="community.html" method="post">
-
-		    <label> 파일선택 <input type="file"> </label> <br><br>
-			<input type="button" onclick="location.href='/admin/adminNotice'" value="취소">
-			<input type="button" onclick="location.href='/admin/adminNotice'" value="등록"> <br>
-		</form>
+ 	<form action="/admin/adminNoticeWrite" method="post">
+  	
+	  	작성자 : <input type="text" name="admin_id"> <br>
+		제목 : <input type="text" name="notice_sub"> <br>
+		내용 : <textarea rows="5" cols="30" name="notice_cont"></textarea> <br>
+	    <label> 파일선택 <input type="file" name="photo_url"> </label> <br><br>
+		<input type="button" onclick="location.href='/admin/adminNotice'" value="취소">
+		<input type="submit" value="등록"> <br>
+		
+	</form>
 		
 		
 

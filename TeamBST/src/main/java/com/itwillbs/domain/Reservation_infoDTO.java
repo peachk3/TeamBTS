@@ -1,15 +1,17 @@
 package com.itwillbs.domain;
 
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 @Data
 public class Reservation_infoDTO {
 	
-	private long res_id;
-	private long user_id;
-	private long game_id;
+	private Integer res_id;
+	private String user_id;
+	private Integer game_id;
 	private String pur_name;
-	private String res_date;
+	private Timestamp res_date;
 	private String res_state;
 	private int res_pay_price;
 	private int res_fee;

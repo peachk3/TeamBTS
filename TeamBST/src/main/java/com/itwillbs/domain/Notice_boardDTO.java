@@ -1,18 +1,20 @@
 package com.itwillbs.domain;
 
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 @Data
 public class Notice_boardDTO {
 
-	private long notice_id;
-	private long admin_id;
+	private Integer notice_id;
+	private String admin_id;
 	private String notice_sub;
 	private String notice_cont;
-	private String notice_cre_date;
-	private long photo_url;
+	private Timestamp notice_cre_date;
+	private String photo_url;
 	private int notice_view;
 	private String notice_del_at;
-	private String notice_del_date;
+	private Timestamp notice_del_date;
 	
 }
