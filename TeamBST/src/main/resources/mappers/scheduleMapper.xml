@@ -11,7 +11,10 @@
 	 	where (home_team_id=#{name} or away_team_id=#{name})
 	 </select> 	 
 
-	
+	 <select id="TeamSchedule" resultType="com.itwillbs.domain.Game_scheduleDTO">
+	 	select * from game_schedule
+ 		where stad_id = #{stad_id}
+	 </select> 	 
 
 
 

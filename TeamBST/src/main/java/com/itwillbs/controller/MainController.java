@@ -35,10 +35,11 @@ public class MainController {
 	
 	// http://localhost:8088/main/team
 	@RequestMapping(value="/team",method = RequestMethod.GET)
-	public void openTeam() {
+	public void openTeam_GET() {
 		logger.debug("팀페이지 호출");
 
 	}
+
 	// http://localhost:8088/main/team
 	@RequestMapping(value="/team/{name}",method = RequestMethod.GET)
 	public void openTeam2(@PathVariable("name") String name,Model model) {

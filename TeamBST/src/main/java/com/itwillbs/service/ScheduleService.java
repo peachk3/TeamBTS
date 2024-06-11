@@ -8,4 +8,7 @@ public interface ScheduleService {
 	
 	public List<Game_scheduleDTO> gameScheduleList(String name);
 
+	public List<Game_scheduleDTO> stadScheduleList(String stad_id);
+
+	
 }

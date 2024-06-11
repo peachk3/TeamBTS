@@ -23,11 +23,26 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public List<Game_scheduleDTO> gameScheduleList(String name) {
 	
-		logger.debug(" gameScheduleList() 실행 ");
+		logger.debug(" gameScheduleList(String name) 실행 ");
 		
 //		logger.debug(" name : "+name);
 		
 		return gsdao.GameSchedule(name);
 	}
+
+
+	@Override
+	public List<Game_scheduleDTO> stadScheduleList(String stad_id) {
+
+		logger.debug(" stadScheduleList(String stad_id) 실행 ");
+		
+		
+		return gsdao.StadSchedule(stad_id);
+	}
+	
+	
+	
+	
+	
 	
 }
