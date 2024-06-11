@@ -40,7 +40,6 @@ public class MainController {
 
 	}
 
-
 	// http://localhost:8088/main/team
 	@RequestMapping(value="/team/{name}",method = RequestMethod.GET)
 	public void openTeam2(@PathVariable("name") String name,Model model) {
