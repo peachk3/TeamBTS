@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.itwillbs.mapper.adminMapper">
+		
+		<!-- 공지사항 작성 -->
+		<insert id="noticeJoin">
+			insert into Notice_boardDTO (notice_id, admin_id, notice_sub, notice_cont, notice_cre_date, photo_url)
+			values (#{now()}, #{admin_id}, #{username}, #{useremail})
+		</insert>
+		
+		
+	</mapper>

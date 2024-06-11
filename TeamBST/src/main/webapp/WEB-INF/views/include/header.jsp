@@ -13,7 +13,7 @@
 <nav>
     <a href="/main/main"><h1>개바리조</h1></a>
     <h6>
-        <a href="/login/login">로그인/</a>
+        <a href="/login/loginPage">로그인/</a>
         <a href="/mypage/mypage">마이페이지/</a>
         <a href="/admin/admin">관리자페이지/</a>
         로그인시간 ( 58: 00 )
