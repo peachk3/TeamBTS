@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.UserDTO;
 import com.itwillbs.persistence.MemberDAO;
 
 /**
@@ -31,10 +31,10 @@ public class MemberServiceImpl implements MemberService{
 
 	//회원가입
 	@Override
-	public void memberJoin(MemberDTO mdto) {
+	public void memberJoin(UserDTO udto) {
 		logger.debug("memberJoin(MemberDTO mdad) 실행");
 		
-		mdao.memberJoin(mdto); // 오류!!!!!!!!--> mdao.memberJoin(mdto)를 입력하지 않아서 회원가입에 필요한 데이터가 mdto에 불러오지 못함
+		mdao.memberJoin(udto); // 오류!!!!!!!!--> mdao.memberJoin(mdto)를 입력하지 않아서 회원가입에 필요한 데이터가 mdto에 불러오지 못함
 	
 		logger.debug("회원가입 성공~!!");
 		
@@ -42,12 +42,13 @@ public class MemberServiceImpl implements MemberService{
 	//로그인 
 
 	@Override
-	public MemberDTO memberLogin(MemberDTO loginDto) {
+	public UserDTO memberLogin(UserDTO loginDto) {
 		logger.debug("memberLogin(loginDTO) 호출");
 		
-		MemberDTO resultDTO = mdao.memberLogin(loginDto);
+		UserDTO resultDTO = mdao.memberLogin(loginDto);
 		logger.debug("DAO 처리결과 -> 서비스 ");
 		logger.debug("서비스 -> 컨트롤러 ");
+		
 		return resultDTO;
 		
 	}

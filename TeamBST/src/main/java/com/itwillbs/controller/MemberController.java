@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.UserDTO;
 import com.itwillbs.service.MemberService;
-import com.mysql.cj.Session;
+
 
 
 //http://localhost:8088/member/signupPage
@@ -34,12 +34,12 @@ public class MemberController {
 
     // 회원가입 - 입력 받은 정보 처리(POST)
     @RequestMapping(value = "/signupPage", method = RequestMethod.POST)
-    public String signupPOST(MemberDTO mdto) {
+    public String signupPOST(UserDTO udto) {
         logger.debug("/signupPage -> signupPOST() 호출");
-        logger.debug("memberDTO : " + mdto);
+        logger.debug("UserDTO : " + udto);
 
         // 서비스 => DB에 회원가입 처리 메서드를 호출 
-        mService.memberJoin(mdto);
+        mService.memberJoin(udto);
          
 
          return "redirect:/member/loginPage"; // 리다이렉트할 경로 반환
@@ -55,15 +55,15 @@ public class MemberController {
 	//로그인 - 입력받은 아이디, 비밀번호를 사용해서 확인
 	
 	@RequestMapping(value = "/loginPage", method = RequestMethod.POST)										
-	public String loginPOST(HttpSession session, MemberDTO mdto){ // 파라미터에 ->전달한 정보 저장(아이디, 비밀번호)
+	public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 ->전달한 정보 저장(아이디, 비밀번호)
 		logger.debug("/loginPage -> loginPOST() 호출");
 
 		//1.한글 처리 인코딩(생략)->web.xml에 필터 걸어놨기 때문에
 		//2.전달한 정보 저장(아이디, 비밀번호)
 
-		logger.debug("로그인 정보"+ mdto );
+		logger.debug("로그인 정보"+ udto );
 		
-		MemberDTO resultDTO = mService.memberLogin(mdto);
+		UserDTO resultDTO = mService.memberLogin(udto);
 		
 		logger.debug("로그인 결과 " + resultDTO);
 		

@@ -15,7 +15,7 @@
 </insert>
 
 <!-- 로그인체크 -->
-<select id="loginCheck" resultType="com.itwillbs.domain.MemberDTO">
+<select id="loginCheck" resultType="com.itwillbs.domain.UserDTO">
 	select * from user
 	where user_id=#{user_id} and user_pwd=#{user_pwd}
 </select>

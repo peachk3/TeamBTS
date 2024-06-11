@@ -1,14 +1,15 @@
 package com.itwillbs.persistence;
 
-import com.itwillbs.domain.MemberDTO;
+
+import com.itwillbs.domain.UserDTO;
 
 public interface MemberDAO {
 		
 		//회원가입
-		public void memberJoin(MemberDTO mdto);
+		public void memberJoin(UserDTO udto);
 		
 		//로그인
-		public MemberDTO memberLogin(MemberDTO mdto);
-		public MemberDTO memberLogin(String user_id, String user_pwd);
+		public UserDTO memberLogin(UserDTO udto);
+		public UserDTO memberLogin(String user_id, String user_pwd);
 	
 }

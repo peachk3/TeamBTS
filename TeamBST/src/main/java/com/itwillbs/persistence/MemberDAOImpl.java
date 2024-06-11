@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.UserDTO;
 
 
 /**
@@ -31,22 +31,22 @@ public class MemberDAOImpl implements MemberDAO {
 	
 
 	@Override
-	public void memberJoin(MemberDTO mdto) {
-		System.out.println("DAO : insertMember(mdto) 호출");
+	public void memberJoin(UserDTO mdto) {
+		System.out.println("DAO : insertUser(udto) 호출");
 		
 		//mapper 생성된 sql 구문 실행
 		//sqlSession.insert(sql구문, 전달할 값);
-		sqlSession.insert(NAMESPACE +"memberJoin",mdto); 
+		sqlSession.insert(NAMESPACE +"userJoin",mdto); 
 		
 		System.out.println("DAO : 회원가입 완룡!");
 		
 	}
 	//로그인
 	@Override
-	public MemberDTO memberLogin(MemberDTO mdto) {
-		System.out.println("DAO : memberLogin(MemberDTO mdto) 실행");
+	public UserDTO memberLogin(UserDTO udto) {
+		System.out.println("DAO : userLogin(UserDTO mdto) 실행");
 		
-		MemberDTO resultDTO = sqlSession.selectOne(NAMESPACE+"loginCheck", mdto);
+		UserDTO resultDTO = sqlSession.selectOne(NAMESPACE+"loginCheck", udto);
 		
 		System.out.println("결과 : " + resultDTO);
 		
@@ -54,7 +54,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberDTO memberLogin(String user_id, String user_pwd) {
+	public UserDTO memberLogin(String user_id, String user_pwd) {
 		
 		System.out.println("DAO : memberLogin(String user_id, Sting user_pwd) 실행");
 		
