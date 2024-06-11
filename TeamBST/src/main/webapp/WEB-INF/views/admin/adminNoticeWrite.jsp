@@ -47,6 +47,7 @@
 	    <label> 파일선택 <input type="file" name="photo_url"> </label> <br><br>
 		<input type="button" onclick="location.href='/admin/adminNotice'" value="취소">
 		<input type="submit" value="등록"> <br>
+		
 	</form>
 		
 		
