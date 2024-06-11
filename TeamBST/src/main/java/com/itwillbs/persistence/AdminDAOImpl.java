@@ -36,7 +36,8 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		logger.debug("DAO : insertSchedule(dto) 호출");
 		
-		sqlSession.insert(NAMESPACE + "noticeJoin", dto);
+		logger.debug("dto : "+ dto);
+		sqlSession.insert(NAMESPACE + "scheduleJoin", dto);
 		
 		logger.debug("DAO : 경기일정 등록 완료");
 		

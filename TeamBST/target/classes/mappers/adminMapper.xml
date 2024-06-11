@@ -14,8 +14,8 @@
 		
 		<!-- 경기일정 등록 -->
 		<insert id="scheduleJoin">
-			insert into notice_board (admin_id, notice_sub, notice_cont, notice_cre_date, photo_url, notice_del_at)
-			values (#{admin_id}, #{notice_sub}, #{notice_cont}, now(), #{photo_url}, 'N')
+			insert into game_schedule (game_date, game_time, stad_id, home_team_id, away_team_id)
+			values (#{game_date}, #{game_time}, (select stad_id from team_n_stadium where team_id = #{home_team_id}), #{home_team_id}, #{away_team_id})
 		</insert>
 		
 		
