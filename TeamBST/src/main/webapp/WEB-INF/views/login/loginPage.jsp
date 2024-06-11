@@ -11,9 +11,11 @@
     
 </head>
 <body>
+	<a href="/main/main"><h1>개바리조</h1></a>
+	
     <div class="login-box">
     <h2>Login</h2>
-     <form id="loginForm" action="/member/loginPage" method="post" >
+     <form id="loginForm" action="/login/loginPage" method="post" >
 
         <!-- 아이디 입력-->
         <label for="userId"></label>

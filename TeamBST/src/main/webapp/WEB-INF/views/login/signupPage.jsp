@@ -11,6 +11,7 @@
     <script src="https://developers.kakao.com/sdk/kakao.min.js"></script><!-- 카카오 SDK 파일-->
 </head>
 <body>
+	<h1><a href="/main/main">개바리조</a></h1>
    
       <div class="signup-box">
         <div class="social-login">
@@ -23,7 +24,7 @@
         <hr class="hr-5">
 
         <h2>회원가입</h2> <!-- signup.jsp 연결 -->
-        <form id="signupForm" action="/member/signupPage" method="post" onsubmit="return validateForm()">
+        <form id="signupForm" action="/login/signupPage" method="post" onsubmit="return validateForm()">
             <div class="form-group">
                <!-- 이름 -->
                 <div class="form-group">
@@ -100,7 +101,7 @@
                 <button type="submit" id="submit-btn" class="submit-btn" >가입하기</button>
               </label>
               <label>
-                <button type="button" id="submit-btn" class="login-btn" onclick="location.href='/member/loginPage'">로그인</button>
+                <button type="button" id="submit-btn" class="login-btn" onclick="location.href='/login/loginPage'">로그인</button>
               </label>
             </div>
         </form> <!-- signupForm-->
