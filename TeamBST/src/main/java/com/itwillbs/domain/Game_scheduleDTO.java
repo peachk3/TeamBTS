@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class Game_scheduleDTO {
 	
+
 	private Integer game_id;
 	private Date game_date;
 	private Time game_time;

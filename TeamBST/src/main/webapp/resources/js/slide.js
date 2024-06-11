@@ -32,4 +32,22 @@ for (let i = 0; i < slideContainers.length; i++) {
 }
 
 
+// 햄버거 버튼 구현
+document.getElementById('hamburger-button').onclick = function() {
+    var dropdown = document.getElementById('hamburger-dropdown');
+    if (dropdown.style.display === 'block') {
+      dropdown.style.display = 'none';
+    } else {
+      dropdown.style.display = 'block';
+    }
+  };
+
+  window.onclick = function(event) {
+    if (!event.target.matches('.hamburger-button')) {
+      var dropdown = document.getElementById('hamburger-dropdown');
+      if (dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+      }
+    }
+  };
 
