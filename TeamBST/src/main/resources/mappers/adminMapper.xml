@@ -15,7 +15,7 @@
 		</insert>
 		
 		<!-- 로그인  -->
-		<select id="loginCheck" resultType="com.itwillbs.domain.AdminDTO">
+		<select id="adminLoginCheck" resultType="com.itwillbs.domain.AdminDTO">
 			select * from admin
 			where user_id=#{admin_id} and user_pwd=#{admin_pwd}
 		</select>

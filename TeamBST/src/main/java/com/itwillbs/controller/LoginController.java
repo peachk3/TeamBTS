@@ -56,11 +56,8 @@ public void loginGET() {
 
 @RequestMapping(value = "/loginPage", method = RequestMethod.POST)										
 public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 ->전달한 정보 저장(아이디, 비밀번호)
+	
 	logger.debug("/loginPage -> loginPOST() 호출");
-
-	//1.한글 처리 인코딩(생략)->web.xml에 필터 걸어놨기 때문에
-	//2.전달한 정보 저장(아이디, 비밀번호)
-
 	logger.debug("로그인 정보"+ udto );
 	
 	UserDTO resultDTO = mService.memberLogin(udto);

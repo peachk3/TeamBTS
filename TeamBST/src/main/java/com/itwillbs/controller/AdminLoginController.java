@@ -36,7 +36,8 @@ private AdminService aService;
 	
 	//관리자 로그인-입력받은 아이디, 비밀번호 사용해서 확인
 	@RequestMapping(value = "/AdminLoginPage", method =  RequestMethod.POST )
-	public String loginCheck(HttpSession session, AdminDTO adto) {
+	public String adminLoginCheck(HttpSession session, AdminDTO adto) {
+		
 		logger.debug("/AdminLoginPage -> LoginCheck");
 		logger.debug("로그인 정보" + adto);
 		
@@ -53,7 +54,7 @@ private AdminService aService;
 		//로그인 성공 
 		session.setAttribute("id", resultDTO.getAdmin_id());
 	
-		return "redirect:/admin/admin";
+		return "redirect:../admin/admin";
 	}
 	
 	

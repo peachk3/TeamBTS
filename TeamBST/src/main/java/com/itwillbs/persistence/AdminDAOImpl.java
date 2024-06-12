@@ -59,7 +59,7 @@ public class AdminDAOImpl implements AdminDAO{
 		sendDTO.put("admin_id", admin_id);
 		sendDTO.put("admin_pwd", admin_pwd);
 		
-		return sqlSession.selectOne(NAMESPACE+"loginCheck",sendDTO);
+		return sqlSession.selectOne(NAMESPACE+"adminLoginCheck",sendDTO);
 	}
 //====================================================================
 // 관리자 - 공지사항
