@@ -50,9 +50,7 @@ public class TicketingController {
 
 		
 	}
-	
 	// 경기 정보 페이지
-	
 	@RequestMapping(value="/gameInfo",method=RequestMethod.GET)
 	public String gameInfo(@RequestParam("game_id") String game_id, Model model) {
 		// gameId를 사용하여 필요한 로직을 수행합니다.
