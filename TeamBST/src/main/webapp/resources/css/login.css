@@ -48,7 +48,7 @@
         color: #ffff;
         }   
         
-        아이디 저장
+       
         label[for=rememberId]{
             color: #dee;
             display: inline-block;
@@ -60,7 +60,7 @@
             font-size: 13px;
         }
         
-        로그인버튼
+     
         .login-box input[type="submit"] {
             width: 100%;
             padding: 13px;
@@ -73,7 +73,7 @@
            
         }
 
-        옵션링크
+      
         .login-box .options {
             margin-top: 15px; 
             margin-bottom: 10px;
@@ -89,7 +89,7 @@
             margin: 0 5px;
 
         }
-         경계선
+        
         hr.hr-5 {
             border: 0;
             border-top: 3px double #D6D6D6;

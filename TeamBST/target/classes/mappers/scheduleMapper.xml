@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.itwillbs.mapper.ScheduleMapper">
+
+	<!-- 개인 팀 경기 일정 목록 -->
+	 <select id="GameSchedule" resultType="com.itwillbs.domain.Game_scheduleDTO">
+	 	select * from game_schedule
+	 	where (home_team_id=#{name} or away_team_id=#{name})
+	 </select> 	 
+
+	 <select id="TeamSchedule" resultType="com.itwillbs.domain.Game_scheduleDTO">
+	 	select * from game_schedule
+ 		where stad_id = #{stad_id}
+	 </select> 	 
+
+
+
+  
+  </mapper>
