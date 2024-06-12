@@ -78,12 +78,20 @@
             <!-- 개인정보 수집 동의 체크 => 서비스 이용약관 -->
             <div class="terms">
               <label>
-                <input type="checkbox" id="terms" name="aia"  value="1">
+                <input type="checkbox" id="terms" name="admin_info_agree" >
                 (필수)개인정보 수집 및 이용에 동의  
                 <input type="hidden" id="chkValue1" name="admin_info_agree">
               </label>
             </div>
 
+  		<script>
+				$(function() {
+					var c1 = $("#terms").is(":checked") ? "Y" : "N";
+
+					$("#terms").val(c1);
+				});
+				
+			</script>
 	
 			<!-- 가입하기 & 로그인 버튼-->
             <div id="signup_n_login">
@@ -96,14 +104,6 @@
             </div>
         </form> <!-- signupForm-->
     </div> <!-- signup-box-->
-  		<script>
-				$(function() {
-					var c1 = $("#aia").is(":checked") ? "Y" : "N";
-
-					$("#admin_info_agree").val(c1);
-				});
-				
-			</script>
  
 </body>
 </html>

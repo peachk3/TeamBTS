@@ -15,8 +15,6 @@
 </head>
 <body>
 	
-	<a href="/main/main"><h1>개바리조</h1></a>
-	
     <div class="login-box">
     <h2>Login</h2>
      <form id="loginForm" action="/login/AdminloginPage" method="post" >
