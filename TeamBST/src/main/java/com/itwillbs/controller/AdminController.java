@@ -1,5 +1,7 @@
 package com.itwillbs.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.service.AdminService;
@@ -35,8 +38,17 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminNotice",method=RequestMethod.GET)
-	public void adminNotice_GET() {
-		logger.debug("관리자 공지사항 호출");
+	public String adminNotice_GET(Model model) throws Exception{
+		logger.debug("관리자 공지사항 리스트 호출");
+		
+		// 서비스 -> DB의 정보를 가져오기
+		List<Notice_boardDTO> nBoardList = aService.NoticeList();
+		logger.debug("size : "+ nBoardList.size());
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("nBoardList", nBoardList);
+		
+		return "/admin/adminNotice";
 
 	}
 	
