@@ -48,6 +48,10 @@
                 <label for="confirm-password"></label>
                 <input class="in-b" type="password" id="confirm-password" name="user_confirm-password" placeholder="비밀번호 확인 *" >
     
+    		 <!-- 생년월일 -->
+    			 <p >날짜 : 
+        		<input type="date" id="date" max="2077-06-20" min="2000-01-01" name="admin_birth">
+    			  </p>
                 <!--닉네임-->
                 <label for="nickname"></label>
                 <div class="btn-group"> <!-- 닉네임 중복확인-->

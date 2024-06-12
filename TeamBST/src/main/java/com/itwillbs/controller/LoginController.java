@@ -75,7 +75,7 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 	session.setAttribute("id", resultDTO.getUser_id());
 	
 	
-	return "redirect:/login/loginPage";
+	return "redirect:/main/main";
 	
 	}
 //-----------------------------------------------------

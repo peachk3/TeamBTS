@@ -11,7 +11,7 @@
     <link href="../resources/css/index.css" rel="stylesheet">
 </head>
 <body>
-	<%@ include file="../admin/admin.jsp" %>
+
     <nav>
         <a href="/main/main"><h1>개바리조</h1></a>
         
@@ -20,13 +20,6 @@
           <!-- 로그인, 로그아웃  -->
 			
 		  <a href="/login/login">로그인/</a>
-		  <c:if test="${msg == 'success' }">
-			  <h6>${sessionScope.admin_name }
-				(${sessionScope.admin_nick}님 로그인 ) 
-			 </h6>
-		  </c:if>
-		  
-		  
           <a href="/mypage/mypage">마이페이지/</a>
           <a href="/admin/admin">관리자페이지/</a>
           로그인시간 ( 58: 00 ) 
