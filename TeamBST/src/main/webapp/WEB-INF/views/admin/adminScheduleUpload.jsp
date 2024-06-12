@@ -72,20 +72,21 @@
 <!-- 날짜 / 경기 시작 시간 / 좌석수 / 날씨 / 상태 카테고리 -->
 		
 
-		<p name="game_date">날짜 : 
+		<p >날짜 : 
 			<input type="date"
 		           id="date"
 		           max="2077-06-20"
 		           min="2000-01-01"
-		           value=<c:out value="${now}"/>>
+		           name="game_date">
 		</p>
 		
-		<p name="game_time">시간 : 
+		<p >시간 : 
 			<input type="time"
 		           id="date"			
 				   min="14:00:00"
 				   max="19:00:00"
-				   value="18:30:00">
+				   value="18:30:00"
+				   name="game_time">
 		</p>
 
 
