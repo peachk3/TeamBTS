@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.persistence.AdminDAO;
 
@@ -24,6 +25,18 @@ public class AdminServiceImpl implements AdminService{
 		
 		// DAO 메서드 호출
 		adao.insertNotice(dto);
+		
+		logger.debug("공지사항 작성 성공");
+		
+	}
+
+	@Override
+	public void ScheduleJoin(Game_scheduleDTO dto) {
+
+		logger.debug("NoticeJoin(dto) 실행");
+		
+		// DAO 메서드 호출
+		adao.insertSchedule(dto);
 		
 		logger.debug("공지사항 작성 성공");
 		
