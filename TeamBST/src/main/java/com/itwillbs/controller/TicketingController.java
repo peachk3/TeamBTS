@@ -51,4 +51,14 @@ public class TicketingController {
 		
 	}
 	
+	// 경기 정보 페이지
+	
+	@RequestMapping(value="/gameInfo",method=RequestMethod.GET)
+	public void gameInfo() {
+		
+	}
+	
+	
+	
+	
 }
