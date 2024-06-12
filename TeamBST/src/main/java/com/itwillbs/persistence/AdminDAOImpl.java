@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 
 @Repository
@@ -24,10 +25,24 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		logger.debug("DAO : insertNotice(dto) 호출");
 		
+		logger.debug("dto : "+ dto);
 		sqlSession.insert(NAMESPACE + "noticeJoin", dto);
 		
 		logger.debug("DAO : 공지사항 작성 완료");
 	}
+
+	@Override
+	public void insertSchedule(Game_scheduleDTO dto) {
+		
+		logger.debug("DAO : insertSchedule(dto) 호출");
+		
+		logger.debug("dto : "+ dto);
+		sqlSession.insert(NAMESPACE + "scheduleJoin", dto);
+		
+		logger.debug("DAO : 경기일정 등록 완료");
+		
+	}
+	
 	
 
 }
