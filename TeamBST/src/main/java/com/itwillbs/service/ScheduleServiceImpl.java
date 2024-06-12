@@ -39,6 +39,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 		
 		return gsdao.StadSchedule(stad_id);
 	}
+
+
+	@Override
+	public List<Game_scheduleDTO> gameInfoList(String game_id) {
+
+		
+		return gsdao.GameInfo(game_id);
+	}
 	
 	
 	
