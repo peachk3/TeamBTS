@@ -57,7 +57,6 @@
 		</tr>
 
 
-
 		<c:forEach var="vo" items="${TeamScheduleList}">
 			<tr>
 				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_id}</a></td>
