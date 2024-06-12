@@ -45,6 +45,7 @@ public String signupPOST(UserDTO udto) {
 }
 
 //-----------------------------------------------------------------------
+// 회원로그인 
 @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
 public void loginGET() {
 	logger.debug("/login -> loginGET() 호출");
@@ -72,6 +73,7 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 		
 		return "redirect:/login/loginPage";
 	}
+	
 	//로그인 성공!
 	session.setAttribute("id", resultDTO.getUser_id());
 	
@@ -79,5 +81,17 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 	return "redirect:/main/main";
 	
 	}
+//-----------------------------------------------------
+// 회원 로그아웃 
+
+
+
+
+
+
+
+//===============================================
+//아이디 중복 체크 (비동기식)
+	
 
 }

@@ -20,7 +20,7 @@
         <!-- 아이디 입력-->
         <label for="userId"></label>
         <input type="text" id="user_id" name="user_id" placeholder="아이디" required>
-
+		
         <!-- 패스워드 입력-->
         <label for="userPwd"></label>
         <input type="password" id="user_pwd" name="user_pwd" maxsize='16' placeholder="비밀번호" required>

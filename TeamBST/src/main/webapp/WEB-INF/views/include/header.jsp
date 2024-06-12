@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +16,20 @@
     <a href="/main/main"><h1>개바리조</h1></a>
     <h6>
         <a href="/login/loginPage">로그인/</a>
+        
+        <!-- 로그인 & 로그아웃  -->
+        <c:choose>
+        	<c:when test="${sessionScope.user_id==null }">
+        		<a href="${path }/login/loginPage">로그인</a>
+        	</c:when>
+        </c:choose>
+        <c:otherwise>
+        	${sessionScope.user_nick }님 로그인
+        	<a href="${path }/login/loginPage"></a>
+        </c:otherwise>
+        
+        <!--   -->
+        
         <a href="/mypage/mypage">마이페이지/</a>
         <a href="/admin/admin">관리자페이지/</a>
         로그인시간 ( 58: 00 )
