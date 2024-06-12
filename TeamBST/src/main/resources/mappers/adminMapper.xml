@@ -8,10 +8,10 @@
 	
 		<!--  회원가입 -->	
 		<insert id="adminJoin" >
-			insert into admin (admin_id, admin_pwd, admin_nick, admin_phone, admin_email, admin_birth, 
-			admin_cre_date, admin_info_agree, admin_status)
-			values(#{admin_id},#{admin_pwd},#{admin_nick},#{admin_phone},#{admin_email},#{admin_birth},
-			#{admin_cre_date},#{admin_info_agree},#{admin_status})
+			insert into admin (admin_id, admin_name, admin_pwd, admin_nick, admin_phone, admin_email, admin_birth, 
+			admin_cre_date)
+			values(#{admin_id},#{admin_name},#{admin_pwd},#{admin_nick},#{admin_phone},#{admin_email},#{admin_birth},
+			now())
 		</insert>
 		
 		<!-- 로그인  -->

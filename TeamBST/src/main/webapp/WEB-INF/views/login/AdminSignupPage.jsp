@@ -16,7 +16,7 @@
       <div class="signup-box">
   
         <h2>회원가입</h2> <!-- signup.jsp 연결 -->
-        <form id="adminSignupForm" action="/login/admibSignupPage" method="post" onsubmit="return validateForm()">
+        <form id="AdminSignupForm" action="/login/AdminSignupPage" method="post" onsubmit="return validateForm()">
             <div class="form-group">
                <!-- 이름 -->
                 <div class="form-group">
@@ -47,6 +47,15 @@
                   <button type="button" class="check-button" onclick="checkDuplicate('nickname')" >중복확인</button>
                 </div>
                 
+                <!-- 생년월일 -->
+                <p >날짜 : 
+        		<input type="date"
+                 id="date"
+                 max="2077-06-20"
+                 min="2000-01-01"
+                 name="admin_birth">
+    			  </p>
+                
                 <!-- 이메일-->
                 <label for="email"></label>
                 <div class="btn-group">
@@ -73,23 +82,32 @@
             <!-- 개인정보 수집 동의 체크 => 서비스 이용약관 -->
             <div class="terms">
               <label>
-                <input type="checkbox" id="terms" name="user_info_agree"  value="1">
-                (필수)개인정보 수집 및 이용에 동의
+                <input type="checkbox" id="terms" name="aia"  value="1">
+                (필수)개인정보 수집 및 이용에 동의  
+                <input type="hidden" id="chkValue1" name="admin_info_agree">
               </label>
             </div>
-            
-                <!-- 가입하기 & 로그인 버튼-->
+
+	
+			<!-- 가입하기 & 로그인 버튼-->
             <div id="signup_n_login">
               <label>
                 <button type="submit" id="submit-btn" class="submit-btn" >가입하기</button>
               </label>
               <label>
-                <button type="button" id="submit-btn" class="login-btn" onclick="location.href='/login/adminLoginPage'">로그인</button>
+                <button type="button" id="submit-btn" class="login-btn" onclick="location.href='/login/AdminLoginPage'">로그인</button>
               </label>
             </div>
         </form> <!-- signupForm-->
     </div> <!-- signup-box-->
-  
+  		<script>
+				$(function() {
+					var c1 = $("#aia").is(":checked") ? "Y" : "N";
+
+					$("#admin_info_agree").val(c1);
+				});
+				
+			</script>
  
 </body>
 </html>

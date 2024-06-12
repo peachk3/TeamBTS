@@ -54,7 +54,7 @@ private AdminService aService;
 		//로그인 성공 
 		session.setAttribute("id", resultDTO.getAdmin_id());
 	
-		return "redirect:../admin/admin";
+		return "redirect:/admin/admin";
 	}
 	
 	
