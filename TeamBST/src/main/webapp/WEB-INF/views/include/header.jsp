@@ -29,7 +29,7 @@
             <a class="nav-link" href="/announcement/announcement">고객센터</a>
         </li>
     </ul>
-    <div class="hamburger-menu">
+<div class="hamburger-menu">
         <button id="hamburger-button" class="hamburger-button">
             ☰
         </button>
@@ -37,15 +37,15 @@
             <div class="menu-columns">
                 <div class="menu-column">
                     <p><a href="#stadium">구장</a></p>
-                    <a href="/ticketing/team/gochuck">고척 스카이돔</a>
-                    <a href="/ticketing/team/gwangju">광주 챔피언스 필드</a>
-                    <a href="/ticketing/team/daegu">대구 라이온즈파크</a>
-                    <a href="/ticketing/team/daejun">대전 이글스파크</a>
-                    <a href="/ticketing/team/sajic">부산 사직야구장</a>
-                    <a href="/ticketing/team/jamsil">서울 잠실야구장</a>
-                    <a href="/ticketing/team/suwon">수원 KT위즈파크</a>
-                    <a href="/ticketing/team/incheon">인천 랜더스필드</a>
-                    <a href="/ticketing/team/changwon">창원 NC파크</a>
+                    <a href="#" data-stadium-id="GC">고척 스카이돔</a>
+                    <a href="#" data-stadium-id="GJ">광주 챔피언스 필드</a>
+                    <a href="#" data-stadium-id="DG">대구 라이온즈파크</a>
+                    <a href="#" data-stadium-id="DJ">대전 이글스파크</a>
+                    <a href="#" data-stadium-id="SJ">부산 사직야구장</a>
+                    <a href="#" data-stadium-id="JS">서울 잠실야구장</a>
+                    <a href="#" data-stadium-id="SW">수원 KT위즈파크</a>
+                    <a href="#" data-stadium-id="IC">인천 랜더스필드</a>
+                    <a href="#" data-stadium-id="CW">창원 NC파크</a>
                 </div>
                 <div class="menu-column">
                     <p><a href="/main/team">구단</a></p>
@@ -65,3 +65,32 @@
 </nav>
 <hr>
 
+<!-- Hidden form for POST request -->
+<form id="stadiumForm" action="/ticketing/ticketing" method="post" style="display: none;">
+    <input type="hidden" name="stad_id" id="stadiumInput">
+</form>
+
+
+<script>
+    document.getElementById('hamburger-button').onclick = function(event) {
+        event.stopPropagation();
+        var dropdown = document.getElementById('hamburger-dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    };
+
+    window.onclick = function(event) {
+        var dropdown = document.getElementById('hamburger-dropdown');
+        if (dropdown.style.display === 'block' && !event.target.closest('.hamburger-menu')) {
+            dropdown.style.display = 'none';
+        }
+    };
+
+    document.querySelectorAll('.menu-column a[data-stadium-id]').forEach(anchor => {
+        anchor.addEventListener('click', function(event) {
+            event.preventDefault();
+            const stadiumId = this.getAttribute('data-stadium-id');
+            document.getElementById('stadiumInput').value = stadiumId;
+            document.getElementById('stadiumForm').submit();
+        });
+    });
+</script>

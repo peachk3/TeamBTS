@@ -33,6 +33,9 @@ public class TicketingController {
 
 		
 	}
+	
+	
+	
 	@RequestMapping(value="/ticketing",method=RequestMethod.POST)
 	public void TeamTicketing(@RequestParam("stad_id") String stad_id,Model model) {
 		logger.debug("티켓팅 홈 페이지");
