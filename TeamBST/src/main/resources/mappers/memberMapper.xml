@@ -8,8 +8,7 @@
 <!-- 회원가입  -->
 <insert id="userJoin">
 	insert into user (user_id, user_birth, user_pwd, user_name, user_nick, user_phone, user_email, join_date, user_info_agree, user_serv_agree, user_login_time, user_active, user_status )
-	 values(#{user_id},#{user_birth}, #{user_pwd},#{user_name},#{user_nick},#{user_phone},#{user_email}, now(),#{user_info_agree}, #{user_serv_agree},
-	  now(), #{user_active},#{user_status})
+	 values(#{user_id},#{user_birth}, #{user_pwd},#{user_name},#{user_nick},#{user_phone},#{user_email}, now(),#{user_info_agree}, #{user_serv_agree},now(), #{user_active},#{user_status})
 	 
 
 </insert>
