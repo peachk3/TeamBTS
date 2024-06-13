@@ -25,7 +25,9 @@ public interface MypageDAO {
 	// 내 질문글 목록
 	public List<UserDTO> questionBoardList();
 	
-	// 내 경기목록
-	public List<UserDTO> matchList();
+	// 내 지난 경기목록
+	public List<UserDTO> previousMatchList();
 	
+	// 내 예정 경기목록
+	public List<UserDTO> openMatchList();
 }
