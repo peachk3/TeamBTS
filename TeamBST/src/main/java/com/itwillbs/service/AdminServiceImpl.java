@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.UserDTO;
 import com.itwillbs.persistence.AdminDAO;
 
 @Service
@@ -56,6 +57,13 @@ public class AdminServiceImpl implements AdminService{
 		logger.debug("공지사항 글목록 조회");
 		
 		return adao.ScheduleList();
+	}
+
+	@Override
+	public List<UserDTO> generalMemberList() throws Exception {
+		logger.debug("일반회원 정보 조회");
+		
+		return adao.generalMemberList();
 	}
 	
 	

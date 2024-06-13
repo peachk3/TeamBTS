@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.UserDTO;
 
 public interface AdminDAO {
 	
@@ -22,4 +23,8 @@ public interface AdminDAO {
 	// 경기일정 리스트
 	public List<Game_scheduleDTO> ScheduleList() throws Exception;
 
+	// 일반 회원 리스트 
+	public List<UserDTO> generalMemberList() throws Exception;
+	
+	
 }
