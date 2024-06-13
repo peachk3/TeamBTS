@@ -42,7 +42,7 @@ ${gameInfoList}
 
 	
 <img alt="" src="../resources/stadium/daejun.webp">
-<img alt="" src="${gameInfoList.stad_url}">
+<%-- <img alt="" src="${gameInfoList.stad_url}"> --%>
 
 
 </body>
