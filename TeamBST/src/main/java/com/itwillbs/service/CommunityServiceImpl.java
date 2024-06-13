@@ -6,10 +6,12 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.persistence.CommunityDAO;
 
+@Service
 public class CommunityServiceImpl implements CommunityService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(CommunityServiceImpl.class);

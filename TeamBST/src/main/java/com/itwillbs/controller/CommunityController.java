@@ -34,6 +34,7 @@ public class CommunityController {
 		// 서비스 -> DB의 정보를 가져오기
 		List<Post_boardDTO> gScheduleList = cService.PostList();
 		logger.debug("size : "+ gScheduleList.size());
+		logger.debug("size : "+ gScheduleList);
 		
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("gScheduleList", gScheduleList);
@@ -56,8 +57,7 @@ public class CommunityController {
 		
 		cService.PostJoin(dto);
 		
-		return "redirect:/admin/adminSchedule";
-		
+		return "redirect:/community/community";
 	}
 	
 }

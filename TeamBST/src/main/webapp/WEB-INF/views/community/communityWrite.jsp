@@ -50,46 +50,48 @@
 			</div>
 		</div>
 		<!--begin::Form-->
-		<form class="form">
+		<form class="form" action="/community/communityWrite" method="post">
 			<div class="card-body">
 
 				<div class="form-group">
-					<label>제목 <input type="text" class="form-control form-control-solid"></label>
+					<label>제목 <input type="text" name="post_sub"
+						class="form-control form-control-solid"></label>
 				</div>
 
 				<div class="form-group">
-					<label>거래방식 <select name="selltype" id="selltype">
-							<option value="meet">직거래</option>
-							<option value="send">티켓전송</option>
+					<label>거래방식 <select name="sale_ty" id="selltype">
+							<option value="DITR">직거래</option>
+							<option value="NFTF">티켓전송</option>
 					</select></label>
 				</div>
 				<div class="form-group">
-					<label>원정팀 <select name="stadium" id="stad">
-							<option value="gochuck">고척 스카이돔</option>
-							<option value="gwangju">광주 챔피언스 필드</option>
-							<option value="daegu">대구 라이온즈파크</option>
-							<option value="daejun">대전 이글스파크</option>
-							<option value="busan">부산 사직야구장</option>
-							<option value="seoul">서울 잠실야구장</option>
-							<option value="suwon">수원 KT위즈파크</option>
-							<option value="incheon">인천 랜더스필드</option>
-							<option value="changwon">창원 NC파크</option>
+					<label>원정팀 <select name="stad_id" id="stad">
+							<option value="GC">고척 스카이돔</option>
+							<option value="GJ">광주 챔피언스 필드</option>
+							<option value="DG">대구 라이온즈파크</option>
+							<option value="DJ">대전 이글스파크</option>
+							<option value="SJ">부산 사직야구장</option>
+							<option value="JS">서울 잠실야구장</option>
+							<option value="SW">수원 KT위즈파크</option>
+							<option value="IC">인천 랜더스필드</option>
+							<option value="CW">창원 NC파크</option>
 					</select></label>
 				</div>
 
 				<div class="form-group">
 					<label for="exampleTextarea">내용</label>
-					<textarea class="form-control form-control-solid" rows="3"></textarea>
+					<textarea class="form-control form-control-solid" rows="3"  name="post_cont"></textarea>
 				</div>
-				
+
 				<div class="form-group">
-					<label> 파일선택 <input type="file" class="form-control form-control-solid"></label>
+					<label> 파일선택 <input type="file"  name="photo_url"
+						class="form-control form-control-solid"></label>
 				</div>
-				
+
 
 			</div>
 			<div class="card-footer">
-				<button type="reset" class="btn btn-primary mr-2">Submit</button>
+				<button type="submit" class="btn btn-primary mr-2">Submit</button>
 				<button type="reset" class="btn btn-secondary">Cancel</button>
 			</div>
 		</form>
@@ -105,7 +107,7 @@
 
 	<form action="/community/community" method="post">
 
-		 <br> <br> <input type="button"
+		<br> <br> <input type="button"
 			onclick="location.href='/community/community'" value="취소"> <input
 			type="button" onclick="location.href='/community/community'"
 			value="등록"> <br>
