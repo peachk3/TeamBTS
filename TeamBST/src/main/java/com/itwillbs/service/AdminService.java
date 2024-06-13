@@ -20,4 +20,7 @@ public interface AdminService {
 	// 경기일정 등록
 	public void ScheduleJoin(Game_scheduleDTO dto);
 
+	// 글 전체 목록 조회
+	public List<Game_scheduleDTO> ScheduleList() throws Exception;
+	
 }

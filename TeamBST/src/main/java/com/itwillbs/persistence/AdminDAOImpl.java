@@ -52,7 +52,15 @@ public class AdminDAOImpl implements AdminDAO{
 		logger.debug("DAO : 경기일정 등록 완료");
 		
 	}
-	
+
+	@Override
+	public List<Game_scheduleDTO> ScheduleList() throws Exception {
+		
+		logger.debug("DAO : ScheduleList() 호출");
+		
+		return sqlSession.selectList(NAMESPACE + "scheduleList");
+		
+	}
 	
 
 }

@@ -36,7 +36,7 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		//mapper 생성된 sql 구문 실행
 		//sqlSession.insert(sql구문, 전달할 값);
-		sqlSession.insert(NAMESPACE +"userJoin",mdto); 
+		sqlSession.insert(NAMESPACE +"memberJoin",mdto); 
 		
 		System.out.println("DAO : 회원가입 완룡!");
 		

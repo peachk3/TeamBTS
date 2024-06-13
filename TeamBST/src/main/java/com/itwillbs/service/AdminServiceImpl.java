@@ -51,6 +51,13 @@ public class AdminServiceImpl implements AdminService{
 		
 	}
 	
+	@Override
+	public List<Game_scheduleDTO> ScheduleList() throws Exception {
+		logger.debug("공지사항 글목록 조회");
+		
+		return adao.ScheduleList();
+	}
+	
 	
 	
 	
