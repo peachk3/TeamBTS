@@ -19,7 +19,7 @@
          
           <!-- 로그인, 로그아웃  -->
 			
-		  <a href="/login/login">로그인/</a>
+		  <a href="/login/AdminLoginPage">로그인/</a>
           <a href="/mypage/mypage">마이페이지/</a>
           <a href="/admin/admin">관리자페이지/</a>
           로그인시간 ( 58: 00 ) 
