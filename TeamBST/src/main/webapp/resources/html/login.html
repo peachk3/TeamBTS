@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <style>
+
+        .login-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        padding: 40px;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 86, 214, 1);
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0,0,0,.6);
+        border-radius: 10px;
+        }
+
+        .login-box > h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+        }
+
+        .login-box input::placeholder{
+            color: #ddd;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 12px;
+        }
+
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+        width: 100%;
+        padding: 20px 0px;
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        outline: none;
+        background: transparent;
+        }
+
+        #login-box > input[type="checkbox"]{
+        display: none;
+        }
+        
+        #login-form > label{
+        color: #ffff;
+        }   
+        
+        /* 아이디 저장 */
+        label[for=rememberId]{
+            color: #dee;
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+            vertical-align: top;
+            padding: 0 0 5 5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 10px;
+        }
+        
+        /* 로그인버튼 */
+        .login-box input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #ddd;
+            color: slategrey;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+
+        /* 옵션링크 */
+        .login-box .options {
+            margin-top: 12px; 
+            margin-bottom: 10px;
+            font-size: 10px;
+            color: slategray;
+            display: flex;
+            justify-content: center;
+        }
+
+        .login-box .options a{
+            text-decoration: none;
+            color: #fff;
+            margin: 0 5px;
+
+        }
+        /*  경계선 */
+        hr.hr-5 {
+            border: 0;
+            border-top: 3px double #D6D6D6;
+            }
+
+        .login-box .kakao-login-button {
+            background-color: #F7E600;
+            color: #3C1E1E;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            padding: 0px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .login-box .kakao-login-button img {
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+        .login-box .kakao-login-button:hover {
+            background-color: #E6D300;
+        }
+
+        
+    
+       
+        
+
+    </style>
+</head>
+<body>
+    <div class="login-box">
+    <h2>Login</h2>
+     <form action="/login" method="post" id="login-form">
+
+        <!-- 아이디 입력-->
+        <label for="userId"></label>
+        <input type="text" id="userId" name="userId" placeholder="아이디" required>
+
+        <!-- 패스워드 입력-->
+        <label for="userPwd"></label>
+        <input type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required>
+
+        <!-- 아이디 저장-->
+        <div class="save-id">
+            <input type="checkbox" id="rememberId" class="checked" onclick="">
+            <label for="rememberId"><span class="icon"></span>아이디 저장하기</label>
+        </div>
+
+        <!-- 로그인 버튼-->
+        <input type="submit" value="로그인">
+
+        <!-- 아이디찾기 비밀번호찾기 회원가입 화면 이동 버튼-->
+        <div class="options">
+            <a href="#">아이디 찾기</a>
+            <a href="#">비밀번호 찾기</a>
+            <a href="#">회원가입</a>
+        </div>
+    </form>
+
+        <!-- 경계선-->
+        <hr class="hr-5">
+
+    <!-- 카카오톡 로그인 버튼 -->
+    <button class="kakao-login-button" onclick="kakaoLogin()">
+        <img src="../img/kakao.png" alt="카카오 로그인 아이콘">
+    </button>
+    </div>
+    <script>
+        function kakaoLogin(){
+            //자바스크립트 코드 추가
+
+            alert("카카오톡 로그인 버튼 클릭됨!")
+        }
+
+    </script>
+
+</body>
+</html>
