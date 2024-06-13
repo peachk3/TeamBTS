@@ -57,9 +57,11 @@ public class TicketingController {
         // 예: 게임 정보를 조회하고 모델에 추가
 		
 		logger.debug("게임 정보 페이지 호출");
-		List<Game_scheduleDTO> gameInfoList = sService.gameInfoList(game_id);
+		List<Game_scheduleDTO> homeTeamInfoList = sService.homeTeamInfoList(game_id);
+		List<Game_scheduleDTO> awayTeamInfoList = sService.awayTeamInfoList(game_id);
 		
-		model.addAttribute("gameInfoList", gameInfoList);
+		model.addAttribute("homeTeamInfoList", homeTeamInfoList);
+		model.addAttribute("awayTeamInfoList", awayTeamInfoList);
 		
 		 
 		// 새로운 JSP 페이지로 이동
