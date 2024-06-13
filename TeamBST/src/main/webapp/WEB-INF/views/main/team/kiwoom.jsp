@@ -47,13 +47,13 @@
 
 		<c:forEach var="vo" items="${GameScheduleList}">
 			<tr>
-				<td>${vo.game_id }</td>
-				<td>${vo.game_date }</td>
-				<td>${vo.game_time}</td>
-				<td>${vo.stad_id }</td>
-				<td>${vo.away_team_id}</td>
-				<td>${vo.home_team_id }</td>
-			<td><a href="#">예매하기</a></td>
+				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_id}</a></td>
+				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_date}</a></td>
+				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_time}</a></td>
+				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.stad_id}</a></td>
+				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.away_team_id}</a></td>
+				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.home_team_id}</a></td>
+				<td><a href="#">예매하기</a></td>
 			</tr>
 		</c:forEach>
 

@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
+	${sessionScope }
+
 
 
 	<!-- 코드작성 -->
@@ -86,7 +88,6 @@
             });
         });
     </script>
-
 
 
 

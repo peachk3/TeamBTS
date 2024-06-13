@@ -20,8 +20,11 @@ public class AdminDAOImpl implements AdminDAO{
 	@Inject
 	public SqlSession sqlSession;
 	
-	private static final String NAMESPACE = "com.itwillbs.mapper.adminMapper.";
+	private static final String NAMESPACE = "com.itwillbs.mapper.adminLoginMapper.";
 
+	
+// 관리자 - 공지사항
+	
 	@Override
 	public void insertNotice(Notice_boardDTO dto) {
 		

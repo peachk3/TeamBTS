@@ -45,6 +45,7 @@ public String signupPOST(UserDTO udto) {
 }
 
 //-----------------------------------------------------------------------
+// 회원로그인 
 @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
 public void loginGET() {
 	logger.debug("/login -> loginGET() 호출");
@@ -55,11 +56,8 @@ public void loginGET() {
 
 @RequestMapping(value = "/loginPage", method = RequestMethod.POST)										
 public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 ->전달한 정보 저장(아이디, 비밀번호)
+	
 	logger.debug("/loginPage -> loginPOST() 호출");
-
-	//1.한글 처리 인코딩(생략)->web.xml에 필터 걸어놨기 때문에
-	//2.전달한 정보 저장(아이디, 비밀번호)
-
 	logger.debug("로그인 정보"+ udto );
 	
 	UserDTO resultDTO = mService.memberLogin(udto);
@@ -72,12 +70,25 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 		
 		return "redirect:/login/loginPage";
 	}
+	
 	//로그인 성공!
-	session.setAttribute("id", resultDTO.getUser_id());
+	session.setAttribute("user_id", resultDTO.getUser_id());
 	
 	
 	return "redirect:/main/main";
 	
 	}
+//-----------------------------------------------------
+// 회원 로그아웃 
+
+
+
+
+
+
+
+//===============================================
+//아이디 중복 체크 (비동기식)
+	
 
 }

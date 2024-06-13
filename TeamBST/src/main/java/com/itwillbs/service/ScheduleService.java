@@ -10,5 +10,8 @@ public interface ScheduleService {
 
 	public List<Game_scheduleDTO> stadScheduleList(String stad_id);
 
+	public List<Game_scheduleDTO> homeTeamInfoList(String game_id);
+	public List<Game_scheduleDTO> awayTeamInfoList(String game_id);
+	
 	
 }

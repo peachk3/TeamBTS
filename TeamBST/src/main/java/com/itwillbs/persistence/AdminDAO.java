@@ -7,6 +7,7 @@ import com.itwillbs.domain.Notice_boardDTO;
 
 public interface AdminDAO {
 	
+	
 	/* 공지사항 */
 	
 	// 공지사항 작성

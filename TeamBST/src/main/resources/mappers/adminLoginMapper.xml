@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.itwillbs.mapper.adminLoginMapper">
+	
+		<!--  회원가입 -->	
+		<insert id="adminJoin" >
+			insert into admin (admin_id, admin_name, admin_pwd, admin_nick, admin_phone, admin_email, admin_birth, admin_cre_date, admin_info_agree)
+			values(#{admin_id},#{admin_name},#{admin_pwd},#{admin_nick},#{admin_phone},#{admin_email},#{admin_birth},now(),#{admin_info_agree})
+		</insert>
+		
+		<!-- 로그인  -->
+		<select id="adminLoginCheck" resultType="com.itwillbs.domain.AdminDTO">
+			select * from admin
+			where admin_id=#{admin_id} and admin_pwd=#{admin_pwd}
+		</select>
+		
+	</mapper>
+		

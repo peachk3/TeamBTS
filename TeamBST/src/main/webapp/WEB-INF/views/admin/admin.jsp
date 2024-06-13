@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +11,15 @@
     <link href="../resources/css/index.css" rel="stylesheet">
 </head>
 <body>
+
     <nav>
         <a href="/main/main"><h1>개바리조</h1></a>
         
         <h6>
-          <a href="/login/login">로그인/</a>
+         
+          <!-- 로그인, 로그아웃  -->
+			
+		  <a href="/login/AdminLoginPage">로그인/</a>
           <a href="/mypage/mypage">마이페이지/</a>
           <a href="/admin/admin">관리자페이지/</a>
           로그인시간 ( 58: 00 ) 

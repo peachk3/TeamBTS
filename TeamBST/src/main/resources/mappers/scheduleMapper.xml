@@ -3,20 +3,63 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  <mapper namespace="com.itwillbs.mapper.ScheduleMapper">
+<mapper namespace="com.itwillbs.mapper.ScheduleMapper">
 
 	<!-- 개인 팀 경기 일정 목록 -->
-	 <select id="GameSchedule" resultType="com.itwillbs.domain.Game_scheduleDTO">
-	 	select * from game_schedule
-	 	where (home_team_id=#{name} or away_team_id=#{name})
-	 </select> 	 
+	<select id="GameSchedule"
+		resultType="com.itwillbs.domain.Game_scheduleDTO">
+		select * from game_schedule
+		where (home_team_id=#{name} or
+		away_team_id=#{name})
+	</select>
 
-	 <select id="TeamSchedule" resultType="com.itwillbs.domain.Game_scheduleDTO">
-	 	select * from game_schedule
- 		where stad_id = #{stad_id}
-	 </select> 	 
+	<!-- 구장별 경기 일정 목록 -->
+	<select id="TeamSchedule"
+		resultType="com.itwillbs.domain.Game_scheduleDTO">
+		select * from game_schedule
+		where stad_id = #{stad_id}
+	</select>
+
+	<!-- Join절 사용하기 위한 resultMap 모두 직접 설정하기 -->
+	<resultMap type="com.itwillbs.domain.Game_scheduleDTO"
+		id="gameMap">
+		<id property="game_id" column="game_id" />
+		<result property="game_id" column="game_id" />
+		<result property="game_date" column="game_date" />
+		<result property="game_time" column="game_time" />
+		<result property="stad_id" column="stad_id" />
+		<result property="home_team_id" column="home_team_id" />
+		<result property="away_team_id" column="away_team_id" />
+		<collection property="teamList" resultMap="teamMap">
+		</collection>
+	</resultMap>
+
+	<resultMap type="com.itwillbs.domain.Team_n_stadiumDTO"
+		id="teamMap">
+		<result property="stad_id" column="stad_id" />
+		<result property="team_id" column="team_id" />
+		<result property="stad_cap" column="stad_cap" />
+		<result property="stad_url" column="stad_url" />
+		<result property="stad_field_url" column="stad_field_url" />
+		<result property="team_logo_url" column="team_logo_url" />
+	</resultMap>
 
 
+	<!-- 홈팀 정보 불러오기 -->
+	<select id="homeTeamInfo" resultMap="gameMap">
+		select gs.game_date, gs.game_time, gs.stad_id, gs.home_team_id,
+		tns.stad_url, tns.stad_field_url, tns.team_logo_url
+		from game_schedule gs join team_n_stadium tns
+		on gs.home_team_id = tns.team_id
+		where gs.game_id = #{game_id};
+	</select>
 
-  
-  </mapper>
+	<select id="awayTeamInfo" resultMap="gameMap">
+		select gs.game_date, gs.game_time, gs.stad_id, gs.away_team_id,
+		tns.stad_url, tns.stad_field_url, tns.team_logo_url
+		from game_schedule gs join team_n_stadium tns
+		on gs.away_team_id = tns.team_id
+		where gs.game_id = #{game_id};
+	</select>
+
+</mapper>
