@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
     <title>회원가입</title>
     <link href="../resources/css/adminSignup.css" rel="stylesheet"> <!--signup.css 파일 연결 -->
     <script src="../resources/js/adminSignup_script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
 </head>
 <body>
@@ -78,20 +80,10 @@
             <!-- 개인정보 수집 동의 체크 => 서비스 이용약관 -->
             <div class="terms">
               <label>
-                <input type="checkbox" id="terms" name="admin_info_agree" >
+                <input type="checkbox" id="terms" name="admin_info_agree" value="Y">
                 (필수)개인정보 수집 및 이용에 동의  
-                <input type="hidden" id="chkValue1" name="admin_info_agree">
               </label>
             </div>
-
-  		<script>
-				$(function() {
-					var c1 = $("#terms").is(":checked") ? "Y" : "N";
-
-					$("#terms").val(c1);
-				});
-				
-			</script>
 	
 			<!-- 가입하기 & 로그인 버튼-->
             <div id="signup_n_login">
@@ -105,5 +97,17 @@
         </form> <!-- signupForm-->
     </div> <!-- signup-box-->
  
+     <script>
+            // 로그인 버튼 클릭 시 체크박스 검사
+            $("#submit-btn").click(function(event) {
+                if (!$("#terms").is(":checked")) {
+                    event.preventDefault(); // 폼 제출 방지
+                    alert("필수 체크 항목입니다");
+                } else {
+                    // 여기서 폼을 제출할 수 있습니다.
+                    alert("회원가입 완료"); // 폼 제출 성공 시 메시지
+                }
+            });
+    </script>
 </body>
 </html>

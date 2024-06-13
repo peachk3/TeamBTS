@@ -22,6 +22,7 @@ public class AdminLoginDAOImpl implements AdminLoginDAO {
 	
 	private static final String NAMESPACE="com.itwillbs.mapper.adminLoginMapper.";
 
+	// 회원가입
 	@Override
 	public void adminJoin(AdminDTO adto) {
 		System.out.println("DAO : insertAdmin(adto)호출");

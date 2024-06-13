@@ -8,6 +8,7 @@
     <title>회원가입</title>
     <link href="../resources/css/signup.css" rel="stylesheet"> <!--signup.css 파일 연결 -->
     <script src="../resources/js/signup_script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://developers.kakao.com/sdk/kakao.min.js"></script><!-- 카카오 SDK 파일-->
 </head>
 <body>
@@ -50,7 +51,7 @@
     
     		 <!-- 생년월일 -->
     			 <p >날짜 : 
-        		<input type="date" id="date" max="2077-06-20" min="2000-01-01" name="admin_birth">
+        		<input type="date" id="date" max="2077-06-20" min="1900-01-01" name="admin_birth">
     			  </p>
                 <!--닉네임-->
                 <label for="nickname"></label>
@@ -85,7 +86,7 @@
             <!-- 개인정보 수집 동의 체크 => 서비스 이용약관 -->
             <div class="terms">
               <label>
-                <input type="checkbox" id="terms" name="user_info_agree"  value="1">
+                <input type="checkbox" id="terms" name="user_info_agree"  value="Y">
                 (필수)개인정보 수집 및 이용에 동의
               </label>
             </div>
@@ -110,7 +111,18 @@
             </div>
         </form> <!-- signupForm-->
     </div> <!-- signup-box-->
-  
- 
+	<script>
+		// 로그인 버튼 클릭 시 체크박스 검사
+		$("#submit-btn").click(function(event) {
+			if (!$("#terms").is(":checked")) {
+				event.preventDefault(); // 폼 제출 방지
+				alert("필수 체크 항목입니다");
+			} else {
+				// 여기서 폼을 제출할 수 있습니다.
+				alert("회원가입 완료"); // 폼 제출 성공 시 메시지
+			}
+		});
+	</script>
 </body>
 </html>
+	
