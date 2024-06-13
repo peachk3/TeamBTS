@@ -8,66 +8,49 @@
     <title>좌석 선택</title>
 
 	<style>
-
         .container {
-            font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: white;
-            gap: 20px;
+            justify-content: space-between;
         }
-
+        
         .seating-chart {
             display: grid;
             grid-template-columns: repeat(3, 50px);
-            grid-gap: 10px;
+            gap: 10px;
         }
+        
         .seat {
             width: 50px;
             height: 50px;
-            background-color: gray;
-            border: 1px solid gray;
+            background-color: #444;
+            margin: 5px;
             cursor: pointer;
+            color: white;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
+        
         .seat.selected {
-            background-color: red;
+            background-color: #6c7ae0;
         }
         .seat.occupied {
-            background-color: black;
+            background-color: #ff4b5c;
             cursor: not-allowed;
         }
+        
         .field {
-            grid-column: 1 / -1;
-            background-color: black;
-            color: white;
+            grid-column: span 3;
             text-align: center;
-            padding: 10px;
-            margin-bottom: 15px;
-            margin-right: 20px;
-            margin-left: 20px;
+            font-size: 20px;
+            font-weight: bold;
         }
+        
         .selected-seats {
-            background-color: #fff;
-            padding: 10px;
-            border: 1px solid #bbb;
-            max-height: 210px;
-            width: 200px;
-            overflow-y: auto;
-            display: none;
+            display: block;
         }
-
-        .selected-seats h3{
-            margin-top: 0;
-            text-align: center;
-        }
-
-
     </style>
+
 </head>
 <body>  
     
@@ -86,62 +69,59 @@
     <hr>
 
 
-    <h2> A 구역 </h2>
-    
+    <h2>${zone_id }구역 </h2>
     <div class="container">
         <div class="seating-chart">
             <div class="field">필드</div>
-            <div class="seat" data-seat="1열 A"></div>
-            <div class="seat" data-seat="1열 B"></div>
-            <div class="seat" data-seat="1열 C"></div>
-            <div class="seat" data-seat="2열 A"></div>
-            <div class="seat" data-seat="2열 B"></div>
-            <div class="seat occupied" data-seat="2열 C"></div>
+            <div class="seat" data-seat="1열 A">1A</div>
+            <div class="seat" data-seat="1열 B">1B</div>
+            <div class="seat" data-seat="1열 C">1C</div>
+            <div class="seat" data-seat="2열 A">2A</div>
+            <div class="seat" data-seat="2열 B">2B</div>
+            <div class="seat occupied" data-seat="2열 C">2C</div>
         </div>
         <div class="selected-seats" id="selected-seats">
             <h3>선택한 좌석</h3>
-            <ul id="selected-seats-list" style="list-style-type: none"></ul>
+            <ul id="selected-seats-list" style="list-style-type: none">
+                <li id="no-seats">선택한 좌석이 없습니다</li>
+            </ul>
         </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const seats = document.querySelectorAll('.seat:not(.occupied)');
-
-            const selectedSeatsContainer = document.getElementById('selected-seats');
-            
             const selectedSeatsList = document.getElementById('selected-seats-list');
+            const noSeatsMessage = document.getElementById('no-seats');
 
             seats.forEach(seat => {
                 seat.addEventListener('click', () => {
                     seat.classList.toggle('selected');
-
                     updateSelectedSeats();
                 });
             });
-        
 
-        function updateSelectedSeats() {
-            const selectedSeats = document.querySelectorAll('.seat.selected');
+            function updateSelectedSeats() {
+                const selectedSeats = document.querySelectorAll('.seat.selected');
 
-            selectedSeatsList.innerHTML = '';
+                selectedSeatsList.innerHTML = '';
 
-            if(selectedSeats.length > 0 ){
-
-                selectedSeatsContainer.style.display ='block';
-
-                selectedSeats.forEach(seat => {const listItem = document.createElement('li');
-
-                listItem.textContent = 'A구역' + " " + seat.getAttribute('data-seat');
-
-                selectedSeatsList.appendChild(listItem);
-             });
-            
-            }else {
-                selectedSeatsContainer.style.display = 'none';
+                if (selectedSeats.length > 0) {
+                    selectedSeats.forEach(seat => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = 'A구역 ' + seat.getAttribute('data-seat');
+                        selectedSeatsList.appendChild(listItem);
+                    });
+                } else {
+                    const listItem = document.createElement('li');
+                    listItem.id = 'no-seats';
+                    listItem.textContent = '선택한 좌석이 없습니다';
+                    selectedSeatsList.appendChild(listItem);
+                }
             }
-            
-            }
+
+            updateSelectedSeats(); // 페이지 로드 시 초기화
         });
     </script>
+ 
 </body>
 </html>

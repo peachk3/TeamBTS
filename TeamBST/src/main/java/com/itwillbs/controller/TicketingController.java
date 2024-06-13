@@ -73,8 +73,8 @@ public class TicketingController {
 	
 	
 	
-	@Inject
-	private StadiumService stadService;
+//	@Inject
+//	private StadiumService stadService;
 	
 	// 구장 배치도 (구역 선택)
  	@RequestMapping(value="/stadium", method = RequestMethod.GET)
@@ -87,7 +87,10 @@ public class TicketingController {
 	
 	// 구역 -> 좌석 선택
 	@RequestMapping(value="/seats/{name}", method = RequestMethod.GET)
-	public void selectSeat() {
+	public void selectSeat(@RequestParam("zone_id") String zone_id, Model model) {
+		
+		model.addAttribute("zone_id", zone_id);
+		
 		logger.debug("selectSeat() 호출");
 	}
 	
@@ -113,7 +116,6 @@ public class TicketingController {
 //		
 //		return "seats";
 //	}
-//	
-//	
+
 	
 }
