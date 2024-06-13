@@ -19,11 +19,11 @@
 		</tr>
 		<c:forEach var="match" items="${pMatchList}">
 		<tr>
-			<td>${pMatchList.game_date}</td>
-			<td>${pMatchList.game_time}</td>
-			<td>${pMatchList.stad_id}</td>
-			<td>${pMatchList.home_team_id}</td>
-			<td>${pMatchList.away_team_id}</td>
+			<td>${match.game_date}</td>
+			<td>${match.game_time}</td>
+			<td>${match.stad_id}</td>
+			<td>${match.home_team_id}</td>
+			<td>${match.away_team_id}</td>
 		</tr>
 		</c:forEach>
 	</table>
