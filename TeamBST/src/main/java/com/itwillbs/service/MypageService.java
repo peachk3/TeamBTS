@@ -2,6 +2,7 @@ package com.itwillbs.service;
 
 import java.util.List;
 
+import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.UserDTO;
 
 public interface MypageService {
@@ -22,9 +23,9 @@ public interface MypageService {
     public List<UserDTO> questionBoardList() throws Exception;
     
     // 내 지난 경기목록
- 	public List<UserDTO> previousMatchList() throws Exception;
+ 	public List<Game_scheduleDTO> previousMatchList(String user_id) throws Exception;
  	
  	// 내 예정 경기목록
- 	public List<UserDTO> openMatchList() throws Exception;
+ 	public List<Game_scheduleDTO> openMatchList(String user_id) throws Exception;
 
 }

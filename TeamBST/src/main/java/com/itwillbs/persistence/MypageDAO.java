@@ -2,6 +2,7 @@ package com.itwillbs.persistence;
 
 import java.util.List;
 
+import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.UserDTO;
 
 public interface MypageDAO {
@@ -26,8 +27,8 @@ public interface MypageDAO {
 	public List<UserDTO> questionBoardList();
 	
 	// 내 지난 경기목록
-	public List<UserDTO> previousMatchList();
+	public List<Game_scheduleDTO> previousMatchList(String user_id);
 	
 	// 내 예정 경기목록
-	public List<UserDTO> openMatchList();
+	public List<Game_scheduleDTO> openMatchList(String user_id);
 }
