@@ -1,6 +1,7 @@
 package com.itwillbs.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Data;
 
@@ -19,5 +20,7 @@ public class Post_boardDTO {
 	private String sale_ty;
 	private String post_del_at;
 	private Timestamp post_del_date;
+	
+	private List<UserDTO> teamList;
 	
 }
