@@ -175,12 +175,11 @@ public class MypageController {
     	String user_id = (String) session.getAttribute("user_id");
     	
     	List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
-    	logger.debug("@@@@@@@ : "+oMatchList.size());
+    	logger.debug("0000000000000000 : "+oMatchList.size());
     	logger.debug(" oMatchList() 실행 ");
     	
-    	model.addAttribute("openMatchList", oMatchList);
+    	model.addAttribute("oMatchList", oMatchList);
     	return "/mypage/openMatchList";
     }
-  
     
 }

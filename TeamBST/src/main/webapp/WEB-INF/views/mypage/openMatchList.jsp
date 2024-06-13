@@ -8,8 +8,6 @@
 <title>예정 경기 목록</title>
 </head>
 <body>
-
-${oMatchList}
     <h1>예정 경기 목록</h1>
 	<table border="1">
 		<tr>
