@@ -45,6 +45,16 @@ public class Game_scheduleDAOImpl implements Game_scheduleDAO {
 		return teamDTO;
 	}
 
+
+
+	@Override
+	public List<Game_scheduleDTO> GameInfo(String game_id) {
+
+		List<Game_scheduleDTO> gameDTO = sqlSession.selectList(NAMESPACE+"gameInfo",game_id);
+		
+		return gameDTO;
+	}
+
 	
 	
 	

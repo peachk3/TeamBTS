@@ -50,12 +50,20 @@ public class TicketingController {
 
 		
 	}
-	
 	// 경기 정보 페이지
-	
 	@RequestMapping(value="/gameInfo",method=RequestMethod.GET)
-	public void gameInfo() {
+	public String gameInfo(@RequestParam("game_id") String game_id, Model model) {
+		// gameId를 사용하여 필요한 로직을 수행합니다.
+        // 예: 게임 정보를 조회하고 모델에 추가
 		
+		logger.debug("게임 정보 페이지 호출");
+		List<Game_scheduleDTO> gameInfoList = sService.gameInfoList(game_id);
+		
+		model.addAttribute("gameInfoList", gameInfoList);
+		
+		 
+		// 새로운 JSP 페이지로 이동
+		return "/ticketing/gameInfo"; // 반환할 JSP 페이지 이름
 	}
 	
 	
