@@ -7,10 +7,8 @@
 	
 		<!--  회원가입 -->	
 		<insert id="adminJoin" >
-			insert into admin (admin_id, admin_name, admin_pwd, admin_nick, admin_phone, admin_email, admin_birth, 
-			admin_cre_date, admin_info_agree)
-			values(#{admin_id},#{admin_name},#{admin_pwd},#{admin_nick},#{admin_phone},#{admin_email},#{admin_birth},
-			now(),#{admin_info_agree})
+			insert into admin (admin_id, admin_name, admin_pwd, admin_nick, admin_phone, admin_email, admin_birth, admin_cre_date, admin_info_agree)
+			values(#{admin_id},#{admin_name},#{admin_pwd},#{admin_nick},#{admin_phone},#{admin_email},#{admin_birth},now(),#{admin_info_agree})
 		</insert>
 		
 		<!-- 로그인  -->

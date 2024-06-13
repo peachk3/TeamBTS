@@ -17,7 +17,7 @@
 	
     <div class="login-box">
     <h2>Login</h2>
-     <form id="loginForm" action="/login/AdminloginPage" method="post" >
+     <form id="loginForm" action="/login/AdminLoginPage" method="post" >
 
         <!-- 아이디 입력-->
         <label for="adminId"></label>
@@ -30,17 +30,6 @@
    
         <!-- 로그인 버튼-->
         <input type="submit" id="login-btn" value="로그인" >
-<%--         <c:if test="${msg=='failure'}"> --%>
-<!--         	<div style="color: red"> -->
-<!--         		아이디 또는 비밀번호가 일치하지 않습니다 -->
-<!--         	</div> -->
-<%--         </c:if> --%>
-		
-<%-- 		<c:if test="${msg=='logout' }"> --%>
-<!-- 			<div style="color: red"> -->
-<!-- 				로그아웃되었습니다 -->
-<!-- 			</div> -->
-<%-- 		</c:if> --%>
 		
         <!-- 아이디찾기 비밀번호찾기 회원가입 화면 이동 버튼-->
         <div class="options">

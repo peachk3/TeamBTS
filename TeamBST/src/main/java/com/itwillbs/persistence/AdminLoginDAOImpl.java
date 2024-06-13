@@ -20,8 +20,7 @@ public class AdminLoginDAOImpl implements AdminLoginDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String NAMESPACE=
-			"com.itwillbs.mapper.adminLoginMapper.";
+	private static final String NAMESPACE="com.itwillbs.mapper.adminLoginMapper.";
 
 	@Override
 	public void adminJoin(AdminDTO adto) {
@@ -36,7 +35,7 @@ public class AdminLoginDAOImpl implements AdminLoginDAO {
 	public AdminDTO adminLogin(AdminDTO adto) {
 		System.out.println("DAO :adminLogin(AdminDTO adto)실행");
 		
-		AdminDTO resultDTO = sqlSession.selectOne(NAMESPACE+ "adminLoginCheck"+adto);
+		AdminDTO resultDTO = sqlSession.selectOne(NAMESPACE+ "adminLoginCheck", adto);
 		
 		System.out.println("결과 : " + resultDTO);
 		

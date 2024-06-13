@@ -2,7 +2,6 @@ package com.itwillbs.service;
 
 import org.springframework.stereotype.Service;
 
-import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 

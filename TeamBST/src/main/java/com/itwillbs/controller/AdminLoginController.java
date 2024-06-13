@@ -6,13 +6,11 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.service.AdminLoginService;
-import com.itwillbs.service.AdminService;
 
 
 
@@ -69,12 +67,13 @@ public class AdminLoginController {
         if (resultDTO == null) {
             logger.debug("관리자 로그인 실패");
             
+            
             return "redirect:/login/AdminLoginPage	";
         }
         
         //로그인 성공!
         session.setAttribute("id", resultDTO.getAdmin_id());
         
-        return "redirect:/login/AdminMain";
+        return "redirect:/admin/admin";
 	}
 }
