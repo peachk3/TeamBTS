@@ -24,7 +24,7 @@ ${gameInfoList}
 		<c:forEach var="vo" items="${gameInfoList}">
 			<tr>
 
-				<td>${vo.stad_url}</td>
+<%-- 				<td>${vo.stad_url}</td> --%>
 				<td>${vo.game_id}</td>
 				<td>${vo.stad_id}</td>
 				<td>${vo.game_time}</td>
