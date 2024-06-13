@@ -7,7 +7,6 @@ import com.itwillbs.domain.UserDTO;
 public interface MypageService {
 
     // 회원정보 조회
-    public UserDTO getMember(UserDTO gdto);
 	public UserDTO getMember(String user_id);
     
     // 회원정보 수정

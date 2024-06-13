@@ -15,13 +15,12 @@
   <update id="updateMember">
     UPDATE user
     SET
-      user_pwd = #{user_pwd},
       user_name = #{user_name},
       user_nick = #{user_nick},
       user_phone = #{user_phone},
       user_email = #{user_email},
       user_birth = #{user_birth}
-    WHERE user_id = #{user_id}
+    WHERE user_id = #{user_id} and user_pwd = #{user_pwd}
   </update>
 
   <!-- 회원정보 삭제 -->

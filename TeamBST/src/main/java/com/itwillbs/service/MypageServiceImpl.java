@@ -30,11 +30,6 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public UserDTO getMember(UserDTO gdto) {
-        return mypageDAO.getMember(gdto.getUser_id());
-    }
-
-    @Override
     public int deleteMember(UserDTO ddto) {
         return mypageDAO.deleteMember(ddto);
     }

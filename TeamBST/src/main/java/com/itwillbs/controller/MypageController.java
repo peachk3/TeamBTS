@@ -32,7 +32,7 @@ public class MypageController {
         String user_id = (String) session.getAttribute("user_id");
         UserDTO resultDTO = mService.getMember(user_id);
         logger.debug("회원정보: " + resultDTO);
-        model.addAttribute("user", resultDTO);
+        model.addAttribute("resultDTO", resultDTO);
         return "/mypage/info";
     }
 
@@ -40,32 +40,45 @@ public class MypageController {
     public void updateGET(HttpSession session, Model model) {
         String user_id = (String) session.getAttribute("user_id");
         UserDTO resultDTO = mService.getMember(user_id);
-        model.addAttribute("user", resultDTO);
+        model.addAttribute("resultDTO", resultDTO);
     }
 
     @RequestMapping(value = "/updateForm", method = RequestMethod.POST)
     public String updatePost(UserDTO udto) {
         mService.updateMember(udto);
-        return "redirect:/mypage/info";
+        return "redirect:/mypage/mypage";
+    }
+    
+    @GetMapping(value = "/deleteMember")
+    public void deleteGET(HttpSession session, Model model) {
+    	String user_id = (String) session.getAttribute("user_id");
+    	UserDTO resultDTO = mService.getMember(user_id);
+    	model.addAttribute("resultDTO", resultDTO);
     }
     
     @PostMapping(value = "/deleteMember")
     public String deleteMember(UserDTO userDTO, HttpSession session, RedirectAttributes redirectAttributes) {
     	// 비밀번호 확인
     	UserDTO user = mService.getMember(userDTO.getUser_id());
-    	if(user != null && user.getUser_pwd().equals(userDTO.getUser_pwd())) {
-    		int result = mService.deleteMember(userDTO);
-    		if (result > 0) {
-                session.invalidate();  // 세션 종료
-                redirectAttributes.addFlashAttribute("message", "회원 탈퇴가 완료되었습니다.");
-                return "redirect:/login"; // 로그인 페이지로 리다이렉트
+    	if (user != null) {
+            logger.debug("입력된 비밀번호: " + userDTO.getUser_pwd());
+            logger.debug("DB에 저장된 비밀번호: " + user.getUser_pwd());
+            if (user.getUser_pwd().equals(userDTO.getUser_pwd())) {
+                int result = mService.deleteMember(userDTO);
+                if (result > 0) {
+                    session.invalidate();  // 세션 종료
+                    redirectAttributes.addFlashAttribute("message", "회원 탈퇴가 완료되었습니다.");
+                    return "redirect:/login/loginPage"; // 로그인 페이지로 리다이렉트
+                } else {
+                    redirectAttributes.addFlashAttribute("error", "회원 탈퇴에 실패했습니다. 다시 시도해주세요.");
+                }
             } else {
-                redirectAttributes.addFlashAttribute("error", "회원 탈퇴에 실패했습니다. 다시 시도해주세요.");
+                redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
             }
         } else {
-            redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
+            redirectAttributes.addFlashAttribute("error", "회원 정보를 찾을 수 없습니다.");
         }
-        return "redirect:/mypage/info"; // 정보 페이지로 리다이렉트
+        return "redirect:/mypage/info";
     }
     
     @GetMapping(value = "/postBoardList")
