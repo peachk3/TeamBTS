@@ -1,5 +1,7 @@
 package com.itwillbs.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -32,6 +34,14 @@ public class AdminDAOImpl implements AdminDAO{
 		sqlSession.insert(NAMESPACE + "noticeJoin", dto);
 		
 		logger.debug("DAO : 공지사항 작성 완료");
+	}
+	
+	@Override
+	public List<Notice_boardDTO> NoticeList() throws Exception {
+
+		logger.debug("DAO : NoticeList() 호출");
+		
+		return sqlSession.selectList(NAMESPACE + "noticeList");
 	}
 
 	@Override

@@ -11,6 +11,8 @@ function showSlide(sliderIndex, index) {
     slideContainers[sliderIndex][currentSlides[sliderIndex]].classList.add('show');
 }
 
+
+// 슬라이드 쇼 구현
 function showPrevious(sliderIndex) {
     showSlide(sliderIndex, currentSlides[sliderIndex] - 1);
 }
@@ -19,7 +21,9 @@ function showNext(sliderIndex) {
     showSlide(sliderIndex, currentSlides[sliderIndex] + 1);
 }
 
-// Automatically advance slides every 5 seconds
+
+
+// 슬라이드쇼 5초마다 화면 변경
 function autoAdvance(sliderIndex) {
     setInterval(() => {
         showNext(sliderIndex);

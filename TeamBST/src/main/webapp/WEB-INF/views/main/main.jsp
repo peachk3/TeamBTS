@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
+	${sessionScope }
+
 
 
 	<!-- 코드작성 -->
 
     <!-- 주장 사진 슬라이드 -->
-    <div class="container" id="slider2">
+    <div class="captainContainer" id="slider2">
       <div class="slide show">
           <a href="/main/team/dosan"><img src="../resources/captain/dosan.jpg" alt="Image 11"></a>
           <a href="/main/team/hanhwa"><img src="../resources/captain/hanhwa.jpg" alt="Image 12"></a>
@@ -86,7 +88,6 @@
             });
         });
     </script>
-
 
 
 

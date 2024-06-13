@@ -1,5 +1,7 @@
 package com.itwillbs.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -28,6 +30,13 @@ public class AdminServiceImpl implements AdminService{
 		
 		logger.debug("공지사항 작성 성공");
 		
+	}
+	
+	@Override
+	public List<Notice_boardDTO> NoticeList() throws Exception {
+		logger.debug("공지사항 글목록 조회");
+		
+		return adao.NoticeList();
 	}
 
 	@Override
