@@ -10,7 +10,6 @@
     <link href="../resources/css/index.css" rel="stylesheet">
   </head>
   
-  ${sessionScope }
   
   <body>
     <nav>

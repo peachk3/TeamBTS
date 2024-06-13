@@ -44,7 +44,11 @@
       <button type="button" class="community" onclick="location.href='/mypage/mywrite'">MY 게시글</button>
 
 
-    
+      <button type="button" class="community" onclick="location.href='/mypage/openMatchList'">예정 경기</button> <br>
+      <button type="button" class="community" onclick="location.href='/mypage/previousMatchList'">지난 경기</button> <br>
+      <br>
+
+   	 ${user_id}
     
     
     

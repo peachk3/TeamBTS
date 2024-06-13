@@ -44,20 +44,27 @@
   </select>
   
   <!-- 내 지난경기목록 -->
-  <select id="previousMatchList" resultType="com.itwillbs.domain.UserDTO">
+  <select id="previousMatchList" resultType="com.itwillbs.domain.Game_scheduleDTO">
+	<![CDATA[
 	select game_date, game_time, stad_id, home_team_id, away_team_id
 	from (reservation_info ri1 join game_schedule gs
-	on ri1.game_id = gs.game_id),
+	on ri1.game_id = gs.game_id), 
 	(reservation_info ri2 join user u
 	on ri2.user_id = u.user_id)
-	where u.user_id = "boo";
+	where u.user_id = #{user_id} and gs.game_date < now();
+	]]>
   </select>
   
   <!-- 내 예정경기목록 -->
-  <select id="openMatchList" resultType="com.itwillbs.domain.UserDTO">
-    SELECT *
-    FROM game_schedule
-    WHERE game_date > now()
+  <select id="openMatchList" resultType="com.itwillbs.domain.Game_scheduleDTO">
+	<![CDATA[
+	select game_date, game_time, stad_id, home_team_id, away_team_id
+	from (reservation_info ri1 join game_schedule gs
+	on ri1.game_id = gs.game_id), 
+	(reservation_info ri2 join user u
+	on ri2.user_id = u.user_id)
+	where u.user_id = #{user_id} and gs.game_date > now();
+	]]>
   </select>
 
 </mapper>

@@ -137,32 +137,7 @@ public class MypageController {
         return "/mypage/questionBoardList";
     }
     
-    //http://localhost:8088/mypage/previousMatchList
-    // 경기예약내역
-    @GetMapping(value = "/previousMatchList")
-    public String previousMatchList(HttpSession session, Model model) throws Exception {
-        String user_id = (String) session.getAttribute("user_id");
-        
-        List<UserDTO> pMatchList = mService.previousMatchList();
-        logger.debug(" pMatchList() 실행 ");
-        
-        model.addAttribute("pMatchList", pMatchList);
-        return "/mypage/previousMatchList";
-    }
-    
-    //http://localhost:8088/mypage/openMatchList
-    // 경기예약내역
-    @GetMapping(value = "/openMatchList")
-    public String OpenMatchList(HttpSession session, Model model) throws Exception {
-    	String user_id = (String) session.getAttribute("user_id");
-    	
-    	List<UserDTO> oMatchList = mService.openMatchList();
-    	logger.debug(" oMatchList() 실행 ");
-    	
-    	model.addAttribute("openMatchList", oMatchList);
-    	return "/mypage/openMatchList";
-    }
-    
+
     //http://localhost:8088/mypage/mypage
     // 마이페이지
     @GetMapping("/mypage")
@@ -171,4 +146,40 @@ public class MypageController {
         return "/mypage/mypage";  // mypage.jsp로 이동
     }
 
+    @GetMapping(value="/myticket")
+    public void MyTicket(HttpSession session, Model model) {
+        String user_id = (String) session.getAttribute("user_id");
+        
+        
+    }
+    //http://localhost:8088/mypage/previousMatchList
+    // 경기예약내역
+    @GetMapping(value = "/previousMatchList")
+    public String previousMatchList(HttpSession session, Model model) throws Exception {
+        String user_id = (String) session.getAttribute("user_id");
+        
+        List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
+        logger.debug("@@@@@@@ : "+pMatchList.size());
+
+        logger.debug(" pMatchList() 실행 ");
+        
+        model.addAttribute("pMatchList", pMatchList);
+        return "/mypage/previousMatchList";
+    }
+   
+    
+    //http://localhost:8088/mypage/openMatchList
+    // 경기예약내역
+    @GetMapping(value = "/openMatchList")
+    public String OpenMatchList(HttpSession session, Model model) throws Exception {
+    	String user_id = (String) session.getAttribute("user_id");
+    	
+    	List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
+    	logger.debug("0000000000000000 : "+oMatchList.size());
+    	logger.debug(" oMatchList() 실행 ");
+    	
+    	model.addAttribute("oMatchList", oMatchList);
+    	return "/mypage/openMatchList";
+    }
+    
 }

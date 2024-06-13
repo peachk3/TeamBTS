@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.UserDTO;
 
 @Repository
@@ -48,15 +49,15 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public List<UserDTO> previousMatchList() {
+	public List<Game_scheduleDTO> previousMatchList(String user_id) {
 		logger.debug(" previousMatchList() 실행 ");
-		return sqlSession.selectList(NAMESPACE + "previousMatchList");
+		return sqlSession.selectList(NAMESPACE + "previousMatchList",user_id);
 	}
 
 	@Override
-	public List<UserDTO> openMatchList() {
+	public List<Game_scheduleDTO> openMatchList(String user_id) {
 		logger.debug(" openMatchList() 실행 ");
-		return sqlSession.selectList(NAMESPACE + "openMatchList");
+		return sqlSession.selectList(NAMESPACE + "openMatchList",user_id);
 	}
 
 	@Override

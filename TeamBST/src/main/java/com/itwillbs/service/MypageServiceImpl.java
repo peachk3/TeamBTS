@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.persistence.MypageDAO;
 
@@ -18,6 +19,7 @@ public class MypageServiceImpl implements MypageService {
 
     @Inject
     private MypageDAO mypageDAO;
+    
 
     @Override
     public UserDTO getMember(String user_id) {
@@ -45,13 +47,13 @@ public class MypageServiceImpl implements MypageService {
     }
 
 	@Override
-	public List<UserDTO> previousMatchList() throws Exception {
-		return mypageDAO.previousMatchList();
+	public List<Game_scheduleDTO> previousMatchList(String user_id) throws Exception {
+		return mypageDAO.previousMatchList(user_id);
 	}
 
 	@Override
-	public List<UserDTO> openMatchList() throws Exception {
-		return mypageDAO.openMatchList();
+	public List<Game_scheduleDTO> openMatchList(String user_id) throws Exception {
+		return mypageDAO.openMatchList(user_id);
 	}
     
     
