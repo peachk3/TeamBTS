@@ -51,8 +51,9 @@
     
     		 <!-- 생년월일 -->
     			 <p >날짜 : 
-        		<input type="date" id="date" max="2077-06-20" min="1900-01-01" name="admin_birth">
-    			  </p>
+        		<input type="date" id="date" max="2077-06-20" min="1900-01-01" name="user_birth">
+    			 </p>
+    			  
                 <!--닉네임-->
                 <label for="nickname"></label>
                 <div class="btn-group"> <!-- 닉네임 중복확인-->

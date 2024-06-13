@@ -25,8 +25,6 @@
 		</h6>
 	</nav>
 
-
-
 	<ul class="nav">
 		<li class="nav-item"><a class="nav-link active"
 			aria-current="page" href="/admin/adminSchedule">경기일정</a></li>
@@ -37,9 +35,6 @@
 	</ul>
 
 	<hr>
-
-
-
 
 	<button type="button" class="community"
 		onclick="location.href='/admin/adminNotice'">공지사항</button>
