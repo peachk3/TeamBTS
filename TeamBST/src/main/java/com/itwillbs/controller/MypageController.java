@@ -30,8 +30,8 @@ public class MypageController {
     @Inject
     private MypageService mService;
     
-    @Inject
-    private ScheduleService sService;
+//    @Inject
+//    private ScheduleService sService;
     
     //http://localhost:8088/mypage/info
     // 회원정보 조회
@@ -62,7 +62,7 @@ public class MypageController {
         
         // 서비스 -> DAO 회원정보 조회
         UserDTO resultDTO = mService.getMember(user_id);
-        Game_scheduleDTO gameDTO = sService.gameScheduleList(name)
+//        Game_scheduleDTO gameDTO = sService.gameScheduleList(name)
         
         // 연결된 뷰페이지로 정보 전달
         model.addAttribute("resultDTO", resultDTO);
@@ -121,7 +121,7 @@ public class MypageController {
     @GetMapping(value = "/postBoardList")
     public String postBoardList(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
-        List<Game_scheduleDTO> pBoardList = mService.postBoardList();
+        List<UserDTO> pBoardList = mService.postBoardList();
         model.addAttribute("pBoardList", pBoardList);
         return "/mypage/postBoardList";
     }

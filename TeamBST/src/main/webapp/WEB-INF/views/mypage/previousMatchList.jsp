@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,7 @@
 			<th>홈 팀 ID</th>
 			<th>원정 팀 ID</th>
 		</tr>
+		<c:forEach var="match" items="${pMatchList}">
 		<tr>
 			<td>${pMatchList.game_date}</td>
 			<td>${pMatchList.game_time}</td>
@@ -23,6 +25,7 @@
 			<td>${pMatchList.home_team_id}</td>
 			<td>${pMatchList.away_team_id}</td>
 		</tr>
+		</c:forEach>
 	</table>
 	<a href="/mypage/mypage">마이페이지로 돌아가기</a>
 </body>
