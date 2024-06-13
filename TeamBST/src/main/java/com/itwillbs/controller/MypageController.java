@@ -13,8 +13,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.service.MypageService;
+import com.itwillbs.service.ScheduleService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,29 +29,64 @@ public class MypageController {
 
     @Inject
     private MypageService mService;
-
+    
+    @Inject
+    private ScheduleService sService;
+    
+    //http://localhost:8088/mypage/info
+    // 회원정보 조회
     @RequestMapping(value="/info", method = RequestMethod.GET)
     public String infoGET(HttpSession session, Model model) {
+    	logger.debug(" /info -> infoGET() 호출 ");
+    	
+    	// id정보 가져오기
         String user_id = (String) session.getAttribute("user_id");
+        
+        // 서비스 -> DAO 회원정보 조회
         UserDTO resultDTO = mService.getMember(user_id);
         logger.debug("회원정보: " + resultDTO);
+        
+        // 연결된 뷰페이지(/mypage/info.jsp)에 정보 전달
         model.addAttribute("resultDTO", resultDTO);
+        
+        // 뷰페이지 이동
         return "/mypage/info";
     }
-
+    
+    
+    //http://localhost:8088/mypage/updateForm
+    // 회원정보 수정 - 기존 회원정보
     @GetMapping(value = "/updateForm")
     public void updateGET(HttpSession session, Model model) {
         String user_id = (String) session.getAttribute("user_id");
+        
+        // 서비스 -> DAO 회원정보 조회
         UserDTO resultDTO = mService.getMember(user_id);
+        Game_scheduleDTO gameDTO = sService.gameScheduleList(name)
+        
+        // 연결된 뷰페이지로 정보 전달
         model.addAttribute("resultDTO", resultDTO);
+        
+        // 연결된 뷰페이지(/mypage/update.jsp)에 출력
     }
-
+    
+    // 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
     @RequestMapping(value = "/updateForm", method = RequestMethod.POST)
     public String updatePost(UserDTO udto) {
+    	logger.debug(" /update -> updatePost() 호출 ");
+    	
+    	// 수정할 회원정보를 저장
+    	logger.debug(" udto : " + udto);
+    	
+    	// Service -> DAO 회원정보 수정
         mService.updateMember(udto);
+        
         return "redirect:/mypage/mypage";
     }
     
+    
+    //http://localhost:8088/mypage/deleteMember
+    // 회원정보 삭제 - 사용자의 비밀번호 입력 / 아이디 세션
     @GetMapping(value = "/deleteMember")
     public void deleteGET(HttpSession session, Model model) {
     	String user_id = (String) session.getAttribute("user_id");
@@ -56,55 +94,77 @@ public class MypageController {
     	model.addAttribute("resultDTO", resultDTO);
     }
     
+    // 회원정보 삭제
     @PostMapping(value = "/deleteMember")
-    public String deleteMember(UserDTO userDTO, HttpSession session, RedirectAttributes redirectAttributes) {
-    	// 비밀번호 확인
-    	UserDTO user = mService.getMember(userDTO.getUser_id());
-    	if (user != null) {
-            logger.debug("입력된 비밀번호: " + userDTO.getUser_pwd());
-            logger.debug("DB에 저장된 비밀번호: " + user.getUser_pwd());
-            if (user.getUser_pwd().equals(userDTO.getUser_pwd())) {
-                int result = mService.deleteMember(userDTO);
-                if (result > 0) {
-                    session.invalidate();  // 세션 종료
-                    redirectAttributes.addFlashAttribute("message", "회원 탈퇴가 완료되었습니다.");
-                    return "redirect:/login/loginPage"; // 로그인 페이지로 리다이렉트
-                } else {
-                    redirectAttributes.addFlashAttribute("error", "회원 탈퇴에 실패했습니다. 다시 시도해주세요.");
-                }
-            } else {
-                redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
-            }
-        } else {
-            redirectAttributes.addFlashAttribute("error", "회원 정보를 찾을 수 없습니다.");
-        }
-        return "redirect:/mypage/info";
+    public String deleteMember(UserDTO userDTO, HttpSession session) {
+    	logger.debug(" /deleteMember -> deleteMember() 호출 ");
+    	
+    	// 전달정보 저장
+    	logger.debug(" userDTO : " + userDTO );
+    	
+    	// Service -> DAO 회원정보 삭제
+    	int result = mService.deleteMember(userDTO);
+    	// 삭제 여부에 따른 페이지 이동
+    	if(result == 1) {
+    		logger.debug(" 삭제 성공! ");
+    		// 기존의 사용자정보(세션) 제거
+    		session.invalidate();
+    		return "redirect:/main/main"; // 제거 성공 시 메인페이지로 이동
+    	}
+    	logger.debug(" 삭제 실패, 비밀번호를 다시 확인하세요! ");
+        return "redirect:/mypage/deleteMember"; // 제거 성공 실패 시 삭제 페이지로 다시 이동  
     }
     
+    
+    //http://localhost:8088/mypage/postBoardList
+    // 내 게시글
     @GetMapping(value = "/postBoardList")
     public String postBoardList(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
-        List<UserDTO> postBoardList = mService.postBoardList();
-        model.addAttribute("postBoardList", postBoardList);
+        List<Game_scheduleDTO> pBoardList = mService.postBoardList();
+        model.addAttribute("pBoardList", pBoardList);
         return "/mypage/postBoardList";
     }
-
+    
+    
+    //http://localhost:8088/mypage/questionBoardList
+    // 내 질문글
     @GetMapping(value = "/questionBoardList")
     public String questionBoardList(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
-        List<UserDTO> questionBoardList = mService.questionBoardList();
-        model.addAttribute("questionBoardList", questionBoardList);
+        List<UserDTO> qBoardList = mService.questionBoardList();
+        model.addAttribute("qBoardList", qBoardList);
         return "/mypage/questionBoardList";
     }
-
-    @GetMapping(value = "/matchList")
-    public String matchList(HttpSession session, Model model) throws Exception {
+    
+    //http://localhost:8088/mypage/previousMatchList
+    // 경기예약내역
+    @GetMapping(value = "/previousMatchList")
+    public String previousMatchList(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
-        List<UserDTO> matchList = mService.matchList();
-        model.addAttribute("matchList", matchList);
-        return "/mypage/matchList";
+        
+        List<UserDTO> pMatchList = mService.previousMatchList();
+        logger.debug(" pMatchList() 실행 ");
+        
+        model.addAttribute("pMatchList", pMatchList);
+        return "/mypage/previousMatchList";
     }
     
+    //http://localhost:8088/mypage/openMatchList
+    // 경기예약내역
+    @GetMapping(value = "/openMatchList")
+    public String OpenMatchList(HttpSession session, Model model) throws Exception {
+    	String user_id = (String) session.getAttribute("user_id");
+    	
+    	List<UserDTO> oMatchList = mService.openMatchList();
+    	logger.debug(" oMatchList() 실행 ");
+    	
+    	model.addAttribute("openMatchList", oMatchList);
+    	return "/mypage/openMatchList";
+    }
+    
+    //http://localhost:8088/mypage/mypage
+    // 마이페이지
     @GetMapping("/mypage")
     public String mypage(HttpSession session, Model model) {
         // 필요시 로직 추가

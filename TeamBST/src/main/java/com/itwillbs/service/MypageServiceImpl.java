@@ -43,9 +43,16 @@ public class MypageServiceImpl implements MypageService {
     public List<UserDTO> questionBoardList() {
         return mypageDAO.questionBoardList();
     }
+
+	@Override
+	public List<UserDTO> previousMatchList() throws Exception {
+		return mypageDAO.previousMatchList();
+	}
+
+	@Override
+	public List<UserDTO> openMatchList() throws Exception {
+		return mypageDAO.openMatchList();
+	}
     
-    @Override
-    public List<UserDTO> matchList() {
-        return mypageDAO.matchList();
-    }
+    
 }

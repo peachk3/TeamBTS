@@ -42,8 +42,14 @@
       
       
       <button type="button" class="community" onclick="location.href='/mypage/info'">회원정보 조회</button> <br>
+      <br>
       <button type="button" class="community" onclick="location.href='/mypage/myticket'">MY 티켓</button> <br>
-      <button type="button" class="community" onclick="location.href='/mypage/mywrite'">MY 게시글</button>
+      <button type="button" class="community" onclick="location.href='/mypage/previousMatchList'">이전경기</button> <br>
+      <button type="button" class="community" onclick="location.href='/mypage/openMatchList'">예정경기</button> <br>
+      <br>
+      <button type="button" class="community" onclick="location.href='/mypage/mywrite'">MY 게시글</button> <br>
+      <button type="button" class="community" onclick="location.href='/mypage/postBoardList'">게시글</button> <br>
+      <button type="button" class="community" onclick="location.href='/mypage/questionBoardList'">질문글</button> <br>
 
 
 

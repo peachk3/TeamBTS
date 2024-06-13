@@ -16,6 +16,7 @@ public class MypageDAOImpl implements MypageDAO {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MypageDAOImpl.class);
 
+	// DB 연결정보 -> 주입
 	@Inject
 	private SqlSession sqlSession;
 
@@ -47,13 +48,19 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public List<UserDTO> matchList() {
-		return sqlSession.selectList(NAMESPACE + "matchList");
+	public List<UserDTO> previousMatchList() {
+		logger.debug(" previousMatchList() 실행 ");
+		return sqlSession.selectList(NAMESPACE + "previousMatchList");
+	}
+
+	@Override
+	public List<UserDTO> openMatchList() {
+		logger.debug(" openMatchList() 실행 ");
+		return sqlSession.selectList(NAMESPACE + "openMatchList");
 	}
 
 	@Override
 	public UserDTO getMember(UserDTO vo) {
-		// If this method is not required, it should be removed or implemented properly.
 		return null;
 	}
 }

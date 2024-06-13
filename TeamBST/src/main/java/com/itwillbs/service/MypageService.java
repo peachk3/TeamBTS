@@ -21,7 +21,10 @@ public interface MypageService {
     // 내 질문글 목록
     public List<UserDTO> questionBoardList() throws Exception;
     
-    // 내 경기목록
-    public List<UserDTO> matchList() throws Exception;
+    // 내 지난 경기목록
+ 	public List<UserDTO> previousMatchList() throws Exception;
+ 	
+ 	// 내 예정 경기목록
+ 	public List<UserDTO> openMatchList() throws Exception;
 
 }
