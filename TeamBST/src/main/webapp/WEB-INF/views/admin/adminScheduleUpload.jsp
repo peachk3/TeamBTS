@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,64 +39,59 @@
       
       <hr>
           
-          <form action="#">
-            <select name="stadium" id="stad">
-              <option value="select">경기장</option>
-              <option value="gochuck">고척 스카이돔</option>
-              <option value="gwangju">광주 챔피언스 필드</option>
-              <option value="daegu">대구 라이온즈파크</option>
-              <option value="daejun">대전 이글스파크</option>
-              <option value="busan">부산 사직야구장</option>
-              <option value="seoul">서울 잠실야구장</option>
-              <option value="suwon">수원 KT위즈파크</option>
-              <option value="incheon">인천 랜더스필드</option>
-              <option value="changwon">창원 NC파크</option>
+          <form action="/admin/adminScheduleUpload" method="post">
+			<select name="home_team_id" id="hometeam">
+				<option disabled>홈팀</option>
+				<option value="NC">nc 다이노스</option>
+				<option value="LOTTE">롯데 자이언츠</option>
+				<option value="LG">LG 트윈스</option>
+				<option value="KT">KT 위즈</option>
+				<option value="DOSAN">두산 베어스</option>
+				<option value="SAMSUNG">삼성 라이온즈</option>
+				<option value="HANHWA">한화 이글스</option>
+				<option value="KIA">기아 타이거즈</option>
+				<option value="KIWOOM">키움 히어로즈</option>
+				<option value="SSG">SSG 랜더스</option>
             </select>
-            <select name="hometeam" id="hometeam">
-              <option value="home">홈팀</option>
-              <option value="nc">nc 다이노스</option>
-              <option value="lotte">롯데 자이언츠</option>
-              <option value="lg">LG 트윈스</option>
-              <option value="kt">KT 위즈</option>
-              <option value="dosan">두산 베어스</option>
-              <option value="lions">삼성 라이온즈</option>
-              <option value="hanhwa">한화 이글스</option>
-              <option value="kia">기아 타이거즈</option>
-              <option value="kia">키움 히어로즈</option>
-              <option value="ssg">SSG 랜더스</option>
-
-            </select>
-            <select name="awayteam" id="awayteam">
-              <option value="away">원정팀</option>
-              <option value="nc">nc 다이노스</option>
-              <option value="lotte">롯데 자이언츠</option>
-              <option value="lg">LG 트윈스</option>
-              <option value="kt">KT 위즈</option>
-              <option value="dosan">두산 베어스</option>
-              <option value="lions">삼성 라이온즈</option>
-              <option value="hanhwa">한화 이글스</option>
-              <option value="kia">기아 타이거즈</option>
-              <option value="kia">키움 히어로즈</option>
-              <option value="ssg">SSG 랜더스</option>
-
-
+            <select name="away_team_id" id="awayteam">
+				<option disabled>원정팀</option>
+				<option value="NC">nc 다이노스</option>
+				<option value="LOTTE">롯데 자이언츠</option>
+				<option value="LG">LG 트윈스</option>
+				<option value="KT">KT 위즈</option>
+				<option value="DOSAN">두산 베어스</option>
+				<option value="SAMSUNG">삼성 라이온즈</option>
+				<option value="HANHWA">한화 이글스</option>
+				<option value="KIA">기아 타이거즈</option>
+				<option value="KIWOOM">키움 히어로즈</option>
+				<option value="SSG">SSG 랜더스</option>
             </select>
 
-          </form>
             <br><br><br>
 		
 <!-- 날짜 / 경기 시작 시간 / 좌석수 / 날씨 / 상태 카테고리 -->
+		
+
+		<p >날짜 : 
+			<input type="date"
+		           id="date"
+		           max="2077-06-20"
+		           min="2000-01-01"
+		           name="game_date">
+		</p>
+		
+		<p >시간 : 
+			<input type="time"
+		           id="date"			
+				   min="14:00:00"
+				   max="19:00:00"
+				   value="18:30:00"
+				   name="game_time">
+		</p>
 
 
-
-
-
-          
-		  <form action="community.html" method="post">
-
-		    <label> 파일선택 <input type="file"> </label> <br><br>
 			<input type="button" onclick="location.href='/admin/adminSchedule'" value="취소">
-			<input type="button" onclick="location.href='/admin/adminSchedule'" value="등록"> <br>
+			<input type="submit"  value="등록"> <br>
 		</form>
 		
 		
