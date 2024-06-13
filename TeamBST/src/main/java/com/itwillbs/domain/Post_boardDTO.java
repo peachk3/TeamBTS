@@ -21,6 +21,6 @@ public class Post_boardDTO {
 	private String post_del_at;
 	private Timestamp post_del_date;
 	
-	private List<UserDTO> teamList;
+	private List<UserDTO> userList;
 	
 }

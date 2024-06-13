@@ -1,78 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>거래게시판</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="../resources/css/index.css" rel="stylesheet">
-  </head>
-  
-  <body>
-    <nav>
-      <a href="/main/main"><h1>개바리조</h1></a>
-      
-      <h6>
-        <a href="/login/login">로그인/</a>
-        <a href="/mypage/mypage">마이페이지/</a>
-        <a href="/admin/admin">관리자페이지/</a>
-        			로그인시간 ( 58: 00 ) 
-      </h6>
-    </nav>
-    
-    
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/ticketing/ticketing">예매</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/community/community">거래</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/announcement/announcement">고객센터</a>
-      </li>
-    </ul>
-    
-    <hr>
-    
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>거래게시판</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<link href="../resources/css/index.css" rel="stylesheet">
+</head>
 
-          <form action="#">
-            <select name="state" id="state">
-              <option value="all">전체 게시글</option>
-              <option value="sell">판매중</option>
-              <option value="selldone">판매 완료</option>
-            </select>
+<body>
+	<nav>
+		<a href="/main/main"><h1>개바리조</h1></a>
 
-            
+		<h6>
+			<a href="/login/login">로그인/</a> <a href="/mypage/mypage">마이페이지/</a> <a
+				href="/admin/admin">관리자페이지/</a> 로그인시간 ( 58: 00 )
+		</h6>
+	</nav>
 
-            <select name="stadium" id="stad">
-              <option value="select">구장을 선택하세요</option>
-              <option value="gochuck">고척 스카이돔</option>
-              <option value="gwangju">광주 챔피언스 필드</option>
-              <option value="daegu">대구 라이온즈파크</option>
-              <option value="daejun">대전 이글스파크</option>
-              <option value="busan">부산 사직야구장</option>
-              <option value="seoul">서울 잠실야구장</option>
-              <option value="suwon">수원 KT위즈파크</option>
-              <option value="incheon">인천 랜더스필드</option>
-              <option value="changwon">창원 NC파크</option>
-            </select>
-          </form>
+
+	<ul class="nav">
+		<li class="nav-item"><a class="nav-link active"
+			aria-current="page" href="/ticketing/ticketing">예매</a></li>
+		<li class="nav-item"><a class="nav-link"
+			href="/community/community">거래</a></li>
+		<li class="nav-item"><a class="nav-link"
+			href="/announcement/announcement">고객센터</a></li>
+	</ul>
+
+	<hr>
+
+
+	<form action="#">
+		<select name="state" id="state">
+			<option value="all">전체 게시글</option>
+			<option value="sell">판매중</option>
+			<option value="selldone">판매 완료</option>
+		</select> <select name="stadium" id="stad">
+			<option value="select">구장을 선택하세요</option>
+			<option value="gochuck">고척 스카이돔</option>
+			<option value="gwangju">광주 챔피언스 필드</option>
+			<option value="daegu">대구 라이온즈파크</option>
+			<option value="daejun">대전 이글스파크</option>
+			<option value="busan">부산 사직야구장</option>
+			<option value="seoul">서울 잠실야구장</option>
+			<option value="suwon">수원 KT위즈파크</option>
+			<option value="incheon">인천 랜더스필드</option>
+			<option value="changwon">창원 NC파크</option>
+		</select>
+	</form>
 
 
 
-            <div>
-                <input type="text" placeholder="검색어 입력">
-                <button>검색</button>
-            </div>
+	<div>
+		<input type="text" placeholder="검색어 입력">
+		<button>검색</button>
+	</div>
 
-            <br>
-            
-        
-            <button onclick="location.href='/community/communityWrite'">글쓰기</button>
+	<div class="box-body">
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<th style="width: 10px">BNO</th>
+					<th>게시글</th>
+					<th>닉네임</th>
+					<th>등록일</th>
+				</tr>
+				<c:forEach var="dto" items="${gScheduleList}">
+					<tr>
+						<td>${dto.post_sub}</td>
+						<td>${dto.post_sub}</td>
+						<c:forEach var="dto_" items="${dto.userList}">
+							<td>${dto_.user_nick}</td>
+						</c:forEach>
+						<td><fmt:formatDate value="${dto.post_cre_date}"
+								pattern="yyyy-MM-dd" /></td>
+					</tr>
+				</c:forEach>
+
+			</tbody>
+		</table>
+	</div>
+
+	<br>
+
+
+	<button onclick="location.href='/community/communityWrite'">글쓰기</button>
 
 
 
