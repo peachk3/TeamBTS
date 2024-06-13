@@ -3,6 +3,8 @@ package com.itwillbs.domain;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Data

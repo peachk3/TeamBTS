@@ -15,11 +15,13 @@ public interface AdminService {
 	// 공지사항 작성
 	public void NoticeJoin(Notice_boardDTO dto);
 	
-	// 글 전체 목록 조회
+	// 공지사항 목록 조회
 	public List<Notice_boardDTO> NoticeList() throws Exception;
 	
 	// 경기일정 등록
 	public void ScheduleJoin(Game_scheduleDTO dto);
 
+	// 경기일정 목록 조회
+	public List<Game_scheduleDTO> ScheduleList() throws Exception;
 	
 }

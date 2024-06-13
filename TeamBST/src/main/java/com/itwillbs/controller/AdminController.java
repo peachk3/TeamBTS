@@ -93,8 +93,15 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminSchedule",method=RequestMethod.GET)
-	public void adminSchedule_GET() {
+	public void adminSchedule_GET(Model model) throws Exception {
 		logger.debug("관리자 경기일정 호출");
+
+		// 서비스 -> DB의 정보를 가져오기
+		List<Game_scheduleDTO> gScheduleList = aService.ScheduleList();
+		logger.debug("size : "+ gScheduleList.size());
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("gScheduleList", gScheduleList);
 
 	}	
 	
@@ -102,7 +109,7 @@ public class AdminController {
 	public void adminScheduleUpload_GET() {
 		logger.debug("관리자 경기일정 업로드 호출");
 		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
-
+		
 	}
 	
 	@RequestMapping(value="/adminScheduleUpload",method=RequestMethod.POST)
@@ -115,6 +122,13 @@ public class AdminController {
 		aService.ScheduleJoin(dto);
 		
 		return "redirect:/admin/adminSchedule";
+		
+	}
+	
+	@RequestMapping(value="/adminScheduleUpdate",method=RequestMethod.GET)
+	public void adminScheduleUpdate_GET() {
+		logger.debug("관리자 경기일정 수정 호출");
+		logger.debug(" /adminScheduleUpdate -> adminScheduleUpdate_GET() 호출");
 		
 	}
 	
