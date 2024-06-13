@@ -69,6 +69,15 @@ public class TicketingController {
 	}
 	
 	
+	// 구장 좌석 배치도 출력
+	@RequestMapping(value="/stadium", method = RequestMethod.GET)
+	public void showStadiumArea() {
+		logger.debug(" 구장 배치도 페이지 ");
+
+	}
 	
-	
+	@RequestMapping(value="/seats/{name}", method = RequestMethod.GET)
+	public void selectZone() {
+		logger.debug(" 구장 배치도 - 구역 선택");
+	}
 }
