@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.UserDTO;
 import com.itwillbs.service.AdminService;
 
 @Controller
@@ -79,13 +80,19 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/adminGeneralMember",method=RequestMethod.GET)
-	public void adminGeneralMember_GET() {
+	public String adminGeneralUserList_GET(Model model) throws Exception {
 		logger.debug("관리자 일반회원 호출");
+		
+		List<UserDTO> generalMemberList = aService.generalMemberList();
+		
+		model.addAttribute("generalMemberList", generalMemberList);
+		
+		return "/admin/adminGeneralMember";
 		
 	}	
 	
-	@RequestMapping(value="/adminWithdrawMember",method=RequestMethod.POST)
-	public void adminWithdrawMember_POST() {
+	@RequestMapping(value="/adminWithdrawMember",method=RequestMethod.GET)
+	public void adminWithdrawMember_GET() {
 		logger.debug("관리자 탈퇴회원 호출");
 		
 	}
