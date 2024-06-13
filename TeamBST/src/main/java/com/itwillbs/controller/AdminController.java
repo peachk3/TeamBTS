@@ -1,5 +1,7 @@
 package com.itwillbs.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwillbs.domain.AdminDTO;
+import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.service.AdminService;
 
@@ -34,8 +38,17 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminNotice",method=RequestMethod.GET)
-	public void adminNotice_GET() {
-		logger.debug("관리자 공지사항 호출");
+	public String adminNotice_GET(Model model) throws Exception{
+		logger.debug("관리자 공지사항 리스트 호출");
+		
+		// 서비스 -> DB의 정보를 가져오기
+		List<Notice_boardDTO> nBoardList = aService.NoticeList();
+		logger.debug("size : "+ nBoardList.size());
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("nBoardList", nBoardList);
+		
+		return "/admin/adminNotice";
 
 	}
 	
@@ -71,8 +84,8 @@ public class AdminController {
 		
 	}	
 	
-	@RequestMapping(value="/adminWithdrawMember",method=RequestMethod.GET)
-	public void adminWithdrawMember_GET() {
+	@RequestMapping(value="/adminWithdrawMember",method=RequestMethod.POST)
+	public void adminWithdrawMember_POST() {
 		logger.debug("관리자 탈퇴회원 호출");
 		
 	}
@@ -88,12 +101,20 @@ public class AdminController {
 	@RequestMapping(value="/adminScheduleUpload",method=RequestMethod.GET)
 	public void adminScheduleUpload_GET() {
 		logger.debug("관리자 경기일정 업로드 호출");
+		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
 
 	}
 	
 	@RequestMapping(value="/adminScheduleUpload",method=RequestMethod.POST)
-	public void adminScheduleUpload_POST() {
+	public String adminScheduleUpload_POST(Game_scheduleDTO dto) {
 		logger.debug("관리자 경기일정 업로드 호출");
+		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_POST() 호출");
+		
+		logger.debug("dto : "+ dto);
+		
+		aService.ScheduleJoin(dto);
+		
+		return "redirect:/admin/adminSchedule";
 		
 	}
 	

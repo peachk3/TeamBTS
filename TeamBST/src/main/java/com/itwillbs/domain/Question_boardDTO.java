@@ -14,7 +14,7 @@ public class Question_boardDTO {
 	private int quest_cate;
 	private String quest_public;
 	private String photo_url;
-	private int quest_veiw;
+	private int quest_view;
 	private String quest_del_at;
 	private Timestamp quest_del_date;
 	
