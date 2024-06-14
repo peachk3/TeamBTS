@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.UserDTO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO{
@@ -63,6 +64,15 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		return sqlSession.selectList(NAMESPACE + "scheduleList");
 		
+	}
+
+	@Override
+	public List<UserDTO> generalMemberList() throws Exception {
+		
+		logger.debug(" DAO : generalMemberList() 호출");
+
+		
+		return sqlSession.selectList(NAMESPACE + "generalMemberList");
 	}
 	
 

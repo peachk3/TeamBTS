@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.SeatDTO;
 import com.itwillbs.domain.Team_n_stadiumDTO;
+import com.itwillbs.domain.ZoneDTO;
 import com.itwillbs.service.ScheduleService;
+import com.itwillbs.service.StadiumService;
 
 @Controller
 @RequestMapping(value="/ticketing/*")
@@ -69,15 +72,48 @@ public class TicketingController {
 	}
 	
 	
-	// 구장 좌석 배치도 출력
-	@RequestMapping(value="/stadium", method = RequestMethod.GET)
-	public void showStadiumArea() {
-		logger.debug(" 구장 배치도 페이지 ");
-
+	
+	@Inject
+	private StadiumService stadService;
+	
+	// 구장 배치도 (구역 선택)
+ 	@RequestMapping(value="/stadium", method = RequestMethod.GET)
+	public void goStadiumGET(@RequestParam("stad_id") String stad_id, Model model) {
+ 		model.addAttribute("stad_id",stad_id);
+ 		
+		logger.debug("goStadiumGET() 호출");
+	}
+ 	
+	
+	// 구역 -> 좌석 선택
+	@RequestMapping(value="/seats/{name}", method = RequestMethod.GET)
+	public void selectSeat() {
+		logger.debug("selectSeat() 호출");
 	}
 	
-	@RequestMapping(value="/seats/{name}", method = RequestMethod.GET)
-	public void selectZone() {
-		logger.debug(" 구장 배치도 - 구역 선택");
-	}
+	
+//	@RequestMapping(value="/stadium", method = RequestMethod.POST)
+//	public String getStadium(@RequestParam("stad_id") String stad_id, Model model) {
+//		logger.debug("구단 좌석 배치도 페이지 호출");
+//		
+//		Game_scheduleDTO stadium = stadService.getStadiumById(stad_id);
+////		List<ZoneDTO> zones = stadService.getZonesByStadiumId(stad_id);
+//		model.addAttribute("stadium", stadium);
+////		model.addAttribute("zones", zones);
+//		
+//		return "/ticketing/stadium";
+//	}
+	
+//	@RequestMapping(value="/zone", method = RequestMethod.GET)
+//	public String getZone(@RequestParam("zone_id") String zone_id, Model model) {
+//		logger.debug("구역 선택 페이지 호출");
+//		
+//		List<SeatDTO> seats = stadService.getSeatsByZoneId(zone_id);
+//		model.addAttribute("seats", seats);
+//		
+//		return "seats";
+//	}
+//	
+//	
+	
 }

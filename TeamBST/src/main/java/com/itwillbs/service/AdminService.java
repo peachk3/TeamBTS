@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.UserDTO;
 
 @Service
 public interface AdminService {
@@ -23,5 +24,8 @@ public interface AdminService {
 
 	// 경기일정 목록 조회
 	public List<Game_scheduleDTO> ScheduleList() throws Exception;
+	
+	// 일반회원 리스트 조회
+	public List<UserDTO> generalMemberList() throws Exception;
 	
 }

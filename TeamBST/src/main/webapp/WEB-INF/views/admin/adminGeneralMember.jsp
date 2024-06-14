@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,9 +47,28 @@
       <button type="button" class="community" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
 
 
-
-
-
+<table border="1">
+	<tr>
+		<td>no</td>
+		<td>아이디</td>
+		<td>이름</td>
+		<td>닉네임</td>
+		<td>이메일</td>
+		<td>전화번호</td>
+		<td>가입일자</td>
+	</tr>
+	<c:forEach var="vo" items="${generalMemberList}">
+		<tr>
+			<td>넘버</td>
+			<td>${vo.user_id }</td>
+			<td>${vo.user_name }</td>
+			<td>${vo.user_nick }</td>
+			<td>${vo.user_phone }</td>
+			<td>${vo.user_email }</td>
+			<td>${vo.user_birth }</td>
+		</tr>
+	</c:forEach>
+</table>
 
 
 

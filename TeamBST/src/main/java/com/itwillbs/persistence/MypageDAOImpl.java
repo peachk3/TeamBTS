@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.UserDTO;
 
 @Repository
@@ -16,6 +17,7 @@ public class MypageDAOImpl implements MypageDAO {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MypageDAOImpl.class);
 
+	// DB 연결정보 -> 주입
 	@Inject
 	private SqlSession sqlSession;
 
@@ -47,13 +49,19 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public List<UserDTO> matchList() {
-		return sqlSession.selectList(NAMESPACE + "matchList");
+	public List<Game_scheduleDTO> previousMatchList(String user_id) {
+		logger.debug(" previousMatchList() 실행 ");
+		return sqlSession.selectList(NAMESPACE + "previousMatchList",user_id);
+	}
+
+	@Override
+	public List<Game_scheduleDTO> openMatchList(String user_id) {
+		logger.debug(" openMatchList() 실행 ");
+		return sqlSession.selectList(NAMESPACE + "openMatchList",user_id);
 	}
 
 	@Override
 	public UserDTO getMember(UserDTO vo) {
-		// If this method is not required, it should be removed or implemented properly.
 		return null;
 	}
 }
