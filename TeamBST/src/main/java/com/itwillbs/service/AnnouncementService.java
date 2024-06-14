@@ -2,12 +2,8 @@ package com.itwillbs.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
 
-@Service
 public interface AnnouncementService {
 	
 	// 거래 게시글 작성

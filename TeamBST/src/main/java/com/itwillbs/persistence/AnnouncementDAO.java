@@ -2,7 +2,6 @@ package com.itwillbs.persistence;
 
 import java.util.List;
 
-import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
 
 public interface AnnouncementDAO {
