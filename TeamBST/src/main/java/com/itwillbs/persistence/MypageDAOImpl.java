@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.UserDTO;
 
 @Repository
@@ -39,12 +41,12 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public List<UserDTO> postBoardList() {
+	public List<Post_boardDTO> postBoardList(String user_id) {
 		return sqlSession.selectList(NAMESPACE + "postBoardList");
 	}
 		
 	@Override
-	public List<UserDTO> questionBoardList() {
+	public List<Question_boardDTO> questionBoardList(String user_id) {
 		return sqlSession.selectList(NAMESPACE + "questionBoardList");
 	}
 

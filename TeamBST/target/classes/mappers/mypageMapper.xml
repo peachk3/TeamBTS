@@ -33,8 +33,14 @@
   <select id="postBoardList" resultType="com.itwillbs.domain.UserDTO">
     SELECT *
     FROM post_board
-    WHERE user_id = #{user_id}
+    WHERE post_writer_id = #{user_id}
   </select>
+  
+  <!-- 글 조회수 1증가 -->
+	<update id="pbUpdateReadCnt">
+		update post_board set post_view=post_view+1
+		where post_id=#{post_id}
+	</update>
 
   <!-- 내 질문글 목록 -->
   <select id="questionBoardList" resultType="com.itwillbs.domain.UserDTO">
@@ -42,6 +48,8 @@
     FROM question_board
     WHERE user_id = #{user_id}
   </select>
+  
+  
   
   <!-- 내 지난경기목록 -->
   <select id="previousMatchList" resultType="com.itwillbs.domain.Game_scheduleDTO">
@@ -51,7 +59,7 @@
 	on ri1.game_id = gs.game_id), 
 	(reservation_info ri2 join user u
 	on ri2.user_id = u.user_id)
-	where u.user_id = #{user_id} and gs.game_date < now();
+	where u.user_id = "boo" and (gs.game_date < curdate()or(gs.game_date = curdate() and gs.game_time < curtime()))
 	]]>
   </select>
   
@@ -63,7 +71,7 @@
 	on ri1.game_id = gs.game_id), 
 	(reservation_info ri2 join user u
 	on ri2.user_id = u.user_id)
-	where u.user_id = #{user_id} and gs.game_date > now();
+	where u.user_id = "boo" and (gs.game_date > curdate()or(gs.game_date = curdate() and gs.game_time > curtime()))
 	]]>
   </select>
 

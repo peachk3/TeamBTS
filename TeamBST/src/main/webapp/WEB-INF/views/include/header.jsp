@@ -15,9 +15,20 @@
 <nav>
     <a href="/main/main"><h1>개바리조</h1></a>
     <h6>
-        <a href="/login/loginPage">로그인/</a>
-        <a href="/mypage/mypage">마이페이지/</a>
-        <a href="/admin/admin">관리자페이지/</a>
+         <c:choose>
+            <c:when test="${empty sessionScope.user_id}">
+                <!-- 로그인하지 않은 경우 -->
+                <a href="/login/loginPage">로그인</a>
+            </c:when>
+            <c:when test="${sessionScope.user_id == 'admin'}">
+                <!-- 관리자일 경우 -->
+                <a href="/admin/admin">관리자페이지</a>
+            </c:when>
+            <c:otherwise>
+                <!-- 일반 사용자일 경우 -->
+                <a href="/mypage/mypage">마이페이지</a>
+            </c:otherwise>
+        </c:choose>
         로그인시간 ( 58: 00 )
     </h6>
     <ul class="nav">

@@ -3,6 +3,8 @@ package com.itwillbs.persistence;
 import java.util.List;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.UserDTO;
 
 public interface MypageDAO {
@@ -21,10 +23,10 @@ public interface MypageDAO {
 	public int deleteMember(UserDTO ddto);
 	
 	// 내 게시글 목록
-	public List<UserDTO> postBoardList();
+	public List<Post_boardDTO> postBoardList(String user_id);
 	
 	// 내 질문글 목록
-	public List<UserDTO> questionBoardList();
+	public List<Question_boardDTO> questionBoardList(String user_id);
 	
 	// 내 지난 경기목록
 	public List<Game_scheduleDTO> previousMatchList(String user_id);

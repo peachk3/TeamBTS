@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.service.MypageService;
 import com.itwillbs.service.ScheduleService;
@@ -32,6 +34,22 @@ public class MypageController {
     
 //    @Inject
 //    private ScheduleService sService;
+    
+    
+    //http://localhost:8088/mypage/mypage
+    // 마이페이지
+    @GetMapping("/mypage")
+    public String mypage(HttpSession session, Model model) {
+    	// 필요시 로직 추가
+    	return "/mypage/mypage";  // mypage.jsp로 이동
+    }
+    
+    @GetMapping(value="/myticket")
+    public void MyTicket(HttpSession session, Model model) {
+    	String user_id = (String) session.getAttribute("user_id");
+    	
+    	
+    }
     
     //http://localhost:8088/mypage/info
     // 회원정보 조회
@@ -121,7 +139,12 @@ public class MypageController {
     @GetMapping(value = "/postBoardList")
     public String postBoardList(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
-        List<UserDTO> pBoardList = mService.postBoardList();
+        
+        List<Post_boardDTO> pBoardList = mService.postBoardList(user_id);
+        logger.debug(" 확인 : " + pBoardList.size());
+        
+        logger.debug(" pBoardList() 실행 ");
+        
         model.addAttribute("pBoardList", pBoardList);
         return "/mypage/postBoardList";
     }
@@ -132,26 +155,17 @@ public class MypageController {
     @GetMapping(value = "/questionBoardList")
     public String questionBoardList(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
-        List<UserDTO> qBoardList = mService.questionBoardList();
+        
+        List<Question_boardDTO> qBoardList = mService.questionBoardList(user_id);
+        logger.debug(" 확인 : " + qBoardList.size());
+        
+        logger.debug(" q  BoardList() 실행 ");
+        
         model.addAttribute("qBoardList", qBoardList);
         return "/mypage/questionBoardList";
     }
     
 
-    //http://localhost:8088/mypage/mypage
-    // 마이페이지
-    @GetMapping("/mypage")
-    public String mypage(HttpSession session, Model model) {
-        // 필요시 로직 추가
-        return "/mypage/mypage";  // mypage.jsp로 이동
-    }
-
-    @GetMapping(value="/myticket")
-    public void MyTicket(HttpSession session, Model model) {
-        String user_id = (String) session.getAttribute("user_id");
-        
-        
-    }
     //http://localhost:8088/mypage/previousMatchList
     // 경기예약내역
     @GetMapping(value = "/previousMatchList")
