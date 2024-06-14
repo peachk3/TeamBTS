@@ -11,10 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.service.AnnouncementService;
-import com.itwillbs.service.CommunityService;
 
 @Controller
 @RequestMapping(value="/announcement/*")
@@ -27,9 +26,17 @@ public class AnnouncementController {
 	private AnnouncementService aService;
 
 	@RequestMapping(value="/announcement",method=RequestMethod.GET)
-	public void AnnouncementMain() {
+	public void AnnouncementMain_GET(Model model) throws Exception {
 		logger.debug("공지 게시판 호출");
 
+		// 서비스 -> DB의 정보를 가져오기
+		List<Notice_boardDTO> nBoardList = aService.NoticeList();
+		logger.debug("size : "+ nBoardList.size());
+		logger.debug("size : "+ nBoardList);
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("nBoardList", nBoardList);
+		
 	}
 	
 	
@@ -38,12 +45,12 @@ public class AnnouncementController {
 		logger.debug("문의 게시판 호출");
 
 		// 서비스 -> DB의 정보를 가져오기
-		List<Question_boardDTO> qBoaardList = aService.QuestionList();
-		logger.debug("size : "+ qBoaardList.size());
-		logger.debug("size : "+ qBoaardList);
+		List<Question_boardDTO> qBoardList = aService.QuestionList();
+		logger.debug("size : "+ qBoardList.size());
+		logger.debug("size : "+ qBoardList);
 		
 		// 연결된 뷰페이지로 정보 전달
-		model.addAttribute("qBoaardList", qBoaardList);
+		model.addAttribute("qBoaardList", qBoardList);
 		
 	}
 	
@@ -63,7 +70,7 @@ public class AnnouncementController {
 		
 		aService.QuestionJoin(dto);
 		
-		return "redirect:/community/community";
+		return "redirect:/announcement/bulletin";
 		
 	}
 	

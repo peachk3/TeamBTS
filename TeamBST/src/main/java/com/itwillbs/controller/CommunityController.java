@@ -32,12 +32,12 @@ public class CommunityController {
 		logger.debug("거래 게시판 호출");
 		
 		// 서비스 -> DB의 정보를 가져오기
-		List<Post_boardDTO> gScheduleList = cService.PostList();
-		logger.debug("size : "+ gScheduleList.size());
-		logger.debug("size : "+ gScheduleList);
+		List<Post_boardDTO> qBoardList = cService.PostList();
+		logger.debug("size : "+ qBoardList.size());
+		logger.debug("size : "+ qBoardList);
 		
 		// 연결된 뷰페이지로 정보 전달
-		model.addAttribute("gScheduleList", gScheduleList);
+		model.addAttribute("qBoardList", qBoardList);
 
 	}
 	

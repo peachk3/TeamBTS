@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
 
@@ -17,7 +18,7 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 	
 	private static final Logger logger = LoggerFactory.getLogger(AnnouncementDAOImpl.class);
 	
-	private static final String NAMESPACE = "com.itwillbs.mapper.CommunityMapper.";
+	private static final String NAMESPACE = "com.itwillbs.mapper.AnnouncementMapper.";
 	
 	@Inject
 	public SqlSession sqlSession;
@@ -39,6 +40,14 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 		
 		return sqlSession.selectList(NAMESPACE + "QuestionList");
 	}
+
+	@Override
+	public List<Notice_boardDTO> NoticeList() throws Exception {
+		logger.debug("DAO : NoticeList() 호출");
+		
+		return sqlSession.selectList(NAMESPACE + "noticeList");
+	}
+	
 	
 
 }

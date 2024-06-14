@@ -4,22 +4,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.itwillbs.mapper.CommunityMapper">
+<mapper namespace="com.itwillbs.mapper.AnnouncementMapper">
 
 	<!-- Join절 사용하기 위한 resultMap 모두 직접 설정하기 -->
-	<resultMap type="com.itwillbs.domain.Post_boardDTO" id="postMap">
-		<id property="post_id" column="post_id" />
-		<result property="post_writer_id" column="post_writer_id" />
-		<result property="post_sub" column="post_sub" />
-		<result property="post_cont" column="post_cont" />
-		<result property="post_cre_date" column="post_cre_date" />
-		<result property="stad_id" column="stad_id" />
+	<resultMap type="com.itwillbs.domain.Question_boardDTO" id="questMap">
+		<id property="quest_id" column="quest_id" />
+		<result property="quest_id" column="quest_id" />
+		<result property="quest_writer_id" column="quest_writer_id" />
+		<result property="quest_sub" column="quest_sub" />
+		<result property="quest_cont" column="quest_cont" />
+		<result property="quest_cre_date" column="quest_cre_date" />
+		<result property="quest_cate" column="quest_cate" />
+		<result property="quest_public" column="quest_public" />
 		<result property="photo_url" column="photo_url" />
-		<result property="post_veiw" column="post_veiw" />
-		<result property="sale_status" column="sale_status" />
-		<result property="sale_ty" column="sale_ty" />
-		<result property="post_del_at" column="post_del_at" />
-		<result property="post_del_date" column="post_del_date" />
+		<result property="quest_view" column="quest_view" />
+		<result property="quest_del_at" column="quest_del_at" />
+		<result property="quest_del_date" column="quest_del_date" />
 		<collection property="userList" resultMap="userMap">
 		</collection>
 	</resultMap>
@@ -40,19 +40,22 @@
 		<result property="user_status" column="user_status" />
 	</resultMap>
 
+	<!-- 공지사항 리스트 조회 -->
+	<select id="noticeList" resultType="Notice_boardDTO">
+		select * from notice_board
+	</select>
 
-
-	<!-- 거래 게시글 작성 -->
+	<!-- 문의 게시글 작성 -->
 	<insert id="QuestionJoin">
-		insert into post_board (post_writer_id, post_sub, post_cont, stad_id, photo_url, sale_ty)
-		values ("boo", #{post_sub}, #{post_cont}, #{stad_id}, #{photo_url}, #{sale_ty})
+		insert into question_board (quest_writer_id, quest_sub, quest_cont, quest_cate, quest_public, photo_url)
+		values ("boo", #{quest_sub}, #{quest_cont}, #{quest_cate}, #{quest_public}, #{photo_url})
 	</insert>
 
-	<!-- 거래 게시글 목록 조회 -->
-	<select id="QuestionList" resultMap="postMap">
-		select pb.post_sub, pb.post_cre_date, u.user_nick
-		from post_board pb join user u
-		on pb.post_writer_id = u.user_id
+	<!-- 문의 게시글 목록 조회 -->
+	<select id="QuestionList" resultMap="questMap">
+		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick
+		from question_board qb join user u
+		on qb.quest_writer_id = u.user_id
 	</select>
 
 </mapper>

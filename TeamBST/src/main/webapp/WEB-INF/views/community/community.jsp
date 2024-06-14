@@ -38,8 +38,7 @@
 	</ul>
 
 	<hr>
-
-
+	
 	<form action="#">
 		<select name="state" id="state">
 			<option value="all">전체 게시글</option>
@@ -60,7 +59,6 @@
 	</form>
 
 
-
 	<div>
 		<input type="text" placeholder="검색어 입력">
 		<button>검색</button>
@@ -75,7 +73,7 @@
 					<th>닉네임</th>
 					<th>등록일</th>
 				</tr>
-				<c:forEach var="dto" items="${gScheduleList}">
+				<c:forEach var="dto" items="${qBoardList}">
 					<tr>
 						<td>${dto.post_sub}</td>
 						<td>${dto.post_sub}</td>
