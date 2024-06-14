@@ -28,6 +28,9 @@ public interface MypageDAO {
 	// 내 질문글 목록
 	public List<Question_boardDTO> questionBoardList(String user_id);
 	
+	// 내 질문글 본문
+//    public Question_boardDTO qbUpdateReadCnt(int bno) throws Exception;
+	
 	// 내 지난 경기목록
 	public List<Game_scheduleDTO> previousMatchList(String user_id);
 	

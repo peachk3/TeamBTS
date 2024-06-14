@@ -45,6 +45,12 @@ public class MypageDAOImpl implements MypageDAO {
 		return sqlSession.selectList(NAMESPACE + "postBoardList",user_id);
 	}
 		
+//	@Override
+//	public Question_boardDTO qbUpdateReadCnt(int bno) throws Exception {
+//		logger.debug(" Question_boardDTO(int bno) 실행 ");
+//		return sqlSession.selectOne(NAMESPACE + "Question_boardDTO", bno);
+//	}
+
 	@Override
 	public List<Question_boardDTO> questionBoardList(String user_id) {
 		return sqlSession.selectList(NAMESPACE + "questionBoardList",user_id);

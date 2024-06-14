@@ -43,12 +43,17 @@
 	</update>
 
   <!-- 내 질문글 목록 -->
-  <select id="questionBoardList" resultType="com.itwillbs.domain.UserDTO">
-    SELECT *
-    FROM question_board
-    WHERE user_id = #{user_id}
+  <select id="questionBoardList" resultType="com.itwillbs.domain.Question_boardDTO">
+	SELECT *
+	FROM question_board
+	WHERE quest_writer_id = #{user_id};
   </select>
   
+  <!-- 내 질문글 정보 -->
+  <select id="questionBoardCon" resultType="com.itwillbs.domain.Question_boardDTO">
+	select * from tbl_board
+	where quest_id=#{quest_id}
+  </select>
   
   
   <!-- 내 지난경기목록 -->
@@ -74,5 +79,6 @@
 	where u.user_id = "boo" and (gs.game_date > curdate()or(gs.game_date = curdate() and gs.game_time > curtime()))
 	]]>
   </select>
+  
 
 </mapper>

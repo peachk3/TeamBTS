@@ -21,8 +21,14 @@ public interface MypageService {
     // 내 게시글 목록
     public List<Post_boardDTO> postBoardList(String user_id) throws Exception;
     
+    // 내 게시글 본문
+    public Post_boardDTO pbUpdateReadCnt(int bno) throws Exception;
+    
     // 내 질문글 목록
     public List<Question_boardDTO> questionBoardList(String user_id) throws Exception;
+    
+    // 내 질문글 본문
+    public Question_boardDTO qbUpdateReadCnt(int bno) throws Exception;
     
     // 내 지난 경기목록
  	public List<Game_scheduleDTO> previousMatchList(String user_id) throws Exception;

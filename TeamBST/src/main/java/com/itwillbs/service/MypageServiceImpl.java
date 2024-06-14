@@ -42,11 +42,21 @@ public class MypageServiceImpl implements MypageService {
     public List<Post_boardDTO> postBoardList(String user_id) throws Exception {
         return mypageDAO.postBoardList(user_id);
     }
+    
+    @Override
+    public Post_boardDTO pbUpdateReadCnt(int bno) throws Exception {
+    	return null;
+    }
 
     @Override
     public List<Question_boardDTO> questionBoardList(String user_id) throws Exception {
         return mypageDAO.questionBoardList(user_id);
     }
+    
+//    @Override
+//    public Question_boardDTO qbUpdateReadCnt(int bno) throws Exception {
+//    	return mypageDAO.qbUpdateReadCnt(bno);
+//    }
 
 	@Override
 	public List<Game_scheduleDTO> previousMatchList(String user_id) throws Exception {
@@ -57,6 +67,8 @@ public class MypageServiceImpl implements MypageService {
 	public List<Game_scheduleDTO> openMatchList(String user_id) throws Exception {
 		return mypageDAO.openMatchList(user_id);
 	}
+
+
     
     
 }

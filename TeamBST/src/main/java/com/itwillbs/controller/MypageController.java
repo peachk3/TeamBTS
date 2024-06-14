@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.itwillbs.domain.Game_scheduleDTO;
@@ -159,12 +160,39 @@ public class MypageController {
         List<Question_boardDTO> qBoardList = mService.questionBoardList(user_id);
         logger.debug(" 확인 : " + qBoardList.size());
         
-        logger.debug(" q  BoardList() 실행 ");
+        logger.debug(" qBoardList() 실행 ");
         
         model.addAttribute("qBoardList", qBoardList);
         return "/mypage/questionBoardList";
     }
     
+ // 게시판 본문보기 - readGET
+ 	@RequestMapping(value = "/read",method = RequestMethod.GET)
+ 	public void readGET(@ModelAttribute("bno") int bno, Model model) throws Exception {
+ 		// @ModelAttribute("bno") int bno
+ 		// => 주소줄에 있는 데이터를 가져와서 사용, 연결된 뷰페이지로 이동 $ {bno}
+ 		//	  request.getParameter("bno") + request.setAttribute();
+ 		// => 1:N 관계에서 사용 (N - bean(객체), collection)
+ 		
+ 		// @RequestParam("bno") int bno
+ 		// => request.getParameter("bno") 동일함, 자동형변환 포함(문자,숫자,날짜)
+ 		// => 1:1 관계에서 사용
+ 		
+ 		logger.debug(" readGET() 실행 ");
+ 		
+ 		// 전달정보 저장
+ 		logger.debug(" bno : " + bno);
+ 		
+ 		// 글 조회(읽음) 카운트 증가 => 조회수 1증가
+ 		mService.qbUpdateReadCnt(bno);
+ 		
+ 		// 서비스 - DAO 저장된 정보를 가져오기
+ 		Question_boardDTO qbDTO = mService.qbUpdateReadCnt(bno);
+ 		logger.debug(" qbDTO : {}", qbDTO);
+ 		
+ 		// 전달할 정보를 저장(model)
+ 		model.addAttribute("qbDTO", qbDTO);
+ 	}
 
     //http://localhost:8088/mypage/previousMatchList
     // 경기예약내역

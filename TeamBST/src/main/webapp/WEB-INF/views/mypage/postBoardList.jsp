@@ -15,7 +15,7 @@
     <h1>내 게시글 목록</h1>
     <table border="1">
         <tr>
-            <th>게시글 번호</th>
+            <th>no</th>
             <th>제목</th>
             <th>작성자</th>
             <th>작성일</th>
@@ -29,7 +29,7 @@
 	         </td>
 	         <td>${post.post_writer_id}</td>
 	         <td>
-	         	<fmt:formatDate type="both" value="${post.post_cre_date }" pattern="yyyy-MM-dd (a)HH:mm:ss" />
+	         	<fmt:formatDate type="both" value="${post.post_cre_date }" pattern="yy/MM/dd HH:mm" />
 	         </td>
 	         <td><span class="badge bg-blue">${post.post_view }</span></td>
         </tr>
