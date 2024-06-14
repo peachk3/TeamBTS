@@ -42,12 +42,12 @@ public class MypageDAOImpl implements MypageDAO {
 
 	@Override
 	public List<Post_boardDTO> postBoardList(String user_id) {
-		return sqlSession.selectList(NAMESPACE + "postBoardList");
+		return sqlSession.selectList(NAMESPACE + "postBoardList",user_id);
 	}
 		
 	@Override
 	public List<Question_boardDTO> questionBoardList(String user_id) {
-		return sqlSession.selectList(NAMESPACE + "questionBoardList");
+		return sqlSession.selectList(NAMESPACE + "questionBoardList",user_id);
 	}
 
 	@Override

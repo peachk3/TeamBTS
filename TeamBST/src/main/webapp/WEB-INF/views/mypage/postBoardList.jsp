@@ -12,7 +12,6 @@
 </head>
 <body>
 
-${pBoardList}
     <h1>내 게시글 목록</h1>
     <table border="1">
         <tr>
@@ -26,13 +25,13 @@ ${pBoardList}
         <tr>
 	         <td>${post.post_id}</td>
 	         <td>
-	         	<a href="/mypage/postBoardList/read?id=${post.post_id}">${post.post_title }</a>
+	         	<a href="/mypage/postBoardList/read?id=${post.post_id}">${post.post_sub }</a>
 	         </td>
 	         <td>${post.post_writer_id}</td>
 	         <td>
 	         	<fmt:formatDate type="both" value="${post.post_cre_date }" pattern="yyyy-MM-dd (a)HH:mm:ss" />
 	         </td>
-	         <td><span class="badge bg-blue">${post.viewcnt }</span></td>
+	         <td><span class="badge bg-blue">${post.post_view }</span></td>
         </tr>
         </c:forEach>
     </table>

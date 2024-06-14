@@ -30,7 +30,7 @@
   </delete>
 
   <!-- 내 게시글 목록 -->
-  <select id="postBoardList" resultType="com.itwillbs.domain.UserDTO">
+  <select id="postBoardList" resultType="com.itwillbs.domain.Post_boardDTO">
     SELECT *
     FROM post_board
     WHERE post_writer_id = #{user_id}
