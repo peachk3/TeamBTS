@@ -152,6 +152,9 @@ public class MypageController {
         
         
     }
+    
+    
+    
     //http://localhost:8088/mypage/previousMatchList
     // 경기예약내역
     @GetMapping(value = "/previousMatchList")

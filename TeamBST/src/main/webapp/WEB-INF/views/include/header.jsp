@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>메인페이지</title>
+    <title>개바리조</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="../resources/css/index.css" rel="stylesheet">
 </head>
@@ -22,7 +22,7 @@
     </h6>
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/ticketing/ticketing">예매</a>
+            <a class="nav-link active" aria-current="page" href="/ticketing/ticketing?stad_id=All">예매</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/community/community">거래</a>

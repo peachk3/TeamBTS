@@ -15,9 +15,17 @@
 
 	<!-- 구장별 경기 일정 목록 -->
 	<select id="TeamSchedule"
-		resultType="com.itwillbs.domain.Game_scheduleDTO">
-		select * from game_schedule
-		where stad_id = #{stad_id}
+		resultType="com.itwillbs.domain.Game_scheduleDTO" >
+		
+		    <choose>
+		        <when test="!_parameter.equals('All')">
+		     	   select * from game_schedule
+		            where stad_id = #{stad_id}
+		        </when>
+	           <when test="_parameter.equals('All')">
+		     	   select * from game_schedule
+		        </when>
+		</choose>
 	</select>
 
 	<!-- Join절 사용하기 위한 resultMap 모두 직접 설정하기 -->

@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>지난 경기 목록</title>
-</head>
-<body>
-    <h1>지난 경기 목록</h1>
+<%@ include file="../include/header.jsp"%>
+
+
+
+
+
+
 	<table border="1">
 		<tr>
 			<th>경기 날짜</th>
@@ -27,6 +25,5 @@
 		</tr>
 		</c:forEach>
 	</table>
-	<a href="/mypage/mypage">마이페이지로 돌아가기</a>
 </body>
 </html>
