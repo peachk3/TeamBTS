@@ -46,7 +46,10 @@
     </style>
 </head>
 <body>
-    <h1>Selected Zone: ${param.zone}구역</h1>
+    
+    <h1>Selected Zone: ${zone_id}구역</h1>
+    <h3>Stadium ID : ${stad_id }</h3>
+    <h3>Game ID : ${game_id }</h3>
     <div class="container">
         <div class="seating-chart">
             <div class="field">필드</div>
@@ -65,6 +68,7 @@
             </ul>
         </div>
     </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const seats = document.querySelectorAll('.seat:not(.occupied)');

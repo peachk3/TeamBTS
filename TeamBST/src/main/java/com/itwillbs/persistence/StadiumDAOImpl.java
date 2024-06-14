@@ -23,19 +23,18 @@ public class StadiumDAOImpl implements StadiumDAO {
 
 	private static final String NAMESPACE = "com.itwillbs.mapper.StadiumMapper.";
 	
-	@Override
-	public Game_scheduleDTO getStadiumById(String stad_id) {
-		logger.debug("getStadiumById(String game_id) 호출");
-	
-		return sqlSession.selectOne(NAMESPACE + "getStadiumById", stad_id);
-	}
+//	@Override
+//	public Game_scheduleDTO getStadiumById(String stad_id) {
+//		logger.debug("getStadiumById(String game_id) 호출");
+//	
+//		return sqlSession.selectOne(NAMESPACE + "getStadiumById", stad_id);
+//	}
 
 	@Override
 	public List<ZoneDTO> getZonesByStadiumId(String stad_id) {
 		logger.debug("getZonesByStadiumId(String stad_id) 호출 ");
-		List<ZoneDTO> zoneList = sqlSession.selectList(NAMESPACE + "getZonesByStadiumId", stad_id );
 		
-		return zoneList;
+		return sqlSession.selectList(NAMESPACE + "getZonesByStadiumId", stad_id );
 	}
 
 	@Override
@@ -44,5 +43,14 @@ public class StadiumDAOImpl implements StadiumDAO {
 		List<SeatDTO> seatList = sqlSession.selectList(NAMESPACE + "getSeatsByZoneId", zone_id);
 		return seatList;
 	}
+
+	@Override
+	public SeatDTO getSeatById(String seat_id) {
+		logger.debug(" getSeatById(String seat_id) 호출");
+
+		return sqlSession.selectOne(NAMESPACE + "getSeatById", seat_id);
+	}
+	
+	
 
 }

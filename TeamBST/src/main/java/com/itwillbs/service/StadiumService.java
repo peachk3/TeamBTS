@@ -11,9 +11,19 @@ import com.itwillbs.domain.ZoneDTO;
 @Service
 public interface StadiumService {
 
-	public Game_scheduleDTO getStadiumById(String stad_id);
 	
+//	public Game_scheduleDTO getStadiumById(String stad_id);
+	
+//	public ZoneDTO getZonesByStadiumId(String Zone_id);
+	
+//	public List<ZoneDTO> getZonesByStadiumId(String stad_id);
+	
+//	public List<SeatDTO> getSeatsByZoneId(String zone_id);
+	
+//	public SeatDTO getSeatById(String seat_id);
+
 	public List<ZoneDTO> getZonesByStadiumId(String stad_id);
+
 	
-	public List<SeatDTO> getSeatsByZoneId(String zone_id);
+	
 }

@@ -20,29 +20,45 @@ public class StadiumServiceImpl implements StadiumService {
 
 	@Inject
 	private StadiumDAO staddao;
-	
-	
-	@Override
-	public Game_scheduleDTO getStadiumById(String stad_id) {
-		
-		logger.debug("getStadiumById(String stad_id) 실행 ");
-		
-		return staddao.getStadiumById(stad_id);
-	}
 
 	@Override
 	public List<ZoneDTO> getZonesByStadiumId(String stad_id) {
-		logger.debug("getZonesByStadiumId(String stad_id) 실행");
-				
+		logger.debug("getZonesByStadiumId(String stad_id) 호출");
 		return staddao.getZonesByStadiumId(stad_id);
+		
 	}
+	
+	
+//	@Override
+//	public Game_scheduleDTO getStadiumById(String stad_id) {
+//		
+//		logger.debug("getStadiumById(String stad_id) 실행 ");
+//		
+//		return staddao.getStadiumById(stad_id);
+//	}
 
-	@Override
-	public List<SeatDTO> getSeatsByZoneId(String zone_id) {
-		
-		logger.debug("getSeatsByZoneId(String zone_id) 실행 ");
-		
-		return staddao.getSeatsByZoneId(zone_id);
-	}
+//	@Override
+//	public List<ZoneDTO> getZonesByStadiumId(String stad_id) {
+//		logger.debug("getZonesByStadiumId(String stad_id) 실행");
+//				
+//		return staddao.getZonesByStadiumId(stad_id);
+//	}
+
+//	@Override
+//	public List<SeatDTO> getSeatsByZoneId(String zone_id) {
+//		
+//		logger.debug("getSeatsByZoneId(String zone_id) 실행 ");
+//		
+//		return staddao.getSeatsByZoneId(zone_id);
+//	}
+//
+//	@Override
+//	public SeatDTO getSeatById(String seat_id) {
+//		logger.debug("getSeatById(String seat_id) 실행");
+//		
+//		return staddao.getSeatById(seat_id);
+//	}
+
+	
 
 }

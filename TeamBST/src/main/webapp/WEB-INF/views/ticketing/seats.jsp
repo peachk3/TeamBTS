@@ -2,22 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <title>Seats Page</title>
 </head>
 <body>
-    <h1>Seat Selection</h1>
-    <table border="1">
-        <tr>
-            <c:forEach var="seat" items="${seats}">
-                <td>${seat.seat_id}</td>
-                <td>${seat.seat_row}</td>
-                <td>${seat.seat_num}</td>
-            </c:forEach>
-        </tr>
+    <h1>좌석 선택</h1>
+    <table>
+        <c:forEach var="seat" items="${seats}">
+            <tr>
+                <td>${seat.row_num}행 ${seat.col_num}열</td>
+                <td>
+                    <a href="/reservation?schedule_id=${schedule_id}&seat_id=${seat.seat_id}">선택하기</a>
+                </td>
+            </tr>
+        </c:forEach>
     </table>
-    
 </body>
 </html>
+
