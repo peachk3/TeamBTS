@@ -136,6 +136,7 @@ public class AdminController {
 	public void adminScheduleUpdate_GET() {
 		logger.debug("관리자 경기일정 수정 호출");
 		logger.debug(" /adminScheduleUpdate -> adminScheduleUpdate_GET() 호출");
+	
 		
 	}
 	
