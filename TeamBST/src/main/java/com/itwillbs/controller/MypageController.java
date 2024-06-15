@@ -150,6 +150,27 @@ public class MypageController {
         return "/mypage/postBoardList";
     }
     
+    // 내 게시글 본문
+    @RequestMapping(value = "/pbread",method = RequestMethod.GET)
+    public void pbreadGET(@ModelAttribute("post_id") int post_id, Model model) throws Exception {
+    	logger.debug(" /pbreadGET() 실행 ");
+    	
+    	// 전달정보 저장
+    	logger.debug(" post_id : " + post_id);
+    	
+    	// 글 조회(읽음) 카운트 증가 => 조회수 1증가
+    	mService.pbUpdateReadCnt(post_id);
+    	
+    	
+//    	// 서비스 - DAO 저장된 정보 가져오기
+    	Post_boardDTO pbDTO = mService.pGetBoard(post_id);
+    	logger.debug(" pbDTO : {} ", pbDTO);
+    	
+    	// 전달할 정보를 저장(model)
+    	model.addAttribute("pbDTO", pbDTO);
+    }
+    
+    
     
     //http://localhost:8088/mypage/questionBoardList
     // 내 질문글
@@ -166,9 +187,11 @@ public class MypageController {
         return "/mypage/questionBoardList";
     }
     
- // 게시판 본문보기 - readGET
- 	@RequestMapping(value = "/read",method = RequestMethod.GET)
- 	public void readGET(@ModelAttribute("bno") int bno, Model model) throws Exception {
+    // http://localhost:8088/mypage/qbread
+    
+    // 질문글 본문보기 - qbreadGET
+ 	@RequestMapping(value = "/qbread",method = RequestMethod.GET)
+ 	public void qbreadGET(@ModelAttribute("quest_id") int quest_id, Model model) throws Exception {
  		// @ModelAttribute("bno") int bno
  		// => 주소줄에 있는 데이터를 가져와서 사용, 연결된 뷰페이지로 이동 $ {bno}
  		//	  request.getParameter("bno") + request.setAttribute();
@@ -178,16 +201,16 @@ public class MypageController {
  		// => request.getParameter("bno") 동일함, 자동형변환 포함(문자,숫자,날짜)
  		// => 1:1 관계에서 사용
  		
- 		logger.debug(" readGET() 실행 ");
+ 		logger.debug(" qbreadGET() 실행 ");
  		
  		// 전달정보 저장
- 		logger.debug(" bno : " + bno);
+ 		logger.debug(" quest_id : " + quest_id);
  		
  		// 글 조회(읽음) 카운트 증가 => 조회수 1증가
- 		mService.qbUpdateReadCnt(bno);
+ 		mService.qbUpdateReadCnt(quest_id);
  		
  		// 서비스 - DAO 저장된 정보를 가져오기
- 		Question_boardDTO qbDTO = mService.qbUpdateReadCnt(bno);
+ 		Question_boardDTO qbDTO = mService.qGetBoard(quest_id);
  		logger.debug(" qbDTO : {}", qbDTO);
  		
  		// 전달할 정보를 저장(model)

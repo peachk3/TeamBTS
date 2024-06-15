@@ -10,6 +10,7 @@ public class Question_boardDTO {
 	private Integer quest_id;
 	private String quest_writer_id;
 	private String quest_sub;
+	private String quest_cont;
 	private Timestamp quest_cre_date;
 	private int quest_cate;
 	private String quest_public;

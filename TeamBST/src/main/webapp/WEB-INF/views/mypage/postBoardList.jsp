@@ -25,7 +25,7 @@
         <tr>
 	         <td>${post.post_id}</td>
 	         <td>
-	         	<a href="/mypage/postBoardList/read?id=${post.post_id}">${post.post_sub }</a>
+	         	<a href="/mypage/pbread?post_id=${post.post_id}">${post.post_sub }</a>
 	         </td>
 	         <td>${post.post_writer_id}</td>
 	         <td>

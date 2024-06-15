@@ -4,29 +4,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     
 	<h1>MY 게시글</h1>
 <div class="box box-primary">
 	<div class="box-header with-border">
-		<h3 class="box-title">질문글</h3>
+		<h3 class="box-title">게시글</h3>
 	</div>
 		<div class="box-body">
 			<div class="form-group">
 				<label for="exampleInputEmail1">번 호</label> 
 				<input type="text" name="title" class="form-control" 
-						id="exampleInputEmail1" value="${Question_boardDTO.quest_id }" readonly="readonly">
+						id="exampleInputEmail1" value="${pbDTO.post_id }" readonly="readonly">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputEmail1">제 목</label> 
 				<input type="text" name="title" class="form-control" 
-						id="exampleInputEmail1" value="${Question_boardDTO.quest_sub }" readonly="readonly">
+						id="exampleInputEmail1" value="${pbDTO.post_sub }" readonly="readonly">
 			</div>
 			<div class="form-group">
 				<label>내 용</label>
 				<textarea class="form-control" name="content" rows="3" 
-							 readonly="readonly">${Question_boardDTO.quest_con }</textarea>
+							 readonly="readonly">${pbDTO.post_cont }</textarea>
 			</div>
 		</div>
 		<div class="box-footer">
@@ -42,7 +43,7 @@
 		$(".btn-primary").click(function(){
 			// '.' : 선택자 사용 시 선택자 앞에 .
 			// alert("클릭!");
-			location.href='/mypage/questionBoardList';
+			location.href='/mypage/postBoardList';
 			
 		});
 		

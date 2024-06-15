@@ -21,7 +21,7 @@
         <tr>
 	         <td>${post.quest_id}</td>
 	         <td>
-	         	<a href="/mypage/postBoardList/read?id=${post.quest_id}">${post.quest_sub }</a>
+	         	<a href="/mypage/qbread?quest_id=${post.quest_id}">${post.quest_sub }</a>
 	         </td>
 	         <td>${post.quest_writer_id}</td>
 	         <td>

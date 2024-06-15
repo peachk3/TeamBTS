@@ -37,6 +37,8 @@ public class MypageServiceImpl implements MypageService {
     public int deleteMember(UserDTO ddto) {
         return mypageDAO.deleteMember(ddto);
     }
+    
+    
 
     @Override
     public List<Post_boardDTO> postBoardList(String user_id) throws Exception {
@@ -44,19 +46,37 @@ public class MypageServiceImpl implements MypageService {
     }
     
     @Override
-    public Post_boardDTO pbUpdateReadCnt(int bno) throws Exception {
-    	return null;
-    }
-
+	public void pbUpdateReadCnt(int post_id) throws Exception {
+		mypageDAO.pbUpdateReadCnt(post_id);
+	}
+    
     @Override
+    public Post_boardDTO pGetBoard(int post_id) throws Exception {
+    	logger.debug(" pGetBoard(int post_id) 실행 ");
+    	return mypageDAO.pGetBoard(post_id);
+    }
+    
+    
+    
+
+
+	@Override
     public List<Question_boardDTO> questionBoardList(String user_id) throws Exception {
         return mypageDAO.questionBoardList(user_id);
     }
     
-//    @Override
-//    public Question_boardDTO qbUpdateReadCnt(int bno) throws Exception {
-//    	return mypageDAO.qbUpdateReadCnt(bno);
-//    }
+    @Override
+    public void qbUpdateReadCnt(int quest_id) throws Exception {
+    	mypageDAO.qbUpdateReadCnt(quest_id);
+    }
+    
+    @Override
+    public Question_boardDTO qGetBoard(int quest_id) throws Exception {
+    	logger.debug( "qGetBoard(int quest_id) 실행" );
+    	return mypageDAO.qGetBoard(quest_id);
+    }
+    
+    
 
 	@Override
 	public List<Game_scheduleDTO> previousMatchList(String user_id) throws Exception {
@@ -67,6 +87,7 @@ public class MypageServiceImpl implements MypageService {
 	public List<Game_scheduleDTO> openMatchList(String user_id) throws Exception {
 		return mypageDAO.openMatchList(user_id);
 	}
+
 
 
     
