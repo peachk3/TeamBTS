@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>좌석 선택</title>
+<%@ include file="../../include/teamheader.jsp"%>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
 
         .container {
@@ -68,22 +64,9 @@
 
 
     </style>
-</head>
-<body>  
+
     
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/ticketing/ticketing">예매</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/community/community">거래</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/announcement/announcement">고객센터</a>
-      </li>
-    </ul>
-    
-    <hr>
+
 
 
     <h2> B 구역 </h2>
