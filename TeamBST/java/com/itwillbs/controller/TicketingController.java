@@ -30,29 +30,34 @@ public class TicketingController {
 	private ScheduleService sService;
 	
 	
-	@RequestMapping(value="/ticketing",method=RequestMethod.GET)
-	public void MainTicketing() {
-		logger.debug("티켓팅 홈 페이지");
+    @RequestMapping(value="/ticketing", method=RequestMethod.GET)
+    public String MainTicketing(@RequestParam("stad_id") String stad_id, Model model) {
+        logger.debug("티켓팅 홈 페이지");
+        logger.debug("stad_id : " + stad_id);
 
-		
-	}
+        List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
+        model.addAttribute("TeamScheduleList", TeamScheduleList);
+        model.addAttribute("selectedStadium", stad_id); // 선택한 stadium id를 모델에 추가
+
+        return "ticketing/ticketing"; // 실제 JSP 페이지 이름으로 변경하세요
+    }
 	
 	
 	
 	@RequestMapping(value="/ticketing",method=RequestMethod.POST)
-	public void TeamTicketing(@RequestParam("stad_id") String stad_id,Model model) {
-		logger.debug("티켓팅 홈 페이지");
-		
-		logger.debug("stad_id : " + stad_id);
+	 public String TeamTicketing(@RequestParam("stad_id") String stad_id, Model model) {
+        logger.debug("티켓팅 홈 페이지");
+        logger.debug("stad_id : " + stad_id);
 
-		List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
-		
-//		logger.debug(" GameScheduleList : "+GameScheduleList.size());
+        List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
+        model.addAttribute("TeamScheduleList", TeamScheduleList);
+        model.addAttribute("selectedStadium", stad_id); // 선택한 stadium id를 모델에 추가
 
-		model.addAttribute("TeamScheduleList", TeamScheduleList);
-
-		
-	}
+        return "redirect:/ticketing/ticketing?stad_id=" + stad_id; // 선택한 stadium id와 함께 GET 요청으로 리다이렉트
+    }
+	
+	
+	
 	// 경기 정보 페이지
 	@RequestMapping(value="/gameInfo",method=RequestMethod.GET)
 	public String gameInfo(@RequestParam("game_id") String game_id, Model model) {
