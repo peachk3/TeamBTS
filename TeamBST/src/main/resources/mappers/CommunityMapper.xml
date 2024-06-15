@@ -9,6 +9,7 @@
 	<!-- Join절 사용하기 위한 resultMap 모두 직접 설정하기 -->
 	<resultMap type="com.itwillbs.domain.Post_boardDTO" id="postMap">
 		<id property="post_id" column="post_id" />
+		<result property="post_id" column="post_id" />
 		<result property="post_writer_id" column="post_writer_id" />
 		<result property="post_sub" column="post_sub" />
 		<result property="post_cont" column="post_cont" />

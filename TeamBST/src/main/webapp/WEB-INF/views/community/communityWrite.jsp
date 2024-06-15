@@ -33,6 +33,7 @@
 							<option value="NFTF">티켓전송</option>
 					</select></label>
 				</div>
+
 				<div class="form-group">
 					<label>원정팀 <select name="stad_id" id="stad">
 							<option value="GC">고척 스카이돔</option>
@@ -49,11 +50,12 @@
 
 				<div class="form-group">
 					<label for="exampleTextarea">내용</label>
-					<textarea class="form-control form-control-solid" rows="3"  name="post_cont"></textarea>
+					<textarea class="form-control form-control-solid" rows="3"
+						name="post_cont"></textarea>
 				</div>
 
 				<div class="form-group">
-					<label> 파일선택 <input type="file"  name="photo_url"
+					<label> 파일선택 <input type="file" name="photo_url"
 						class="form-control form-control-solid"></label>
 				</div>
 
@@ -61,27 +63,13 @@
 			</div>
 			<div class="card-footer">
 				<button type="submit" class="btn btn-primary mr-2">Submit</button>
-				<button type="reset" class="btn btn-secondary">Cancel</button>
+				<button type="reset" class="btn btn-secondary"
+					onclick="location.href='/community/community'">Cancel</button>
 			</div>
 		</form>
 		<!--end::Form-->
 	</div>
 	<!--end::Card-->
-
-	<form action="#"></form>
-	<br>
-	<br>
-	<br>
-
-
-	<form action="/community/community" method="post">
-
-		<br> <br> <input type="button"
-			onclick="location.href='/community/community'" value="취소"> <input
-			type="button" onclick="location.href='/community/community'"
-			value="등록"> <br>
-	</form>
-
 
 </body>
 </html>
