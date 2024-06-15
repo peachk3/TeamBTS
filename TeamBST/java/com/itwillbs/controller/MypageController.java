@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -146,40 +147,34 @@ public class MypageController {
         return "/mypage/mypage";  // mypage.jsp로 이동
     }
 
-    @GetMapping(value="/myticket")
-    public void MyTicket(HttpSession session, Model model) {
-        String user_id = (String) session.getAttribute("user_id");
-        
-        
-    }
-    //http://localhost:8088/mypage/previousMatchList
-    // 경기예약내역
-    @GetMapping(value = "/previousMatchList")
-    public String previousMatchList(HttpSession session, Model model) throws Exception {
-        String user_id = (String) session.getAttribute("user_id");
-        
+    
+    
+@GetMapping(value="/myticket")
+public String MyTicket(HttpSession session, @RequestParam(value = "state", required = false) String state, Model model) throws Exception {
+    
+    String user_id = (String) session.getAttribute("user_id");
+    
+    if ("will".equals(state)) {
+        // 예정 경기 호출
+        List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
+        model.addAttribute("oMatchList", oMatchList);
+    } else if ("previous".equals(state)) {
+        // 지난 경기 호출
         List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
-        logger.debug("@@@@@@@ : "+pMatchList.size());
-
-        logger.debug(" pMatchList() 실행 ");
-        
         model.addAttribute("pMatchList", pMatchList);
-        return "/mypage/previousMatchList";
+    } else {
+        // 기본: 두 종류의 경기를 모두 조회
+        List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
+        List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
+        model.addAttribute("oMatchList", oMatchList);
+        model.addAttribute("pMatchList", pMatchList);
     }
-   
-    
-    //http://localhost:8088/mypage/openMatchList
-    // 경기예약내역
-    @GetMapping(value = "/openMatchList")
-    public String OpenMatchList(HttpSession session, Model model) throws Exception {
-    	String user_id = (String) session.getAttribute("user_id");
-    	
-    	List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
-    	logger.debug("0000000000000000 : "+oMatchList.size());
-    	logger.debug(" oMatchList() 실행 ");
-    	
-    	model.addAttribute("oMatchList", oMatchList);
-    	return "/mypage/openMatchList";
-    }
-    
+
+    return "/mypage/myticket";
+}
+
+
+
+
+
 }

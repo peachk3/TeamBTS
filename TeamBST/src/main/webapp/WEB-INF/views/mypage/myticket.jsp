@@ -15,7 +15,7 @@
 
       <br>
 
-    	<c:choose>
+<c:choose>
     <c:when test="${not empty oMatchList}">
         <table border="1">
             <tr>
@@ -57,7 +57,6 @@
         </table>
     </c:when>
 </c:choose>
-    
     
     
 </body>
