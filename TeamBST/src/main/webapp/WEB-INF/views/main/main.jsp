@@ -44,7 +44,7 @@
    
    
    <!-- 티켓팅 페이지 넘어갈때 id값 저장하기 -->
-    <h2 id="stadium">구장 선택하기</h2>
+	<h2 id="stadium">구장 선택하기</h2>
    
     <div class="container" id="slider3">
         <div class="slide show">

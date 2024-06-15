@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원탈퇴</title>
-</head>
-<body>
+<%@ include file="../include/header.jsp"%>
+
+
     <fieldset>
         <legend>회원탈퇴</legend>
         <form action="/mypage/deleteMember" method="post" name="fr">
