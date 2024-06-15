@@ -11,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Team_n_stadiumDTO;
 import com.itwillbs.service.ScheduleService;
 
 @Controller
@@ -40,20 +42,22 @@ public class MainController {
 
 	}
 
-	// http://localhost:8088/main/team
-	@RequestMapping(value="/team/{name}",method = RequestMethod.GET)
-	public void openTeam2(@PathVariable("name") String name,Model model) {
-		logger.debug(name+" 페이지 호출");
+	// http://localhost:8088/main/teamPage
+	@RequestMapping(value="/teamPage",method = RequestMethod.GET)
+	public String openTeam2(@RequestParam("team") String team_id,Model model) {
+		logger.debug(team_id+" 페이지 호출");
 		
 		// list 호출
-		List<Game_scheduleDTO> GameScheduleList = sService.gameScheduleList(name);
+		List<Game_scheduleDTO> GameScheduleList = sService.gameScheduleList(team_id);
+		model.addAttribute("GameScheduleList", GameScheduleList);
 		
 //		logger.debug(" GameScheduleList : "+GameScheduleList.size());
 
-		model.addAttribute("GameScheduleList", GameScheduleList);
+		List<Team_n_stadiumDTO> TeamInfo = sService.teamInfo(team_id);
+		model.addAttribute("TeamInfo", TeamInfo);
 
 		
-	
+		 return "/main/teamPage"; // 팀 페이지의 JSP 파일 이름
 	}
 	
 	
