@@ -4,9 +4,17 @@
 
 
 
-	<img src="../../resources/team/${name }" alt="dosan">
 	<br>
-	<img src="../../resources/stadium/jamsil.webp" alt="jamsil">
+<%-- 	<img src="../../resources/team/${name }" alt="dosan"> --%>
+<!-- 	<img src="../../resources/stadium/jamsil.webp" alt="jamsil"> -->
+	
+	
+		<c:forEach var="team" items="${TeamInfo}">
+           	<img alt="Team Logo" src="${team.team_logo_url}" />
+           	<img alt="Team stadium" src="${team.stad_url}" />
+			
+		</c:forEach>
+
 
 
 

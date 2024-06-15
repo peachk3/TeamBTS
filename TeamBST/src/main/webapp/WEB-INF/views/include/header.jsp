@@ -51,15 +51,15 @@
                 </div>
                 <div class="menu-column">
                     <p><a href="/main/team">구단</a></p>
-                    <a href="/main/team/kia">KIA</a>
-                    <a href="/main/team/lg">LG</a>
-                    <a href="/main/team/samsung">삼성</a>
-                    <a href="/main/team/dosan">두산</a>
-                    <a href="/main/team/ssg">SSG</a>
-                    <a href="/main/team/kt">KT</a>
-                    <a href="/main/team/hanhwa">한화</a>
-                    <a href="/main/team/lotte">롯데</a>
-                    <a href="/main/team/kiwoom">키움</a>
+                    <a href="/main/teamPage?team_id=kia">KIA</a>
+                    <a href="/main/teamPage?team_id=lg">LG</a>
+                    <a href="/main/teamPage?team_id=samsung">삼성</a>
+                    <a href="/main/teamPage?team_id=dosan">두산</a>
+                    <a href="/main/teamPage?team_id=ssg">SSG</a>
+                    <a href="/main/teamPage?team_id=kt">KT</a>
+                    <a href="/main/teamPage?team_id=hanhwa">한화</a>
+                    <a href="/main/teamPage?team_id=lotte">롯데</a>
+                    <a href="/main/teamPage?team_id=kiwoom">키움</a>
                 </div>
             </div>
         </div>

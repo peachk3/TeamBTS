@@ -10,10 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Team_n_stadiumDTO;
 
 
 @Repository
 public class Game_scheduleDAOImpl implements Game_scheduleDAO {
+
+
 
 	private static final Logger logger = LoggerFactory.getLogger(Game_scheduleDAOImpl.class);
 	
@@ -26,14 +29,22 @@ public class Game_scheduleDAOImpl implements Game_scheduleDAO {
 	
 	
 	@Override
-	public List<Game_scheduleDTO> GameSchedule(String name) {
+	public List<Game_scheduleDTO> GameSchedule(String team) {
 		
 		// mppaer에서 전달받은 DTO 객체들을 자동으로 List에 저장
-		List<Game_scheduleDTO> resultDTO = sqlSession.selectList(NAMESPACE+"GameSchedule",name);
+		List<Game_scheduleDTO> resultDTO = sqlSession.selectList(NAMESPACE+"GameSchedule",team);
 		
 		return resultDTO;
 	}
 
+	@Override
+	public List<Team_n_stadiumDTO> teamInfo(String team_id) {
+		
+		List<Team_n_stadiumDTO> teamInfoDTO = sqlSession.selectList(NAMESPACE+"teamInfo",team_id);
+
+		
+		return teamInfoDTO;
+	}
 
 
 	@Override
