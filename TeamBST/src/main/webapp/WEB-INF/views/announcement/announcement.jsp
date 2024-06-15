@@ -70,7 +70,6 @@
 						<td>${dto.notice_view}</td>
 					</tr>
 				</c:forEach>
-
 			</tbody>
 		</table>
 	</div>

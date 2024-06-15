@@ -31,10 +31,19 @@ public class TicketingController {
 	
 	
 	@RequestMapping(value="/ticketing",method=RequestMethod.GET)
-	public void MainTicketing() {
+	public void MainTicketing(@RequestParam("stad_id") String stad_id,Model model) {
 		logger.debug("티켓팅 홈 페이지");
-
 		
+		logger.debug("stad_id : " + stad_id);
+
+		List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
+		
+//		logger.debug(" GameScheduleList : "+GameScheduleList.size());
+
+		model.addAttribute("TeamScheduleList", TeamScheduleList);
+	    model.addAttribute("selectedStadium", stad_id); // 선택된 구장 ID를 모델에 추가
+
+	    
 	}
 	
 	
@@ -50,9 +59,9 @@ public class TicketingController {
 //		logger.debug(" GameScheduleList : "+GameScheduleList.size());
 
 		model.addAttribute("TeamScheduleList", TeamScheduleList);
-
-		
+	    model.addAttribute("selectedStadium", stad_id); // 선택된 구장 ID를 모델에 추가
 	}
+	
 	// 경기 정보 페이지
 	@RequestMapping(value="/gameInfo",method=RequestMethod.GET)
 	public String gameInfo(@RequestParam("game_id") String game_id, Model model) {
