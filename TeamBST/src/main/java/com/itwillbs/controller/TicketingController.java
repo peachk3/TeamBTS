@@ -112,6 +112,17 @@ public class TicketingController {
 		return "/ticketing/displaySeats";
 	}
 	
+	
+	@GetMapping(value="/reservation/{stad_id}/{game_id}/{zone_id}/{seat_id}")
+	public void bookTicket(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_id") String zone_id, @PathVariable("seat_id") String seat_id, Model model) {
+		model.addAttribute("stad_id", stad_id);
+		model.addAttribute("game_id", game_id);
+		model.addAttribute("zone_id", zone_id);
+		model.addAttribute("seat_id", seat_id);
+		
+		logger.debug("bookTicket() 호출 ");
+	}
+	
 //	public String goSeat(@PathVariable)
 	
 	
@@ -126,11 +137,6 @@ public class TicketingController {
 // 		logger.debug("goZoneGET() 호출");
 //	}
 //	
-	
-	@GetMapping(value="/reservation")
-	public void bookTicket() {
-		logger.debug("bookTicket() 호출 ");
-	}
 	
 	
 
