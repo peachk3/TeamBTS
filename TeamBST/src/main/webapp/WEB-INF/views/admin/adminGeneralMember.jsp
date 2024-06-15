@@ -23,7 +23,6 @@
         </h6>
       </nav>
   
-      
 
       <ul class="nav">
         <li class="nav-item">
@@ -38,7 +37,6 @@
       </ul>
       
       <hr>
-
 
 
 

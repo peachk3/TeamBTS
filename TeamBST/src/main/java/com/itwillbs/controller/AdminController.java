@@ -24,6 +24,7 @@ import com.itwillbs.service.AdminService;
 public class AdminController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+
 	
 	// 서비스 객체 주입
 	@Inject

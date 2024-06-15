@@ -25,7 +25,6 @@ public class MainController {
 	private ScheduleService sService;
 	
 	
-	
 	//http://localhost:8088/main/main
 	@RequestMapping(value="/main",method=RequestMethod.GET)
 	public void openMain() {
