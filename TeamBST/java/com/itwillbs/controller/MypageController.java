@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.service.MypageService;
 import com.itwillbs.service.ScheduleService;
@@ -33,6 +36,15 @@ public class MypageController {
     
 //    @Inject
 //    private ScheduleService sService;
+    
+    
+    //http://localhost:8088/mypage/mypage
+    // 마이페이지
+    @GetMapping("/mypage")
+    public String mypage(HttpSession session, Model model) {
+    	// 필요시 로직 추가
+    	return "/mypage/mypage";  // mypage.jsp로 이동
+    }
     
     //http://localhost:8088/mypage/info
     // 회원정보 조회
@@ -136,15 +148,41 @@ public class MypageController {
 //    	logger.debug(" 삭제 실패, 비밀번호를 다시 확인하세요! ");
     
     
-    //http://localhost:8088/mypage/postBoardList
+  //http://localhost:8088/mypage/postBoardList
     // 내 게시글
     @GetMapping(value = "/postBoardList")
     public String postBoardList(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
-        List<UserDTO> pBoardList = mService.postBoardList();
+        
+        List<Post_boardDTO> pBoardList = mService.postBoardList(user_id);
+        logger.debug(" 확인 : " + pBoardList.size());
+        
+        logger.debug(" pBoardList() 실행 ");
+        
         model.addAttribute("pBoardList", pBoardList);
         return "/mypage/postBoardList";
     }
+    
+    // 내 게시글 본문
+    @RequestMapping(value = "/pbread",method = RequestMethod.GET)
+    public void pbreadGET(@ModelAttribute("post_id") int post_id, Model model) throws Exception {
+    	logger.debug(" /pbreadGET() 실행 ");
+    	
+    	// 전달정보 저장
+    	logger.debug(" post_id : " + post_id);
+    	
+    	// 글 조회(읽음) 카운트 증가 => 조회수 1증가
+    	mService.pbUpdateReadCnt(post_id);
+    	
+    	
+//    	// 서비스 - DAO 저장된 정보 가져오기
+    	Post_boardDTO pbDTO = mService.pGetBoard(post_id);
+    	logger.debug(" pbDTO : {} ", pbDTO);
+    	
+    	// 전달할 정보를 저장(model)
+    	model.addAttribute("pbDTO", pbDTO);
+    }
+    
     
     
     //http://localhost:8088/mypage/questionBoardList
@@ -152,22 +190,47 @@ public class MypageController {
     @GetMapping(value = "/questionBoardList")
     public String questionBoardList(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
-        List<UserDTO> qBoardList = mService.questionBoardList();
+        
+        List<Question_boardDTO> qBoardList = mService.questionBoardList(user_id);
+        logger.debug(" 확인 : " + qBoardList.size());
+        
+        logger.debug(" qBoardList() 실행 ");
+        
         model.addAttribute("qBoardList", qBoardList);
         return "/mypage/questionBoardList";
     }
     
-
-    //http://localhost:8088/mypage/mypage
-    // 마이페이지
-    @GetMapping("/mypage")
-    public String mypage(HttpSession session, Model model) {
-        // 필요시 로직 추가
-        return "/mypage/mypage";  // mypage.jsp로 이동
-    }
-
+    // http://localhost:8088/mypage/qbread
     
+    // 질문글 본문보기 - qbreadGET
+ 	@RequestMapping(value = "/qbread",method = RequestMethod.GET)
+ 	public void qbreadGET(@ModelAttribute("quest_id") int quest_id, Model model) throws Exception {
+ 		// @ModelAttribute("bno") int bno
+ 		// => 주소줄에 있는 데이터를 가져와서 사용, 연결된 뷰페이지로 이동 $ {bno}
+ 		//	  request.getParameter("bno") + request.setAttribute();
+ 		// => 1:N 관계에서 사용 (N - bean(객체), collection)
+ 		
+ 		// @RequestParam("bno") int bno
+ 		// => request.getParameter("bno") 동일함, 자동형변환 포함(문자,숫자,날짜)
+ 		// => 1:1 관계에서 사용
+ 		
+ 		logger.debug(" qbreadGET() 실행 ");
+ 		
+ 		// 전달정보 저장
+ 		logger.debug(" quest_id : " + quest_id);
+ 		
+ 		// 글 조회(읽음) 카운트 증가 => 조회수 1증가
+ 		mService.qbUpdateReadCnt(quest_id);
+ 		
+ 		// 서비스 - DAO 저장된 정보를 가져오기
+ 		Question_boardDTO qbDTO = mService.qGetBoard(quest_id);
+ 		logger.debug(" qbDTO : {}", qbDTO);
+ 		
+ 		// 전달할 정보를 저장(model)
+ 		model.addAttribute("qbDTO", qbDTO);
+ 	}
     
+
 @GetMapping(value="/myticket")
 public String MyTicket(HttpSession session, @RequestParam(value = "state", required = false) String state, Model model) throws Exception {
     

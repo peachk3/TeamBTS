@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.persistence.MypageDAO;
 
@@ -40,13 +42,35 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public List<UserDTO> postBoardList() {
-        return mypageDAO.postBoardList();
+    public List<Post_boardDTO> postBoardList(String user_id) throws Exception {
+        return mypageDAO.postBoardList(user_id);
+    }
+    
+    @Override
+	public void pbUpdateReadCnt(int post_id) throws Exception {
+		mypageDAO.pbUpdateReadCnt(post_id);
+	}
+    
+    @Override
+    public Post_boardDTO pGetBoard(int post_id) throws Exception {
+    	logger.debug(" pGetBoard(int post_id) 실행 ");
+    	return mypageDAO.pGetBoard(post_id);
     }
 
+	@Override
+    public List<Question_boardDTO> questionBoardList(String user_id) throws Exception {
+        return mypageDAO.questionBoardList(user_id);
+    }
+    
     @Override
-    public List<UserDTO> questionBoardList() {
-        return mypageDAO.questionBoardList();
+    public void qbUpdateReadCnt(int quest_id) throws Exception {
+    	mypageDAO.qbUpdateReadCnt(quest_id);
+    }
+    
+    @Override
+    public Question_boardDTO qGetBoard(int quest_id) throws Exception {
+    	logger.debug( "qGetBoard(int quest_id) 실행" );
+    	return mypageDAO.qGetBoard(quest_id);
     }
 
 	@Override
