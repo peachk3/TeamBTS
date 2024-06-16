@@ -26,6 +26,8 @@ public interface StadiumService {
 
 	public List<ZoneDTO> getZonesByStadiumId(String stad_id);
 
-	public List<SeatDTO> getSeatsByZone(String zone_id);
+	public List<SeatDTO> getSeatsByZone(String zone_ty);
+	
+	public List<SeatDTO> getSeatsId(String seat_id);
 	
 }

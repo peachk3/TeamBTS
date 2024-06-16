@@ -90,7 +90,7 @@ public class TicketingController {
 ////		return "zones";
 //	}
  	
-	@GetMapping("/stadium/{stad_id}/game/{game_id}")
+	@GetMapping("/stadium/{stad_id}/{game_id}")
 	public String goStadium(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, Model model) {
 		
 		List<ZoneDTO> zones = stadService.getZonesByStadiumId(stad_id);
@@ -101,25 +101,26 @@ public class TicketingController {
 		return "/ticketing/stadium";
 	}
 	
-	// 여기까지 성공임 
 	
-	@GetMapping("/displaySeats/{stad_id}/{game_id}/{zone_id}")
-	public String goZone(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_id") String zone_id, Model model) {
-		List<SeatDTO> seats = stadService.getSeatsByZone(zone_id);
+	@GetMapping("/displaySeats/{stad_id}/{game_id}/{zone_ty}/{zone_id}")
+	public String goZone(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_ty") String zone_ty, Model model) {
+		List<SeatDTO> seats = stadService.getSeatsByZone(zone_ty);
 		
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("game_id", game_id);
-		model.addAttribute("zone_id", zone_id);
+		model.addAttribute("zone_ty", zone_ty);
 		model.addAttribute("seats", seats);
 		return "/ticketing/displaySeats";
 	}
 	
+	// 여기까지 성공임 
 	
-	@GetMapping(value="/reservation/{stad_id}/{game_id}/{zone_id}/{seat_id}")
-	public String bookTicket(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_id") String zone_id, @PathVariable("seat_id") String seat_id, Model model) {
+	
+	@GetMapping(value="/reservation/{stad_id}/{game_id}/{zone_ty}/{seat_id}")
+	public String bookTicket(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_ty") String zone_ty, @PathVariable("seat_id") String seat_id, Model model) {
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("game_id", game_id);
-		model.addAttribute("zone_id", zone_id);
+		model.addAttribute("zone_ty", zone_ty);
 		model.addAttribute("seat_id", seat_id);
 		
 		logger.debug("bookTicket() 호출 ");
