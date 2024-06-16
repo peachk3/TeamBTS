@@ -143,6 +143,8 @@ public class AdminController {
 		
 	}
 	
+	
+	
 	@RequestMapping(value="/adminScheduleUpdate",method=RequestMethod.GET)
 	public void adminScheduleUpdate_GET(@RequestParam("game_id") String game_id, Model model) {
 		logger.debug("관리자 경기일정 수정 호출 하아...");
