@@ -65,6 +65,13 @@ public class AdminServiceImpl implements AdminService{
 		
 		return adao.generalMemberList();
 	}
+
+	@Override
+	public List<UserDTO> withdrawMemberList() throws Exception {
+		logger.debug("탈퇴회원 정보 조회");
+		
+		return adao.withdrawMemberList();
+	}
 	
 	
 	

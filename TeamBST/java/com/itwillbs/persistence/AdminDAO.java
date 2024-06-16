@@ -25,6 +25,9 @@ public interface AdminDAO {
 
 	// 일반 회원 리스트 
 	public List<UserDTO> generalMemberList() throws Exception;
+
+	// 탈퇴 회원 리스트
+	public List<UserDTO> withdrawMemberList() throws Exception;
 	
 	
 }

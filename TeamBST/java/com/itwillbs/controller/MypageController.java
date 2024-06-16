@@ -97,23 +97,27 @@ public class MypageController {
     
     // 회원정보 삭제
     @PostMapping(value = "/deleteMember")
-    public String deleteMember(UserDTO userDTO, HttpSession session) {
+    public String deleteMember(UserDTO ddto, HttpSession session) {
     	logger.debug(" /deleteMember -> deleteMember() 호출 ");
     	
     	// 전달정보 저장
-    	logger.debug(" userDTO : " + userDTO );
+    	logger.debug(" userDTO : " + ddto );
     	
-    	// Service -> DAO 회원정보 삭제
-    	int result = mService.deleteMember(userDTO);
-    	// 삭제 여부에 따른 페이지 이동
-    	if(result == 1) {
-    		logger.debug(" 삭제 성공! ");
-    		// 기존의 사용자정보(세션) 제거
-    		session.invalidate();
-    		return "redirect:/main/main"; // 제거 성공 시 메인페이지로 이동
-    	}
-    	logger.debug(" 삭제 실패, 비밀번호를 다시 확인하세요! ");
-        return "redirect:/mypage/deleteMember"; // 제거 성공 실패 시 삭제 페이지로 다시 이동  
+    	// 계정 정보 삭제( USE -> OUT으로 상태 변경)
+    	mService.deleteMember(ddto);
+
+    	
+//    	// Service -> DAO 회원정보 삭제
+//    	int result = mService.deleteMember(ddto);
+//    	// 삭제 여부에 따른 페이지 이동
+//    	if(result == 1) {
+//    		logger.debug(" 삭제 성공! ");
+//    		// 기존의 사용자정보(세션) 제거
+//    		session.invalidate();
+//    		return "redirect:/main/main"; // 제거 성공 시 메인페이지로 이동
+//    	}
+//    	logger.debug(" 삭제 실패, 비밀번호를 다시 확인하세요! ");
+        return "redirect:/main/main"; // 제거 성공 실패 시 삭제 페이지로 다시 이동  
     }
     
     

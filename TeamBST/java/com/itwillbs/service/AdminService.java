@@ -27,5 +27,8 @@ public interface AdminService {
 	
 	// 일반회원 리스트 조회
 	public List<UserDTO> generalMemberList() throws Exception;
+
+	// 탈퇴회원 리스트 조회
+	public List<UserDTO> withdrawMemberList() throws Exception;
 	
 }

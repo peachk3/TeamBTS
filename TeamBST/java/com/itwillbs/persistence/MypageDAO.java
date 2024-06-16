@@ -18,7 +18,7 @@ public interface MypageDAO {
 	public void updateMember(UserDTO udto);
 	
 	// 회원정보 삭제
-	public int deleteMember(UserDTO ddto);
+	public void deleteMember(UserDTO ddto);
 	
 	// 내 게시글 목록
 	public List<UserDTO> postBoardList();

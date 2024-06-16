@@ -92,8 +92,18 @@ public class AdminController {
 	}	
 	
 	@RequestMapping(value="/adminWithdrawMember",method=RequestMethod.GET)
-	public void adminWithdrawMember_GET() {
+	public String adminWithdrawMember_GET(Model model) throws Exception {
 		logger.debug("관리자 탈퇴회원 호출");
+		
+		List<UserDTO> withdrawMemberList = aService.withdrawMemberList();
+		
+
+		logger.debug("dd"+withdrawMemberList);
+		
+		model.addAttribute("withdrawMemberList", withdrawMemberList);
+		
+		return "/admin/adminWithdrawMember";
+		
 		
 	}
 

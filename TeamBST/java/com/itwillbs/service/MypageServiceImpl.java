@@ -32,8 +32,8 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public int deleteMember(UserDTO ddto) {
-        return mypageDAO.deleteMember(ddto);
+    public void deleteMember(UserDTO ddto) {
+        mypageDAO.deleteMember(ddto);
     }
 
     @Override
