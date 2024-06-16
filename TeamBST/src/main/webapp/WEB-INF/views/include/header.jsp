@@ -23,10 +23,14 @@
             <c:when test="${sessionScope.user_id == 'admin'}">
                 <!-- 관리자일 경우 -->
                 <a href="/admin/admin">관리자페이지</a>
+                <button id="logoutButton" class="btn btn-link">로그아웃</button>
             </c:when>
             <c:otherwise>
                 <!-- 일반 사용자일 경우 -->
                 <a href="/mypage/mypage">마이페이지</a>
+                <form id="logoutForm" action="/login/logout" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-link">로그아웃</button>
+                </form>
             </c:otherwise>
         </c:choose>
         로그인시간 ( 58: 00 )
@@ -78,7 +82,9 @@
 </nav>
 <hr>
 
+
 <!-- Hidden form for POST request -->
+<form id="logoutForm" action="/login/logout" method="post" style="display: none;"></form>
 <form id="stadiumForm" action="/ticketing/ticketing" method="post" style="display: none;">
     <input type="hidden" name="stad_id" id="stadiumInput">
 </form>
@@ -106,4 +112,8 @@
             document.getElementById('stadiumForm').submit();
         });
     });
+    
+    document.getElementById('logoutButton').onclick = function() {
+        document.getElementById('logoutForm').submit();
+    };
 </script>
