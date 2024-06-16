@@ -32,8 +32,11 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public void deleteMember(UserDTO ddto) {
-        mypageDAO.deleteMember(ddto);
+    public boolean deleteMember(UserDTO ddto) {
+        int result =  mypageDAO.deleteMember(ddto);
+        
+        return result > 0;
+       
     }
 
     @Override

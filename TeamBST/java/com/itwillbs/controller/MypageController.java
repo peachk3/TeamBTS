@@ -97,15 +97,32 @@ public class MypageController {
     
     // 회원정보 삭제
     @PostMapping(value = "/deleteMember")
-    public String deleteMember(UserDTO ddto, HttpSession session) {
+    public String deleteMember(UserDTO ddto, HttpSession session,Model model) {
     	logger.debug(" /deleteMember -> deleteMember() 호출 ");
     	
     	// 전달정보 저장
     	logger.debug(" userDTO : " + ddto );
-    	
-    	// 계정 정보 삭제( USE -> OUT으로 상태 변경)
-    	mService.deleteMember(ddto);
+        
+        // 계정 정보 삭제( USE -> OUT으로 상태 변경)
+        boolean isDeleted = mService.deleteMember(ddto);
+        
+        if (isDeleted) {
+            session.invalidate();  // 세션 무효화
+            logger.debug("비밀번호가 일치합니다 -> 회원탈퇴 성공!");
 
+            return "redirect:/main/main";  // 삭제 성공 시 메인 페이지로 리다이렉트
+        } else {
+        	   // 삭제 실패 시 현재 세션에서 user_id를 다시 가져와서 resultDTO에 설정
+            String user_id = (String) session.getAttribute("user_id");
+            UserDTO resultDTO = mService.getMember(user_id);
+            model.addAttribute("resultDTO", resultDTO);
+            model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
+
+            logger.debug("비밀번호가 일치하지 않습니다");
+
+            return "mypage/deleteMember";  // 삭제 실패 시 다시 삭제 페이지로 이동
+	}    
+        }
     	
 //    	// Service -> DAO 회원정보 삭제
 //    	int result = mService.deleteMember(ddto);
@@ -117,8 +134,6 @@ public class MypageController {
 //    		return "redirect:/main/main"; // 제거 성공 시 메인페이지로 이동
 //    	}
 //    	logger.debug(" 삭제 실패, 비밀번호를 다시 확인하세요! ");
-        return "redirect:/main/main"; // 제거 성공 실패 시 삭제 페이지로 다시 이동  
-    }
     
     
     //http://localhost:8088/mypage/postBoardList
