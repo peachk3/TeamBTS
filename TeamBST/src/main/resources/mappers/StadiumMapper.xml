@@ -23,7 +23,7 @@
 	</select>
 
 	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO">
-		SELECT * FROM seat WHERE zone_id = #{zone_id}
+		SELECT * FROM seat WHERE seat_id = #{seat_id}
 	</select>
 
 <!-- 	Seat --> 

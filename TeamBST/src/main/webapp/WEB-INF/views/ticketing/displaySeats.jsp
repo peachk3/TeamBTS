@@ -256,6 +256,7 @@
 					<div class="seat" data-seat="2C" >2C</div>
 				</div>
 			</div>
+			<input type="hidden" id="data-seat" value="${seat_id }">
 
 			<div class="selected-seats">
 				<p><b>선택한 좌석</b></p>
@@ -266,8 +267,8 @@
 		</div>
 		<div class="reserve_btn">
 		<a href="#" class="btn_goback" onclick="goBack()">이전으로</a>
-		<a href="#" class="btn_reservation"
-   		 onclick="goToReservation()">다음으로</a>
+		<a href="#" class="btn_reservation">다음으로</a>
+<!-- 		onclick="goToReservation()" -->
 		
 <!-- 			<button class="btn_goback" -->
 <!-- 				onclick="goBack()">이전으로</button> -->
@@ -276,7 +277,8 @@
 		</div>
 		<script>		
         document.addEventListener('DOMContentLoaded', () => {
-            const seats = document.querySelectorAll('.seat:not(.occupied)');
+
+        	const seats = document.querySelectorAll('.seat:not(.occupied)');
             const selectedSeatsList = document.getElementById('selected-seats-list');
             const noSeatsMessage = document.getElementById('no-seats');
 
@@ -325,13 +327,14 @@
                 } else {
                     // 여기서 선택된 좌석 정보를 URL에 추가하여 다음 페이지로 이동할 수 있음
                     // 예시: /ticketing/reservation/stad_id/gamid_id/zone_id
-                    let zone_id = stad_id + zone_ty;
-                	let seat_id = zone_id + data-seat;
+                    let zone_id = stad_id+zone_ty;
+//                 	let seat_id = '${zone_id}${data-seat}';
                     
-                	const seatUrl = "ticketing/reservation/"+ stad_id + "/" + game_id + "/"+ zone_ty + "/"+ zone_id; 
-//                     selectedSeats.forEach((seat, index) => {
-//                         seatUrl += `/${seat.getAttribute('data-seat')}${index < selectedSeats.length - 1? ',' : ''}`;
-//                     });
+                	let seatUrl = "/ticketing/reservation/" + stad_id + "/" + game_id + "/" + zone_ty + "/" + zone_id ; 
+                   
+                	selectedSeats.forEach((seat, index) => {
+                        seatUrl += `/${seat.getAttribute('data-seat')}${index < selectedSeats.length - 1 ? ',' : ''}`;
+                    });
                     window.location.href = seatUrl;
                 }
           });
@@ -341,11 +344,11 @@
             window.history.back();
         }
 
-        function goToReservation(stad_id, game_id, zone_ty, seat_id) {
-            // 예시: stad_id, gamid_id, zone_id를 이용하여 동적 URL 생성
-            const reservationUrl = "/ticketing/reservation/" + stad_id +"/" + game_id + "/" + zone_ty + "/"+ seat_id;
-            location.href = reservationUrl; // URL로 이동
-        }
+//         function goToReservation(stad_id, game_id, zone_ty, seat_id) {
+//             // 예시: stad_id, gamid_id, zone_id를 이용하여 동적 URL 생성
+//             const reservationUrl = "/ticketing/reservation/" + stad_id +"/" + game_id + "/" + zone_ty + "/"+ seat_id;
+//             location.href = reservationUrl; // URL로 이동
+//         }
     </script>
 </body>
 </html>

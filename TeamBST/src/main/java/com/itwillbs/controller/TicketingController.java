@@ -116,11 +116,12 @@ public class TicketingController {
 	// 여기까지 성공임 
 	
 	
-	@GetMapping(value="/reservation/{stad_id}/{game_id}/{zone_ty}/{seat_id}")
-	public String bookTicket(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_ty") String zone_ty, @PathVariable("seat_id") String seat_id, Model model) {
+	@GetMapping(value="/reservation/${stad_id}/${game_id}/${zone_ty }/${zone_id}/${seat_id}")
+	public String bookTicket(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_ty") String zone_ty, @PathVariable("seat_id") String seat_id,  @PathVariable("zone_id") String zone_id, Model model) {
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("game_id", game_id);
 		model.addAttribute("zone_ty", zone_ty);
+		model.addAttribute("zone_id", zone_id);
 		model.addAttribute("seat_id", seat_id);
 		
 		logger.debug("bookTicket() 호출 ");
