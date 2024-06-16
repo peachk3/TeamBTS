@@ -22,8 +22,16 @@ public interface AdminService {
 	// 경기일정 등록
 	public void ScheduleJoin(Game_scheduleDTO dto);
 
+	// 경기일정 수정
+	public void ScheduleUpdate(Game_scheduleDTO dto);
+
+	
 	// 경기일정 목록 조회
 	public List<Game_scheduleDTO> ScheduleList() throws Exception;
+
+	// 경기일정 일부 조회
+	public Game_scheduleDTO ScheduleOne(String game_id);
+
 	
 	// 일반회원 리스트 조회
 	public List<UserDTO> generalMemberList() throws Exception;

@@ -54,7 +54,6 @@
 		<div class="card-footer">
 			<button type="submit" class="btn btn-primary mr-2">Submit</button>
 			<button type="button" class="btn btn-secondary" onclick="location.href = '/admin/adminSchedule'">Cancel</button>
-			
 		</div>
 	</form>
 	<!--end::Form-->

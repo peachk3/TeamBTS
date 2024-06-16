@@ -23,7 +23,7 @@
 			</div>
 		</div>
 		<!--begin::Form-->
-		<form class="form">
+		<form class="form" action="/admin/adminScheduleUpdate" method="post">
 			<div class="card-body">
 				<div class="form-group">
 					<label>홈팀 <select name="home_team_id" id="hometeam"
@@ -74,7 +74,6 @@
 			<div class="card-footer">
 				<button type="submit" class="btn btn-primary mr-2">Submit</button>
 				<button type="button" class="btn btn-secondary" onclick="location.href = '/admin/adminSchedule'">Cancel</button>
-				
 			</div>
 		</form>
 		<!--end::Form-->

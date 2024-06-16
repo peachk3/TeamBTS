@@ -20,9 +20,16 @@ public interface AdminDAO {
 	// 경기일정 등록
 	public void insertSchedule(Game_scheduleDTO dto);
 	
+	// 경기일정 수정
+	public void updateSchedule(Game_scheduleDTO dto);
+	
 	// 경기일정 리스트
 	public List<Game_scheduleDTO> ScheduleList() throws Exception;
 
+	// 경기일정 일부 출력
+	public Game_scheduleDTO ScheduleOne(String game_id);
+	
+	
 	// 일반 회원 리스트 
 	public List<UserDTO> generalMemberList() throws Exception;
 

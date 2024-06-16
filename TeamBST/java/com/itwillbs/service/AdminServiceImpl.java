@@ -72,7 +72,25 @@ public class AdminServiceImpl implements AdminService{
 		
 		return adao.withdrawMemberList();
 	}
-	
+
+	@Override
+	public void ScheduleUpdate(Game_scheduleDTO dto) {
+		
+		logger.debug("ScheduleJoin(dto) 실행");
+		
+		// DAO 메서드 호출
+		adao.updateSchedule(dto);
+		
+		logger.debug("경기일정 작성 성공");
+		
+	}
+
+	@Override
+	public Game_scheduleDTO ScheduleOne(String game_id) {
+		logger.debug("경기일정 글 일부 조회");
+		
+		return adao.ScheduleOne(game_id);
+	}
 	
 	
 	
