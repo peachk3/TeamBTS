@@ -40,6 +40,7 @@ public class AdminServiceImpl implements AdminService{
 		return adao.NoticeList();
 	}
 
+
 	@Override
 	public void ScheduleJoin(Game_scheduleDTO dto) {
 
@@ -48,7 +49,19 @@ public class AdminServiceImpl implements AdminService{
 		// DAO 메서드 호출
 		adao.insertSchedule(dto);
 		
-		logger.debug("공지사항 작성 성공");
+		logger.debug("경기일정 작성 성공");
+		
+	}
+	
+	@Override
+	public void ScheduleUpdate(Game_scheduleDTO dto) {
+		
+		logger.debug("ScheduleUpdate(dto) 실행");
+		
+		// DAO 메서드 호출
+		adao.updateSchedule(dto);
+		
+		logger.debug("경기일정 수정 성공");
 		
 	}
 	
@@ -57,6 +70,13 @@ public class AdminServiceImpl implements AdminService{
 		logger.debug("공지사항 글목록 조회");
 		
 		return adao.ScheduleList();
+	}
+
+	@Override
+	public Game_scheduleDTO ScheduleOne(String game_id) {
+		logger.debug("경기일정 글 일부 조회");
+		
+		return adao.ScheduleOne(game_id);
 	}
 
 	@Override

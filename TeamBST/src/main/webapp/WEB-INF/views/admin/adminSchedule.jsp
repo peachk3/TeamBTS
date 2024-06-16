@@ -27,7 +27,9 @@
 								pattern="yyyy-MM-dd" /></td>
 						<td><fmt:formatDate value="${dto.game_time}"
 								pattern="HH:mm" /></td>
-						<td><button onclick="location.href='/admin/adminScheduleUpdate'">수정</button></td>
+						<td><a href="/admin/adminScheduleUpdate?game_id=${dto.game_id}">
+	                        <button type="button">수정</button>
+	                    </a></td>
 					</tr>
 				</c:forEach>
 

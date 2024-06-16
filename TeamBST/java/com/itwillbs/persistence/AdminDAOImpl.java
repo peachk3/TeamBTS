@@ -58,12 +58,34 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 
 	@Override
+	public void updateSchedule(Game_scheduleDTO dto) {
+		
+		logger.debug("DAO : insertSchedule(dto) 호출");
+		
+		logger.debug("dto : "+ dto);
+		sqlSession.insert(NAMESPACE + "scheduleUpdate", dto);
+		
+		logger.debug("DAO : 경기일정 수정 완료");
+		
+	}
+
+
+	@Override
 	public List<Game_scheduleDTO> ScheduleList() throws Exception {
 		
 		logger.debug("DAO : ScheduleList() 호출");
 		
 		return sqlSession.selectList(NAMESPACE + "scheduleList");
 		
+	}
+	
+	@Override
+	public Game_scheduleDTO ScheduleOne(String game_id) {
+		
+		logger.debug("DAO : ScheduleOne() 호출");
+		
+		return sqlSession.selectOne(NAMESPACE + "ScheduleOne");
+
 	}
 
 	@Override
