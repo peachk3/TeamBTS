@@ -60,12 +60,13 @@
   </select>
   
   
-  <!-- 내 질문글 목록 -->
+   <!-- 내 질문글 목록 -->
   <select id="questionBoardList" resultType="com.itwillbs.domain.Question_boardDTO">
 	SELECT *
 	FROM question_board
 	WHERE quest_writer_id = #{user_id};
   </select>
+  
   
   <!-- 내 질문글 조회수 1증가 -->
   <update id="qbUpdateReadCnt">
