@@ -7,7 +7,7 @@ import com.itwillbs.domain.Team_n_stadiumDTO;
 
 public interface ScheduleService {
 	
-	public List<Game_scheduleDTO> gameScheduleList(String team_id);
+	public List<Game_scheduleDTO> gameScheduleList(String team);
 	
 	public List<Team_n_stadiumDTO> teamInfo(String team_id);
 	

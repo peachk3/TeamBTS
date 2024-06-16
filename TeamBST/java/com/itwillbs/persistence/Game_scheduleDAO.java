@@ -8,7 +8,7 @@ import com.itwillbs.domain.Team_n_stadiumDTO;
 public interface Game_scheduleDAO {
 	
 	// 팀별 일정 조회
-	public List<Game_scheduleDTO> GameSchedule(String team_id);
+	public List<Game_scheduleDTO> GameSchedule(String team);
 	
 	public List<Team_n_stadiumDTO> teamInfo(String team_id);
 	
