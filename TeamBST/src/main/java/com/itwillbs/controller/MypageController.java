@@ -162,7 +162,7 @@ public class MypageController {
     	mService.pbUpdateReadCnt(post_id);
     	
     	
-//    	// 서비스 - DAO 저장된 정보 가져오기
+    	// 서비스 - DAO 저장된 정보 가져오기
     	Post_boardDTO pbDTO = mService.pGetBoard(post_id);
     	logger.debug(" pbDTO : {} ", pbDTO);
     	
