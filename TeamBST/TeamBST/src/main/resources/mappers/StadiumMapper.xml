@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mapper.teamStadiumMapper">
+	<!-- TeamStadium -->
+	<select id="getStadiumById" resultType="com.itwillbs.domain.Game_scheduleDTO" >
+		SELECT stad_id FROM game_schedule WHERE game_id = #{game_id}
+	</select>
+
+	<!-- Zone -->
+	<select id="getZonesByStadiumId" resultType="com.itwillbs.domain.ZoneDTO" parameterType="string">
+		SELECT * FROM zone WHERE stad_id = #{stad_id}
+	</select>
+
+	<!-- Seat -->
+	<select id="getSeatsByZoneId" resultType="com.itwillbs.domain.SeatDTO" parameterType="string">
+		SELECT * FROM seat WHERE zone_id = #{zone_id}
+	</select>
+
+</mapper>

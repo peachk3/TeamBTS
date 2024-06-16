@@ -1,0 +1,142 @@
+h1{text-align: center; }
+h6{text-align: right}
+
+.nav-item{border: 1px solid black;
+   padding: 10px 24px;   /* 박스 크기 조정 */
+    justify-content:space-around;
+    align-items: center;
+}
+
+a{
+    text-decoration: none; /* 링크의 밑줄 제거 */  
+    color: inherit; /* 링크의 색상 제거 */
+}
+
+hr{
+    /* hr 두께지정 */
+    border: 0;
+    height: 3px;
+    background: black;
+}
+
+/* 슬라이드 쇼 */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+.slide {
+    display: none;
+    text-align: center;
+}
+.slide a {
+    display: inline-block;
+    margin: 0 1%;
+}
+.slide img {
+    width: 100%;
+    height: auto;
+}
+.show {
+    display: flex;
+    justify-content: center;
+}
+.navigation {
+    text-align: center;
+    margin-top: 20px;
+}
+.navigation button {
+    margin: 5px;
+}
+/* 2개씩 보여주는 슬라이더의 크기 조정 */
+#slider2 .slide a {
+    width: 39%;
+}
+/* 3개씩 보여주는 슬라이더의 크기 조정 */
+#slider3 .slide a {
+    width: 29%;
+}
+/* 모든 이미지의 높이를 동일하게 설정 */
+.fixed-height {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* 슬라이드 쇼 */
+
+
+
+
+
+/* 검색창 */
+input:-ms-input-placeholder {color: #a8a8a8;}
+input::-webkit-input-placeholder{color:#a8a8a8;}
+input::-moz-placeholder{color:#a8a8a8;}
+
+
+.community{
+    background-color: rgb(204, 202, 202);
+    color: black;
+    border: none;
+    
+    width: 500px;
+    height: 40px;
+  }
+
+
+  
+ /* 햄버거 버튼 꾸미기 */ 
+        .hamburger-menu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      .hamburger-button {
+        cursor: pointer;
+        background-color: #00255C;
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 24px;
+        border-radius: 5px;
+        margin-top:80px;
+      }
+
+      .hamburger-dropdown {
+        display: none;
+        position: absolute;
+        top: 138px;
+        right: 0;
+        background-color: white;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        width: 400px; /* 두 열을 포함할 수 있는 폭 */
+      }
+
+      .hamburger-dropdown .menu-columns {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .hamburger-dropdown .menu-column {
+        flex: 1;
+        padding: 10px;
+        background-color:#00255C;
+      }
+
+      .hamburger-dropdown .menu-column a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 5px 0;
+      }
+
+      .hamburger-dropdown .menu-column a:hover {
+        background-color: #ddd;
+      }
+
+      .menu-divider {
+        border-top: 1px solid #ccc;
+        margin: 10px 0;
+      }
