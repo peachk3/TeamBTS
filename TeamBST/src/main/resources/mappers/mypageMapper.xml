@@ -90,7 +90,7 @@
 	on ri1.game_id = gs.game_id), 
 	(reservation_info ri2 join user u
 	on ri2.user_id = u.user_id)
-	where u.user_id = "boo" and (gs.game_date < curdate()or(gs.game_date = curdate() and gs.game_time < curtime()))
+	where u.user_id = #{user_id} and (gs.game_date < curdate()or(gs.game_date = curdate() and gs.game_time < curtime()))
 	]]>
   </select>
   
@@ -102,7 +102,7 @@
 	on ri1.game_id = gs.game_id), 
 	(reservation_info ri2 join user u
 	on ri2.user_id = u.user_id)
-	where u.user_id = "boo" and (gs.game_date > curdate()or(gs.game_date = curdate() and gs.game_time > curtime()))
+	where u.user_id = #{user_id} and (gs.game_date > curdate()or(gs.game_date = curdate() and gs.game_time > curtime()))
 	]]>
   </select>
   
