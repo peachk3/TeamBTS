@@ -44,7 +44,7 @@ public class MainController {
 
 	// http://localhost:8088/main/teamPage
 	@RequestMapping(value="/teamPage",method = RequestMethod.GET)
-	public String openTeam2(@RequestParam("team") String team_id,Model model) {
+	public String openTeam2(@RequestParam("team_id") String team_id,Model model) {
 		logger.debug(team_id+" 페이지 호출");
 		
 		// list 호출
