@@ -23,11 +23,21 @@
     WHERE user_id = #{user_id} and user_pwd = #{user_pwd}
   </update>
 
-  <!-- 회원정보 삭제 -->
-  <delete id="deleteMember">
-    DELETE FROM user
-    WHERE user_id = #{user_id} AND user_pwd = #{user_pwd}
-  </delete>
+  <!-- 회원정보 삭제 
+  		=> 삭제 로직이지만 update로 처리 할 예정 -->
+<!--   <delete id="deleteMember"> -->
+<!--     DELETE FROM user -->
+<!--     WHERE user_id = #{user_id} AND user_pwd = #{user_pwd} -->
+<!--   </delete> -->
+	<update id="deleteMember">
+		UPDATE user
+		set user_status = "OUT"
+		where user_id = #{user_id} AND user_pwd = #{user_pwd}
+	</update>
+
+
+
+
 
   <!-- 내 게시글 목록 -->
   <select id="postBoardList" resultType="com.itwillbs.domain.UserDTO">

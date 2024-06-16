@@ -32,9 +32,14 @@
 		<!-- 일반회원 조회 -->
 		<select id="generalMemberList" resultType="UserDTO">
 			select * from user
+			where user_status="USE"
 		</select>
 		
-		
+		<!-- 탈퇴회원 조회 -->
+		<select id="withdrawMemberList" resultType="UserDTO">
+	        select * from user
+	        where user_status="OUT"
+		</select>
 		
 		
 	</mapper>

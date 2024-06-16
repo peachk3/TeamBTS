@@ -74,6 +74,18 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		return sqlSession.selectList(NAMESPACE + "generalMemberList");
 	}
+
+	@Override
+	public List<UserDTO> withdrawMemberList() throws Exception {
+
+		logger.debug(" DAO : withdrawMemberList() 호출 ");
+
+		
+		return sqlSession.selectList(NAMESPACE+ "withdrawMemberList");
+	}
+	
+	
+	
 	
 
 }
