@@ -14,7 +14,7 @@ public interface MypageService {
     public void updateMember(UserDTO udto);
     
     // 회원정보 삭제
-    public void deleteMember(UserDTO ddto);
+    public boolean deleteMember(UserDTO ddto);
     
     // 내 게시글 목록
     public List<UserDTO> postBoardList() throws Exception;

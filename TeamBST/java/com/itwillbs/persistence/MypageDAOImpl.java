@@ -34,8 +34,8 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public void deleteMember(UserDTO ddto) {
-		sqlSession.update(NAMESPACE + "deleteMember", ddto);
+	public int deleteMember(UserDTO ddto) {
+		return sqlSession.update(NAMESPACE + "deleteMember", ddto);
 	}
 
 	@Override
