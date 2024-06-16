@@ -18,6 +18,11 @@
 		SELECT * FROM zone WHERE stad_id = #{stad_id}
 	</select>
 
+	<select id="getSeatsByZone" resultType="com.itwillbs.domain.SeatDTO">
+		SELECT * FROM seat WHERE zone_id = #{zone_id}
+	</select>
+
+
 <!-- 	Seat --> 
 <!-- 	<select id="getSeatsByZoneId" resultType="com.itwillbs.domain.SeatDTO" > -->
 <!-- 		SELECT * FROM seat WHERE zone_id = #{zone_id} -->

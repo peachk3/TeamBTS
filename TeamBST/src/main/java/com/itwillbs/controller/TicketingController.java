@@ -105,22 +105,26 @@ public class TicketingController {
 	
 	@GetMapping("/displaySeats/{stad_id}/{game_id}/{zone_id}")
 	public String goZone(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_id") String zone_id, Model model) {
+		List<SeatDTO> seats = stadService.getSeatsByZone(zone_id);
+		
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("game_id", game_id);
 		model.addAttribute("zone_id", zone_id);
-		
+		model.addAttribute("seats", seats);
 		return "/ticketing/displaySeats";
 	}
 	
 	
 	@GetMapping(value="/reservation/{stad_id}/{game_id}/{zone_id}/{seat_id}")
-	public void bookTicket(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_id") String zone_id, @PathVariable("seat_id") String seat_id, Model model) {
+	public String bookTicket(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_id") String zone_id, @PathVariable("seat_id") String seat_id, Model model) {
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("game_id", game_id);
 		model.addAttribute("zone_id", zone_id);
 		model.addAttribute("seat_id", seat_id);
 		
 		logger.debug("bookTicket() 호출 ");
+		
+		return "/ticketing/reservation";
 	}
 	
 //	public String goSeat(@PathVariable)

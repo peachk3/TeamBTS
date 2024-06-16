@@ -17,8 +17,10 @@ public interface StadiumDAO {
     public List<ZoneDTO> getZonesByStadiumId(@RequestParam("stad_id") String stad_id);
 
     // Seat
-    public List<SeatDTO> getSeatsByZoneId(@RequestParam("zone_id") String zone_id);
+//    public List<SeatDTO> getSeatsByZoneId(@RequestParam("zone_id") String zone_id);
     
-    public SeatDTO getSeatById(@RequestParam("seat_id") String seat_id);
+    public List<SeatDTO> getSeatsByZone(@RequestParam("zone_id") String zone_id);
+    
+    // public SeatDTO getSeatByZone(@RequestParam("seat_id") String seat_id);
 
 }

@@ -38,18 +38,20 @@ public class StadiumDAOImpl implements StadiumDAO {
 	}
 
 	@Override
-	public List<SeatDTO> getSeatsByZoneId(String zone_id) {
-		logger.debug("getSeatsByZoneId(String zone_id) 호출");
-		List<SeatDTO> seatList = sqlSession.selectList(NAMESPACE + "getSeatsByZoneId", zone_id);
-		return seatList;
+	public List<SeatDTO> getSeatsByZone(String zone_id) {
+		logger.debug("getSeatsByZone(String zone_id) 호출");
+		
+		return sqlSession.selectList(NAMESPACE + "getSeatsByZone", zone_id);
 	}
 
-	@Override
-	public SeatDTO getSeatById(String seat_id) {
-		logger.debug(" getSeatById(String seat_id) 호출");
+//	@Override
+//	public List<SeatDTO> getSeatsByZoneId(String zone_id) {
+//		logger.debug("getSeatsByZoneId(String zone_id) 호출");
+//		List<SeatDTO> seatList = sqlSession.selectList(NAMESPACE + "getSeatsByZoneId", zone_id);
+//		return seatList;
+//	}
 
-		return sqlSession.selectOne(NAMESPACE + "getSeatById", seat_id);
-	}
+
 	
 	
 

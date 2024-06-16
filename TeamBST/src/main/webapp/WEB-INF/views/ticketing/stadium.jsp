@@ -35,6 +35,7 @@
     <h3>Stadium ID: ${stad_id}</h3>
     <h3>game ID: ${game_id }</h3>
     <h3>구역을 선택하세요</h3>
+    
 
 <!-- 	<form id="zoneForm" action="displaySeats.jsp" method="get"> -->
 <%-- 		<input type="hidden" name="stad_id" value="${stad_id }">  --%>
@@ -76,28 +77,16 @@
 				shape="poly" onclick="selectZone('E')">
 		</map>
 		
-<!-- <script>
-	const area1Value = document.getElementById('area1').getAtrribute('data-value');
-	console.log(area1Value);
-
-</script>   -->
-
-<!-- 	</form> -->
-	
-<!-- 	<script type="text/javascript"> -->
-<!-- 		function selectZone(zone){
-// 			document.getElementById('zone').value = zone;
-// 			document.getElementById('zoneForm').submit();
-// 		} --> 
-	
-<!-- 	</script> -->
-	
+    <input type="hidden" id="stad_id" value="${stad_id }">
+    <input type="hidden" id="game_id" value="${game_id }">
 
 <script type="text/javascript">
 	function selectZone(zone_id){
-		console.log("Selected Zone: " + zone_id);
-	
-		window.location.href= "/ticketing/displaySeats/${stad_id}/${game_id}/" + zone_id;
+		const stad_id = document.getElementById("stad_id").value;
+		const game_id = document.getElementById("game_id").value;
+		
+		window.location.href= '/ticketing/displaySeats/${stad_id}/${game_id}/'+ '{zone_id}';
+		
 	}
 </script>
 

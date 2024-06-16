@@ -25,9 +25,12 @@
 		<li class="nav-item"><a class="nav-link" href="/announcement/announcement">고객센터</a></li>
 	</ul>
     <h1>예매 </h1>
-    <p>경기: ${schedule.team} - ${schedule.game_date}</p>
-    <p>좌석: ${seat.row_num}행 ${seat.col_num}열</p>
-    
+
+	<p>Stadium ID : ${stad_id }</p>
+	<p>Game ID : ${game_id }</p>
+	<p>Zone ID : ${zone_id }</p>
+	<p>Seat ID : ${seat_id }</p>
+
     <h1> 선택한 인원 수 </h1>
     
   	<label>성인: </label>
@@ -71,7 +74,8 @@
         <p>선택한 청소년 수: <span id="selectedChild">0</span></p>
     </div>
     
-    
+     <p>Your selected seats: <span th:text="${selectedSeats}"></span></p>
+     
     <script type="text/javascript">
  // 성인 수 선택 요소
     const adultSelect = document.getElementById('adultNum');

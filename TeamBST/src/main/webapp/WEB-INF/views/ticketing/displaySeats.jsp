@@ -24,7 +24,7 @@
 	}
 	
 	.h6 {
-		text-align: left;
+		text-align:center;
 		margin: 5px;
 	}
 	
@@ -255,6 +255,11 @@
 					<div class="seat" data-seat="2C" >2C</div>
 				</div>
 			</div>
+			<div class="seats-grid">
+                <c:forEach var="seat" items="${seats}">
+                    <div class="seat" data-seat="${seat.seat_id}">${seat.seat_id}</div>
+                </c:forEach>
+            </div>
 			<div class="selected-seats">
 				<p><b>선택한 좌석</b></p>
 				<ul id="selected-seats-list" style="list-style-type: none">
@@ -264,8 +269,8 @@
 		</div>
 		<div class="reserve_btn">
 		<a href="#" class="btn_goback" onclick="goBack()">이전으로</a>
-		<a href="#" class="btn_reservation"
-   		onclick="goToReservation('${stad_id}', '${game_id}', '${zone_id}','${seat_id })">다음으로</a>
+		<a href="#" class="btn_reservation">
+   		<!-- onclick="goToReservation('${stad_id}', '${game_id}', '${zone_id}','${seat_id })" -->다음으로</a>
 		
 <!-- 			<button class="btn_goback" -->
 <!-- 				onclick="goBack()">이전으로</button> -->
@@ -293,7 +298,7 @@
                 if (selectedSeats.length > 0) {
                     selectedSeats.forEach(seat => {
                         const listItem = document.createElement('li');
-                        listItem.textContent = '${zone_id}구역 ' + seat.getAttribute('data-seat');
+                        listItem.textContent = '${zone_id}구역' + seat.getAttribute('data-seat');
                         selectedSeatsList.appendChild(listItem);
                     });
                     noSeatsMessage.style.display = 'none';
@@ -325,12 +330,9 @@
                 } else {
                     // 여기서 선택된 좌석 정보를 URL에 추가하여 다음 페이지로 이동할 수 있음
                     // 예시: /ticketing/reservation/stad_id/gamid_id/zone_id
-                    let selectedSeatsUrl = '/ticketing/reservation';
+                    let selectedSeatsUrl = '/ticketing/reservation?stad_id=${stad_id}&game_id=${game_id}&zone_id=${zone_id}&seat_id=';
                     selectedSeats.forEach((seat, index) => {
-                        if (index === 0) {
-                            selectedSeatsUrl += `/${stad_id}/${game_id}/${zone_id}`;
-                        }
-                        selectedSeatsUrl += `/${seat.getAttribute('data-seat')}`;
+                        selectedSeatsUrl += `${seat.getAttribute('data-seat')}${index < selectedSeats.length - 1? ',' : ''}`;
                     });
                     window.location.href = selectedSeatsUrl;
                 }
@@ -341,11 +343,11 @@
             window.history.back();
         }
 
-        function goToReservation(stad_id, game_id, zone_id, seat_id) {
-            // 예시: stad_id, gamid_id, zone_id를 이용하여 동적 URL 생성
-            var reservationUrl = `/ticketing/reservation/${stad_id}/${game_id}/${zone_id}/${seat_id}`;
-            location.href = reservationUrl; // URL로 이동
-        }
+//         function goToReservation(stad_id, game_id, zone_id, seat_id) {
+//             // 예시: stad_id, gamid_id, zone_id를 이용하여 동적 URL 생성
+//             var reservationUrl = `/ticketing/reservation/${stad_id}/${game_id}/${zone_id}/${seat_id}`;
+//             location.href = reservationUrl; // URL로 이동
+//         }
     </script>
 </body>
 </html>
