@@ -83,13 +83,12 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 	}
 //-----------------------------------------------------
 // 회원 로그아웃 
-
-
-
-
-
-
-
+@RequestMapping(value = "/logout",method = RequestMethod.POST)
+public String logoutPOST(HttpSession session) {
+	logger.debug("/logout -> logoutPOST() 호출");
+	session.invalidate(); // 세션 무효화
+	return "redirect:/login/loginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
+}
 //===============================================
 //아이디 중복 체크 (비동기식)
 	
