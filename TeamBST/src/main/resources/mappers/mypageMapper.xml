@@ -60,12 +60,13 @@
   </select>
   
   
-  <!-- 내 질문글 목록 -->
+   <!-- 내 질문글 목록 -->
   <select id="questionBoardList" resultType="com.itwillbs.domain.Question_boardDTO">
 	SELECT *
 	FROM question_board
 	WHERE quest_writer_id = #{user_id};
   </select>
+  
   
   <!-- 내 질문글 조회수 1증가 -->
   <update id="qbUpdateReadCnt">
@@ -90,7 +91,7 @@
 	on ri1.game_id = gs.game_id), 
 	(reservation_info ri2 join user u
 	on ri2.user_id = u.user_id)
-	where u.user_id = "boo" and (gs.game_date < curdate()or(gs.game_date = curdate() and gs.game_time < curtime()))
+	where u.user_id = #{user_id} and (gs.game_date < curdate()or(gs.game_date = curdate() and gs.game_time < curtime()))
 	]]>
   </select>
   
@@ -102,7 +103,7 @@
 	on ri1.game_id = gs.game_id), 
 	(reservation_info ri2 join user u
 	on ri2.user_id = u.user_id)
-	where u.user_id = "boo" and (gs.game_date > curdate()or(gs.game_date = curdate() and gs.game_time > curtime()))
+	where u.user_id = #{user_id} and (gs.game_date > curdate()or(gs.game_date = curdate() and gs.game_time > curtime()))
 	]]>
   </select>
   

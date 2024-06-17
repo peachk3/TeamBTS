@@ -161,7 +161,9 @@ public class MypageController {
         
         model.addAttribute("pBoardList", pBoardList);
         return "/mypage/postBoardList";
+        
     }
+    
     
     // 내 게시글 본문
     @RequestMapping(value = "/pbread",method = RequestMethod.GET)
@@ -254,6 +256,28 @@ public String MyTicket(HttpSession session, @RequestParam(value = "state", requi
 
     return "/mypage/myticket";
 }
+
+
+	@GetMapping(value="/mywrite")
+	public void Mywrite_GET(HttpSession session,Model model) throws Exception{
+	    String user_id = (String) session.getAttribute("user_id");
+
+	    // 판매 게시글 확인하기
+        List<Post_boardDTO> postBoardList = mService.postBoardList(user_id);
+        
+        // 문의 게시글 확인하기
+        List<Question_boardDTO> questionBoardList = mService.questionBoardList(user_id);
+		
+        model.addAttribute("postBoardList", postBoardList);
+        model.addAttribute("questionBoardList", questionBoardList);
+        
+        
+		
+	}
+
+
+
+
 
 
 

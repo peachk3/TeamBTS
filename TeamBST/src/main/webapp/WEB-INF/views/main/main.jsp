@@ -11,24 +11,24 @@
     <!-- 주장 사진 슬라이드 -->
     <div class="captainContainer" id="slider2">
       <div class="slide show">
-          <a href="/main/teamPage?team=dosan"><img src="../resources/captain/dosan.jpg" alt="Image 11"></a>
-          <a href="/main/teamPage?team=hanhwa"><img src="../resources/captain/hanhwa.jpg" alt="Image 12"></a>
+          <a href="/main/teamPage?team_id=dosan"><img src="../resources/captain/dosan.jpg" alt="Image 11"></a>
+          <a href="/main/teamPage?team_id=hanhwa"><img src="../resources/captain/hanhwa.jpg" alt="Image 12"></a>
       </div>
       <div class="slide">
-        <a href="/main/teamPage?team=kia"><img src="../resources/captain/kia.jpg" alt="Image 13"></a>
-        <a href="/main/teamPage?team=kiwoom"><img src="../resources/captain/kiwoom.jpg" alt="Image 14"></a>
+        <a href="/main/teamPage?team_id=kia"><img src="../resources/captain/kia.jpg" alt="Image 13"></a>
+        <a href="/main/teamPage?team_id=kiwoom"><img src="../resources/captain/kiwoom.jpg" alt="Image 14"></a>
       </div>
       <div class="slide">
-        <a href="/main/teamPage?team=kt"><img src="../resources/captain/kt.jpg" alt="Image 15"></a>
-        <a href="/main/teamPage?team=lg"><img src="../resources/captain/lg.jpg" alt="Image 16"></a>
+        <a href="/main/teamPage?team_id=kt"><img src="../resources/captain/kt.jpg" alt="Image 15"></a>
+        <a href="/main/teamPage?team_id=lg"><img src="../resources/captain/lg.jpg" alt="Image 16"></a>
       </div>
       <div class="slide">
-        <a href="/main/teamPage?team=lotte"><img src="../resources/captain/lotte.jpg" alt="Image 17"></a>
-        <a href="/main/teamPage?team=nc"><img src="../resources/captain/nc.jpg" alt="Image 18"></a>
+        <a href="/main/teamPage?team_id=lotte"><img src="../resources/captain/lotte.jpg" alt="Image 17"></a>
+        <a href="/main/teamPage?team_id=nc"><img src="../resources/captain/nc.jpg" alt="Image 18"></a>
       </div>
       <div class="slide">
-        <a href="/main/teamPage?team=samsung"><img src="../resources/captain/samsung.jpg" alt="Image 19"></a>
-        <a href="/main/teamPage?team=ssg"><img src="../resources/captain/ssg.jpg" alt="Image 20"></a>
+        <a href="/main/teamPage?team_id=samsung"><img src="../resources/captain/samsung.jpg" alt="Image 19"></a>
+        <a href="/main/teamPage?team_id=ssg"><img src="../resources/captain/ssg.jpg" alt="Image 20"></a>
       </div>
   </div>
   <div class="navigation">
