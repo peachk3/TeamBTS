@@ -3,6 +3,7 @@ package com.itwillbs.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,10 +84,23 @@ public class TicketingController {
 	
 	// 구장 배치도 (구역 선택)
  	@RequestMapping(value="/stadium", method = RequestMethod.GET)
-	public void goStadiumGET(@RequestParam("stad_id") String stad_id, Model model) {
- 		model.addAttribute("stad_id",stad_id);
+	public String goStadiumGET(HttpSession session,@RequestParam("stad_id") String stad_id, Model model) {
+        String user_id = (String) session.getAttribute("user_id");
+        
+        logger.debug("user_id : "+ user_id);
  		
-		logger.debug("goStadiumGET() 호출");
+        if(user_id != null) {
+        	model.addAttribute("stad_id",stad_id);
+        	logger.debug("goStadiumGET() 호출");
+        
+        	return "/ticketing/stadium";
+        } else {
+        	
+        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
+        	
+        	return "/login/loginPage";
+        }
+        
 	}
  	
 	

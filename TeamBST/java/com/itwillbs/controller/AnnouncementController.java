@@ -3,6 +3,7 @@ package com.itwillbs.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,9 +56,23 @@ public class AnnouncementController {
 	}
 	
 	@RequestMapping(value="/bulletinWrite",method=RequestMethod.GET)
-	public void announcementBulletinWrite_GET() {
-		logger.debug("문의 게시판 글쓰기 호출");
-		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
+	public String announcementBulletinWrite_GET(HttpSession session) {
+        String user_id = (String) session.getAttribute("user_id");
+        
+        logger.debug("user_id : "+ user_id);
+        if(user_id != null) {
+        	logger.debug("문의 게시판 글쓰기 호출");
+        	logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
+        
+        	return "/announcement/bulletinWrite";
+        } else {
+        	
+        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
+        	
+        	return "/login/loginPage";
+        }
+        
+        
 
 	}
 	
