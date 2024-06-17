@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.UserDTO;
 
 public interface AdminDAO {
@@ -35,6 +37,15 @@ public interface AdminDAO {
 
 	// 탈퇴 회원 리스트
 	public List<UserDTO> withdrawMemberList() throws Exception;
+
+	// 관리자 - 공지사항 본문 	
+	public List<Notice_boardDTO> noticeOneList(String notice_id) throws Exception;
+	
+	// 관리자 - 문의 게시판 리스트
+	public List<Question_boardDTO> questionList() throws Exception;
+
+	// 관리자 - 문의 게시판 본문 
+	public List<Post_boardDTO> QuestionOneList(String quest_id) throws Exception;
 	
 	
 }

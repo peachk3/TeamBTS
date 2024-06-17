@@ -13,7 +13,6 @@
 			<input type="button" onclick="location.href='/admin/adminBulletin'" value="등록"> <br>
 		</form>
 		
-		
 
 
 

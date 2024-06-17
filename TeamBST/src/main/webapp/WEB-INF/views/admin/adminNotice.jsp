@@ -24,7 +24,8 @@
 				<c:forEach var="dto" items="${nBoardList}">
 					<tr>
 						<td>${dto.notice_sub}</td>
-						<td>[공지]${dto.notice_sub}</td>
+						<td><a href="/admin/adminNoticeContent?notice_id=${dto.notice_id }">
+						[공지]${dto.notice_sub}</a></td>
 						<td>${dto.admin_id}</td>
 						<td><fmt:formatDate value="${dto.notice_cre_date}"
 								pattern="yyyy-MM-dd" /></td>

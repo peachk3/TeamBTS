@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.UserDTO;
 
 @Service
@@ -36,5 +38,14 @@ public interface AdminService {
 
 	// 탈퇴회원 리스트 조회
 	public List<UserDTO> withdrawMemberList() throws Exception;
+
+	// 공지사항 본문 조회
+	public List<Notice_boardDTO> noticeOneList(String notice_id) throws Exception;
+	
+	// 관리자 - 문의 게시판 리스트 조회
+	public List<Question_boardDTO> questionList() throws Exception;
+
+	// 관리자 - 문의 게시판 본문 조회
+	public List<Post_boardDTO> QuestionOneList(String quest_id) throws Exception;
 	
 }

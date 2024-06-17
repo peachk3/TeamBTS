@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.service.AdminService;
 
@@ -53,6 +56,22 @@ public class AdminController {
 		return "/admin/adminNotice";
 
 	}
+	
+	@GetMapping(value="/adminNoticeContent")
+	public void adminNoticeContent_GET(@RequestParam("notice_id") String notice_id, Model model) throws Exception{
+		// 서비스 -> DB의 정보를 가져오기
+		logger.debug("관리자 - 공지사항 본문 내용 호출");
+		List<Notice_boardDTO> noticeOneList = aService.noticeOneList(notice_id);
+		logger.debug("size : "+ noticeOneList.size());
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("noticeOneList", noticeOneList);
+		
+		
+	}
+	
+	
+	
 	
 	@RequestMapping(value="/adminNoticeWrite",method=RequestMethod.GET)
 	public void adminNoticeWrite_GET() {
@@ -174,14 +193,48 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminBulletin",method=RequestMethod.GET)
-	public void adminWithdrawBulletin_GET() {
+	public void adminWithdrawBulletin_GET(Model model) throws Exception{
 		logger.debug("관리자 문의 게시판 호출");
 
+			List<Question_boardDTO> questionList = aService.questionList();
+			logger.debug("size : "+ questionList.size());
+			logger.debug("size : "+ questionList);
+			
+			// 연결된 뷰페이지로 정보 전달
+			model.addAttribute("questionList", questionList);
+			
+			
+			
+		}
+		
+//  관리자 - 문의 게시판 본문 확인하기
+	@GetMapping(value="/adminbulletinContent")
+	public void adminbulletinContent_GET(@RequestParam("quest_id") String quest_id, Model model) throws Exception{
+		logger.debug("관리자 - 문의게시판 본문 내용 호출");
+    	logger.debug(" quest_id : " + quest_id);
+
+    	List<Post_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
+    	
+		logger.debug("size : "+ QuestionOneList.size());
+		logger.debug("size : "+ QuestionOneList);
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("QuestionOneList", QuestionOneList);
+    	
+		
 	}
+		
+	
 	
 	@RequestMapping(value="/adminBulletinWrite",method=RequestMethod.GET)
 	public void adminBulletinWrite_GET() {
 		logger.debug("관리자 문의 게시판 답변 글쓰기 호출");
+		
+		
+		
+		
+		
+		
 	}	
 	
 	
