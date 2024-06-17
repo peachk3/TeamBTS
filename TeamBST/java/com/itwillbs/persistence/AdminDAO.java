@@ -35,6 +35,9 @@ public interface AdminDAO {
 
 	// 탈퇴 회원 리스트
 	public List<UserDTO> withdrawMemberList() throws Exception;
-	
+
+	// 일반 회원 예매 내역 조회
+	public List<Game_scheduleDTO> memberTicketingList(String user_id);
+
 	
 }

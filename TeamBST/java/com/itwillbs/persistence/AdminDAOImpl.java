@@ -104,6 +104,14 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		return sqlSession.selectList(NAMESPACE+ "withdrawMemberList");
 	}
+
+	@Override
+	public List<Game_scheduleDTO> memberTicketingList(String user_id) {
+
+		logger.debug(" DAO : memberTicketingList(user_id) 호출");
+		
+		return sqlSession.selectList(NAMESPACE+"memberTicketingList",user_id);
+	}
 	
 	
 	

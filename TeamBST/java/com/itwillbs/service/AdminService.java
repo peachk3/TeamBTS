@@ -36,5 +36,7 @@ public interface AdminService {
 
 	// 탈퇴회원 리스트 조회
 	public List<UserDTO> withdrawMemberList() throws Exception;
+
+	public List<Game_scheduleDTO> memberTicketingList(String user_id) throws Exception;
 	
 }
