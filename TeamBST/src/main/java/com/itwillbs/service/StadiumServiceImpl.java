@@ -29,16 +29,16 @@ public class StadiumServiceImpl implements StadiumService {
 	}
 
 	@Override
-	public List<SeatDTO> getSeatsByZone(String zone_ty) {
+	public List<SeatDTO> getSeatsByZone(String zone_ty, String zone_id) {
 		logger.debug("getSeatsByZone(String zone_ty) 호출 ");
 		
-		return staddao.getSeatsByZone(zone_ty);
+		return staddao.getSeatsByZone(zone_ty, zone_id);
 	}
 
 	@Override
 	public List<SeatDTO> getSeatsId(String seat_id) {
 
-		logger.debug("getSeatsId(String seat_id) 호출 ");
+		logger.debug("getSeatsId(String zone_id) 호출 ");
 		return staddao.getSeatsId(seat_id);
 	}
 	

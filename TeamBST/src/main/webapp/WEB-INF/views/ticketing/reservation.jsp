@@ -10,6 +10,20 @@
 
 
 <body>
+
+	<style>
+	
+	.nav {
+		text-align: left;
+	
+	}
+	.info-panel {
+		text-align: right;
+	}
+	
+	</style>
+
+
    <nav>
       <a href="/main/main"><h1>개바리조</h1></a>
       
@@ -28,7 +42,7 @@
 
 	<p>Stadium ID : ${stad_id }</p>
 	<p>Game ID : ${game_id }</p>
-	<p>Zone ID : ${zone_id }</p>
+	<p>Zone ID : ${stad_id}${zone_ty}</p>
 	<p>Seat ID : ${seat_id }</p>
 
     <h1> 선택한 인원 수 </h1>
@@ -43,8 +57,6 @@
 			<option value="4">4</option>
 			<option value="5">5</option>
 			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
 		</select>
 	</form>
     
@@ -58,10 +70,10 @@
 			<option value="4">4</option>
 			<option value="5">5</option>
 			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
 		</select>
 	</form>
+	
+	
     
     <form action="/payment" ><!-- method="post" -->
         <input type="hidden" name="schedule_id" value="${schedule.schedule_id}">
@@ -76,8 +88,20 @@
     
      <p>Your selected seats: <span th:text="${selectedSeats}"></span></p>
      
+     
+    <div class="info-panel">
+        <h2>경기 정보</h2>
+        <p>팀: <span id="team-name">팀 A vs 팀 B</span></p>
+        <p>이용자명: <span id="user-name">홍길동</span></p>
+        <p>일시: <span id="match-date">2023-07-15 18:00</span></p>
+        <p>선택 좌석: <span id="selected-seats">없음</span></p>
+        <p>티켓 금액: <span id="ticket-price">50000원</span></p>
+        <p>예매 수수료: <span id="booking-fee">5000원</span></p>
+        <p>결제 금액: <span id="total-amount">55000원</span></p>
+    </div>
+     
     <script type="text/javascript">
- // 성인 수 선택 요소
+ 	// 성인 수 선택 요소
     const adultSelect = document.getElementById('adultNum');
     // 청소년 수 선택 요소
     const childSelect = document.getElementById('childNum');

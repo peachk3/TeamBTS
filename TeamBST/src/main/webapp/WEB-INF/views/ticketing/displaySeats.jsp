@@ -9,11 +9,13 @@
 	
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="/../../resources/css/index.css" rel="stylesheet">
+<!--     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script> -->
 </head>
 
 <body>
-
-	<style>
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style>
+/* css */
 	body {
 		font-family: Arial, sans-serif;
 	}
@@ -118,111 +120,9 @@
 	 .reserve_btn .btn_reservation:hover {
 		background-color: #0056b3;
 	}
+</style>
 	
-	/*	body:not (.hh ), html {
-			height: 100%;
-			margin: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		
-		.container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			width: 80%;
-			justify-content: center;
-			height: 80vh;
-			width: 100vh;
-			margin: auto;
-			border: 1px solid black;
-		}
-		
-		.seating-chart {
-			display: grid;
-			grid-template-columns: repeat(3, 50px);
-			justify-content: center;
-			align-items: center;
-			gap: 10px;
-			margin: 30px;
-			height: 80vh;
-			width: 50vh;
-			border: 1px solid black;
-			display: flex;
-			flex-wrap: wrap;
-			margin-bottom: 20px;
-		
-			float: left;
-			position: relative; 
-			width: 680px;
-			min-height: 660px; 
-		 	max-height: 660px; 
-			padding: 20px;
-			border-right: 1px solid #ecedf2;
-			background: #f8f9fa;
-		}
-		
-		.seat {
-			width: 50px;
-			height: 50px;
-			background-color: #444;
-			margin: 5px;
-			cursor: pointer;
-			color: white;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		
-		.selected-seats {
-			background-color: #6c7ae0;
-			margin-top: 20px;
-			text-align: center;
-		}
-		
-		.seat.occupied {
-			background-color: darkgary;
-			cursor: not-allowed;
-		}
-		
-		.field {
-			width: 100%;
-			text-align: center;
-			margin-bottom: 10px;
-			font-weight: bold;
-			grid-column: span 3;
-			text-align: center;
-			font-size: 20px;
-			font-weight: bold; 
-		}
-		
-		.selected-seats {
-			float: left;
-			position: relative;
-			width: 269px;
-			min-height: 150px;
-			margin-left: -1px;
-			padding: 20px 30px 85px 29px;
-			border-left: 1px solid #ecedf2;
-			box-sizing: border-box;
-			background: #fff;
-			display: block;
-		}
-		
-		.reserve_btn {
-			margin-top: 20px;
-			text-align: center;
-		}
-		
-		.btn_goback, .btn_reservation {
-			margin: 5px;
-			padding: 10px 20px;
-			cursor: pointer;
-		} */
-	</style>
-	
-	   <nav>
+	<nav>
       <a href="/main/main"><h1>개바리조</h1></a>
       
       <h6>
@@ -236,119 +136,115 @@
 		<li class="nav-item"><a class="nav-link" href="/community/community">거래</a></li>
 		<li class="nav-item"><a class="nav-link" href="/announcement/announcement">고객센터</a></li>
 	</ul>	
-	
-	</head>
-	<body>
+
 		<h1 class="h">Selected Seat: ${zone_ty}구역</h1>
 		<h6 class="hh">구장: ${stad_id}</h6>
-		<h6 class="hh">게임ID: ${game_id}</h6>
-		<h6 class="hhh">zone_id : ${stad_id }${zone_ty } </h6>
-		<div class="container">
+		<h6 class="hh">게임ID: ${game_id}</h6>		
+		<h6 class="hhh">zone_id : ${zone_id}</h6>
+	 	<div class="container">
 			<div class="seating-chart">
-				<div class="field">필드</div>
+				<div class="field">필드</div> 
 				<!-- 좌석 배치 예제 -->
-				<div class="seats-grid">
-					<div class="seat" data-seat="1A" >1A</div>
-					<div class="seat" data-seat="1B" >1B</div>
-					<div class="seat" data-seat="1C" >1C</div>
-					<div class="seat" data-seat="2A" >2A</div>
-					<div class="seat" data-seat="2B" >2B</div>
-					<div class="seat" data-seat="2C" >2C</div>
-				</div>
-			</div>
-			<input type="hidden" id="data-seat" value="${seat_id }">
-
-			<div class="selected-seats">
-				<p><b>선택한 좌석</b></p>
-				<ul id="selected-seats-list" style="list-style-type: none">
-					<li id="no-seats">선택한 좌석이 없습니다</li>
-				</ul>
-			</div>
+					<div class="seats-grid">
+						<div class="seat" data-row="1" data-num="A">1A</div>
+						<div class="seat" data-row="1" data-num="B">1B</div>
+						<div class="seat" data-row="1" data-num="C">1C</div>
+						<div class="seat" data-row="2" data-num="A">2A</div>
+						<div class="seat" data-row="2" data-num="B">2B</div>
+						<div class="seat" data-row="2" data-num="C" >2C</div>
+<!-- 						<div class="seat" data-seat="1A" >1A</div> -->
+<!-- 						<div class="seat" data-seat="1B" >1B</div> -->
+<!-- 						<div class="seat" data-seat="1C" >1C</div> -->
+<!-- 						<div class="seat" data-seat="2A" >2A</div> -->
+<!-- 						<div class="seat" data-seat="2B" >2B</div> -->
+<!-- 						<div class="seat" data-seat="2C" >2C</div> -->
+					</div>
+			</div>			
+			<input type="hidden" id="data-row" value="">
+			<input type="hidden" id="data-num" value="">
+			
+					<div class="selected-seats">
+					<p><b>선택한 좌석</b></p>
+					<ul id="selected-seats-list" style="list-style-type: none">
+						<li id="no-seats">선택한 좌석이 없습니다</li>
+					</ul>
+					</div>
 		</div>
+			
 		<div class="reserve_btn">
-		<a href="#" class="btn_goback" onclick="goBack()">이전으로</a>
-		<a href="#" class="btn_reservation">다음으로</a>
-<!-- 		onclick="goToReservation()" -->
-		
-<!-- 			<button class="btn_goback" -->
-<!-- 				onclick="goBack()">이전으로</button> -->
-<!-- 			<button class="btn_reservation" -->
-<!-- 				onclick="location.href='/ticketing/reservation'">다음으로</button> -->
+		<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>
+        <button type="submit" class="btn_reservation" onclick="handleReservation()">다음으로</button>
 		</div>
-		<script>		
-        document.addEventListener('DOMContentLoaded', () => {
 
-        	const seats = document.querySelectorAll('.seat:not(.occupied)');
-            const selectedSeatsList = document.getElementById('selected-seats-list');
-            const noSeatsMessage = document.getElementById('no-seats');
+<script>
+function updateSelectedSeats() {
+    const selectedSeatsList = document.getElementById('selected-seats-list');
+    const noSeatsMessage = document.getElementById('no-seats');
+    let selectedSeats = Array.from(document.querySelectorAll('.seat.selected')).map(seat => {
+        const seat_row = seat.getAttribute('data-row');
+        const seat_num = seat.getAttribute('data-num');
+        const seat_id = '${zone_id}' + seat_row + seat_num;
+        return { seat_row, seat_num, seat_id };
+    });
 
-            seats.forEach(seat => {
-                seat.addEventListener('click', () => {
-                    seat.classList.toggle('selected');
-                    updateSelectedSeats();
-                });
-            });
+    selectedSeatsList.innerHTML = '';
 
-            function updateSelectedSeats() {
-                const selectedSeats = document.querySelectorAll('.seat.selected');
+    if (selectedSeats.length > 0) {
+        selectedSeats.forEach(seat => {
+            const listItem = document.createElement('li');
+            listItem.textContent = '${zone_ty}구역' + seat.seat_row +'열' + seat.seat_num + '번';
+            selectedSeatsList.appendChild(listItem);
+        });
+        noSeatsMessage.style.display = 'none';
+    } else {
+        const listItem = document.createElement('li');
+        listItem.id = 'no-seats';
+        listItem.textContent = '선택한 좌석이 없습니다';
+        selectedSeatsList.appendChild(listItem);
+        noSeatsMessage.style.display = 'block';
+    }
+}
 
-                selectedSeatsList.innerHTML = '';
+function goBack() {
+    history.back();
+}
 
-                if (selectedSeats.length > 0) {
-                    selectedSeats.forEach(seat => {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = '${zone_ty}구역' + seat.getAttribute('data-seat');
-                        selectedSeatsList.appendChild(listItem);
-                    });
-                    noSeatsMessage.style.display = 'none';
-                } else {
-                    const listItem = document.createElement('li');
-                    listItem.id = 'no-seats';
-                    listItem.textContent = '선택한 좌석이 없습니다';
-                    selectedSeatsList.appendChild(listItem);
-                    noSeatsMessage.style.display = 'block';
-                }
-            }
+function handleReservation() {
+    const selectedSeats = Array.from(document.querySelectorAll('.seat.selected')).map(seat => {
+        const seat_row = seat.getAttribute('data-row');
+    	const seat_num = seat.getAttribute('data-num');
+        const seat_id = '${zone_id}' + seat_row + seat_num;
+        return { seat_row, seat_num, seat_id };
+    });
 
-            updateSelectedSeats(); // 페이지 로드 시 초기화
-            
-            const nextButton = document.querySelector('.btn_reservation');
-            nextButton.addEventListener('click', (event) => {
-                const selectedSeats = document.querySelectorAll('.seat.selected');
+    if (selectedSeats.length === 0) {
+        alert('좌석을 선택하세요.');
+    } else {
+        const stad_id = '${stad_id}';
+        const game_id = '${game_id}';
+        const zone_ty = '${zone_ty}';
+        let seat_row = selectedSeats.map(seat => seat.seat_row).join(',');
+        let seat_num = selectedSeats.map(seat => seat.seat_num).join(',');
+        let seat_id = selectedSeats.map(seat => seat.seat_id).join(',');
 
-                if (selectedSeats.length === 0) {
-                	event.preventDefault(); // 선택한 좌석이 없으면 기본 동작(페이지 이동) 막기
-					// 선택된 좌석 없을 시 alret 창 띄우기는 가능하나
-					// 페이지 이동 막지 못함
-					
-                    // 알림창 띄우기
-                    alert('좌석을 선택하세요.');
-                	
-                } else {
-                    // 여기서 선택된 좌석 정보를 URL에 추가하여 다음 페이지로 이동할 수 있음
-                    // 예시: /ticketing/reservation/stad_id/gamid_id/zone_id
-                    let zone_id = stad_id+zone_ty;
-//                 	let seat_id = '${zone_id}${data-seat}';
-                    
-                	let seatUrl = "/ticketing/reservation/" + stad_id + "/" + game_id + "/" + zone_ty + "/" + zone_id ; 
-                   
-                	selectedSeats.forEach((seat, index) => {
-                        seatUrl += `/${seat.getAttribute('data-seat')}${index < selectedSeats.length - 1 ? ',' : ''}`;
-                    });
-                    window.location.href = seatUrl;
-                }
-          });
-      });
-        
-        function goBack() {
-            window.history.back();
-        }
+        const seatUrl = "/ticketing/reservation/" + stad_id + "/" + game_id + "/" + zone_ty + "/" + seat_row + "/" + seat_num + "/" + seat_id ;
+        window.location.href = seatUrl;
+    }
+}
 
-//         function goToReservation(stad_id, game_id, zone_ty, seat_id) {
-//             // 예시: stad_id, gamid_id, zone_id를 이용하여 동적 URL 생성
-//             const reservationUrl = "/ticketing/reservation/" + stad_id +"/" + game_id + "/" + zone_ty + "/"+ seat_id;
-//             location.href = reservationUrl; // URL로 이동
-//         }
-    </script>
+document.addEventListener('DOMContentLoaded', () => {
+    const seats = document.querySelectorAll('.seat');
+
+    seats.forEach(seat => {
+        seat.addEventListener('click', () => {
+            seat.classList.toggle('selected');
+            updateSelectedSeats();
+        });
+    });
+
+    updateSelectedSeats(); // 페이지 로드 시 초기화
+});
+</script>
+
 </body>
 </html>

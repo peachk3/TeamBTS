@@ -78,17 +78,22 @@
 		
     <input type="hidden" id="stad_id" value="${stad_id }">
     <input type="hidden" id="game_id" value="${game_id }">
+<%--     <input type="hidden" id="seat_row" value="${seat_row }"> --%>
+<%--     <input type="hidden" id="seat_num" value="${seat_num }"> --%>
+    
+<%--     <input type="hidden" id="zone_id" value="${zone_id }"> --%>
 
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function() {
 	function selectZone(zone_ty){
 		const stad_id = document.getElementById("stad_id").value;
 		const game_id = document.getElementById("game_id").value;
+// 		const zone_id = document.getElementById("zone_id").value;
 		
-		const zone_id = stad_id + zone_ty
+		const zone_id = stad_id + zone_ty;
 		
 // 		const url = "/ticketing/displaySeats/" + stad_id + "/" + game_id + "/" + zone_ty;
-		const url = "/ticketing/displaySeats/" + stad_id + "/" + game_id + "/"+ zone_ty + "/"+ zone_id;
+		const url = "/ticketing/displaySeats/" + stad_id + "/" + game_id + "/"+ zone_ty + "/"+ zone_id ;
 		window.location.href= url;
 		
 	}

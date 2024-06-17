@@ -15,16 +15,26 @@
 
 <!-- 	Zone  -->
 	<select id="getZonesByStadiumId" resultType="com.itwillbs.domain.ZoneDTO" >
-		SELECT * FROM zone WHERE stad_id = #{stad_id}
+		select z.zone_id, z.zone_ty
+		from zone z
+		join game_schedule g
+		on g.stad_id = #{stad_id}
 	</select>
 
 	<select id="getSeatsByZone" resultType="com.itwillbs.domain.ZoneDTO">
-		SELECT * FROM zone WHERE zone_ty = #{zone_ty}
+		select s.seat_id, s.seat_row, s.seat_num, s.zone_id, z.zone_ty
+		from seat s
+		join zone z
+		on s.zone_id = #{zone_id};
 	</select>
 
 	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO">
 		SELECT * FROM seat WHERE seat_id = #{seat_id}
 	</select>
+	
+	
+	
+	
 
 <!-- 	Seat --> 
 <!-- 	<select id="getSeatsByZoneId" resultType="com.itwillbs.domain.SeatDTO" > -->
