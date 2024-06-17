@@ -15,4 +15,11 @@ public interface CommunityService {
 	// 거래 게시글 목록 조회
 	public List<Post_boardDTO> PostList() throws Exception;
 
+	public List<Post_boardDTO> PostOneList(String post_id) throws Exception;
+
+	
+	
+	
+	
+	
 }

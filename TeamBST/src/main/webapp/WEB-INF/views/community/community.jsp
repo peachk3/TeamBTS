@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 	<form action="#">
 		<select name="state" id="state">
@@ -36,10 +37,10 @@
 					<th>닉네임</th>
 					<th>등록일</th>
 				</tr>
-				<c:forEach var="dto" items="${qBoardList}">
+				<c:forEach var="dto" items="${pBoardList}">
 					<tr>
-						<td>${dto.post_sub}</td>
-						<td>${dto.post_sub}</td>
+						<td>${dto.post_id }</td>
+						<td><a href="/community/communityContent?post_id=${dto.post_id }">${dto.post_sub}</a></td>
 						<c:forEach var="dto_" items="${dto.userList}">
 							<td>${dto_.user_nick}</td>
 						</c:forEach>
@@ -51,7 +52,6 @@
 			</tbody>
 		</table>
 	</div>
-
 	<br>
 
 

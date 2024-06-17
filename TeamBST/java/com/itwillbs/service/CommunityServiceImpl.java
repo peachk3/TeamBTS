@@ -36,4 +36,14 @@ public class CommunityServiceImpl implements CommunityService{
 		return cdao.PostList();
 	}
 
+	@Override
+	public List<Post_boardDTO> PostOneList(String post_id) throws Exception {
+		logger.debug("글 내용 조회");
+	
+		return cdao.PostOneList(post_id);
+	}
+
+	
+	
+	
 }
