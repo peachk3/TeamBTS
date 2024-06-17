@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -184,5 +185,29 @@ public class AdminController {
 		logger.debug("관리자 문의 게시판 답변 글쓰기 호출");
 	}	
 	
+
+	
+	// 일반회원의 예매 내역 조회
+	
+	@GetMapping(value="/adminMemberTicket")
+	public void adminMemberticketing(@RequestParam("user_id") String user_id, Model model) throws Exception {
+		logger.debug("관리자 - 일반회원의 예매 내역 리스트 조회");
+		
+		logger.debug("user_id = "+user_id);
+		
+		List<Game_scheduleDTO> memberTicketingList = aService.memberTicketingList(user_id);
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("memberTicketingList", memberTicketingList);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }
+
