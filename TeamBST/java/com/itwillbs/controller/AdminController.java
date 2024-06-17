@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
@@ -142,12 +143,32 @@ public class AdminController {
 		
 	}
 	
+	// 경기 일정 수정 GET / 페이지 호출
 	@RequestMapping(value="/adminScheduleUpdate",method=RequestMethod.GET)
-	public void adminScheduleUpdate_GET() {
-		logger.debug("관리자 경기일정 수정 호출");
+	public String  adminScheduleUpdate_GET(@RequestParam("game_id") String game_id, Model model) {
 		logger.debug(" /adminScheduleUpdate -> adminScheduleUpdate_GET() 호출");
-	
+		logger.debug(" @@@@@@@@@@@@@@@@@@@@@@@ "+ game_id);
+
+		// 서비스 -> DB의 정보를 가져오기
+		Game_scheduleDTO gScheduleOne = aService.ScheduleOne(game_id);
 		
+		logger.debug("gScheduleOne : "+ gScheduleOne);
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("gScheduleOne", gScheduleOne);
+	
+	    return "admin/adminScheduleUpdate"; 
+	}
+	
+	
+	@RequestMapping(value="/adminScheduleUpdate", method=RequestMethod.POST)
+	public String adminScheduleUpdate_POST(Game_scheduleDTO dto) {
+	    logger.debug(" /adminScheduleUpdate -> adminScheduleUpdate_POST() 호출");
+	    logger.debug("dto : " + dto);
+	    
+	    aService.updateSchedule(dto);
+	    
+	    return "redirect:/admin/adminSchedule";
 	}
 	
 	

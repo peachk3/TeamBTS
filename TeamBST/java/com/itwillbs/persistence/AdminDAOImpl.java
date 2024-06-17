@@ -65,6 +65,27 @@ public class AdminDAOImpl implements AdminDAO{
 		return sqlSession.selectList(NAMESPACE + "scheduleList");
 		
 	}
+	
+	@Override
+	public void updateSchedule(Game_scheduleDTO dto) {
+		
+		logger.debug("DAO : updateSchedule(dto) 호출");
+		
+		logger.debug("dto : "+ dto);
+		sqlSession.update(NAMESPACE + "scheduleUpdate", dto);
+		
+		logger.debug("DAO : 경기일정 등록 완료");
+		
+	}
+	
+	@Override
+	public Game_scheduleDTO ScheduleOne(String game_id) {
+		
+		logger.debug("DAO : ScheduleOne() 호출");
+		
+		return sqlSession.selectOne(NAMESPACE + "scheduleOne",game_id);
+		
+	}
 
 	@Override
 	public List<UserDTO> generalMemberList() throws Exception {
@@ -83,7 +104,6 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		return sqlSession.selectList(NAMESPACE+ "withdrawMemberList");
 	}
-	
 	
 	
 	

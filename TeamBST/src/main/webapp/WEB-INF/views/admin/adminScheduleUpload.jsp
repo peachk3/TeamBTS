@@ -52,8 +52,8 @@
 
 		</div>
 		<div class="card-footer">
-			<button type="reset" class="btn btn-primary mr-2">Submit</button>
-			<button type="reset" class="btn btn-secondary">Cancel</button>
+			<button type="submit" class="btn btn-primary mr-2">Submit</button>
+			<button type="button" class="btn btn-secondary" onclick="location.href = '/admin/adminSchedule'">Cancel</button>
 		</div>
 	</form>
 	<!--end::Form-->
