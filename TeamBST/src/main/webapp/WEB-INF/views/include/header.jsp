@@ -10,17 +10,44 @@
     <title>개바리조</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="../resources/css/index.css" rel="stylesheet">
+    <style>
+        .logout-button {
+            background: none;
+            border: none;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 0;
+    </style>
 </head>
 <body>
 <nav>
-    <a href="/main/main"><h1>개바리조</h1></a>
-    <h6>
-        <a href="/login/loginPage">로그인/</a>
-        <a href="/mypage/mypage">마이페이지/</a>
-        <a href="/admin/admin">관리자페이지/</a>
-        로그인시간 ( 58: 00 )
-    </h6>
-    <ul class="nav">
+		<a href="/main/main"><h1>개바리조</h1></a>
+		<h6>
+			<c:choose>
+				<c:when test="${empty sessionScope.user_id}">
+					<!-- 로그인하지 않은 경우 -->
+					<a href="/login/loginPage">로그인</a>
+				</c:when>
+				<c:when test="${sessionScope.user_id == 'admin'}">
+					<!-- 관리자일 경우 -->
+					<a href="/admin/admin">관리자페이지</a>
+					<form id="logoutForm" action="${pageContext.request.contextPath}/login/logout" method="post" style="display: inline;">
+                    <button type="submit" class="logout-button">로그아웃</button>
+                    </form>
+				</c:when>
+				<c:otherwise>
+					<!-- 일반 사용자일 경우 -->
+					<a href="/mypage/mypage">마이페이지</a>
+					<form id="logoutForm" action="${pageContext.request.contextPath}/login/logout" method="post" style="display: inline;">
+                    <button type="submit" class="logout-button">로그아웃</button>
+                    </form>
+				</c:otherwise>
+			</c:choose>
+			로그인시간 ( 58: 00 )
+		</h6>
+		<ul class="nav">
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/ticketing/ticketing?stad_id=All">예매</a>
         </li>
