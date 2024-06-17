@@ -43,9 +43,23 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 
 	@Override
 	public List<Notice_boardDTO> NoticeList() throws Exception {
-		logger.debug("DAO : NoticeList() 호출");
+		logger.debug(" DAO : NoticeList() 호출");
 		
 		return sqlSession.selectList(NAMESPACE + "noticeList");
+	}
+
+	@Override
+	public List<Post_boardDTO> noticeOneList(String notice_id) throws Exception {
+		logger.debug(" DAO : noticeOneList(String notice_id) 호출");
+		
+		return sqlSession.selectList(NAMESPACE+"noticeOneList",notice_id);
+	}
+
+	@Override
+	public List<Post_boardDTO> QuestionOneList(String quest_id) throws Exception {
+		logger.debug(" DAO : noticeOneList(String notice_id) 호출");
+		
+		return sqlSession.selectList(NAMESPACE+"QuestionOneList",quest_id);
 	}
 	
 	
