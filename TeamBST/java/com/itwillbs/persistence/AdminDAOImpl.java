@@ -87,10 +87,10 @@ public class AdminDAOImpl implements AdminDAO{
 	@Override
 	public void updateSchedule(Game_scheduleDTO dto) {
 		
-		logger.debug("DAO : insertSchedule(dto) 호출");
+		logger.debug("DAO : updateSchedule(dto) 호출");
 		
 		logger.debug("dto : "+ dto);
-		sqlSession.insert(NAMESPACE + "scheduleUpdate", dto);
+		sqlSession.update(NAMESPACE + "scheduleUpdate", dto);
 		
 		logger.debug("DAO : 경기일정 등록 완료");
 		
@@ -101,7 +101,7 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		logger.debug("DAO : ScheduleOne() 호출");
 		
-		return sqlSession.selectOne(NAMESPACE + "ScheduleOne");
+		return sqlSession.selectOne(NAMESPACE + "ScheduleOne",game_id);
 
 	}
 	

@@ -143,34 +143,35 @@ public class AdminController {
 		
 	}
 	
+	// 경기 일정 수정 GET / 페이지 호출
 	@RequestMapping(value="/adminScheduleUpdate",method=RequestMethod.GET)
-	public void adminScheduleUpdate_GET(@RequestParam("game_id") String game_id, Model model) {
-		logger.debug("관리자 경기일정 수정 호출 이예진이 문제다");
+	public String  adminScheduleUpdate_GET(@RequestParam("game_id") String game_id, Model model) {
 		logger.debug(" /adminScheduleUpdate -> adminScheduleUpdate_GET() 호출");
 		logger.debug(" @@@@@@@@@@@@@@@@@@@@@@@ "+ game_id);
 
-		logger.debug("dd");
 		// 서비스 -> DB의 정보를 가져오기
-		
 		Game_scheduleDTO gScheduleList = aService.ScheduleOne(game_id);
+		
 		logger.debug("gScheduleList : "+ gScheduleList);
 		
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("gScheduleList", gScheduleList);
+	
+	    return "/admin/adminScheduleUpdate"; 
 	}
 	
-	@RequestMapping(value="/adminScheduleUpdate",method=RequestMethod.POST)
+	
+	@RequestMapping(value="/adminScheduleUpdate", method=RequestMethod.POST)
 	public String adminScheduleUpdate_POST(Game_scheduleDTO dto) {
-		logger.debug("관리자 경기일정 수정 호출 이예진이 문제다");
-		logger.debug(" /adminScheduleUpdate -> adminScheduleUpdate_POST() 호출");
-	
-		logger.debug("dto : "+ dto);
-		
-		aService.ScheduleUpdate(dto);
-		
-		return "redirect:/admin/adminSchedule";
-		
+	    logger.debug(" /adminScheduleUpdate -> adminScheduleUpdate_POST() 호출");
+	    logger.debug("dto : " + dto);
+	    
+	    aService.updateSchedule(dto);
+	    
+	    return "redirect:/admin/adminSchedule";
 	}
+	
+	
 	
 	@RequestMapping(value="/adminBulletin",method=RequestMethod.GET)
 	public void adminWithdrawBulletin_GET() {

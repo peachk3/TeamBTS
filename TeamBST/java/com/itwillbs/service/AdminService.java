@@ -23,7 +23,7 @@ public interface AdminService {
 	public void ScheduleJoin(Game_scheduleDTO dto);
 
 	// 경기일정 수정
-	public void ScheduleUpdate(Game_scheduleDTO dto);
+	public void updateSchedule(Game_scheduleDTO dto);
 
 	
 	// 경기일정 목록 조회
