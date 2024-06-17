@@ -150,12 +150,12 @@ public class AdminController {
 		logger.debug(" @@@@@@@@@@@@@@@@@@@@@@@ "+ game_id);
 
 		// 서비스 -> DB의 정보를 가져오기
-		Game_scheduleDTO gScheduleList = aService.ScheduleOne(game_id);
+		Game_scheduleDTO gScheduleOne = aService.ScheduleOne(game_id);
 		
-		logger.debug("gScheduleList : "+ gScheduleList);
+		logger.debug("gScheduleOne : "+ gScheduleOne);
 		
 		// 연결된 뷰페이지로 정보 전달
-		model.addAttribute("gScheduleList", gScheduleList);
+		model.addAttribute("gScheduleOne", gScheduleOne);
 	
 	    return "admin/adminScheduleUpdate"; 
 	}

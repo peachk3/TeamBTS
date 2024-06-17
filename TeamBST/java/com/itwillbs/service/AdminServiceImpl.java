@@ -43,20 +43,39 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void ScheduleJoin(Game_scheduleDTO dto) {
 
-		logger.debug("NoticeJoin(dto) 실행");
+		logger.debug("ScheduleJoin(dto) 실행");
 		
 		// DAO 메서드 호출
 		adao.insertSchedule(dto);
 		
-		logger.debug("공지사항 작성 성공");
+		logger.debug("경기일정 작성 성공");
 		
 	}
 	
 	@Override
 	public List<Game_scheduleDTO> ScheduleList() throws Exception {
-		logger.debug("공지사항 글목록 조회");
+		logger.debug("경기일정 글목록 조회");
 		
 		return adao.ScheduleList();
+	}
+	
+	@Override
+	public void updateSchedule(Game_scheduleDTO dto) {
+		
+		logger.debug("updateSchedule(dto) 실행");
+		
+		// DAO 메서드 호출
+		adao.updateSchedule(dto);
+		
+		logger.debug("경기일정 수정 성공");
+		
+	}
+	
+	@Override
+	public Game_scheduleDTO ScheduleOne(String game_id) {
+		logger.debug("경기일정 글 일부 조회");
+		
+		return adao.ScheduleOne(game_id);
 	}
 
 	@Override
@@ -71,25 +90,6 @@ public class AdminServiceImpl implements AdminService{
 		logger.debug("탈퇴회원 정보 조회");
 		
 		return adao.withdrawMemberList();
-	}
-
-	@Override
-	public void updateSchedule(Game_scheduleDTO dto) {
-		
-		logger.debug("ScheduleJoin(dto) 실행");
-		
-		// DAO 메서드 호출
-		adao.updateSchedule(dto);
-		
-		logger.debug("경기일정 작성 성공");
-		
-	}
-
-	@Override
-	public Game_scheduleDTO ScheduleOne(String game_id) {
-		logger.debug("경기일정 글 일부 조회");
-		
-		return adao.ScheduleOne(game_id);
 	}
 	
 	
