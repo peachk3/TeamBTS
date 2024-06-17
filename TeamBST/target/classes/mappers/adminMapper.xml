@@ -25,17 +25,10 @@
 		
 		<!-- 경기일정 수정 -->
 		<update id="updateSchedule">
-<!-- 			update game_schedule -->
-<!-- 			set(game_date, game_time, stad_id, home_team_id, away_team_id) -->
-<!-- 				= (#{game_date}, #{game_time}, (select stad_id from team_n_stadium where team_id = #{home_team_id}), #{home_team_id}, #{away_team_id}) -->
-<!-- 			where game_id = #{game_id} -->
-		    update game_schedule
-		    set game_date = #{game_date},
-		        game_time = #{game_time},
-		        stad_id = (select stad_id from team_n_stadium where team_id = #{home_team_id}),
-		        home_team_id = #{home_team_id},
-		        away_team_id = #{away_team_id}
-		    where game_id = #{game_id};
+			update game_schedule
+			set(game_date, game_time, stad_id, home_team_id, away_team_id)
+				= (#{game_date}, #{game_time}, (select stad_id from team_n_stadium where team_id = #{home_team_id}), #{home_team_id}, #{away_team_id})
+			where game_id = #{game_id}
 		</update>
 		
 		

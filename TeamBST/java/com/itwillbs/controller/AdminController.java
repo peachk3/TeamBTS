@@ -157,7 +157,7 @@ public class AdminController {
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("gScheduleList", gScheduleList);
 	
-	    return "/admin/adminScheduleUpdate"; 
+	    return "admin/adminScheduleUpdate"; 
 	}
 	
 	

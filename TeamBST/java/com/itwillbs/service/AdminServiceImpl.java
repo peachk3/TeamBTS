@@ -76,7 +76,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void updateSchedule(Game_scheduleDTO dto) {
 		
-		logger.debug("updateSchedule(dto) 실행");
+		logger.debug("ScheduleJoin(dto) 실행");
 		
 		// DAO 메서드 호출
 		adao.updateSchedule(dto);
@@ -88,7 +88,6 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Game_scheduleDTO ScheduleOne(String game_id) {
 		logger.debug("경기일정 글 일부 조회");
-		
 		
 		return adao.ScheduleOne(game_id);
 	}
