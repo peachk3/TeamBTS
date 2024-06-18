@@ -6,6 +6,7 @@ import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
+import com.itwillbs.domain.Question_commendDTO;
 import com.itwillbs.domain.UserDTO;
 
 public interface AdminDAO {
@@ -29,7 +30,7 @@ public interface AdminDAO {
 	public List<Game_scheduleDTO> ScheduleList() throws Exception;
 
 	// 경기일정 일부 출력
-	public Game_scheduleDTO ScheduleOne(String game_id);
+	public Game_scheduleDTO ScheduleOne(int game_id);
 	
 	
 	// 일반 회원 리스트 
@@ -39,13 +40,24 @@ public interface AdminDAO {
 	public List<UserDTO> withdrawMemberList() throws Exception;
 
 	// 관리자 - 공지사항 본문 	
-	public List<Notice_boardDTO> noticeOneList(String notice_id) throws Exception;
+	public List<Notice_boardDTO> noticeOneList(int notice_id) throws Exception;
 	
 	// 관리자 - 문의 게시판 리스트
 	public List<Question_boardDTO> questionList() throws Exception;
 
 	// 관리자 - 문의 게시판 본문 
-	public List<Post_boardDTO> QuestionOneList(String quest_id) throws Exception;
+	public List<Post_boardDTO> QuestionOneList(int quest_id) throws Exception;
+	
+	// 관리자 - 문의 게시판 답변 작성
+	public void questionCommend(Question_commendDTO qcdto) throws Exception;
+	
+	
+	
+	
+	
+
+	
+	
 	
 	
 }

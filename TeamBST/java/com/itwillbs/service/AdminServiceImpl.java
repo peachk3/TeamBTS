@@ -12,6 +12,7 @@ import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
+import com.itwillbs.domain.Question_commendDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.persistence.AdminDAO;
 
@@ -74,7 +75,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public Game_scheduleDTO ScheduleOne(String game_id) {
+	public Game_scheduleDTO ScheduleOne(int game_id) {
 		logger.debug("경기일정 글 일부 조회");
 		
 		return adao.ScheduleOne(game_id);
@@ -95,7 +96,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Notice_boardDTO> noticeOneList(String notice_id) throws Exception {
+	public List<Notice_boardDTO> noticeOneList(int notice_id) throws Exception {
 		logger.debug("관리자 - 공지사항 본문 조회");
 
 		
@@ -111,14 +112,20 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Post_boardDTO> QuestionOneList(String quest_id) throws Exception {
+	public List<Post_boardDTO> QuestionOneList(int quest_id) throws Exception {
 		logger.debug("관리자 - 문의 게시판 본문 조회");
 
 		
 		return adao.QuestionOneList(quest_id);
 	}
-	
-	
+
+	@Override
+	public void questionCommend(Question_commendDTO qcdto) throws Exception {
+		logger.debug("관리자 - 문의 게시판 답변 달기");
+		
+		adao.questionCommend(qcdto);
+	}
+
 	
 
 }

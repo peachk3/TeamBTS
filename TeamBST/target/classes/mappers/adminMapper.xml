@@ -61,10 +61,13 @@
 		where notice_id = #{notice_id}
 	</select>
 
+
+
+
 	<!-- 문의 게시글 목록 조회 -->
 	<select id="questionList" resultMap="questMap">
 		select qb.quest_id,
-		qb.quest_sub, qb.quest_cre_date, u.user_nick
+		qb.quest_sub, qb.quest_cre_date, u.user_nick, qb.quest_public
 		from question_board qb
 		join user u
 		on qb.quest_writer_id = u.user_id
@@ -74,13 +77,19 @@
 	<!-- 문의 게시글 내용 조회 -->
 	<select id="QuestionOneList" resultMap="questMap">
 		select qb.quest_id,
-		qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id
+		qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id,qb.quest_public
 		from
 		question_board qb join user u
 		on qb.quest_writer_id = u.user_id
 		where
 		quest_id = #{quest_id}
 	</select>
+
+	<!-- 문의 게시글 답변 작성 -->
+	<insert id="questionCommend">
+    insert into question_commend(quest_id, comm_cont, comm_cre_date, admin_id)
+    values(#{quest_id}, #{comm_cont}, now() , #{admin_id})
+	</insert>
 
 
 
@@ -128,6 +137,9 @@
 		select * from user
 		where user_status="OUT"
 	</select>
+
+	
+	
 
 
 </mapper>

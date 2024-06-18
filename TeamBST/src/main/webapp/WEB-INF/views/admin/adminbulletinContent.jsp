@@ -42,13 +42,35 @@
          padding-left: 30px;
          font-size: 16px;
       }
+              .answer {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+        .buttons {
+            text-align: right;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
    </style>
    
-   
+
+
 <c:forEach var="quest" items="${QuestionOneList}">
    <div class="notice">
       <div class="post-info">
-         <div class="post-header">${quest.quest_sub }</div>
+         <div class="post-header">
+				<c:choose>
+					<c:when test="${quest.quest_public.equals('Y')}">
+						[공개] ${quest.quest_sub }
+					</c:when>
+					<c:otherwise>
+						[비공개] ${quest.quest_sub }
+					</c:otherwise>
+				</c:choose>
+			</div>
          <div class="post-meta">
             <span>작성자: ${quest.quest_writer_id }</span> &nbsp; | &nbsp; 
             <span>작성일: ${quest.quest_cre_date }</span>
@@ -60,12 +82,37 @@
          ${quest.quest_cont }
       </div>
    </div>
-</c:forEach>
-
-
 
 <hr>
    
+<%--    <div class="answer">
+            <form action="/admin/adminbulletinContent?quest_id=${quest.quest_id }" method="post">
+            	<input type="hidden" name="comm_cre_date" />
+            	<input type="hidden" name="admin_id" />
+            <input type="hidden" name="quest_id" value="${quest.quest_id}" />
+                <p><strong>답변</strong></p>
+                <textarea name="comm_cont" placeholder="답변 내용을 입력하세요..."></textarea>
+                <div class="buttons">
+                    <button type="button" onclick="window.history.back();">취소</button>
+                    <button type="submit">등록</button>
+                </div>
+            </form>
+        </div>
+</c:forEach>  --%>
+
+   <div class="answer">
+        <form action="/admin/adminbulletinContent" method="post">
+            <input type="hidden" name="quest_id" value="${quest.quest_id}" />
+            <p><strong>답변</strong></p>
+            <textarea name="comm_cont" placeholder="답변 내용을 입력하세요..."></textarea>
+            <div class="buttons">
+                <button type="button" onclick="window.history.back();">취소</button>
+                <button type="submit">등록</button>
+            </div>
+        </form>
+    </div>
+</c:forEach> 
+
    
 </body>
 </html>
