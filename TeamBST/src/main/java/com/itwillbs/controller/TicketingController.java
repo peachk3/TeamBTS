@@ -229,15 +229,5 @@ public class TicketingController {
 //		return "/ticketing/stadium";
 //	}
 	
-//	@RequestMapping(value="/zone", method = RequestMethod.GET)
-//	public String getZone(@RequestParam("zone_id") String zone_id, Model model) {
-//		logger.debug("구역 선택 페이지 호출");
-//		
-//		List<SeatDTO> seats = stadService.getSeatsByZoneId(zone_id);
-//		model.addAttribute("seats", seats);
-//		
-//		return "seats";
-//	}
-
 	
 }
