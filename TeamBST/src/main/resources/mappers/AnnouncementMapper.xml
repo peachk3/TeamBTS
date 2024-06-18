@@ -70,7 +70,7 @@
 	
 	<!-- 문의 게시글 내용 조회 -->
 	<select id="QuestionOneList" resultMap="questMap">
-		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont
+		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id
 		from question_board qb join user u
 		on qb.quest_writer_id = u.user_id
 		where quest_id = #{quest_id}

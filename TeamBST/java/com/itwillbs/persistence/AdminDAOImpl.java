@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Question_boardDTO;
+import com.itwillbs.domain.Question_commendDTO;
 import com.itwillbs.domain.UserDTO;
 
 @Repository
@@ -79,7 +82,7 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 	
 	@Override
-	public Game_scheduleDTO ScheduleOne(String game_id) {
+	public Game_scheduleDTO ScheduleOne(int game_id) {
 		
 		logger.debug("DAO : ScheduleOne() 호출");
 		
@@ -106,6 +109,40 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 
 	@Override
+
+	public List<Notice_boardDTO> noticeOneList(int notice_id) throws Exception {
+
+		logger.debug(" DAO : noticeOneList(String notice_id) 호출");
+
+		
+		return sqlSession.selectList(NAMESPACE+"noticeOneList", notice_id);
+	}
+
+	@Override
+	public List<Question_boardDTO> questionList() throws Exception {
+
+		logger.debug(" DAO : questionList() 호출");
+		
+		
+		return sqlSession.selectList(NAMESPACE+"questionList");
+	}
+
+	@Override
+	public List<Post_boardDTO> QuestionOneList(int quest_id) throws Exception {
+		
+		logger.debug(" DAO : QuestionOneList() 호출");
+
+		return sqlSession.selectList(NAMESPACE+"QuestionOneList", quest_id);
+	}
+
+	@Override
+	public void questionCommend(Question_commendDTO qcdto) throws Exception {
+		logger.debug(" DAO : questionCommend(Question_commendDTO qcdto)");
+		
+		sqlSession.insert(NAMESPACE+"questionCommend",qcdto);
+	}
+
+
 	public List<Game_scheduleDTO> memberTicketingList(String user_id) {
 
 		logger.debug(" DAO : memberTicketingList(user_id) 호출");

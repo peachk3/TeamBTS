@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Question_boardDTO;
+import com.itwillbs.domain.Question_commendDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.persistence.AdminDAO;
 
@@ -72,7 +75,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public Game_scheduleDTO ScheduleOne(String game_id) {
+	public Game_scheduleDTO ScheduleOne(int game_id) {
 		logger.debug("경기일정 글 일부 조회");
 		
 		return adao.ScheduleOne(game_id);
@@ -93,6 +96,37 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
+	public List<Notice_boardDTO> noticeOneList(int notice_id) throws Exception {
+		logger.debug("관리자 - 공지사항 본문 조회");
+
+		
+		return adao.noticeOneList(notice_id);
+	}
+
+	@Override
+	public List<Question_boardDTO> questionList() throws Exception {
+		logger.debug("관리자 - 문의 게시판 리스트 조회");
+
+		
+		return adao.questionList();
+	}
+
+	@Override
+	public List<Post_boardDTO> QuestionOneList(int quest_id) throws Exception {
+		logger.debug("관리자 - 문의 게시판 본문 조회");
+
+		
+		return adao.QuestionOneList(quest_id);
+	}
+
+	@Override
+	public void questionCommend(Question_commendDTO qcdto) throws Exception {
+		logger.debug("관리자 - 문의 게시판 답변 달기");
+		
+		adao.questionCommend(qcdto);
+	}
+
+
 	public List<Game_scheduleDTO> memberTicketingList(String user_id) throws Exception {
 		logger.debug("일반회원 예매현황 조회");
 		
@@ -100,6 +134,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	
+
 	
 
 }

@@ -67,6 +67,7 @@ ${sessionScope}
 <form id="stadiumForm" action="/ticketing/ticketing" method="post" style="display: none;">
 	<input type="hidden" name="stad_id" id="stadiumInput">
 </form>
+
 <div class="navigation">
 	<button onclick="showPrevious(2)">Previous</button>
 	<button onclick="showNext(2)">Next</button>
