@@ -23,25 +23,67 @@
     WHERE user_id = #{user_id} and user_pwd = #{user_pwd}
   </update>
 
-  <!-- 회원정보 삭제 -->
-  <delete id="deleteMember">
-    DELETE FROM user
-    WHERE user_id = #{user_id} AND user_pwd = #{user_pwd}
-  </delete>
+  <!-- 회원정보 삭제 
+  		=> 삭제 로직이지만 update로 처리 할 예정 -->
+<!--   <delete id="deleteMember"> -->
+<!--     DELETE FROM user -->
+<!--     WHERE user_id = #{user_id} AND user_pwd = #{user_pwd} -->
+<!--   </delete> -->
+	<update id="deleteMember">
+		UPDATE user
+		set user_status = "OUT"
+		where user_id = #{user_id} AND user_pwd = #{user_pwd}
+	</update>
+
+
+
+
 
   <!-- 내 게시글 목록 -->
-  <select id="postBoardList" resultType="com.itwillbs.domain.UserDTO">
+  <select id="postBoardList" resultType="com.itwillbs.domain.Post_boardDTO">
     SELECT *
     FROM post_board
-    WHERE user_id = #{user_id}
+    WHERE post_writer_id = #{user_id}
   </select>
-
-  <!-- 내 질문글 목록 -->
-  <select id="questionBoardList" resultType="com.itwillbs.domain.UserDTO">
-    SELECT *
-    FROM question_board
-    WHERE user_id = #{user_id}
+  
+  <!-- 내 게시글 조회수 1증가 -->
+  <update id="pbUpdateReadCnt">
+  	UPDATE post_board
+  	SET post_view=post_view+1
+  	WHERE post_id=#{post_id}
+  </update>
+  
+  <!-- 내 게시글 본문 -->
+  <select id="pGetBoard" resultType="com.itwillbs.domain.Post_boardDTO">
+	SELECT *
+	FROM post_board
+	WHERE post_id=#{post_id}  
   </select>
+  
+  
+   <!-- 내 질문글 목록 -->
+  <select id="questionBoardList" resultType="com.itwillbs.domain.Question_boardDTO">
+	SELECT *
+	FROM question_board
+	WHERE quest_writer_id = #{user_id};
+  </select>
+  
+  
+  <!-- 내 질문글 조회수 1증가 -->
+  <update id="qbUpdateReadCnt">
+	UPDATE question_board
+	SET quest_view=quest_view+1
+	WHERE quest_id=#{quest_id}
+  </update>
+  
+  <!-- 내 질문글 본문 -->
+  <select id="qGetBoard" resultType="com.itwillbs.domain.Question_boardDTO">
+	SELECT * 
+	FROM question_board
+	WHERE quest_id=#{quest_id}
+  </select>
+  
+  
   
   <!-- 내 지난경기목록 -->
   <select id="previousMatchList" resultType="com.itwillbs.domain.Game_scheduleDTO">
@@ -51,7 +93,7 @@
 	on ri1.game_id = gs.game_id), 
 	(reservation_info ri2 join user u
 	on ri2.user_id = u.user_id)
-	where u.user_id = #{user_id} and gs.game_date < now();
+	where u.user_id = #{user_id} and (gs.game_date < curdate()or(gs.game_date = curdate() and gs.game_time < curtime()))
 	]]>
   </select>
   
@@ -63,8 +105,9 @@
 	on ri1.game_id = gs.game_id), 
 	(reservation_info ri2 join user u
 	on ri2.user_id = u.user_id)
-	where u.user_id = #{user_id} and gs.game_date > now();
+	where u.user_id = #{user_id} and (gs.game_date > curdate()or(gs.game_date = curdate() and gs.game_time > curtime()))
 	]]>
   </select>
+  
 
 </mapper>

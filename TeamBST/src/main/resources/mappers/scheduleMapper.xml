@@ -9,15 +9,23 @@
 	<select id="GameSchedule"
 		resultType="com.itwillbs.domain.Game_scheduleDTO">
 		select * from game_schedule
-		where (home_team_id=#{name} or
-		away_team_id=#{name})
+		where (home_team_id=#{team} or
+		away_team_id=#{team})
 	</select>
 
 	<!-- 구장별 경기 일정 목록 -->
 	<select id="TeamSchedule"
-		resultType="com.itwillbs.domain.Game_scheduleDTO">
-		select * from game_schedule
-		where stad_id = #{stad_id}
+		resultType="com.itwillbs.domain.Game_scheduleDTO" >
+		
+		    <choose>
+		        <when test="!_parameter.equals('All')">
+		     	   select * from game_schedule
+		            where stad_id = #{stad_id}
+		        </when>
+	           <when test="_parameter.equals('All')">
+		     	   select * from game_schedule
+		        </when>
+		</choose>
 	</select>
 
 	<!-- Join절 사용하기 위한 resultMap 모두 직접 설정하기 -->
@@ -51,7 +59,7 @@
 		tns.stad_url, tns.stad_field_url, tns.team_logo_url
 		from game_schedule gs join team_n_stadium tns
 		on gs.home_team_id = tns.team_id
-		where gs.game_id = #{game_id};
+		where gs.game_id = #{game_id}
 	</select>
 
 	<select id="awayTeamInfo" resultMap="gameMap">
@@ -59,7 +67,14 @@
 		tns.stad_url, tns.stad_field_url, tns.team_logo_url
 		from game_schedule gs join team_n_stadium tns
 		on gs.away_team_id = tns.team_id
-		where gs.game_id = #{game_id};
+		where gs.game_id = #{game_id}
 	</select>
+	
+	<select id="teamInfo" resultMap="teamMap">
+        select * from team_n_stadium
+        where team_id = #{team}
+	</select>
+	
+	
 
 </mapper>

@@ -7,22 +7,49 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>메인페이지</title>
+    <title>개바리조</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="../resources/css/index.css" rel="stylesheet">
+    <style>
+        .logout-button {
+            background: none;
+            border: none;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 0;
+    </style>
 </head>
 <body>
 <nav>
-    <a href="/main/main"><h1>개바리조</h1></a>
-    <h6>
-        <a href="/login/loginPage">로그인/</a>
-        <a href="/mypage/mypage">마이페이지/</a>
-        <a href="/admin/admin">관리자페이지/</a>
-        로그인시간 ( 58: 00 )
-    </h6>
-    <ul class="nav">
+		<a href="/main/main"><h1>개바리조</h1></a>
+		<h6>
+			<c:choose>
+				<c:when test="${empty sessionScope.user_id}">
+					<!-- 로그인하지 않은 경우 -->
+					<a href="/login/loginPage">로그인</a>
+				</c:when>
+				<c:when test="${sessionScope.user_id == 'admin'}">
+					<!-- 관리자일 경우 -->
+					<a href="/admin/admin">관리자페이지</a>
+					<form id="logoutForm" action="${pageContext.request.contextPath}/login/logout" method="post" style="display: inline;">
+                    <button type="submit" class="logout-button">로그아웃</button>
+                    </form>
+				</c:when>
+				<c:otherwise>
+					<!-- 일반사용자일 경우 -->
+					<a href="/mypage/mypage">마이페이지</a>
+					<form id="logoutForm" action="${pageContext.request.contextPath}/login/logout" method="post" style="display: inline;">
+                    <button type="submit" class="logout-button">로그아웃</button>
+                    </form>
+				</c:otherwise>
+			</c:choose>
+			로그인시간 ( 58: 00 )
+		</h6>
+		<ul class="nav">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/ticketing/ticketing">예매</a>
+            <a class="nav-link active" aria-current="page" href="/ticketing/ticketing?stad_id=All">예매</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/community/community">거래</a>
@@ -38,7 +65,7 @@
         <div id="hamburger-dropdown" class="hamburger-dropdown">
             <div class="menu-columns">
                 <div class="menu-column">
-                    <p><a href="#stadium">구장</a></p>
+					<p><a href="/main/main#stadium">구장</a></p>
                     <a href="#" data-stadium-id="GC">고척 스카이돔</a>
                     <a href="#" data-stadium-id="GJ">광주 챔피언스 필드</a>
                     <a href="#" data-stadium-id="DG">대구 라이온즈파크</a>
@@ -51,15 +78,15 @@
                 </div>
                 <div class="menu-column">
                     <p><a href="/main/team">구단</a></p>
-                    <a href="/main/team/kia">KIA</a>
-                    <a href="/main/team/lg">LG</a>
-                    <a href="/main/team/samsung">삼성</a>
-                    <a href="/main/team/dosan">두산</a>
-                    <a href="/main/team/ssg">SSG</a>
-                    <a href="/main/team/kt">KT</a>
-                    <a href="/main/team/hanhwa">한화</a>
-                    <a href="/main/team/lotte">롯데</a>
-                    <a href="/main/team/kiwoom">키움</a>
+                    <a href="/main/teamPage?team_id=kia">KIA</a>
+                    <a href="/main/teamPage?team_id=lg">LG</a>
+                    <a href="/main/teamPage?team_id=samsung">삼성</a>
+                    <a href="/main/teamPage?team_id=dosan">두산</a>
+                    <a href="/main/teamPage?team_id=ssg">SSG</a>
+                    <a href="/main/teamPage?team_id=kt">KT</a>
+                    <a href="/main/teamPage?team_id=hanhwa">한화</a>
+                    <a href="/main/teamPage?team_id=lotte">롯데</a>
+                    <a href="/main/teamPage?team_id=kiwoom">키움</a>
                 </div>
             </div>
         </div>
@@ -95,4 +122,26 @@
             document.getElementById('stadiumForm').submit();
         });
     });
+    
+    
+    document.querySelectorAll('.container a').forEach(anchor => {
+        anchor.addEventListener('click', function(event) {
+            event.preventDefault();
+            const stadiumId = this.getAttribute('data-stadium-id');
+            document.getElementById('stadiumInput').value = stadiumId;
+            document.getElementById('stadiumForm').submit();
+        });
+    });
+
+    // Optional: Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    
+    
 </script>
