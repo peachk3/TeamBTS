@@ -23,7 +23,7 @@
 	<c:forEach var="vo" items="${generalMemberList}">
 		<tr>
 			<td>넘버</td>
-			<td>${vo.user_id }</td>
+			<td><a href="/admin/adminMemberTicket?user_id=${vo.user_id }">${vo.user_id }</a></td>
 			<td>${vo.user_name }</td>
 			<td>${vo.user_nick }</td>
 			<td>${vo.user_phone }</td>

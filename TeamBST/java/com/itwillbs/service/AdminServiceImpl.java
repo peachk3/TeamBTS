@@ -126,6 +126,15 @@ public class AdminServiceImpl implements AdminService{
 		adao.questionCommend(qcdto);
 	}
 
+
+	public List<Game_scheduleDTO> memberTicketingList(String user_id) throws Exception {
+		logger.debug("일반회원 예매현황 조회");
+		
+		return adao.memberTicketingList(user_id);
+	}
+	
+	
+
 	
 
 }

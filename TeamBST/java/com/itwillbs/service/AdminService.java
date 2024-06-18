@@ -40,6 +40,7 @@ public interface AdminService {
 	// 탈퇴회원 리스트 조회
 	public List<UserDTO> withdrawMemberList() throws Exception;
 
+
 	// 공지사항 본문 조회
 	public List<Notice_boardDTO> noticeOneList(int notice_id) throws Exception;
 	
@@ -51,6 +52,9 @@ public interface AdminService {
 
 	// 관리자 - 문의 게시판 답변하기 
 	public void questionCommend(Question_commendDTO qcdto) throws Exception;
+
+
+	public List<Game_scheduleDTO> memberTicketingList(String user_id) throws Exception;
 
 	
 }

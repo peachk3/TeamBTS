@@ -48,7 +48,8 @@
   
   <!-- 내 게시글 조회수 1증가 -->
   <update id="pbUpdateReadCnt">
-  	UPDATE post_board set post_view=post_view+1
+  	UPDATE post_board
+  	SET post_view=post_view+1
   	WHERE post_id=#{post_id}
   </update>
   
@@ -70,7 +71,8 @@
   
   <!-- 내 질문글 조회수 1증가 -->
   <update id="qbUpdateReadCnt">
-	UPDATE question_board set quest_view=quest_view+1
+	UPDATE question_board
+	SET quest_view=quest_view+1
 	WHERE quest_id=#{quest_id}
   </update>
   

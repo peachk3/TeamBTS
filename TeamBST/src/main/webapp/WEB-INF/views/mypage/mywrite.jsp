@@ -29,15 +29,20 @@
 			<tr>
 				<td>${post.post_id }</td>
 				<td>${post.post_writer_id }</td>
-				<td>${post.post_sub }</td>
+				<td>
+				<a href="/mypage/pbread?post_id=${post.post_id}">${post.post_sub }</a>
+				</td>
 				<td>${post.post_cont }</td>
-				<td>${post.post_cre_date }</td>
+				<td>
+				<fmt:formatDate type="both" value="${post.post_cre_date }" pattern="yy/MM/dd HH:mm" />
+				</td>
 				<td>${post.stad_id }</td>
-				<td>${post.post_view }</td>
+				<td>
+				<span class="badge bg-blue">${post.post_view }</span>
+				</td>
 				<td>${post.sale_status }</td>
 			</tr>
 			</c:forEach>
-		
 		</table>
 
 	
@@ -54,13 +59,16 @@
 			<tr>
 				<td>${post.quest_id }</td>
 				<td>${post.quest_writer_id }</td>
-				<td>${post.quest_sub }</td>
+				<td>
+				<a href="/mypage/qbread?quest_id=${post.quest_id}">${post.quest_sub }</a>
+				</td>
 				<td>${post.quest_cont }</td>
-				<td>${post.quest_cre_date }</td>
+				<td>
+				<fmt:formatDate type="both" value="${post.quest_cre_date }" pattern="yy/MM/dd HH:mm" />
+				</td>
 				<td>${post.quest_view }</td>
 			</tr>
 			</c:forEach>
-		
 		</table>
 
 

@@ -262,4 +262,28 @@ public class AdminController {
 	
 }	
 	
+
 	
+	// 일반회원의 예매 내역 조회
+	
+	@GetMapping(value="/adminMemberTicket")
+	public void adminMemberticketing(@RequestParam("user_id") String user_id, Model model) throws Exception {
+		logger.debug("관리자 - 일반회원의 예매 내역 리스트 조회");
+		
+		logger.debug("user_id = "+user_id);
+		
+		List<Game_scheduleDTO> memberTicketingList = aService.memberTicketingList(user_id);
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("memberTicketingList", memberTicketingList);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}

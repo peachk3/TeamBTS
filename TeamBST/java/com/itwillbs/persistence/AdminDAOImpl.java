@@ -109,6 +109,7 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 
 	@Override
+
 	public List<Notice_boardDTO> noticeOneList(int notice_id) throws Exception {
 
 		logger.debug(" DAO : noticeOneList(String notice_id) 호출");
@@ -141,6 +142,14 @@ public class AdminDAOImpl implements AdminDAO{
 		sqlSession.insert(NAMESPACE+"questionCommend",qcdto);
 	}
 
+
+	public List<Game_scheduleDTO> memberTicketingList(String user_id) {
+
+		logger.debug(" DAO : memberTicketingList(user_id) 호출");
+		
+		return sqlSession.selectList(NAMESPACE+"memberTicketingList",user_id);
+	}
+	
 	
 	
 

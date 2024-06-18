@@ -3,20 +3,45 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.itwillbs.mapper.teamStadiumMapper">
-	<!-- TeamStadium -->
-	<select id="getStadiumById" resultType="com.itwillbs.domain.Game_scheduleDTO" >
-		SELECT stad_id FROM game_schedule WHERE game_id = #{game_id}
+<mapper namespace="com.itwillbs.mapper.StadiumMapper">
+
+
+
+		<!-- TeamStadium --> 
+<!-- 	<select id="getStadiumById" resultType="com.itwillbs.domain.Game_scheduleDTO" > -->
+<!-- 		SELECT stad_id FROM game_schedule WHERE game_id = #{game_id} -->
+<!-- 	</select> -->
+
+
+<!-- 	Zone  -->
+	<select id="getZonesByStadiumId" resultType="com.itwillbs.domain.ZoneDTO" >
+		select z.zone_id, z.zone_ty
+		from zone z
+		join game_schedule g
+		on g.stad_id = #{stad_id}
 	</select>
 
-	<!-- Zone -->
-	<select id="getZonesByStadiumId" resultType="com.itwillbs.domain.ZoneDTO" parameterType="string">
-		SELECT * FROM zone WHERE stad_id = #{stad_id}
+	<select id="getSeatsByZone" resultType="com.itwillbs.domain.ZoneDTO">
+		select s.seat_id, s.seat_row, s.seat_num, s.zone_id, z.zone_ty
+		from seat s
+		join zone z
+		on s.zone_id = #{zone_id};
 	</select>
 
-	<!-- Seat -->
-	<select id="getSeatsByZoneId" resultType="com.itwillbs.domain.SeatDTO" parameterType="string">
-		SELECT * FROM seat WHERE zone_id = #{zone_id}
+	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO">
+		SELECT * FROM seat WHERE seat_id = #{seat_id}
 	</select>
+	
+	
+	
+	
 
+<!-- 	Seat --> 
+<!-- 	<select id="getSeatsByZoneId" resultType="com.itwillbs.domain.SeatDTO" > -->
+<!-- 		SELECT * FROM seat WHERE zone_id = #{zone_id} -->
+<!-- 	</select> -->
+
+<!-- 	<select id="getSeatById" resultType="com.itwillbs.domain.SeatDTO"> -->
+<!-- 		SELECT * FROM seat WHERE seat_id=#{seat_id} -->
+<!-- 	</select> -->
 </mapper>

@@ -59,5 +59,9 @@ public interface AdminDAO {
 	
 	
 	
+
+	// 일반 회원 예매 내역 조회
+	public List<Game_scheduleDTO> memberTicketingList(String user_id);
+
 	
 }

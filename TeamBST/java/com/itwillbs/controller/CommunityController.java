@@ -46,9 +46,23 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value="/communityWrite",method=RequestMethod.GET)
-	public void coummnityWrite_GET() {
-		logger.debug("거래 게시판 호출");
-		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
+	public String coummnityWrite_GET(HttpSession session) {
+		
+        String user_id = (String) session.getAttribute("user_id");
+        logger.debug("user_id : "+ user_id);
+		
+		  if(user_id != null) {
+			  logger.debug("거래 게시판 호출");
+			  logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
+	        
+	        	return "/community/communityWrite";
+	        } else {
+	        	
+	        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
+	        	
+	        	return "/login/loginPage";
+	        }
+		
 
 	}
 	
