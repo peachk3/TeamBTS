@@ -66,9 +66,7 @@
 				<td>
 				<fmt:formatDate type="both" value="${post.quest_cre_date }" pattern="yy/MM/dd HH:mm" />
 				</td>
-				<td>
-				<span class="badge bg-blue">${post.quest_view }</span>
-				</td>
+				<td>${post.quest_view }</td>
 			</tr>
 			</c:forEach>
 		</table>
