@@ -152,12 +152,6 @@
 						<div class="seat" data-row="2" data-num="A">2A</div>
 						<div class="seat" data-row="2" data-num="B">2B</div>
 						<div class="seat" data-row="2" data-num="C" >2C</div>
-<!-- 						<div class="seat" data-seat="1A" >1A</div> -->
-<!-- 						<div class="seat" data-seat="1B" >1B</div> -->
-<!-- 						<div class="seat" data-seat="1C" >1C</div> -->
-<!-- 						<div class="seat" data-seat="2A" >2A</div> -->
-<!-- 						<div class="seat" data-seat="2B" >2B</div> -->
-<!-- 						<div class="seat" data-seat="2C" >2C</div> -->
 					</div>
 			</div>			
 			<input type="hidden" id="data-row" value="">
