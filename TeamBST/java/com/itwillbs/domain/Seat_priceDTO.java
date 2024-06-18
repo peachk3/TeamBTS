@@ -6,7 +6,7 @@ import lombok.Data;
 public class Seat_priceDTO {
 	
 	private Integer seat_price_id;
-	private Integer zone_id;
+	private String zone_id;
 	private int price;
 	
 }
