@@ -19,7 +19,6 @@ import com.itwillbs.domain.SeatDTO;
 import com.itwillbs.domain.Team_n_stadiumDTO;
 import com.itwillbs.domain.ZoneDTO;
 import com.itwillbs.service.ScheduleService;
-import com.itwillbs.service.StadiumService;
 
 @Controller
 @RequestMapping(value="/ticketing/*")
@@ -80,7 +79,7 @@ public class TicketingController {
 	
 	
 	@Inject
-	private StadiumService stadService;
+	//private StadiumService stadService;
 	
 	// 구장 배치도 (구역 선택)
  	@RequestMapping(value="/stadium", method = RequestMethod.GET)
