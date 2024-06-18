@@ -38,6 +38,14 @@
 		<li class="nav-item"><a class="nav-link" href="/community/community">거래</a></li>
 		<li class="nav-item"><a class="nav-link" href="/announcement/announcement">고객센터</a></li>
 	</ul>
+	
+	<div>
+	
+	
+	
+	</div>
+	
+	
     <h1>예매 </h1>
 
 	<p>Stadium ID : ${stad_id }</p>
