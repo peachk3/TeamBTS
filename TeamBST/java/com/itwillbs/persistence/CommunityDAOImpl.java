@@ -38,6 +38,13 @@ public class CommunityDAOImpl implements CommunityDAO{
 		
 		return sqlSession.selectList(NAMESPACE + "PostList");
 	}
+
+	@Override
+	public List<Post_boardDTO> PostOneList(String post_id) throws Exception {
+		logger.debug("DAO : PostOneList(String PostOneList) 호출");
+
+		return sqlSession.selectList(NAMESPACE + "PostOneList",post_id);
+	}
 	
 
 }

@@ -3,15 +3,19 @@ package com.itwillbs.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.service.AnnouncementService;
 
@@ -55,9 +59,23 @@ public class AnnouncementController {
 	}
 	
 	@RequestMapping(value="/bulletinWrite",method=RequestMethod.GET)
-	public void announcementBulletinWrite_GET() {
-		logger.debug("문의 게시판 글쓰기 호출");
-		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
+	public String announcementBulletinWrite_GET(HttpSession session) {
+        String user_id = (String) session.getAttribute("user_id");
+        
+        logger.debug("user_id : "+ user_id);
+        if(user_id != null) {
+        	logger.debug("문의 게시판 글쓰기 호출");
+        	logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
+        
+        	return "/announcement/bulletinWrite";
+        } else {
+        	
+        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
+        	
+        	return "/login/loginPage";
+        }
+        
+        
 
 	}
 	
@@ -73,6 +91,41 @@ public class AnnouncementController {
 		return "redirect:/announcement/bulletin";
 		
 	}
+	
+//  공지사항 게시판 본문 확인하기
+	@GetMapping(value="/announcementContent")
+	public void communityContent_GET(@RequestParam("notice_id") String notice_id, Model model) throws Exception{
+		logger.debug("본문 내용 호출");
+    	logger.debug(" notice_id : " + notice_id);
+
+    	List<Post_boardDTO> noticeOneList = aService.noticeOneList(notice_id);
+    	
+		logger.debug("size : "+ noticeOneList.size());
+		logger.debug("size : "+ noticeOneList);
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("noticeOneList", noticeOneList);
+    	
+	}
+	
+//  문의 게시판 본문 확인하기
+	@GetMapping(value="/bulletinContent")
+	public void bulletinContent_GET(@RequestParam("quest_id") String quest_id, Model model) throws Exception{
+		logger.debug("본문 내용 호출");
+    	logger.debug(" quest_id : " + quest_id);
+
+    	List<Post_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
+    	
+		logger.debug("size : "+ QuestionOneList.size());
+		logger.debug("size : "+ QuestionOneList);
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("QuestionOneList", QuestionOneList);
+    	
+	}
+	
+	
+	
 	
 	
 }

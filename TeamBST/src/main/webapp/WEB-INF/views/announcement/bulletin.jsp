@@ -32,7 +32,7 @@
 				<c:forEach var="dto" items="${qBoaardList}">
 					<tr>
 						<td>${dto.quest_sub}</td>
-						<td>${dto.quest_sub}</td>
+						<td><a href="/announcement/bulletinContent?quest_id=${dto.quest_id}">${dto.quest_sub}</a></td>
 						<c:forEach var="dto_" items="${dto.userList}">
 							<td>${dto_.user_nick}</td>
 						</c:forEach>

@@ -78,9 +78,16 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 	session.setAttribute("user_id", resultDTO.getUser_id());
 	
 	
+	
+	
+	
 	return "redirect:/main/main";
 	
 	}
+
+
+
+
 //-----------------------------------------------------
 // 회원 로그아웃 
 @RequestMapping(value = "/logout",method = RequestMethod.POST)

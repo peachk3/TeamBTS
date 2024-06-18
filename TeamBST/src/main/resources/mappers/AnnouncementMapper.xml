@@ -44,6 +44,16 @@
 	<select id="noticeList" resultType="Notice_boardDTO">
 		select * from notice_board
 	</select>
+	
+	<!-- 공지사항 글 내용 조회 -->
+		<select id="noticeOneList" resultType="Notice_boardDTO">
+		select * from notice_board
+		where notice_id = #{notice_id}
+	</select>
+	
+	
+	
+	
 
 	<!-- 문의 게시글 작성 -->
 	<insert id="QuestionJoin">
@@ -57,5 +67,14 @@
 		from question_board qb join user u
 		on qb.quest_writer_id = u.user_id
 	</select>
+	
+	<!-- 문의 게시글 내용 조회 -->
+	<select id="QuestionOneList" resultMap="questMap">
+		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont
+		from question_board qb join user u
+		on qb.quest_writer_id = u.user_id
+		where quest_id = #{quest_id}
+	</select>
+	
 
 </mapper>
