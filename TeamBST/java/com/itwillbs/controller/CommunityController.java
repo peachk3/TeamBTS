@@ -60,7 +60,7 @@ public class CommunityController {
 	        	
 	        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
 	        	
-	        	return "/login/loginPage";
+	        	return "redirect:/login/loginPage";
 	        }
 		
 

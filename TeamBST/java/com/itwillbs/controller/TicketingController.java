@@ -107,15 +107,24 @@ public class TicketingController {
  	
 	
 	@GetMapping("/stadium/{stad_id}/{game_id}")
-	public String goStadium(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, Model model) {
-		
+	public String goStadium(HttpSession session,@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, Model model) {
+		String user_id = (String) session.getAttribute("user_id");
+	        
+        logger.debug("user_id : "+ user_id);
+
 		List<ZoneDTO> zones = stadService.getZonesByStadiumId(stad_id);
-		
-		model.addAttribute("stad_id", stad_id);
-		model.addAttribute("game_id", game_id);
-		model.addAttribute("zones", zones);
-		
-		return "/ticketing/stadium";
+		if(user_id != null) {
+        	model.addAttribute("stad_id", stad_id);
+        	model.addAttribute("game_id", game_id);
+        	model.addAttribute("zones", zones);
+        	
+        	return "/ticketing/stadium";
+        } else {
+        	
+        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
+        	
+        	return "redirect:/login/loginPage";
+        }
 	}
 	
 	
