@@ -35,10 +35,10 @@
 						<td>
 				<c:choose>
 					<c:when test="${dto.quest_public.equals('Y')}">
-			<a href="/admin/adminbulletinContent?quest_id=${dto.quest_id}">	[공개] ${dto.quest_sub } </a>
+			<a href="/announcement/bulletinContent?quest_id=${dto.quest_id}">	[공개] ${dto.quest_sub } </a>
 					</c:when>
 					<c:otherwise>
-			<a href="/admin/adminbulletinContent?quest_id=${dto.quest_id}">	[비공개] ${dto.quest_sub } </a>
+			<a href="/announcement/bulletinContent?quest_id=${dto.quest_id}">	[비공개] ${dto.quest_sub } </a>
 					</c:otherwise>
 				</c:choose>						
 						

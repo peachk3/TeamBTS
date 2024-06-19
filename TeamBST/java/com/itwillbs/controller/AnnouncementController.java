@@ -80,9 +80,12 @@ public class AnnouncementController {
 	}
 	
 	@RequestMapping(value="/bulletinWrite",method=RequestMethod.POST)
-	public String announcementBulletinWrite_POST(Question_boardDTO dto) {
+	public String announcementBulletinWrite_POST(Question_boardDTO dto,HttpSession session) {
+		String user_id = (String) session.getAttribute("user_id");
 		logger.debug("문의 게시판 글쓰기 호출");
 		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_POST() 호출");
+		
+		dto.setQuest_writer_id(user_id);
 		
 		logger.debug("dto : "+ dto);
 		

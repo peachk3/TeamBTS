@@ -58,7 +58,7 @@
 	<!-- 문의 게시글 작성 -->
 	<insert id="QuestionJoin">
 		insert into question_board (quest_writer_id, quest_sub, quest_cont, quest_cate, quest_public, photo_url)
-		values ("boo", #{quest_sub}, #{quest_cont}, #{quest_cate}, #{quest_public}, #{photo_url})
+		values (#{quest_writer_id}, #{quest_sub}, #{quest_cont}, #{quest_cate}, #{quest_public}, #{photo_url})
 	</insert>
 
 	<!-- 문의 게시글 목록 조회 -->
