@@ -2,6 +2,8 @@ package com.itwillbs.controller;
 
 import java.util.List;
 
+
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -12,9 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Post_boardDTO;
@@ -67,10 +71,11 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value="/communityWrite",method=RequestMethod.POST)
-	public String coummnityWrite_POST(Post_boardDTO dto) {
+	public String coummnityWrite_POST(Post_boardDTO dto,HttpSession session) {
+        String user_id = (String) session.getAttribute("user_id");
 		logger.debug("거래 게시판 호출");
 		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_POST() 호출");
-		
+		dto.setPost_writer_id(user_id);
 		logger.debug("dto : "+ dto);
 		
 		cService.PostJoin(dto);
@@ -80,7 +85,7 @@ public class CommunityController {
 	
 	//  거래 게시판 본문 확인하기
 	@GetMapping(value="/communityContent")
-	public void communityContent_GET(@RequestParam("post_id") String post_id, Model model) throws Exception{
+	public void communityContent_GET(@RequestParam("post_id") int post_id, Model model) throws Exception{
 		logger.debug("본문 내용 호출");
     	logger.debug(" post_id : " + post_id);
 
@@ -93,6 +98,84 @@ public class CommunityController {
 		model.addAttribute("PostOneList", PostOneList);
     	
 	}
+	
+//  게시판 글 수정하기(기존의 글정보 확인) - GET
+	@GetMapping(value="/communityModify")
+	public String communityModify_GET(Post_boardDTO pbdto,HttpSession session,Model model,@RequestParam("post_id") int post_id,@RequestParam("post_writer_id") String post_writer_id) throws Exception{
+		logger.debug(" communityModifyGET() 실행");
+			// 전달정보 bno 저장
+			logger.debug(" post_id : "+ post_id);
+			String user_id = (String) session.getAttribute("user_id");
+	        logger.debug("user_id : "+ user_id);
+	        logger.debug("post_writer_id : "+ post_writer_id);
+	        
+	        if (user_id == null) {
+	            logger.debug("로그인을 해야 수정을 할 수 있습니다");
+	            return "redirect:/login/loginPage";
+	        }
+	        
+	        if (user_id.equals(pbdto.getPost_writer_id())) {
+	            List<Post_boardDTO> PostOneList = cService.PostOneList(post_id);
+	            logger.debug("size : " + PostOneList.size());
+	            logger.debug("PostOneList : " + PostOneList);
+	            
+	            // 연결된 뷰페이지로 정보 전달
+	            model.addAttribute("PostOneList", PostOneList);
+	            return "/community/communityModify";
+	        } else {
+	        	logger.debug("본인이 작성한 글이 아닙니다");
+	            return "redirect:/community/communityContent?post_id="+post_id;
+	        }
+	    }
+			  
+		
+	
+	
+//  게시판 글 수정하기(기존의 글정보 확인) - POST
+	@PostMapping(value="/communityModify")
+	public String communityModify_POST(Post_boardDTO pbdto,@RequestParam("post_id") int post_id) throws Exception{
+		logger.debug("modifyPOST()실행 ");
+		// 한글처리 인코딩(필터)
+		// 전달 정보 저장
+		logger.debug("수정할 내용, {} ",pbdto);
+		
+		// 서비스 - DAO 글내용을 수정
+		cService.modifyContent(pbdto);
+		
+        return "redirect:/community/communityContent?post_id="+post_id;
+	}
+	
+	
+
+//  게시판 글 삭제하기(기존의 글정보 확인) - POST
+	@PostMapping(value="/communityDelete")
+	public String communityDelete_GET(Post_boardDTO pbdto,HttpSession session,Model model,@RequestParam("post_id") int post_id,@RequestParam("post_writer_id") String post_writer_id) throws Exception{
+		logger.debug(" communityDeleteGET() 실행");
+			// 전달정보 post_id 저장
+			logger.debug(" post_id : "+ post_id);
+			String user_id = (String) session.getAttribute("user_id");
+	        logger.debug("user_id : "+ user_id);
+	        logger.debug("post_writer_id : "+ post_writer_id);
+	        
+	        if (user_id == null) {
+	            logger.debug("로그인을 해야 삭제를 할 수 있습니다");
+	            return "redirect:/login/loginPage";
+	        }
+	        
+	        if (user_id.equals(pbdto.getPost_writer_id())) {
+	        	// 게시글 삭제하기
+	        	cService.deleteContent(post_id);
+	        	
+	            return "redirect:/community/community";
+	        } else {
+	        	logger.debug("본인이 작성한 글이 아닙니다");
+	            return "redirect:/community/communityContent?post_id="+post_id;
+	        }
+	    }
+			  
+		
+	
+	
 	
 	
 	

@@ -37,10 +37,24 @@ public class CommunityServiceImpl implements CommunityService{
 	}
 
 	@Override
-	public List<Post_boardDTO> PostOneList(String post_id) throws Exception {
+	public List<Post_boardDTO> PostOneList(int post_id) throws Exception {
 		logger.debug("글 내용 조회");
-	
+		
 		return cdao.PostOneList(post_id);
+	}
+
+	@Override
+	public void modifyContent(Post_boardDTO pbdto) throws Exception {
+		logger.debug("글 내용 수정");
+
+		cdao.modifyContent(pbdto);
+	}
+
+	@Override
+	public void deleteContent(int post_id) throws Exception {
+		logger.debug("게시글 삭제");
+		
+		cdao.deleteContent(post_id);
 	}
 
 	
