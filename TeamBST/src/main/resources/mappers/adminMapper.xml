@@ -122,7 +122,15 @@
 		select * from game_schedule where game_id = #{game_id}
 	</select>
 
-
+		 	<!-- 일반회원의 예매 내역 조회 -->
+	 	<select id="memberTicketingList" resultType="Game_scheduleDTO">
+			select game_date, game_time, stad_id, home_team_id, away_team_id
+			from (reservation_info ri1 join game_schedule gs
+			on ri1.game_id = gs.game_id), 
+			(reservation_info ri2 join user u
+			on ri2.user_id = u.user_id)
+			where u.user_id = #{user_id};
+	 	</select>
 
 
 

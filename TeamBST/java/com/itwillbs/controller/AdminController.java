@@ -265,7 +265,6 @@ public class AdminController {
 
 	
 	// 일반회원의 예매 내역 조회
-	
 	@GetMapping(value="/adminMemberTicket")
 	public void adminMemberticketing(@RequestParam("user_id") String user_id, Model model) throws Exception {
 		logger.debug("관리자 - 일반회원의 예매 내역 리스트 조회");
