@@ -40,10 +40,24 @@ public class CommunityDAOImpl implements CommunityDAO{
 	}
 
 	@Override
-	public List<Post_boardDTO> PostOneList(String post_id) throws Exception {
-		logger.debug("DAO : PostOneList(String PostOneList) 호출");
+	public List<Post_boardDTO> PostOneList(int post_id) throws Exception {
+		logger.debug("DAO : PostOneList(int PostOneList) 호출");
 
 		return sqlSession.selectList(NAMESPACE + "PostOneList",post_id);
+	}
+
+	@Override
+	public void modifyContent(Post_boardDTO pbdto) throws Exception {
+		logger.debug("DAO : modifyContent(Post_boardDTO pbdto");
+		
+		sqlSession.update(NAMESPACE+"modifyContent",pbdto);
+	}
+
+	@Override
+	public void deleteContent(int post_id) throws Exception {
+		logger.debug("DAO : deleteContent(int post_id)");
+			
+		sqlSession.update(NAMESPACE+"deleteContent",post_id);
 	}
 	
 

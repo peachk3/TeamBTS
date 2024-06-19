@@ -56,8 +56,17 @@
          ${post.post_cont }
       </div>
    </div>
-</c:forEach>
    
+              <button type="submit" onclick="location.href='/community/communityModify?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }'">수정</button>
+
+		<form action="/community/communityDelete?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }" method="post">
+			<input type="hidden" name="post_id" >
+			<input type="submit" value="삭제">
+		</form>	
+				
+                <button type="button" onclick="window.history.back();">취소</button>
+   
+</c:forEach>
    
 </body>
 </html>

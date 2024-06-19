@@ -40,7 +40,19 @@
 				<c:forEach var="dto" items="${pBoardList}">
 					<tr>
 						<td>${dto.post_id }</td>
-						<td><a href="/community/communityContent?post_id=${dto.post_id }">${dto.post_sub}</a></td>
+						<td>
+				<c:choose>
+					<c:when test="${dto.sale_status.equals('SALE')}">
+						<a href="/community/communityContent?post_id=${dto.post_id }">	[판매중] ${dto.post_sub} </a>
+					</c:when>
+					<c:otherwise>
+						<a href="/community/communityContent?post_id=${dto.post_id }">	[판매완료] ${dto.post_sub} </a>
+					</c:otherwise>
+				</c:choose>		
+						</td>
+						
+						
+						
 						<c:forEach var="dto_" items="${dto.userList}">
 							<td>${dto_.user_nick}</td>
 						</c:forEach>
