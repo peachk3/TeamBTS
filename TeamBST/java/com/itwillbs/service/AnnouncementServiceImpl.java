@@ -55,10 +55,23 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	}
 
 	@Override
-	public List<Post_boardDTO> QuestionOneList(String quest_id) throws Exception {
+	public List<Question_boardDTO> QuestionOneList(int quest_id) throws Exception {
 		logger.debug("문의 게시글 글 내용 조회");
 		
 		return adao.QuestionOneList(quest_id);
+	}
+
+	@Override
+	public void bulletinModify(Question_boardDTO qbdto) throws Exception {
+		logger.debug("문의 게시글 글 내용 수정");
+		
+		adao.bulletinModify(qbdto);
+	}
+
+	@Override
+	public void bulletinDelete(int quest_id) throws Exception {
+
+		adao.bulletinDelete(quest_id);
 	}
 
 	

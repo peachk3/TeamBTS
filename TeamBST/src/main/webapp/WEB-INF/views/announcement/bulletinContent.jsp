@@ -58,6 +58,20 @@
          ${quest.quest_cont }
       </div>
    </div>
+   
+       <button type="submit" onclick="location.href='/announcement/bulletinModify?quest_id=${quest.quest_id }&quest_writer_id=${quest.quest_writer_id }'">수정</button>
+
+		<form action="/announcement/bulletinDelete?quest_id=${quest.quest_id }&quest_writer_id=${quest.quest_writer_id }" method="post">
+			<input type="hidden" name="quest_id" >
+			<input type="submit" value="삭제">
+		</form>	
+				
+                <button type="button" onclick="window.history.back();">취소</button>
+  
+   
+   
+   
+   
 </c:forEach>
    
    

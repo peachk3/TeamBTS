@@ -56,11 +56,28 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 	}
 
 	@Override
-	public List<Post_boardDTO> QuestionOneList(String quest_id) throws Exception {
+	public List<Question_boardDTO> QuestionOneList(int quest_id) throws Exception {
 		logger.debug(" DAO : noticeOneList(String notice_id) 호출");
 		
 		return sqlSession.selectList(NAMESPACE+"QuestionOneList",quest_id);
 	}
+
+	@Override
+	public void bulletinModify(Question_boardDTO qbdto) throws Exception{
+		logger.debug(" DAO : modifyContent(Question_boardDTO qbdto) 호출");
+		
+		sqlSession.update(NAMESPACE+"bulletinModify",qbdto);
+	}
+
+	@Override
+	public void bulletinDelete(int quest_id) throws Exception {
+		logger.debug(" DAO : bulletinDelete(int quest_id) 호출");
+		
+		sqlSession.update(NAMESPACE+"bulletinDelete",quest_id);
+	}
+	
+	
+	
 	
 	
 
