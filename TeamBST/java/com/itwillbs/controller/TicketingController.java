@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.SeatDTO;
+import com.itwillbs.domain.Seat_bookDTO;
 import com.itwillbs.domain.Seat_priceDTO;
 import com.itwillbs.domain.Team_n_stadiumDTO;
 import com.itwillbs.domain.UserDTO;
@@ -154,11 +155,12 @@ public class TicketingController {
 		// user_id 비교해서 user_name 가져오기
 		List<UserDTO> user = stadService.getUserName(user_id);
 		
-		// 예매하기 버튼 클릭 시 booked_at '1'로 업데이트
-		stadService.getSelectedSeat(game_id);
 		
-		// 좌석 가격
-		List<Seat_priceDTO> seatPrice = stadService.getSeatPrice(zone_id);
+		// 성인 좌석 가격
+		List<Seat_priceDTO> seatAdultPrice = stadService.getSeatAdultPrice(zone_id);
+		// 초등학생 좌석 가격
+		List<Seat_priceDTO> seatChildPrice = stadService.getSeatChildPrice(zone_id);
+		
 		
 		
 		// List<SeatDTO> selectedSeat = stadService.getSelectedSeat(seat_id);
@@ -174,7 +176,8 @@ public class TicketingController {
 //		model.addAttribute("user_name", user_name);
 		model.addAttribute("user", user);
 		model.addAttribute("gameSchedule", gameSchedule);
-		model.addAttribute("seatPrice", seatPrice);
+		model.addAttribute("seatAdultPrice", seatAdultPrice);
+		model.addAttribute("seatChildPrice", seatChildPrice);
 		
 		logger.debug("bookTicket() 호출 ");
 		
@@ -183,6 +186,14 @@ public class TicketingController {
 	
 	// 여기까지 성공
 	
+	@PostMapping(value="/reservation/{stad_id}/{game_id}/{zone_ty}/{zone_id}/{seat_row}/{seat_num}/{seat_id}")
+	public String updateBooked(HttpSession session, @PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("seat_row") String seat_row, @PathVariable("seat_num") String seat_num, 
+			@PathVariable("zone_ty") String zone_ty, @PathVariable("seat_id") String seat_id, @PathVariable("zone_id")String zone_id,  Model model) {
+		// 예매하기 버튼 클릭 시 booked_at '1'로 업데이트
+		stadService.getSelectedSeat(game_id, seat_id);
+
+		return "redirect:/ticketing/reservation";
+	}
 	
 //	public String goSeat(@PathVariable)
 	

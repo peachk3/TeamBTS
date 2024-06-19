@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.SeatDTO;
+import com.itwillbs.domain.Seat_bookDTO;
 import com.itwillbs.domain.Seat_priceDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.domain.ZoneDTO;
@@ -59,19 +60,26 @@ public class StadiumServiceImpl implements StadiumService {
 	}
 
 	@Override
-	public int getSelectedSeat(String game_id) {
+	public void getSelectedSeat(String game_id, String seat_id) {
 		logger.debug("getSelectedSeat(String game_id) 호출");
 		
-		return staddao.getSelectedSeat(game_id);
+		staddao.getSelectedSeat(game_id, seat_id);
 	}
 
 	@Override
-	public List<Seat_priceDTO> getSeatPrice(String zone_id) {
+	public List<Seat_priceDTO> getSeatAdultPrice(String zone_id) {
 		logger.debug("getSeatPrice(String zone_id) 호출");
 		
-		return staddao.getSeatPrice(zone_id);
+		return staddao.getSeatAdultPrice(zone_id);
 	}
 
+	@Override
+	public List<Seat_priceDTO> getSeatChildPrice(String zone_id) {
+		logger.debug("getSeatChildPrice(String zone_id) 호출");
+		return staddao.getSeatChildPrice(zone_id);
+	}
+
+	
 	
 //	@Override
 //	public int getSelectedSeat(String seat_id) {

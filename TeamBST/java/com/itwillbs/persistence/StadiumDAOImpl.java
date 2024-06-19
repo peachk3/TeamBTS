@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.SeatDTO;
+import com.itwillbs.domain.Seat_bookDTO;
 import com.itwillbs.domain.Seat_priceDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.domain.ZoneDTO;
@@ -73,19 +74,25 @@ public class StadiumDAOImpl implements StadiumDAO {
 	}
 
 	@Override
-	public int getSelectedSeat(String game_id) {
+	public void getSelectedSeat(String game_id, String seat_id) {
 		logger.debug("getSelectedSeat(String seat_id) 호출");
 		
-		return sqlSession.update(NAMESPACE + "getSelectedSeat", game_id);
 	}
 
 	@Override
-	public List<Seat_priceDTO> getSeatPrice(String zone_id) {
+	public List<Seat_priceDTO> getSeatAdultPrice(String zone_id) {
 		logger.debug("getSeatPrice(String zone_id) 호출 ");
 		
-		return sqlSession.selectList(NAMESPACE + "getSeatPrice", zone_id);
+		return sqlSession.selectList(NAMESPACE + "getSeatAdultPrice", zone_id);
 	}
 
+	@Override
+	public List<Seat_priceDTO> getSeatChildPrice(String zone_id) {
+		logger.debug("getSeatChildPrice(String zone_id) 호출 ");
+		return sqlSession.selectList(NAMESPACE + "getSeatChildPrice", zone_id);
+	}
+
+	
 
 	
 //	@Override

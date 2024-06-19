@@ -46,17 +46,28 @@
 	
 	<!-- 선택된 좌석 정보 변경 -->
 	<update id="getSelectedSeat">
+<!-- 		INSERT INTO seat_book (seat_id, game_id, booked_at) -->
+<!-- 		VALUES (#{seat_id}, #{game_id}, 1) -->
+<!-- IN (SELECT seat_id FROM seat WHERE seat_id=#{seat_id}) -->
+<!-- IN (SELECT game_id FROM game_schedule WHERE game_id=#{game_id}) -->
 		UPDATE seat_book
-		SET booked_at = "1"
-		WHERE seat_id=#{seat_id} AND game_id=#{game_id}
+		SET booked_at = 1
+		WHERE seat_id IN (SELECT seat_id FROM seat WHERE seat_id=#{seat_id})
+		AND game_id IN (SELECT game_id FROM game_schedule WHERE game_id=#{game_id}) 
 	</update>
 	
 	
 	<!-- 좌석 가격 -->
-	<select id="getSeatPrice" resultType="com.itwillbs.domain.Seat_priceDTO">
+	<select id="getSeatAdultPrice" resultType="com.itwillbs.domain.Seat_priceDTO">
 		select * 
 		from seat_price
-		where zone_id=#{zone_id}
+		where seat_price_id LIKE '%_A' AND zone_id=#{zone_id};
+	</select>
+	
+	<select id="getSeatChildPrice" resultType="com.itwillbs.domain.Seat_priceDTO">
+		select * 
+		from seat_price
+		where seat_price_id LIKE '%_C' AND zone_id=#{zone_id} 
 	</select>
 	<!-- 선택된 좌석 정보 변경하기 -->
 <!-- 	<update id="getSelectedSeat"> -->

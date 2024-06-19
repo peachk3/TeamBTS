@@ -106,10 +106,11 @@
 				<div class="title_box">
 					<h5 class="title title_txt">티켓종류 매수 선택</h5>
 				</div>
-				<c:forEach var="sp" items="${seatPrice}">
-				<label for="adultNum">성인:${sp.price } </label>
-<!-- 				<form> -->
-					<select name="adultNum" id="adultNum">
+				
+				<form>
+				<c:forEach var="sap" items="${seatAdultPrice}">
+				<label for="adultNum">성인:${sap.price } </label>
+				<select name="adultNum" id="adultNum">
 						<option value="">0</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -118,11 +119,11 @@
 						<option value="5">5</option>
 						<option value="6">6</option>
 					</select>
-<!-- 				</form> -->
-<!-- 					<span id="selectedAdult"></span> -->
+				</c:forEach>
+					<span id="selectedAdult"></span>
 
-				<label for="childNum">초등학생:${sp.price } </label>
-<!-- 				<form> -->
+				<c:forEach var="scp" items="${seatChildPrice}">
+				<label for="childNum">초등학생:${scp.price } </label>
 					<select name="childNum" id="childNum">
 						<option value="">0</option>
 						<option value="1">1</option>
@@ -132,12 +133,13 @@
 						<option value="5">5</option>
 						<option value="6">6</option>
 					</select>
-<!-- 				</form> -->
-<!-- 					<span id="selectedChild"></span> -->
-			 	<button id="validateButton">확인</button>
-			 	</c:forEach>
+					</c:forEach>
+					<span id="selectedChild"></span>
+<!-- 			 	<button id="validateButton">확인</button> -->
+				</form>
 			</div>
 		</div>
+
 		<div class="reserve_right">
 			<div class="info-panel">
 		<c:forEach var="gs" items="${gameSchedule}">
@@ -167,18 +169,19 @@
 			</c:forEach>
 
 			<!-- 선택된 좌석 리스트로 출력해야 함! -->
-<%-- 			<c:forEach var="seat" items="${selectedSeats}" varStatus="status"> --%>
-<%-- 				<c:choose> --%>
-<%-- 					<c:when test="${status.index == 0}"> --%>
-<%--                 		${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번 --%>
-<%--             		</c:when> --%>
-<%-- 				<c:otherwise> --%>
-<%--                 	, ${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번 --%>
-<%--             	</c:otherwise> --%>
-<%-- 				</c:choose> --%>
-<%-- 			</c:forEach> --%>
 				<p>
-					선택 좌석: <span id="selected-seats">${zone_ty }구역 ${seat_row }열 ${seat_num }번</span>
+					선택 좌석 :
+<%-- 					<c:forEach var="seat" items="${selectedSeat}" varStatus="status"> --%>
+						<c:choose>
+							<c:when test="${status.index == 0}">
+								${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번
+            				</c:when>
+							<c:otherwise>
+                				, ${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번
+            				</c:otherwise>
+						</c:choose>
+<%-- 					</c:forEach> --%>
+					<span id="selected-seats"> </span>
 				</p>
 				<p>
 					티켓 금액: <span id="ticket-price">50000원</span>
@@ -211,7 +214,7 @@
     
   	
     <script type="text/javascript">
-//     window.onload = function() {
+//    window.onload = function() {
     	
     	// 현재 URL을 가져옵니다.
         const currentUrl = window.location.href;
@@ -224,7 +227,7 @@
         const seatIds = seatIdsString.split(',');
         
         // 선택된 좌석 수를 계산
-        const seatCount = seatIds.length;
+        let seatCount = seatIds.length;
         
         // 콘솔에 seatCount 출력
         console.log(seatCount);
@@ -232,9 +235,34 @@
         // 선택된 좌석 수를 화면에 출력
         document.getElementById('seat-count').innerText = '선택하신 좌석의 수: ' + seatCount ;
     	
-//     };
+
+ // 성인 수 선택 요소
+    const adultSelect = document.getElementById('adultNum');
+    // 청소년 수 선택 요소
+    const childSelect = document.getElementById('childNum');
+
+    // 선택된 성인 수를 화면에 업데이트하는 함수
+    function updateSelectedAdultCount() {
+        const selectedAdultCount = document.getElementById('selectedAdult');
+        selectedAdultCount.textContent = adultSelect.value;
+    }
+
+//     // 선택된 청소년 수를 화면에 업데이트하는 함수
+//     function updateSelectedChildCount() {
+//         const selectedChildCount = document.getElementById('selectedChild');
+//         selectedChildCount.textContent = childSelect.value;
+//     }
+
+//     // 성인 수 선택 요소의 변경 이벤트 리스너 추가
+//     adultSelect.addEventListener('change', updateSelectedAdultCount);
+//     // 청소년 수 선택 요소의 변경 이벤트 리스너 추가
+//     childSelect.addEventListener('change', updateSelectedChildCount);
+
+//     // 초기 페이지 로딩 시 선택된 값으로 업데이트
+//     updateSelectedAdultCount();
+//     updateSelectedChildCount();	
     
-    const validateButton = document.getElementById('validateButton');
+    const validateButton = document.getElementById('payment');
     validateButton.addEventListener('click', validateSeatSelection);
 
     function validateSeatSelection() {
@@ -254,31 +282,7 @@
         }
     }
 
-    // 성인 수 선택 요소
-    const adultSelect = document.getElementById('adultNum');
-    // 청소년 수 선택 요소
-    const childSelect = document.getElementById('childNum');
-
-    // 선택된 성인 수를 화면에 업데이트하는 함수
-    function updateSelectedAdultCount() {
-        const selectedAdultCount = document.getElementById('selectedAdult');
-        selectedAdultCount.textContent = adultSelect.value;
-    }
-
-    // 선택된 청소년 수를 화면에 업데이트하는 함수
-    function updateSelectedChildCount() {
-        const selectedChildCount = document.getElementById('selectedChild');
-        selectedChildCount.textContent = childSelect.value;
-    }
-
-    // 성인 수 선택 요소의 변경 이벤트 리스너 추가
-    adultSelect.addEventListener('change', updateSelectedAdultCount);
-    // 청소년 수 선택 요소의 변경 이벤트 리스너 추가
-    childSelect.addEventListener('change', updateSelectedChildCount);
-
-    // 초기 페이지 로딩 시 선택된 값으로 업데이트
-    updateSelectedAdultCount();
-    updateSelectedChildCount();	
+ //   }  
     	
     
     </script>

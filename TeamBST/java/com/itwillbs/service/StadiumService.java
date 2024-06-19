@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.SeatDTO;
+import com.itwillbs.domain.Seat_bookDTO;
 import com.itwillbs.domain.Seat_priceDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.domain.ZoneDTO;
@@ -34,9 +35,11 @@ public interface StadiumService {
 
 	public List<Game_scheduleDTO> getGameSche(String game_id);
 
-	public int getSelectedSeat(String game_id);
+	public void getSelectedSeat(String game_id, String seat_id);
 
-	public List<Seat_priceDTO> getSeatPrice(String zone_id);
+	public List<Seat_priceDTO> getSeatAdultPrice(String zone_id);
+
+	public List<Seat_priceDTO> getSeatChildPrice(String zone_id);
 
 //	int getSelectedSeat(String game_id);
 
