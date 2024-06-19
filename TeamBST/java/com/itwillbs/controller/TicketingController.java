@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,10 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.SeatDTO;
-import com.itwillbs.domain.Team_n_stadiumDTO;
 import com.itwillbs.domain.ZoneDTO;
 import com.itwillbs.service.ScheduleService;
 import com.itwillbs.service.StadiumService;
@@ -48,15 +52,27 @@ public class TicketingController {
 	
 	
 	@RequestMapping(value="/ticketing",method=RequestMethod.POST)
-	 public String TeamTicketing(@RequestParam("stad_id") String stad_id, Model model) {
+	@ResponseBody
+	 public String TeamTicketing(@RequestParam("stad_id") String stad_id, Model model) throws Exception{
         logger.debug("티켓팅 홈 페이지");
         logger.debug("stad_id : " + stad_id);
 
         List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
         model.addAttribute("TeamScheduleList", TeamScheduleList);
         model.addAttribute("selectedStadium", stad_id); // 선택한 stadium id를 모델에 추가
+        
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule()); // Java 8 날짜 타입 지원
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false); // 타임스탬프로 변환하지 않음
+        // 원하는 날짜 포맷 설정 (예: "yyyy-MM-dd")
+        mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+        
+        String jsonTeamScheduleList = mapper.writeValueAsString(TeamScheduleList);
+        logger.debug("jsonTeamScheduleList : " + jsonTeamScheduleList);
 
-        return "redirect:/ticketing/ticketing?stad_id=" + stad_id; // 선택한 stadium id와 함께 GET 요청으로 리다이렉트
+        return jsonTeamScheduleList;
+
+//        return "redirect:/ticketing/ticketing?stad_id=" + stad_id; // 선택한 stadium id와 함께 GET 요청으로 리다이렉트
     }
 	
 	
