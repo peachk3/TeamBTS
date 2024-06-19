@@ -11,5 +11,8 @@ public interface MemberDAO {
 		//로그인
 		public UserDTO memberLogin(UserDTO udto);
 		public UserDTO memberLogin(String user_id, String user_pwd);
+
+		//아이디 중복체크
+		public int idCheck(String user_id) throws Exception;
 	
 }

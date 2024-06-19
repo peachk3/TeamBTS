@@ -69,8 +69,18 @@ public class MemberDAOImpl implements MemberDAO {
 		//결과를 수정없이 전달
 		return sqlSession.selectOne(NAMESPACE + "loginCheck", sendDTO);
 	}
+	
+	//아이디 중복체크 
+	@Override
+	public int idCheck(String user_id) throws Exception {
+		int result = sqlSession.selectOne(NAMESPACE+"idCheck",user_id);
+		
+		logger.debug("result : "+ result);
+	
+		return result;
+	}
 
-
+	
 	
 	
 	

@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link href="../resources/css/signup.css" rel="stylesheet"> <!--signup.css 파일 연결 -->
-    <script src="../resources/js/signup_script.js"></script>
+  <!--  <script src="../resources/js/kakao_login.js"></script>  -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../resources/js/signup_script.js"></script>
     <script src="https://developers.kakao.com/sdk/kakao.min.js"></script><!-- 카카오 SDK 파일-->
 </head>
 <body>
@@ -25,21 +26,23 @@
         <hr class="hr-5">
 
         <h2>회원가입</h2> <!-- signup.jsp 연결 -->
-        <form id="signupForm" action="/login/signupPage" method="post" onsubmit="return validateForm()">
+        <form id="signupForm" action="/login/signupPage" method="post"  onsubmit="return validateForm()">
             <div class="form-group">
                <!-- 이름 -->
                 <div class="form-group">
                 <label for="name"></label>
-                <input type="text" class="in-b"  id="name" name="user_name" placeholder="이름 *" >
+                <input type="text" class="in-b"  id="user_name" name="user_name" autocomplete="off" placeholder="이름 *" oninput="checkName(), activeSignupbtn()">
+               		<i id = "nEmo" class="fa fa-id-card-o"></i>
                 </div>
 
                  <!-- 아이디-->
                 <label for="username"></label>
                 <div class="btn-group"> <!-- 아이디 중복확인 버튼-->
-                  <input type="text" id="id" name="user_id" placeholder="아이디 *" >
-                  <button type="button" class="check-button" onclick="checkDuplicate('id')">중복확인</button>
+                  <input type="text" id="user_id" name="user_id" placeholder="아이디 *">
+                  <button type="button" class="check-button" name="idCheck" id="idCheck" oninput="checkId(), activateSignupbtn()">중복확인</button>
                  </div>
-            
+                
+            	
                 <!-- 비밀번호-->
                 <div class="form-group">
                 <label for="password"></label>
@@ -50,10 +53,11 @@
                 <input class="in-b" type="password" id="confirm-password" name="user_confirm-password" placeholder="비밀번호 확인 *" >
     
     		 <!-- 생년월일 -->
-    			 <p >날짜 : 
-        		<input type="date" id="date" max="2077-06-20" min="1900-01-01" name="user_birth">
-    			 </p>
-    			  
+    			 <div class="form-group">
+    			 <label for="birth"></label>
+        		날짜 : <input type="date" id="date" max="2077-06-20" min="1900-01-01" name="user_birth">
+    			 </div>
+    			 
                 <!--닉네임-->
                 <label for="nickname"></label>
                 <div class="btn-group"> <!-- 닉네임 중복확인-->
@@ -72,15 +76,24 @@
                 <label for="phone"></label>
                 <div class="btn-group">
                   <input type="tel" id="phone" name="user_phone" placeholder="휴대폰번호">
-                  <button type="button" class="check-button" onclick="sendCode()">인증번호 전송</button> <!-- 휴대전화 인증번호 전송버튼-->
-                </div>
+                  <button type="button" class="sendCode" onclick="sendCode()" value="인증번호받기">인증번호 전송</button> <!-- 휴대전화 인증번호 전송버튼-->
+               		<div style="display: none;" class="successMessage">
+               			<b>인증 번호가 발송 되었습니다</b>
+               		</div>
+				</div>
 
                 <!-- 휴대폰 인증번호 입력 칸-->
              <label for="verification"></label> 
                 <div class="btn-group">
-                  <input type="text" id="verification" name="verification" placeholder="인증번호 입력 *">
-                  <button type="button" class="verifyCode" onclick="verifyCode()">확인</button>
-                  <button type="button" class="resendCode" onclick="resendCode()">재전송</button>
+                  <input type="text" name="phoneCode" id="phoneCode">
+                  	<button type="button" onclick="checkMessage()" value="인증번호 확인">확인</button>
+                 	<div style="display:none;" class="successMessge">
+						<b>인증 성공!</b>
+                	</div>	
+                  <button type="button" class="phoneCode" value="재전송" onclick="phoneCode()">재전송</button>
+					<div style="display: none;" class="sendCodeMessage">
+                 		<b>인증 번호가 발송되었습니다</b>
+					</div>
                 </div>
 	           </div> 	<!-- div - form-group 끝-->
 
@@ -104,7 +117,7 @@
                 <!-- 가입하기 & 로그인 버튼-->
             <div id="signup_n_login">
               <label>
-                <button type="submit" id="submit-btn" class="submit-btn" >가입하기</button>
+                <button type="submit" id="signupbtn" class="submit-btn">가입하기</button>
               </label>
               <label>
                 <button type="button" id="submit-btn" class="login-btn" onclick="location.href='/login/loginPage'">로그인</button>
@@ -113,7 +126,7 @@
         </form> <!-- signupForm-->
     </div> <!-- signup-box-->
 	<script>
-		// 로그인 버튼 클릭 시 체크박스 검사
+	// 로그인 버튼 클릭 시 체크박스 검사
 		$("#submit-btn").click(function(event) {
 			if (!$("#terms").is(":checked")) {
 				event.preventDefault(); // 폼 제출 방지
@@ -123,6 +136,52 @@
 				alert("회원가입 완료"); // 폼 제출 성공 시 메시지
 			}
 		});
+		
+		//이름유효성확인
+		function regMemberName(user_name) { //이름--> 유효성
+		   var regExp = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+		   return regExp.test(user_name);
+		}
+		//아이디 유효성
+		function regMemberid(user_id) { //아이디 //영문자 또는 숫자 6~16자
+			   var regExp = /^[A-za-z0-9]{5,15}/g;
+			   return regExp.test(user_id);   
+		}
+		
+		
+		// 로그인 버튼 클릭 시 체크박스 검사
+		$("#idCheck").click(function(event) {
+			//alert('클릭');
+			idCheck(); 
+		});
+		
+		// 이름에서 valuechange 
+		const user_name = document.getElementById("user_name");
+		user_name.addEventListener("change", function(e) {
+			var user_name = document.getElementById("user_name").value;
+			
+			regMemberName(user_name);
+			if(!regMemberName(user_name)) {
+                   //document.querySelector("#failid").style.display = "block";
+                   alert('이름을 입력해주세요');
+			}      
+		}); 
+		// 아이디박스에서 valuechange 
+		const user_id = document.getElementById("user_id");
+		user_id.addEventListener("change", function(e) {
+			var user_id = document.getElementById("user_id").value;
+			
+			regMemberid(user_id);
+			if(!regMemberid(user_id)) {
+                   //document.querySelector("#failid").style.display = "block";
+                   alert('6~16자의 영문자와 숫자를 조합해서 입력해주세요. ');
+			}      
+		}); 
+
+		
+		
+		
+
 	</script>
 </body>
 </html>

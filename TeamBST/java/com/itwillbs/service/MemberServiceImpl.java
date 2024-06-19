@@ -52,5 +52,18 @@ public class MemberServiceImpl implements MemberService{
 		return resultDTO;
 		
 	}
+
+	//아이디 중복체크 
+	@Override
+	public int idCheck(String user_id) throws Exception {
+		int result = mdao.idCheck(user_id);
+		
+		logger.debug("result : 	"+ result);
+		
+		return result;
+	}
+	
+	
+	
 	
 }

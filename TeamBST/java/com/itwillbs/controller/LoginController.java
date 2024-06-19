@@ -9,15 +9,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.service.MemberService;
 
 //http://localhost:8088/login/signupPage
 //http://localhost:8088/login/loginPage
-
 
 @Controller
 @RequestMapping(value="/login/*")
@@ -96,8 +98,19 @@ public String logoutPOST(HttpSession session) {
 	session.invalidate(); // 세션 무효화
 	return "redirect:/login/loginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
 }
-//===============================================
-//아이디 중복 체크 (비동기식)
+//-----------------------------------------------------
+//아이디 중복 체크 (동기식)
+@GetMapping("/idCheck")
+@ResponseBody
+public int idCheck(@RequestParam("user_id")String user_id)throws Exception{
+	logger.debug("user_id" + user_id);
+	
+	int result = mService.idCheck(user_id);
+	
+	logger.debug("결과값" + result);
+	
+	return result;
+}
 	
 
 }
