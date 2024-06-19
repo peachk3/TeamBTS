@@ -21,6 +21,13 @@ public interface AnnouncementService {
 	public List<Post_boardDTO> noticeOneList(String notice_id) throws Exception;
 	
 	// 문의 게시글 글 내용 조회
-	public List<Post_boardDTO> QuestionOneList(String quest_id) throws Exception;
+	public List<Question_boardDTO> QuestionOneList(int quest_id) throws Exception;
+
+	// 문의 게시글 글 내용 수정
+	public void bulletinModify(Question_boardDTO qbdto) throws Exception;
+
+	// 문의 게시글 삭제
+	public void bulletinDelete(int quest_id) throws Exception;
+
 
 }

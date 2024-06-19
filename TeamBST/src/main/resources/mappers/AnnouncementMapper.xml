@@ -66,15 +66,29 @@
 		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_public
 		from question_board qb join user u
 		on qb.quest_writer_id = u.user_id
+		where quest_del_at = 'N'
 	</select>
 	
 	<!-- 문의 게시글 내용 조회 -->
 	<select id="QuestionOneList" resultMap="questMap">
-		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id
+		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id,qb.quest_cate,qb.quest_public
 		from question_board qb join user u
 		on qb.quest_writer_id = u.user_id
 		where quest_id = #{quest_id}
 	</select>
 	
+	<!-- 문의 게시글 내용 수정 -->
+	<update id="bulletinModify">
+		update question_board set quest_sub=#{quest_sub},quest_cont=#{quest_cont},quest_cate=#{quest_cate},quest_public=#{quest_public}
+		where quest_id = #{quest_id}
+	</update>
+
+	<!-- 문의 게시판 글 내용 삭제 -->
+	<update id="bulletinDelete">
+		update question_board
+		set quest_del_at = 'Y', quest_del_date = now()
+		where quest_id = #{quest_id}
+	</update>
+
 
 </mapper>
