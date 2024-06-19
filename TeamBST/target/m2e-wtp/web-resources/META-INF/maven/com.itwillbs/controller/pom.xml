@@ -182,6 +182,12 @@
 	       <version>2.9.2</version>
    	   	</dependency>
     	<!-- Jackson 라이브러리 -->
+    	
+    	<dependency>
+		    <groupId>com.fasterxml.jackson.datatype</groupId>
+		    <artifactId>jackson-datatype-jsr310</artifactId>
+		    <version>2.9.2</version> <!-- 사용하는 Jackson 버전에 맞춰 설정 -->
+		</dependency>
 		
 		<!-- 외부 라이브러리 추가 -->        
 	</dependencies>
