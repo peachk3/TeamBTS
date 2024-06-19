@@ -19,7 +19,7 @@
 	</div>
 
 	
-	<div class="box-body">
+		<div class="box-body">
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
@@ -29,10 +29,24 @@
 					<th>등록일</th>
 					<th>조회수</th>
 				</tr>
-				<c:forEach var="dto" items="${qBoaardList}">
+				<c:forEach var="dto" items="${qBoardList}">
 					<tr>
 						<td>${dto.quest_sub}</td>
-						<td><a href="/announcement/bulletinContent?quest_id=${dto.quest_id}">${dto.quest_sub}</a></td>
+						<td>
+				<c:choose>
+					<c:when test="${dto.quest_public.equals('Y')}">
+			<a href="/admin/adminbulletinContent?quest_id=${dto.quest_id}">	[공개] ${dto.quest_sub } </a>
+					</c:when>
+					<c:otherwise>
+			<a href="/admin/adminbulletinContent?quest_id=${dto.quest_id}">	[비공개] ${dto.quest_sub } </a>
+					</c:otherwise>
+				</c:choose>						
+						
+						
+						
+						
+						
+						</td>
 						<c:forEach var="dto_" items="${dto.userList}">
 							<td>${dto_.user_nick}</td>
 						</c:forEach>
@@ -41,7 +55,6 @@
 						<td>${dto.quest_view}</td>
 					</tr>
 				</c:forEach>
-
 			</tbody>
 		</table>
 	</div>

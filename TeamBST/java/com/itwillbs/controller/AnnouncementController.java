@@ -54,7 +54,7 @@ public class AnnouncementController {
 		logger.debug("size : "+ qBoardList);
 		
 		// 연결된 뷰페이지로 정보 전달
-		model.addAttribute("qBoaardList", qBoardList);
+		model.addAttribute("qBoardList", qBoardList);
 		
 	}
 	
