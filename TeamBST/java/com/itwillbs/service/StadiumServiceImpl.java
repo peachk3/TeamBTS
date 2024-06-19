@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.SeatDTO;
+import com.itwillbs.domain.Seat_priceDTO;
+import com.itwillbs.domain.UserDTO;
 import com.itwillbs.domain.ZoneDTO;
 import com.itwillbs.persistence.StadiumDAO;
 
@@ -41,8 +43,54 @@ public class StadiumServiceImpl implements StadiumService {
 		logger.debug("getSeatsId(String zone_id) 호출 ");
 		return staddao.getSeatsId(seat_id);
 	}
+
+	@Override
+	public List<UserDTO> getUserName(String user_id) {
+		logger.debug("getUserName(String user_id) 호출");
+		
+		return staddao.getUserName(user_id);
+	}
+
+	@Override
+	public List<Game_scheduleDTO> getGameSche(String game_id) {
+		logger.debug("getGameSche(String game_id) 호출");
+		
+		return staddao.getGameSche(game_id);
+	}
+
+	@Override
+	public int getSelectedSeat(String game_id) {
+		logger.debug("getSelectedSeat(String game_id) 호출");
+		
+		return staddao.getSelectedSeat(game_id);
+	}
+
+	@Override
+	public List<Seat_priceDTO> getSeatPrice(String zone_id) {
+		logger.debug("getSeatPrice(String zone_id) 호출");
+		
+		return staddao.getSeatPrice(zone_id);
+	}
+
+	
+//	@Override
+//	public int getSelectedSeat(String seat_id) {
+//		logger.debug("getSelectedSeat(String seat_id) 호출");
+//		
+//		return staddao.getSelectedSeat(seat_id);
+//	}
+
 	
 	
+	//	@Override
+//	public List<SeatDTO> getSelectedSeat(String seat_id) {
+//		logger.debug("getSelectedSeat(String seat_id) 호출");
+//		
+//		return staddao.getSelectedSeat(seat_id);
+//	}
+	
+	
+	 
 	
 //	@Override
 //	public Game_scheduleDTO getStadiumById(String stad_id) {

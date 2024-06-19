@@ -32,9 +32,44 @@
 		SELECT * FROM seat WHERE seat_id = #{seat_id}
 	</select>
 	
+	<select id="getUserName" resultType="com.itwillbs.domain.UserDTO">
+		select *
+		from user
+		where user_id = #{user_id}
+	</select>
+	
+	<select id="getGameSche" resultType="com.itwillbs.domain.Game_scheduleDTO">
+		select *
+		from game_schedule
+		where game_id = #{game_id}
+	</select>
+	
+	<!-- 선택된 좌석 정보 변경 -->
+	<update id="getSelectedSeat">
+		UPDATE seat_book
+		SET booked_at = "1"
+		WHERE seat_id=#{seat_id} AND game_id=#{game_id}
+	</update>
 	
 	
+	<!-- 좌석 가격 -->
+	<select id="getSeatPrice" resultType="com.itwillbs.domain.Seat_priceDTO">
+		select * 
+		from seat_price
+		where zone_id=#{zone_id}
+	</select>
+	<!-- 선택된 좌석 정보 변경하기 -->
+<!-- 	<update id="getSelectedSeat"> -->
+<!-- 		update seat_book -->
+<!-- 		set booked_at = '1' -->
+<!-- 		where game_id=#{game_id} and seat_id=#{seat_id} -->
+<!-- 	</update> -->
 	
+<!-- 	<select id="getSelectedSeat" resultType="com.itwillbs.domain.SeatDTO"> -->
+<!-- 		select * -->
+<!-- 		from seat -->
+<!-- 		where seat_id =#{seat_id} -->
+<!-- 	</select> -->
 
 <!-- 	Seat --> 
 <!-- 	<select id="getSeatsByZoneId" resultType="com.itwillbs.domain.SeatDTO" > -->

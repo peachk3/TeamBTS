@@ -78,10 +78,6 @@
 		
     <input type="hidden" id="stad_id" value="${stad_id }">
     <input type="hidden" id="game_id" value="${game_id }">
-<%--     <input type="hidden" id="seat_row" value="${seat_row }"> --%>
-<%--     <input type="hidden" id="seat_num" value="${seat_num }"> --%>
-    
-<%--     <input type="hidden" id="zone_id" value="${zone_id }"> --%>
 
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function() {

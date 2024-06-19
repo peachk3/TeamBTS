@@ -163,6 +163,15 @@
 					</ul>
 					</div>
 		</div>
+		
+		<div class="availability">
+            <h3>다른 존의 예매 가능 좌석 수</h3>
+            <ul id="available-seats-list" style="list-style-type: none">
+                <li>존 A: <span id="zone-a-count">0</span> 좌석</li>
+                <li>존 B: <span id="zone-b-count">0</span> 좌석</li>
+                <li>존 C: <span id="zone-c-count">0</span> 좌석</li>
+            </ul>
+        </div>
 			
 		<div class="reserve_btn">
 		<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>
@@ -216,11 +225,15 @@ function handleReservation() {
         const stad_id = '${stad_id}';
         const game_id = '${game_id}';
         const zone_ty = '${zone_ty}';
+        const zone_id = '${zone_id}';
+        
+//         const seatsParam = encodeURIComponent(JSON.stringify(selectedSeats));
+        
         let seat_row = selectedSeats.map(seat => seat.seat_row).join(',');
         let seat_num = selectedSeats.map(seat => seat.seat_num).join(',');
         let seat_id = selectedSeats.map(seat => seat.seat_id).join(',');
 
-        const seatUrl = "/ticketing/reservation/" + stad_id + "/" + game_id + "/" + zone_ty + "/" + seat_row + "/" + seat_num + "/" + seat_id ;
+        const seatUrl = "/ticketing/reservation/" + stad_id + "/" + game_id + "/" + zone_ty + "/" + zone_id + "/" + seat_row + "/" + seat_num + "/" + seat_id ;
         window.location.href = seatUrl;
     }
 }

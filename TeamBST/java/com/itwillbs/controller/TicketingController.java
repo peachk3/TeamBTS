@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.SeatDTO;
+import com.itwillbs.domain.Seat_priceDTO;
 import com.itwillbs.domain.Team_n_stadiumDTO;
+import com.itwillbs.domain.UserDTO;
 import com.itwillbs.domain.ZoneDTO;
 import com.itwillbs.service.ScheduleService;
 import com.itwillbs.service.StadiumService;
@@ -107,8 +109,10 @@ public class TicketingController {
  	
 	
 	@GetMapping("/stadium/{stad_id}/{game_id}")
-	public String goStadium(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, Model model) {
-		
+	public String goStadium(HttpSession session, @PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, Model model) {
+        String user_id = (String) session.getAttribute("user_id");
+        logger.debug("user_id : "+ user_id);
+        
 		List<ZoneDTO> zones = stadService.getZonesByStadiumId(stad_id);
 		
 		model.addAttribute("stad_id", stad_id);
@@ -120,7 +124,10 @@ public class TicketingController {
 	
 	
 	@GetMapping("/displaySeats/{stad_id}/{game_id}/{zone_ty}/{zone_id}")
-	public String goZone(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_ty") String zone_ty, @PathVariable("zone_id") String zone_id, Model model) {
+	public String goZone(HttpSession session, @PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_ty") String zone_ty, @PathVariable("zone_id") String zone_id, Model model) {
+        String user_id = (String) session.getAttribute("user_id");
+        logger.debug("user_id : "+ user_id);
+        
 		List<SeatDTO> seats = stadService.getSeatsByZone(zone_ty, zone_id);
 		
 		model.addAttribute("stad_id", stad_id);
@@ -131,16 +138,43 @@ public class TicketingController {
 		return "/ticketing/displaySeats";
 	}	
 	
-	@GetMapping(value="/reservation/{stad_id}/{game_id}/{zone_ty}/{seat_row}/{seat_num}/{seat_id}")
-	public String bookTicket(@PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_ty") String zone_ty, @PathVariable("seat_id") String seat_id, Model model) {
+	@GetMapping(value="/reservation/{stad_id}/{game_id}/{zone_ty}/{zone_id}/{seat_row}/{seat_num}/{seat_id}")
+	public String bookTicket(HttpSession session, @PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("seat_row") String seat_row, @PathVariable("seat_num") String seat_num, 
+			@PathVariable("zone_ty") String zone_ty, @PathVariable("seat_id") String seat_id, @PathVariable("zone_id")String zone_id,  Model model) {
+        
+		String user_id = (String) session.getAttribute("user_id");
+        logger.debug("user_id : "+ user_id);
+        
+        // seat_id 비교해서 seatList 가져오기 (seat_row, num ...)
 		List<SeatDTO> seats = stadService.getSeatsId(seat_id);
 	
+		// game_id 비교해서 gameSchedulelist 가져오기
+		List<Game_scheduleDTO> gameSchedule = stadService.getGameSche(game_id);
+	
+		// user_id 비교해서 user_name 가져오기
+		List<UserDTO> user = stadService.getUserName(user_id);
+		
+		// 예매하기 버튼 클릭 시 booked_at '1'로 업데이트
+		stadService.getSelectedSeat(game_id);
+		
+		// 좌석 가격
+		List<Seat_priceDTO> seatPrice = stadService.getSeatPrice(zone_id);
+		
+		
+		// List<SeatDTO> selectedSeat = stadService.getSelectedSeat(seat_id);
+		
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("game_id", game_id);
 		model.addAttribute("zone_ty", zone_ty);
+		model.addAttribute("seat_row", seat_row);
+		model.addAttribute("seat_num", seat_num);
 //		model.addAttribute("zone_id", zone_id);
 		// model.addAttribute("seat_id", seat_id);
 		model.addAttribute("seats", seats);
+//		model.addAttribute("user_name", user_name);
+		model.addAttribute("user", user);
+		model.addAttribute("gameSchedule", gameSchedule);
+		model.addAttribute("seatPrice", seatPrice);
 		
 		logger.debug("bookTicket() 호출 ");
 		
@@ -148,6 +182,8 @@ public class TicketingController {
 	}
 	
 	// 여기까지 성공
+	
+	
 //	public String goSeat(@PathVariable)
 	
 	
