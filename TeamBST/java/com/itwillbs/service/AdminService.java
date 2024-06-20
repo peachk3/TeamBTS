@@ -68,5 +68,12 @@ public interface AdminService {
 	// 관리자 - 문의글 조회수 증가
 	public void updateQuestCount(int quest_id) throws Exception;
 
+	// 관리자 - 일반 회원수 출력
+	public int generalMemberCount() throws Exception;
+
+	// 관리자 - 탈퇴 회원수 출력
+	public int withdrawMemberCount() throws Exception;
+
+
 	
 }

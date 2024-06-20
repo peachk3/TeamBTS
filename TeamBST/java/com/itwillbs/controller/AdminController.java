@@ -182,8 +182,21 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminMember",method=RequestMethod.GET)
-	public void adminMember_GET() {
+	public String adminMember_GET(Model model) throws Exception{
 		logger.debug("관리자 회원현황 호출");
+		
+		// 일반 회원수 출력
+		int generalMemberNum = aService.generalMemberCount();
+		model.addAttribute("generalMemberNum", generalMemberNum);
+		
+		// 탈퇴 회원 수 출력
+		int withdrawMemberNum = aService.withdrawMemberCount();
+		model.addAttribute("withdrawMemberNum", withdrawMemberNum);
+		
+
+		
+		
+		return "/admin/adminMember";
 
 	}
 	

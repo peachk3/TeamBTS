@@ -177,6 +177,19 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		sqlSession.update(NAMESPACE+"updateQuestCount",quest_id);
 	}
+
+	@Override
+	public int generalMemberCount() throws Exception {
+		logger.debug(" DAO : generalMemberCount()호출 ");
+		
+		return sqlSession.selectOne(NAMESPACE+"generalMemberCount");
+	}
+
+	@Override
+	public int withdrawMemberCount() throws Exception {
+		logger.debug(" DAO : withdrawMemberCount()호출 ");
+		return sqlSession.selectOne(NAMESPACE+"withdrawMemberCount");
+	}
 	
 	
 	

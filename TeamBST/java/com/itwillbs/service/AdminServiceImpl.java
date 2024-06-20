@@ -161,6 +161,21 @@ public class AdminServiceImpl implements AdminService{
 		
 		adao.updateQuestCount(quest_id);
 	}
+
+	@Override
+	public int generalMemberCount() throws Exception{
+		logger.debug("관리자 - 일반 회원수 출력");
+		
+		return adao.generalMemberCount();
+		
+	}
+
+	@Override
+	public int withdrawMemberCount() throws Exception {
+		logger.debug("관리자 - 탈퇴 회원수 출력");
+		
+		return adao.withdrawMemberCount();
+	}
 	
 	
 

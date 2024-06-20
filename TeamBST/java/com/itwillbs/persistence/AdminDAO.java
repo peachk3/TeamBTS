@@ -75,5 +75,11 @@ public interface AdminDAO {
 	// 관리자 문의게시글 조회수 증가
 	public void updateQuestCount(int quest_id) throws Exception;
 
+	// 관리자 일반회원수 출력
+	public int generalMemberCount() throws Exception;
+
+	// 관리자 탈퇴회원수 출력
+	public int withdrawMemberCount() throws Exception;
+
 	
 }

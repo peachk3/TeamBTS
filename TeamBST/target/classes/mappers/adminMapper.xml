@@ -174,8 +174,18 @@
 	</select>
 
 	
-	
+	<!-- 일반 회원수 출력 -->
+	<select id="generalMemberCount" resultType="int">
+		select count(*)
+        from user
+        where user_status = "USE";
+	</select>
 
-
+	<!-- 탈퇴 회원수 출력 -->
+	<select id="withdrawMemberCount" resultType="int">
+		select count(*)
+        from user
+        where user_status = "OUT";
+	</select>
 </mapper>
 
