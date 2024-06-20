@@ -98,7 +98,7 @@
         	dataType : "json",
         	success : function(data){
 //         		alert("JTBC 다녀옴");
-				console.log(data);
+// 				console.log(data);
         		
         		// body 태그에 내용 추가
         		$(data).each(function(idx, item){
