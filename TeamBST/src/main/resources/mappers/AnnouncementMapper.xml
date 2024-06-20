@@ -51,6 +51,14 @@
 		where notice_id = #{notice_id}
 	</select>
 	
+  	<!-- 공지사항 조회수 1증가 -->
+	  <update id="updateNoticeCount">
+		UPDATE notice_board
+		SET notice_view=notice_view+1
+		WHERE notice_id=#{notice_id}
+	  </update>
+	
+	
 	
 	
 	
@@ -63,7 +71,7 @@
 
 	<!-- 문의 게시글 목록 조회 -->
 	<select id="QuestionList" resultMap="questMap">
-		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_public
+		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_public,qb.quest_view
 		from question_board qb join user u
 		on qb.quest_writer_id = u.user_id
 		where quest_del_at = 'N'
@@ -71,11 +79,19 @@
 	
 	<!-- 문의 게시글 내용 조회 -->
 	<select id="QuestionOneList" resultMap="questMap">
-		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id,qb.quest_cate,qb.quest_public
+		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id,qb.quest_cate,qb.quest_public,qb.quest_view
 		from question_board qb join user u
 		on qb.quest_writer_id = u.user_id
 		where quest_id = #{quest_id}
 	</select>
+	
+	  <!-- 문의 게시글 조회수 1증가 -->
+	  <update id="updateQuestCount">
+		UPDATE question_board
+		SET quest_view=quest_view+1
+		WHERE quest_id=#{quest_id}
+	  </update>
+	
 	
 	<!-- 문의 게시글 내용 수정 -->
 	<update id="bulletinModify">

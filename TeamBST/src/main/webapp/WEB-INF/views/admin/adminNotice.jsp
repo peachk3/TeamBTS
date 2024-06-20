@@ -29,7 +29,7 @@
 						<td>${dto.admin_id}</td>
 						<td><fmt:formatDate value="${dto.notice_cre_date}"
 								pattern="yyyy-MM-dd" /></td>
-						<td><span class="badge bg-purple">${dto.notice_view}</span></td>
+						<td><span>${dto.notice_view}</span></td>
 					</tr>
 				</c:forEach>
 

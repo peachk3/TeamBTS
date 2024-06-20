@@ -24,6 +24,9 @@ public interface CommunityService {
 	// 거래 게시글 삭제
 	public void deleteContent(int post_id) throws Exception;
 
+	// 조회수 증가
+	public void updateCount(int post_id) throws Exception;
+
 
 	
 	

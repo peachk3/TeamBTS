@@ -38,7 +38,7 @@
 				</td>
 				<td>${post.stad_id }</td>
 				<td>
-				<span class="badge bg-blue">${post.post_view }</span>
+				<span>${post.post_view }</span>
 				</td>
 				<td>${post.sale_status }</td>
 			</tr>

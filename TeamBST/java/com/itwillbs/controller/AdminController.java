@@ -65,6 +65,9 @@ public class AdminController {
 		List<Notice_boardDTO> noticeOneList = aService.noticeOneList(notice_id);
 		logger.debug("size : "+ noticeOneList.size());
 		
+		// 조회수 증가 로직
+    	aService.updateNoticeCount(notice_id);
+
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("noticeOneList", noticeOneList);
 		
@@ -92,7 +95,6 @@ public class AdminController {
 	@RequestMapping(value="/adminNoticeWrite",method=RequestMethod.POST)
 	public String adminNoticeWrite_POST(Notice_boardDTO dto,HttpSession session) throws Exception {
         
-
         logger.debug("관리자 공지사항 글쓰기 호출");
 		logger.debug(" /adminNoticeWrite -> adminNoticenWrite_POST() 호출");
 		
@@ -299,7 +301,11 @@ public class AdminController {
 		logger.debug("관리자 - 문의게시판 본문 내용 호출");
     	logger.debug(" quest_id : " + quest_id);
 
-    	List<Post_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
+    	// 본문 호출
+    	List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
+    	
+    	// 조회수 증가 로직
+    	aService.updateQuestCount(quest_id);
     	
 		logger.debug("size : "+ QuestionOneList.size());
 		logger.debug("size : "+ QuestionOneList);

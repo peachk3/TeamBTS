@@ -29,6 +29,11 @@ public interface AnnouncementDAO {
 	// 문의 게시판 글 삭제
 	public void bulletinDelete(int quest_id) throws Exception;
 
+	// 공지사항 조회수 증가
+	public void updateNoticeCount(String notice_id) throws Exception;
+
+	public void updateQuestCount(int quest_id) throws Exception;
+
 
 	
 	

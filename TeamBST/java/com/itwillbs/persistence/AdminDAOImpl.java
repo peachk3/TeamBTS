@@ -128,7 +128,7 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 
 	@Override
-	public List<Post_boardDTO> QuestionOneList(int quest_id) throws Exception {
+	public List<Question_boardDTO> QuestionOneList(int quest_id) throws Exception {
 		
 		logger.debug(" DAO : QuestionOneList() 호출");
 
@@ -162,6 +162,20 @@ public class AdminDAOImpl implements AdminDAO{
 		logger.debug(" DAO : deleteNoticeContent(int notice_id) 호출");
 		
 		sqlSession.update(NAMESPACE+"deleteNoticeContent",notice_id);
+	}
+
+	@Override
+	public void updateNoticeCount(int notice_id) throws Exception {
+		logger.debug(" DAO : updateNoticeCount(int notice_id) 호출");
+	
+		sqlSession.update(NAMESPACE+"updateNoticeCount",notice_id);
+	}
+
+	@Override
+	public void updateQuestCount(int quest_id) throws Exception {
+		logger.debug(" DAO : updateQuestCount(int quest_id) 호출");
+		
+		sqlSession.update(NAMESPACE+"updateQuestCount",quest_id);
 	}
 	
 	
