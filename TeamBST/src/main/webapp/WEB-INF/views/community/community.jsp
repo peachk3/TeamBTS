@@ -104,10 +104,10 @@
         		$(data).each(function(idx, item){
         			
 					if(item.sale_status == 'SALE'){
-	        			$('table').append("<tr><td>"+ (parseInt(idx)+1) +"</td><td><a href='/community/communityContent?post_id="+ item.post_id +"'>[판매중] "+ item.post_sub +"</a></td><td>"+ item.userList[0].user_nick+"</td><td>"+ item.post_cre_date +"</td></tr>")
+	        			$('table').append("<tr><td>"+ (parseInt(idx)+1) +"</td><td><a href='/community/communityContent?post_id="+ item.post_id +"'>[판매중] "+ item.post_sub +"</a></td><td>"+ item.userList[0].user_nick+"</td><td>"+ item.post_cre_date +"</td><td>"+ item.post_view +"</td></tr>")
 					}        			
 					if(item.sale_status == 'COMP'){
-	        			$('table').append("<tr><td>"+ (parseInt(idx)+1) +"</td><td><a href='/community/communityContent?post_id="+ item.post_id +"'>[판매완료] "+ item.post_sub +"</a></td><td>"+ item.userList[0].user_nick+"</td><td>"+ item.post_cre_date +"</td></tr>")
+	        			$('table').append("<tr><td>"+ (parseInt(idx)+1) +"</td><td><a href='/community/communityContent?post_id="+ item.post_id +"'>[판매완료] "+ item.post_sub +"</a></td><td>"+ item.userList[0].user_nick+"</td><td>"+ item.post_cre_date +"</td><td>"+ item.post_view +"</td></tr>")
 					}        			
         			
         		});
