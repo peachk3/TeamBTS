@@ -41,6 +41,8 @@ public interface StadiumService {
 
 	public List<Seat_priceDTO> getSeatChildPrice(String zone_id);
 
+//	public String getZoneId(String zone_ty, String game_id);
+
 //	int getSelectedSeat(String game_id);
 
 	// public List<SeatDTO> getSelectedSeat(String seat_id);

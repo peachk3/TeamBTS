@@ -9,10 +9,10 @@
 	
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="/../../resources/css/index.css" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
 <body>
-	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
 /* css */
 	body {
@@ -137,7 +137,7 @@
 	</ul>	
 
     <c:forEach var="seat" items="${seats}">
-     console.log('${seats}');
+     console.log('${seat.seat_id}');
      </c:forEach>
 		<h1 class="h">Selected Seat: ${zone_ty}구역</h1>
 		<h6 class="hh">구장: ${stad_id}</h6>
@@ -167,14 +167,14 @@
 					</div>
 		</div>
 		
-		<div class="availability">
-            <h3>다른 존의 예매 가능 좌석 수</h3>
-            <ul id="available-seats-list" style="list-style-type: none">
-                <li>존 A: <span id="zone-a-count">0</span> 좌석</li>
-                <li>존 B: <span id="zone-b-count">0</span> 좌석</li>
-                <li>존 C: <span id="zone-c-count">0</span> 좌석</li>
-            </ul>
-        </div>
+<!-- 		<div class="availability"> -->
+<!--             <h3>다른 존의 예매 가능 좌석 수</h3> -->
+<!--             <ul id="available-seats-list" style="list-style-type: none"> -->
+<!--                 <li>존 A: <span id="zone-a-count">0</span> 좌석</li> -->
+<!--                 <li>존 B: <span id="zone-b-count">0</span> 좌석</li> -->
+<!--                 <li>존 C: <span id="zone-c-count">0</span> 좌석</li> -->
+<!--             </ul> -->
+<!--         </div> -->
 			
 		<div class="reserve_btn">
 		<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>
@@ -182,6 +182,7 @@
 		</div>
 
 <script>
+
 function updateSelectedSeats() {
     const selectedSeatsList = document.getElementById('selected-seats-list');
     const noSeatsMessage = document.getElementById('no-seats');
@@ -236,7 +237,7 @@ function handleReservation() {
         let seat_num = selectedSeats.map(seat => seat.seat_num).join(',');
         let seat_id = selectedSeats.map(seat => seat.seat_id).join(',');
 
-        const seatUrl = "/ticketing/reservation/" + stad_id + "/" + game_id + "/" + zone_ty + "/" + zone_id + "/" + seat_row + "/" + seat_num + "/" + seat_id ;
+        const seatUrl = "/ticketing/reservation?stad_id=${stad_id}&game_id=${game_id}&zone_ty=${zone_ty}&zone_id=${zone_id}&seat_row="+seat_row+"&seat_num="+seat_num+"&seat_id="+seat_id;
         window.location.href = seatUrl;
     }
 }

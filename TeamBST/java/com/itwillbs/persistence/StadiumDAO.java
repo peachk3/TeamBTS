@@ -38,6 +38,8 @@ public interface StadiumDAO {
 
 	public List<Seat_priceDTO> getSeatChildPrice(@RequestParam("zone_id") String zone_id);
 
+//	public String getZoneID(@RequestParam("zone_ty")String zone_ty, @RequestParam("game_id")String game_id);
+
 	// 선택된 좌석 상태 변경하기
 	// public List<SeatDTO> getSelectedSeat(@RequestParam("seat_id") String seat_id);
     

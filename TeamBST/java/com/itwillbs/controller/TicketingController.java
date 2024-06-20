@@ -132,7 +132,7 @@ public class TicketingController {
 //	}
 	
  	
-	
+	// 구역배치도 선택
 	@GetMapping("/displaySeats")
 	public String goZone(HttpSession session,
 			@RequestParam("game_id") String game_id, 
@@ -142,6 +142,9 @@ public class TicketingController {
        
 		String user_id = (String) session.getAttribute("user_id");
         logger.debug("@user_id : "+ user_id);
+        
+        // zone_id 출력
+//        String zoneId = stadService.getZoneId(zone_ty, game_id);
         
 		List<SeatDTO> seats = stadService.getSeatsByZone(zone_ty, game_id);
 		
@@ -155,8 +158,14 @@ public class TicketingController {
 	
 	
 	@GetMapping(value="/reservation")
-	public String bookTicket(HttpSession session, @RequestParam("stad_id") String stad_id, @RequestParam("game_id") String game_id, @RequestParam("seat_row") String seat_row, @RequestParam("seat_num") String seat_num, 
-			@RequestParam("zone_ty") String zone_ty, @RequestParam("seat_id") String seat_id, @RequestParam("zone_id")String zone_id,  Model model) {
+	public String bookTicket(HttpSession session, 
+			@RequestParam("stad_id") String stad_id, 
+			@RequestParam("game_id") String game_id, 
+			@RequestParam("seat_row") String seat_row, 
+			@RequestParam("seat_num") String seat_num, 
+			@RequestParam("zone_ty") String zone_ty, 
+			@RequestParam("seat_id") String seat_id, 
+			@RequestParam("zone_id")String zone_id,  Model model) {
         
 		String user_id = (String) session.getAttribute("user_id");
         logger.debug("user_id : "+ user_id);
@@ -175,15 +184,16 @@ public class TicketingController {
 		
 		// 초등학생 좌석 가격
 		List<Seat_priceDTO> seatChildPrice = stadService.getSeatChildPrice(zone_id);
-		
-		// List<SeatDTO> selectedSeat = stadService.getSelectedSeat(seat_id);
-		
+				
 		Integer gameIdInteger = Integer.parseInt(game_id);
 	        
 			logger.debug("@@@@"); 
 			logger.debug("game_id: " + gameIdInteger);
 			// 예매하기 버튼 클릭 시 booked_at '1'로 업데이트
 			stadService.postSelectedSeat(gameIdInteger, seat_id);
+			
+		// 선택된 좌석 출력
+//		List<SeatDTO> selectedSeatList = stadService.selectedSeatList()
 		
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("game_id", game_id);

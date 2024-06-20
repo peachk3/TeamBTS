@@ -38,6 +38,15 @@ public class StadiumServiceImpl implements StadiumService {
 		return staddao.getSeatsByZone(zone_ty, game_id);
 	}
 
+	
+	
+//	@Override
+//	public String getZoneId(String zone_ty, String game_id) {
+//		logger.debug("getZoneId(String zone_ty, String game_id) 호출");
+//		
+//		return staddao.getZoneID(zone_ty, game_id);
+//	}
+
 	@Override
 	public List<SeatDTO> getSeatsId(String seat_id) {
 
