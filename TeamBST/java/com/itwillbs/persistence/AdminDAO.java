@@ -2,6 +2,7 @@ package com.itwillbs.persistence;
 
 import java.util.List;
 
+import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
@@ -80,6 +81,9 @@ public interface AdminDAO {
 
 	// 관리자 탈퇴회원수 출력
 	public int withdrawMemberCount() throws Exception;
+
+	// 관리자 개인정보 확인
+	public AdminDTO getMember(String user_id) throws Exception;
 
 	
 }

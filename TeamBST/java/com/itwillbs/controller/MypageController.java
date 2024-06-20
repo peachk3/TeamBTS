@@ -42,15 +42,6 @@ public class MypageController {
     // 마이페이지
     @GetMapping("/mypage")
     public String mypage(HttpSession session, Model model) {
-    	// 필요시 로직 추가
-    	return "/mypage/mypage";  // mypage.jsp로 이동
-    }
-    
-    //http://localhost:8088/mypage/info
-    // 회원정보 조회
-    @RequestMapping(value="/info", method = RequestMethod.GET)
-    public String infoGET(HttpSession session, Model model) {
-    	logger.debug(" /info -> infoGET() 호출 ");
     	
     	// id정보 가져오기
         String user_id = (String) session.getAttribute("user_id");
@@ -63,8 +54,9 @@ public class MypageController {
         model.addAttribute("resultDTO", resultDTO);
         
         // 뷰페이지 이동
-        return "/mypage/info";
+    	return "/mypage/mypage";  // mypage.jsp로 이동
     }
+    
     
     
     //http://localhost:8088/mypage/updateForm

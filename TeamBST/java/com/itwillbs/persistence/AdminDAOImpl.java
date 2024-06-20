@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
@@ -189,6 +190,13 @@ public class AdminDAOImpl implements AdminDAO{
 	public int withdrawMemberCount() throws Exception {
 		logger.debug(" DAO : withdrawMemberCount()호출 ");
 		return sqlSession.selectOne(NAMESPACE+"withdrawMemberCount");
+	}
+
+	@Override
+	public AdminDTO getMember(String user_id) throws Exception {
+		logger.debug(" DAO : getMember() 호출");
+		
+		return sqlSession.selectOne(NAMESPACE+"getMember",user_id);
 	}
 	
 	

@@ -187,5 +187,16 @@
         from user
         where user_status = "OUT";
 	</select>
-</mapper>
 
+  <!-- 회원정보 조회 (by user_id) -->
+  <select id="getMember" resultType="AdminDTO">
+    SELECT * FROM admin
+    WHERE admin_id = #{user_id}
+  </select>
+	
+	
+	
+
+
+
+</mapper>

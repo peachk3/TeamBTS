@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
@@ -175,6 +176,14 @@ public class AdminServiceImpl implements AdminService{
 		logger.debug("관리자 - 탈퇴 회원수 출력");
 		
 		return adao.withdrawMemberCount();
+	}
+
+	@Override
+	public AdminDTO getMember(String user_id) throws Exception {
+		logger.debug("관리자 - 개인 정보 확인");
+
+		
+		return adao.getMember(user_id);
 	}
 	
 	

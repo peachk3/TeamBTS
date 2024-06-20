@@ -74,6 +74,9 @@ public interface AdminService {
 	// 관리자 - 탈퇴 회원수 출력
 	public int withdrawMemberCount() throws Exception;
 
+	// 관리자 - 개인정보 확인
+	public AdminDTO getMember(String user_id) throws Exception;
+
 
 	
 }
