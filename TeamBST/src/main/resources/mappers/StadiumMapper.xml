@@ -5,27 +5,24 @@
 
 <mapper namespace="com.itwillbs.mapper.StadiumMapper">
 
-
-
-		<!-- TeamStadium --> 
-<!-- 	<select id="getStadiumById" resultType="com.itwillbs.domain.Game_scheduleDTO" > -->
-<!-- 		SELECT stad_id FROM game_schedule WHERE game_id = #{game_id} -->
-<!-- 	</select> -->
-
-
-<!-- 	Zone  -->
+	<!-- Zone -->
 	<select id="getZonesByStadiumId" resultType="com.itwillbs.domain.ZoneDTO" >
-		select z.zone_id, z.zone_ty
+		select z.zone_id, z.zone_ty, z.stad_id
 		from zone z
 		join game_schedule g
-		on g.stad_id = #{stad_id}
+		on g.stad_id = z.stad_id
+		where game_id = #{game_id}
 	</select>
 
+	<!-- seat -->
 	<select id="getSeatsByZone" resultType="com.itwillbs.domain.ZoneDTO">
-		select s.seat_id, s.seat_row, s.seat_num, s.zone_id, z.zone_ty
+		select s.seat_id, s.seat_row, s.seat_num, z.zone_id, z.zone_ty
 		from seat s
 		join zone z
-		on s.zone_id = #{zone_id};
+		on s.zone_id = z.zone_id
+		join game_schedule g
+		on g.stad_id = z.stad_id
+		where zone_ty=#{zone_ty} and game_id = #{game_id}
 	</select>
 
 	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO">
@@ -52,10 +49,9 @@
 <!-- IN (SELECT game_id FROM game_schedule WHERE game_id=#{game_id}) -->
 		UPDATE seat_book
 		SET booked_at = 1
-		WHERE seat_id = #{seat_id, jdbcType=VARCHAR}
-		  AND game_id = #{game_id, jdbcType=VARCHAR}
+		WHERE seat_id = #{seat_id}
+		  AND game_id = #{game_id}
 	</update>
-	
 	
 	<!-- 좌석 가격 -->
 	<select id="getSeatAdultPrice" resultType="com.itwillbs.domain.Seat_priceDTO">

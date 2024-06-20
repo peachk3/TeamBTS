@@ -136,6 +136,9 @@
 		<li class="nav-item"><a class="nav-link" href="/announcement/announcement">고객센터</a></li>
 	</ul>	
 
+    <c:forEach var="seat" items="${seats}">
+     console.log('${seats}');
+     </c:forEach>
 		<h1 class="h">Selected Seat: ${zone_ty}구역</h1>
 		<h6 class="hh">구장: ${stad_id}</h6>
 		<h6 class="hh">게임ID: ${game_id}</h6>		

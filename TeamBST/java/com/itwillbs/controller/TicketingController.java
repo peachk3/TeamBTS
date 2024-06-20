@@ -90,10 +90,17 @@ public class TicketingController {
 	
 	// 구장 배치도 (구역 선택)
  	@RequestMapping(value="/stadium", method = RequestMethod.GET)
-	public String goStadiumGET(HttpSession session,@RequestParam("stad_id") String stad_id, Model model) {
+	public String goStadiumGET(HttpSession session, 
+			@RequestParam("game_id") String game_id, 
+			@RequestParam("stad_id") String stad_id, Model model) {
         String user_id = (String) session.getAttribute("user_id");
         logger.debug("user_id : "+ user_id);
  		
+        List<ZoneDTO> zones = stadService.getZonesByStadiumId(game_id);
+        model.addAttribute("zones", zones);
+        model.addAttribute("game_id", game_id);
+        
+        
         if(user_id != null) {
         	model.addAttribute("stad_id",stad_id);
         	logger.debug("goStadiumGET() 호출");
@@ -109,40 +116,47 @@ public class TicketingController {
 	}
  	
 	
-	@GetMapping("/stadium/{stad_id}/{game_id}")
-	public String goStadium(HttpSession session, @PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, Model model) {
-        String user_id = (String) session.getAttribute("user_id");
-        logger.debug("user_id : "+ user_id);
-        
-		List<ZoneDTO> zones = stadService.getZonesByStadiumId(stad_id);
-		
-		model.addAttribute("stad_id", stad_id);
-		model.addAttribute("game_id", game_id);
-		model.addAttribute("zones", zones);
-		
-		return "/ticketing/stadium";
-	}
+//	@GetMapping(value="/stadium")
+//	public String goStadium(HttpSession session, @RequestParam("stad_id") String stad_id, Model model) {
+//        String user_id = (String) session.getAttribute("user_id");
+//        logger.debug("user_id : "+ user_id);
+//        
+//        Integer game_id = (Integer) session.getAttribute("game_id");
+//        logger.debug("game_id : " + game_id);
+//        
+//		
+//		model.addAttribute("stad_id", stad_id);
+//		model.addAttribute("game_id", game_id);
+//		
+//		return "/ticketing/stadium";
+//	}
 	
+ 	
 	
-	@GetMapping("/displaySeats/{stad_id}/{game_id}/{zone_ty}/{zone_id}")
-	public String goZone(HttpSession session, @PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("zone_ty") String zone_ty, @PathVariable("zone_id") String zone_id, Model model) {
-        String user_id = (String) session.getAttribute("user_id");
-        logger.debug("user_id : "+ user_id);
+	@GetMapping("/displaySeats")
+	public String goZone(HttpSession session,
+			@RequestParam("game_id") String game_id, 
+			@RequestParam("zone_ty") String zone_ty, 
+			@RequestParam("zone_id") String zone_id,
+			@RequestParam("stad_id") String stad_id, Model model) {
+       
+		String user_id = (String) session.getAttribute("user_id");
+        logger.debug("@user_id : "+ user_id);
         
-		List<SeatDTO> seats = stadService.getSeatsByZone(zone_ty, zone_id);
+		List<SeatDTO> seats = stadService.getSeatsByZone(zone_ty, game_id);
 		
-		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("game_id", game_id);
+		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("zone_ty", zone_ty);
-//		model.addAttribute("zone_id", zone_id);
+		model.addAttribute("zone_id", zone_id);
 		model.addAttribute("seats", seats);
 		return "/ticketing/displaySeats";
 	}	
 	
 	
-	@GetMapping(value="/reservation/{stad_id}/{game_id}/{zone_ty}/{zone_id}/{seat_row}/{seat_num}/{seat_id}")
-	public String bookTicket(HttpSession session, @PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("seat_row") String seat_row, @PathVariable("seat_num") String seat_num, 
-			@PathVariable("zone_ty") String zone_ty, @PathVariable("seat_id") String seat_id, @PathVariable("zone_id")String zone_id,  Model model) {
+	@GetMapping(value="/reservation")
+	public String bookTicket(HttpSession session, @RequestParam("stad_id") String stad_id, @RequestParam("game_id") String game_id, @RequestParam("seat_row") String seat_row, @RequestParam("seat_num") String seat_num, 
+			@RequestParam("zone_ty") String zone_ty, @RequestParam("seat_id") String seat_id, @RequestParam("zone_id")String zone_id,  Model model) {
         
 		String user_id = (String) session.getAttribute("user_id");
         logger.debug("user_id : "+ user_id);
@@ -192,7 +206,7 @@ public class TicketingController {
 	
 	// **** 좌석 선택 후 이동시 booked_at 1로 변경 
 	@PostMapping("/reservation")
-	public String updateBooked(HttpSession session, @PathVariable("game_id") String game_id, @PathVariable("seat_id") String seat_id) {
+	public String updateBooked(HttpSession session, @RequestParam("game_id") String game_id, @RequestParam("seat_id") String seat_id) {
 		String user_id = (String) session.getAttribute("user_id");
 		logger.debug("user_id : "+ user_id);
 		
@@ -208,6 +222,14 @@ public class TicketingController {
 	}
 	
 	// 여기까지 성공
+	
+	@PostMapping(value="/payment")
+	public void payTicket(HttpSession session) {
+		String user_id = (String) session.getAttribute("user_id");
+		logger.debug("user_id : " + user_id);
+		
+		logger.debug("payTicket()");
+	}
 	
 	
 //	public String goSeat(@PathVariable)
@@ -225,12 +247,6 @@ public class TicketingController {
 //	}
 //	
 	
-	
-
-	@PostMapping(value="/payment")
-	public void payTicket() {
-		logger.debug("payTicket()");
-	}
 	
 //	@GetMapping(value="/displaySeats")
 //	public void goZoneGET(@RequestParam("zone_id") String zone_id, Model model) {

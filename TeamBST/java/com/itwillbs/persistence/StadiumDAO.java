@@ -18,13 +18,13 @@ public interface StadiumDAO {
 //	public Game_scheduleDTO getStadiumById(@RequestParam("game_id") String stad_id);
 
     // Zone
-    public List<ZoneDTO> getZonesByStadiumId(@RequestParam("stad_id") String stad_id);
+    public List<ZoneDTO> getZonesByStadiumId(@RequestParam("game_id") String game_id);
 
     // Seat
 //    public List<SeatDTO> getSeatsByZoneId(@RequestParam("zone_id") String zone_id);
     
     // Zone -> Seat
-    public List<SeatDTO> getSeatsByZone(@RequestParam("zone_ty") String zone_ty, @RequestParam("zone_id") String zone_id);
+    public List<SeatDTO> getSeatsByZone(@RequestParam("zone_ty") String zone_ty, @RequestParam("game_id") String game_id);
 
 	public List<SeatDTO> getSeatsId(@RequestParam("seat_id") String seat_id);
 

@@ -25,17 +25,17 @@ public class StadiumServiceImpl implements StadiumService {
 	private StadiumDAO staddao;
 
 	@Override
-	public List<ZoneDTO> getZonesByStadiumId(String stad_id) {
-		logger.debug("getZonesByStadiumId(String stad_id) 호출");
-		return staddao.getZonesByStadiumId(stad_id);
+	public List<ZoneDTO> getZonesByStadiumId(String game_id) {
+		logger.debug("getZonesByStadiumId(String game_id) 호출");
+		return staddao.getZonesByStadiumId(game_id);
 		
 	}
 
 	@Override
-	public List<SeatDTO> getSeatsByZone(String zone_ty, String zone_id) {
-		logger.debug("getSeatsByZone(String zone_ty) 호출 ");
+	public List<SeatDTO> getSeatsByZone(String zone_ty, String game_id) {
+		logger.debug("getSeatsByZone(String zone_ty, String game_id) 호출 ");
 		
-		return staddao.getSeatsByZone(zone_ty, zone_id);
+		return staddao.getSeatsByZone(zone_ty, game_id);
 	}
 
 	@Override
