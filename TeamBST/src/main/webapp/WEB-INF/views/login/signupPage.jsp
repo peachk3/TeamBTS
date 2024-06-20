@@ -26,27 +26,26 @@
         <hr class="hr-5">
 
         <h2>회원가입</h2> <!-- signup.jsp 연결 -->
-        <form id="signupForm" action="/login/signupPage" method="post"  onsubmit="return validateForm()">
+        <form id="signupForm" action="/login/signupPage" method="post" >
             <div class="form-group">
                <!-- 이름 -->
                 <div class="form-group">
                 <label for="name"></label>
-                <input type="text" class="in-b"  id="user_name" name="user_name" autocomplete="off" placeholder="이름 *" oninput="checkName(), activeSignupbtn()">
-               		<i id = "nEmo" class="fa fa-id-card-o"></i>
+                <input type="text" class="in-b"  id="user_name" name="user_name" autocomplete="off" placeholder="이름 *" >
                 </div>
 
                  <!-- 아이디-->
-                <label for="username"></label>
+                <label for="userid"></label>
                 <div class="btn-group"> <!-- 아이디 중복확인 버튼-->
-                  <input type="text" id="user_id" name="user_id" placeholder="아이디 *">
-                  <button type="button" class="check-button" name="idCheck" id="idCheck">중복확인</button>
+                  <input type="text" id="user_id" name="user_id" maxlength="16" placeholder="아이디 *">
+                  <button type="button" class="check-button" name="idCheck" id="idCheck" >중복확인</button>
                  </div>
                 
             	
                 <!-- 비밀번호-->
                 <div class="form-group">
                 <label for="password"></label>
-                <input type="password" class="in-b"  id="password" name="user_pwd" maxsize='16' placeholder="비밀번호(8~16자의 영문,숫자,특수기호) *" >
+                <input type="password" class="in-b"  id="password" name="user_pwd" maxlength='16' placeholder="비밀번호(8~16자의 영문,숫자,특수기호) *" >
                 </div>
               <!-- 비밀번호 확인-->
                 <label for="confirm-password"></label>
@@ -61,15 +60,15 @@
                 <!--닉네임-->
                 <label for="nickname"></label>
                 <div class="btn-group"> <!-- 닉네임 중복확인-->
-                  <input type="text" id="user_nick" name="user_nick" placeholder="닉네임 *" >
-                  <button type="button" class="check-button" id="nickCheck" >중복확인</button>
+                  <input type="text" id="user_nick" name="user_nick" maxlength="12" placeholder="닉네임 *" >
+                  <button type="button" class="check-button" name="nickCheck" id="nickCheck" >중복확인</button>
                 </div>
                 
                 <!-- 이메일-->
                 <label for="email"></label>
                 <div class="btn-group">
-                  <input type="email" id="email" name="user_email" placeholder="이메일 *">
-                  <button type="button" class="check-button" onclick="checkDuplicate('email')">중복확인</button> 
+                  <input type="email" id="user_email" name="user_email" placeholder="이메일 *">
+                  <button type="button" class="check-button" name="emailCheck" id=emailCheck>중복확인</button> 
                 </div>        
 
                 <!-- 휴대폰 번호-->
@@ -136,6 +135,11 @@
 				alert("회원가입 완료"); // 폼 제출 성공 시 메시지
 			}
 		});
+		//----------------------------------------
+		$("#user_name").click(function(event){
+			checkName();
+		})
+		
 		
 		// 아이디 중복체크검사 
 		$("#idCheck").click(function(event) {
@@ -147,25 +151,44 @@
 			checkNick();
 		});
 		
-
+		//이메일 중복체크 검사
+		$("#emailCheck").click(function(event){
+			checkEmail();	
+			alert("클릭");
+		});
+		
+		
+		//-------------------------------------------
+		
 		//이름유효성확인
 		function regMemberName(user_name) { //이름--> 유효성
 		   var regExp = /^[가-힣]{1,10}$/;
 		   return regExp.test(user_name);
 		}
+		
 		//아이디 유효성
-		function regMemberid(user_id) { //아이디 //영문자 또는 숫자 6~16자
-			   var regExp = /^[A-za-z0-9]{5,15}/g;
-			   return regExp.test(user_id);   
+		function regMemberid(user_id) { //아이디 //영문자 또는 숫자 조합  6~16자
+			 if (user_id.indexOf(' ') >= 0) {
+			        return false; // 공백 문자가 있는 경우 유효하지 않음
+			    }
+     	  		 var regExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,16}$/;
+ 		    		return regExp.test(user_id);   
 		}
 		
+		//닉네임 유효성 
+		function regMemberNick(user_nick){ //닉네임 // 공백,특수문자,숫자 제외 영어 한글 가능 3글자~12자
+			var regExp =/^[a-zA-Z가-힣]{3,12}$/;
+			return regExp.test(user_nick);
+			
+		}
 		
-		// 로그인 버튼 클릭 시 체크박스 검사
-		$("#idCheck").click(function(event) {
-			//alert('클릭');
-			idCheck(); 
-		});
+		//이메일 유효성 
+		function regMemberEmail(user_email){ //이메일 //공백, 특수문자,한글 제외 
+			var regExp= /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+			return regExp.test(user_email);
+		}
 		
+		//--------------------------------------
 		// 이름에서 valuechange 
 		const user_name = document.getElementById("user_name");
 		user_name.addEventListener("change", function(e) {
@@ -176,6 +199,7 @@
                    //document.querySelector("#failid").style.display = "block";
                    document.getElementById("user_name").value = '';
                    alert('이름을 입력해주세요');
+                   return;
                    
 			}      
 		}); 
@@ -183,17 +207,41 @@
 		const user_id = document.getElementById("user_id");
 		user_id.addEventListener("change", function(e) {
 			var user_id = document.getElementById("user_id").value;
+			
 			regMemberid(user_id);
 			if(!regMemberid(user_id)) {
                    //document(이문서의).querySelector("#failid")(태그의 아이디, 클래스, 태그div, input 다 찾을수).style(스타일은).display(보이기/안보이기) = "block";(보이게)
                    //document(이문서의).getElementById(태그의 아이디에).value(값은) = '' 이야
                    document.getElementById("user_id").value = ''; 
                    alert('6~16자의 영문자와 숫자를 조합해서 입력해주세요. ');
+                   return;
+			}      
+		}); 
+		// 닉네임박스에서 valuechange 
+		const user_nick = document.getElementById("user_nick");
+		user_nick.addEventListener("change", function(e) {
+			var user_nick = document.getElementById("user_nick").value;
+			
+			regMemberNick(user_nick);
+			if(!regMemberNick(user_nick)) {
+                   document.getElementById("user_nick").value = ''; 
+                   alert('4~12자리 영어 또는 한글로 입력해주세요 ');
+                   return;
 			}      
 		}); 
 
-		
-		
+		//이메일박스에서 valuechange
+		const user_email = document.getElementById("user_email");
+		user_email.addEventListener("change", function(e) {
+			var user_email = document.getElementById("user_email").value;
+			
+			regMemberEmail(user_email);
+			if(!regMemberEmail(user_email)) {
+                   document.getElementById("user_email").value = ''; 
+                   alert('이메일을 입력해주세요 ');
+                   return;
+			}      
+		}); 
 		
 
 	</script>

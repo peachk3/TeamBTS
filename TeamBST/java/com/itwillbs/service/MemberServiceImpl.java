@@ -62,6 +62,28 @@ public class MemberServiceImpl implements MemberService{
 		
 		return result;
 	}
+
+	//닉네임 중복체크
+	@Override
+	public int nickCheck(String user_nick) throws Exception {
+		int result = mdao.nickCheck(user_nick);
+		
+		logger.debug("result" + result);
+		
+		return result;
+	}
+
+	//이메일 중복체크
+	@Override
+	public int emailCheck(String user_email) throws Exception {
+		int result = mdao.emailCheck(user_email);
+		
+		logger.debug("result" + result);
+		
+		return result;
+	}
+	
+	
 	
 	
 	

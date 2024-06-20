@@ -79,15 +79,9 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 	//로그인 성공!
 	session.setAttribute("user_id", resultDTO.getUser_id());
 	
-	
-	
-	
-	
 	return "redirect:/main/main";
 	
 	}
-
-
 
 
 //-----------------------------------------------------
@@ -99,7 +93,7 @@ public String logoutPOST(HttpSession session) {
 	return "redirect:/login/loginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
 }
 //-----------------------------------------------------
-//아이디 중복 체크 (동기식)
+//아이디 중복 체크 
 @GetMapping("/idCheck")
 @ResponseBody
 public int idCheck(@RequestParam("user_id")String user_id)throws Exception{
@@ -112,5 +106,33 @@ public int idCheck(@RequestParam("user_id")String user_id)throws Exception{
 	return result;
 }
 	
+//------------------------------------------------------
+//닉네임 중복 체크
+@GetMapping("/nickCheck")
+@ResponseBody
+public int nickCheck(@RequestParam("user_nick")String user_nick)throws Exception{
+	logger.debug("user_nick " + user_nick);
+
+	int result = mService.nickCheck(user_nick);
+	
+	logger.debug("결과값 : "  + result );
+
+	return result;
+}
+
+//------------------------------------------------------
+//이메일 중복 체크
+@GetMapping("/emailCheck")
+@ResponseBody
+public int emailCheck(@RequestParam("user_email")String user_email) throws Exception{
+	logger.debug("user_email" + user_email);
+	
+	int result = mService.emailCheck(user_email);
+	
+	logger.debug( "결과값 : " + result);
+	
+	return result;
+}
+
 
 }

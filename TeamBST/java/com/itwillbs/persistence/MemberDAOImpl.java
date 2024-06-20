@@ -78,7 +78,29 @@ public class MemberDAOImpl implements MemberDAO {
 		logger.debug("result : "+ result);
 	
 		return result;
+		
 	}
+	//닉네임 중복체크
+	@Override
+	public int nickCheck(String user_nick) throws Exception {
+		int result = sqlSession.selectOne(NAMESPACE+"nickCheck", user_nick);
+		
+		logger.debug("result : " + result);
+		
+		return result;
+	}
+	
+	//이메일 중복체크
+	@Override
+	public int emailCheck(String user_email) throws Exception {
+		int result = sqlSession.selectOne(NAMESPACE+"emailCheck", user_email);
+		
+		logger.debug("result : " + result );
+		 
+		return result ;
+	}
+	
+	
 
 	
 	

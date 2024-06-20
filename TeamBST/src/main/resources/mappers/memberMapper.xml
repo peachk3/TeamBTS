@@ -29,6 +29,7 @@
 <select id="nickCheck" parameterType="String" resultType="int">
 	select count(*)from user where user_nick=#{user_nick}
 </select>
+
 <!-- 이메일 중복체크 -->
 <select id="emailCheck" parameterType="String" resultType="int">
 	select count(*)from user where user_email=#{user_email}
