@@ -39,7 +39,7 @@
                 <label for="username"></label>
                 <div class="btn-group"> <!-- 아이디 중복확인 버튼-->
                   <input type="text" id="user_id" name="user_id" placeholder="아이디 *">
-                  <button type="button" class="check-button" name="idCheck" id="idCheck" oninput="checkId(), activateSignupbtn()">중복확인</button>
+                  <button type="button" class="check-button" name="idCheck" id="idCheck">중복확인</button>
                  </div>
                 
             	
@@ -61,8 +61,8 @@
                 <!--닉네임-->
                 <label for="nickname"></label>
                 <div class="btn-group"> <!-- 닉네임 중복확인-->
-                  <input type="text" id="nickname" name="user_nick" placeholder="닉네임 *" >
-                  <button type="button" class="check-button" onclick="checkDuplicate('nickname')" >중복확인</button>
+                  <input type="text" id="user_nick" name="user_nick" placeholder="닉네임 *" >
+                  <button type="button" class="check-button" id="nickCheck" >중복확인</button>
                 </div>
                 
                 <!-- 이메일-->
@@ -137,9 +137,20 @@
 			}
 		});
 		
+		// 아이디 중복체크검사 
+		$("#idCheck").click(function(event) {
+			checkId();
+		});
+		
+		// 닉네임 중복체크검사 
+		$("#nickCheck").click(function(event) {
+			checkNick();
+		});
+		
+
 		//이름유효성확인
 		function regMemberName(user_name) { //이름--> 유효성
-		   var regExp = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+		   var regExp = /^[가-힣]{1,10}$/;
 		   return regExp.test(user_name);
 		}
 		//아이디 유효성
@@ -163,17 +174,20 @@
 			regMemberName(user_name);
 			if(!regMemberName(user_name)) {
                    //document.querySelector("#failid").style.display = "block";
+                   document.getElementById("user_name").value = '';
                    alert('이름을 입력해주세요');
+                   
 			}      
 		}); 
 		// 아이디박스에서 valuechange 
 		const user_id = document.getElementById("user_id");
 		user_id.addEventListener("change", function(e) {
 			var user_id = document.getElementById("user_id").value;
-			
 			regMemberid(user_id);
 			if(!regMemberid(user_id)) {
-                   //document.querySelector("#failid").style.display = "block";
+                   //document(이문서의).querySelector("#failid")(태그의 아이디, 클래스, 태그div, input 다 찾을수).style(스타일은).display(보이기/안보이기) = "block";(보이게)
+                   //document(이문서의).getElementById(태그의 아이디에).value(값은) = '' 이야
+                   document.getElementById("user_id").value = ''; 
                    alert('6~16자의 영문자와 숫자를 조합해서 입력해주세요. ');
 			}      
 		}); 
