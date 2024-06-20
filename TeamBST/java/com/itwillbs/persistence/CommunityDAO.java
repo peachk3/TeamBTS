@@ -25,6 +25,9 @@ public interface CommunityDAO {
 	// 게시글 삭제
 	public void deleteContent(int post_id) throws Exception;
 
+	// 게시글 조회수 증가
+	public void updateCount(int post_id) throws Exception;
+
 
 	
 	

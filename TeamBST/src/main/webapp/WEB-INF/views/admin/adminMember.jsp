@@ -11,7 +11,9 @@
 
 
 
-
+	
+	<h1>일반 회원 : ${generalMemberNum }</h1>
+	<h1>탈퇴 회원 : ${withdrawMemberNum }</h1>
 
 
 

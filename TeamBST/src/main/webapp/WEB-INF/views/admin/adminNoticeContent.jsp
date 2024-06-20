@@ -58,13 +58,20 @@
          ${notice.notice_cont }
       </div>
    </div>
-</c:forEach>
 
 
 <hr>
 
+              <button type="submit" onclick="location.href='/admin/adminNoticeModify?notice_id=${notice.notice_id }&admin_id=${notice.admin_id }'">수정</button>
 
+		<form action="/admin/adminNoticeDelete?notice_id=${notice.notice_id }&admin_id=${notice.admin_id }" method="post">
+			<input type="hidden" name="notice_id" >
+			<input type="submit" value="삭제">
+		</form>	
+				
+                <button type="button" onclick="window.history.back();">취소</button>
    
+</c:forEach>
    
 </body>
 </html>

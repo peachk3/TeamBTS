@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
@@ -36,9 +37,28 @@ public class AdminController {
 
 	//http://localhost:8088/admin/admin
 	@RequestMapping(value="/admin",method=RequestMethod.GET)
-	public void adminMain_GET() {
+	public String adminMain_GET(HttpSession session,Model model) throws Exception {
 		logger.debug("관리자 페이지 호출");
-
+		// id정보 가져오기
+		String user_id = (String) session.getAttribute("user_id");
+        
+		logger.debug("user_id : "+user_id);
+        // 서비스 -> DAO 회원정보 조회
+        AdminDTO resultDTO = aService.getMember(user_id);
+        logger.debug("회원정보: " + resultDTO);
+        
+        // 연결된 뷰페이지(/mypage/info.jsp)에 정보 전달
+        model.addAttribute("resultDTO", resultDTO);
+        
+        // 뷰페이지 이동
+    	return "/admin/admin";  // admin.jsp로 이동
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	
@@ -65,6 +85,9 @@ public class AdminController {
 		List<Notice_boardDTO> noticeOneList = aService.noticeOneList(notice_id);
 		logger.debug("size : "+ noticeOneList.size());
 		
+		// 조회수 증가 로직
+    	aService.updateNoticeCount(notice_id);
+
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("noticeOneList", noticeOneList);
 		
@@ -92,7 +115,6 @@ public class AdminController {
 	@RequestMapping(value="/adminNoticeWrite",method=RequestMethod.POST)
 	public String adminNoticeWrite_POST(Notice_boardDTO dto,HttpSession session) throws Exception {
         
-
         logger.debug("관리자 공지사항 글쓰기 호출");
 		logger.debug(" /adminNoticeWrite -> adminNoticenWrite_POST() 호출");
 		
@@ -104,10 +126,97 @@ public class AdminController {
 	}	
 	
 	
+//  관리자- 공지게시글 수정하기(기존의 글정보 확인) - GET
+	@GetMapping(value="/adminNoticeModify")
+	public String adminNoticeModify_GET(Notice_boardDTO nbdto,HttpSession session,Model model,@RequestParam("notice_id") int notice_id,@RequestParam("admin_id") String admin_id) throws Exception{
+		logger.debug(" communityModifyGET() 실행");
+			// 전달정보 bno 저장
+			logger.debug(" notice_id : "+ notice_id);
+			String user_id = (String) session.getAttribute("user_id");
+	        logger.debug("user_id : "+ user_id);
+	        logger.debug("admin_id : "+ admin_id);
+	        
+	        if (user_id == null) {
+	            logger.debug("로그인을 해야 수정을 할 수 있습니다");
+	            return "redirect:/login/loginPage";
+	        }
+	        
+	        if (user_id.equals(nbdto.getAdmin_id())) {
+	            List<Notice_boardDTO> noticeOneList = aService.noticeOneList(notice_id);
+	            logger.debug("size : " + noticeOneList.size());
+	            logger.debug("noticeOneList : " + noticeOneList);
+	            
+	            // 연결된 뷰페이지로 정보 전달
+	            model.addAttribute("noticeOneList", noticeOneList);
+	            return "/admin/adminNoticeModify";
+	        } else {
+	        	logger.debug("본인이 작성한 글이 아닙니다");
+	            return "redirect:/admin/adminNoticeContent?notice_id="+notice_id;
+	        }
+	    }
+	
+//  관리자- 공지게시글 수정하기(기존의 글정보 확인) - POST
+	@PostMapping(value="/adminNoticeModify")
+	public String communityModify_POST(Notice_boardDTO nbdto,@RequestParam("notice_id") int notice_id) throws Exception{
+		logger.debug("modifyPOST()실행 ");
+		// 한글처리 인코딩(필터)
+		// 전달 정보 저장
+		logger.debug("수정할 내용, {} ",nbdto);
+		
+		// 서비스 - DAO 글내용을 수정
+		aService.adminNoticeModify(nbdto);
+		
+        return "redirect:/admin/adminNoticeContent?notice_id="+notice_id;
+	}	
+	
+//  공지사항 글  삭제하기(기존의 글정보 확인) - POST
+	@PostMapping(value="/adminNoticeDelete")
+	public String adminNoticeDelete_GET(Notice_boardDTO nbdto,HttpSession session,Model model,@RequestParam("notice_id") int notice_id,@RequestParam("admin_id") String admin_id) throws Exception{
+		logger.debug(" communityDeleteGET() 실행");
+			// 전달정보 post_id 저장
+			logger.debug(" notice_id : "+ notice_id);
+			String user_id = (String) session.getAttribute("user_id");
+	        logger.debug("user_id : "+ user_id);
+	        logger.debug("admin_id : "+ admin_id);
+	        
+	        if (user_id == null) {
+	            logger.debug("로그인을 해야 삭제를 할 수 있습니다");
+	            return "redirect:/login/loginPage";
+	        }
+	        
+	        if (user_id.equals(nbdto.getAdmin_id())) {
+	        	// 게시글 삭제하기
+	        	aService.deleteNoticeContent(notice_id);
+	        	
+	            return "redirect:/admin/adminNotice";
+	        } else {
+	        	logger.debug("본인이 작성한 글이 아닙니다");
+	            return "redirect:/admin/adminNoticeContent?notice_id="+notice_id;
+	        }
+	    }
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value="/adminMember",method=RequestMethod.GET)
-	public void adminMember_GET() {
+	public String adminMember_GET(Model model) throws Exception{
 		logger.debug("관리자 회원현황 호출");
+		
+		// 일반 회원수 출력
+		int generalMemberNum = aService.generalMemberCount();
+		model.addAttribute("generalMemberNum", generalMemberNum);
+		
+		// 탈퇴 회원 수 출력
+		int withdrawMemberNum = aService.withdrawMemberCount();
+		model.addAttribute("withdrawMemberNum", withdrawMemberNum);
+		
+
+		
+		
+		return "/admin/adminMember";
 
 	}
 	
@@ -155,14 +264,14 @@ public class AdminController {
 	}	
 	
 	@RequestMapping(value="/adminScheduleUpload",method=RequestMethod.GET)
-	public void adminScheduleUpload_GET() {
+	public void adminScheduleUpload_GET() throws Exception{
 		logger.debug("관리자 경기일정 업로드 호출");
 		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
 		
 	}
 	
 	@RequestMapping(value="/adminScheduleUpload",method=RequestMethod.POST)
-	public String adminScheduleUpload_POST(Game_scheduleDTO dto) {
+	public String adminScheduleUpload_POST(Game_scheduleDTO dto) throws Exception{
 		logger.debug("관리자 경기일정 업로드 호출");
 		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_POST() 호출");
 		
@@ -176,7 +285,7 @@ public class AdminController {
 	
 	// 경기 일정 수정 GET / 페이지 호출
 	@RequestMapping(value="/adminScheduleUpdate",method=RequestMethod.GET)
-	public String  adminScheduleUpdate_GET(@RequestParam("game_id") int game_id, Model model) {
+	public String  adminScheduleUpdate_GET(@RequestParam("game_id") int game_id, Model model) throws Exception{
 		logger.debug(" /adminScheduleUpdate -> adminScheduleUpdate_GET() 호출");
 		logger.debug(" @@@@@@@@@@@@@@@@@@@@@@@ "+ game_id);
 
@@ -193,7 +302,7 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminScheduleUpdate", method=RequestMethod.POST)
-	public String adminScheduleUpdate_POST(Game_scheduleDTO dto) {
+	public String adminScheduleUpdate_POST(Game_scheduleDTO dto) throws Exception {
 	    logger.debug(" /adminScheduleUpdate -> adminScheduleUpdate_POST() 호출");
 	    logger.debug("dto : " + dto);
 	    
@@ -225,7 +334,11 @@ public class AdminController {
 		logger.debug("관리자 - 문의게시판 본문 내용 호출");
     	logger.debug(" quest_id : " + quest_id);
 
-    	List<Post_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
+    	// 본문 호출
+    	List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
+    	
+    	// 조회수 증가 로직
+    	aService.updateQuestCount(quest_id);
     	
 		logger.debug("size : "+ QuestionOneList.size());
 		logger.debug("size : "+ QuestionOneList);

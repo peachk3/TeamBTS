@@ -75,6 +75,20 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 		
 		sqlSession.update(NAMESPACE+"bulletinDelete",quest_id);
 	}
+
+	@Override
+	public void updateNoticeCount(String notice_id) throws Exception {
+		logger.debug(" DAO : updateNoticeCount(String notice_id) 호출 ");
+		
+		sqlSession.update(NAMESPACE+"updateNoticeCount",notice_id);
+	}
+
+	@Override
+	public void updateQuestCount(int quest_id) throws Exception {
+		logger.debug(" DAO : updateQuestCount(int quest_id)");
+		
+		sqlSession.update(NAMESPACE+"updateQuestCount",quest_id);
+	}
 	
 	
 	

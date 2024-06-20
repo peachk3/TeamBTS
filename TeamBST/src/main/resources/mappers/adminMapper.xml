@@ -53,6 +53,7 @@
 	<!-- 공지사항 리스트 조회 -->
 	<select id="noticeList" resultType="Notice_boardDTO">
 		select * from notice_board
+		where notice_del_at = 'N'
 	</select>
 
 	<!-- 공지사항 본문 조회 -->
@@ -60,26 +61,52 @@
 		select * from notice_board
 		where notice_id = #{notice_id}
 	</select>
-
-
+	
+	 <!-- 공지사항 조회수 1증가 -->
+	  <update id="updateNoticeCount">
+		UPDATE notice_board
+		SET notice_view=notice_view+1
+		WHERE notice_id=#{notice_id}
+	  </update>
+	  
+	  
+	 <!-- 문의게시글 조회수 1증가 -->
+	  <update id="updateQuestCount">
+		UPDATE question_board
+		SET quest_view=quest_view+1
+		WHERE quest_id=#{quest_id}
+	  </update>
+	
+	
+	<!-- 공지 게시판 글 내용 수정 -->
+	<update id="adminNoticeModify">
+		update notice_board set notice_sub=#{notice_sub},notice_cont=#{notice_cont},admin_id=#{admin_id},photo_url=#{photo_url}
+		where notice_id = #{notice_id}
+	</update>
+	
+		<!-- 거래 게시판 글 내용 삭제 -->
+	<update id="deleteNoticeContent">
+		update notice_board
+		set notice_del_at = 'Y', notice_del_date = now()
+		where notice_id = #{notice_id}
+	</update>
 
 
 	<!-- 문의 게시글 목록 조회 -->
 	<select id="questionList" resultMap="questMap">
-		select qb.quest_id,
-		qb.quest_sub, qb.quest_cre_date, u.user_nick, qb.quest_public
+		select qb.quest_id,qb.quest_sub, qb.quest_cre_date, u.user_nick, qb.quest_public,qb.quest_view
 		from question_board qb
 		join user u
 		on qb.quest_writer_id = u.user_id
+		where quest_del_at = 'N'
 	</select>
 
 
 	<!-- 문의 게시글 내용 조회 -->
 	<select id="QuestionOneList" resultMap="questMap">
 		select qb.quest_id,
-		qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id,qb.quest_public
-		from
-		question_board qb join user u
+		qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id,qb.quest_public,qb.quest_view
+		from question_board qb join user u
 		on qb.quest_writer_id = u.user_id
 		where
 		quest_id = #{quest_id}
@@ -147,8 +174,29 @@
 	</select>
 
 	
+	<!-- 일반 회원수 출력 -->
+	<select id="generalMemberCount" resultType="int">
+		select count(*)
+        from user
+        where user_status = "USE";
+	</select>
+
+	<!-- 탈퇴 회원수 출력 -->
+	<select id="withdrawMemberCount" resultType="int">
+		select count(*)
+        from user
+        where user_status = "OUT";
+	</select>
+
+  <!-- 회원정보 조회 (by user_id) -->
+  <select id="getMember" resultType="AdminDTO">
+    SELECT * FROM admin
+    WHERE admin_id = #{user_id}
+  </select>
+	
+	
 	
 
 
-</mapper>
 
+</mapper>

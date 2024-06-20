@@ -22,5 +22,18 @@ public class Post_boardDTO {
 	private Timestamp post_del_date;
 	
 	private List<UserDTO> userList;
+
+    public int getPost_view() {
+        return post_view;
+    }
+
+    public void setPost_view(int post_view) {
+        this.post_view = post_view;
+    }
+
+	
+	
+	
+	
 	
 }

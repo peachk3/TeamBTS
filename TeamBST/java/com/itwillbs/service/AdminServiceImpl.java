@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
@@ -25,7 +26,7 @@ public class AdminServiceImpl implements AdminService{
 	private AdminDAO adao;
 
 	@Override
-	public void NoticeJoin(Notice_boardDTO dto) {
+	public void NoticeJoin(Notice_boardDTO dto) throws Exception {
 		
 		logger.debug("NoticeJoin(dto) 실행");
 		
@@ -44,7 +45,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void ScheduleJoin(Game_scheduleDTO dto) {
+	public void ScheduleJoin(Game_scheduleDTO dto) throws Exception{
 
 		logger.debug("ScheduleJoin(dto) 실행");
 		
@@ -63,7 +64,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public void updateSchedule(Game_scheduleDTO dto) {
+	public void updateSchedule(Game_scheduleDTO dto) throws Exception {
 		
 		logger.debug("updateSchedule(dto) 실행");
 		
@@ -75,7 +76,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public Game_scheduleDTO ScheduleOne(int game_id) {
+	public Game_scheduleDTO ScheduleOne(int game_id) throws Exception {
 		logger.debug("경기일정 글 일부 조회");
 		
 		return adao.ScheduleOne(game_id);
@@ -112,7 +113,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Post_boardDTO> QuestionOneList(int quest_id) throws Exception {
+	public List<Question_boardDTO> QuestionOneList(int quest_id) throws Exception {
 		logger.debug("관리자 - 문의 게시판 본문 조회");
 
 		
@@ -131,6 +132,58 @@ public class AdminServiceImpl implements AdminService{
 		logger.debug("일반회원 예매현황 조회");
 		
 		return adao.memberTicketingList(user_id);
+	}
+
+	@Override
+	public void adminNoticeModify(Notice_boardDTO nbdto) throws Exception {
+		logger.debug("관리자 - 공지사항 글 수정 ");
+
+		adao.adminNoticeModify(nbdto);
+	}
+
+	@Override
+	public void deleteNoticeContent(int notice_id) throws Exception {
+		logger.debug("관리자 - 공지사항 글 삭제");
+			
+		
+		adao.deleteNoticeContent(notice_id);
+	}
+
+	@Override
+	public void updateNoticeCount(int notice_id) throws Exception {
+		logger.debug("관리자 - 공지사항 조회수 증가");
+		
+		adao.updateNoticeCount(notice_id);
+	}
+
+	@Override
+	public void updateQuestCount(int quest_id) throws Exception {
+		logger.debug("관리자 - 문의게시글 조회수 증가");
+		
+		adao.updateQuestCount(quest_id);
+	}
+
+	@Override
+	public int generalMemberCount() throws Exception{
+		logger.debug("관리자 - 일반 회원수 출력");
+		
+		return adao.generalMemberCount();
+		
+	}
+
+	@Override
+	public int withdrawMemberCount() throws Exception {
+		logger.debug("관리자 - 탈퇴 회원수 출력");
+		
+		return adao.withdrawMemberCount();
+	}
+
+	@Override
+	public AdminDTO getMember(String user_id) throws Exception {
+		logger.debug("관리자 - 개인 정보 확인");
+
+		
+		return adao.getMember(user_id);
 	}
 	
 	

@@ -169,7 +169,12 @@ public class CommunityController {
 		logger.debug(" /communityContent -> communityContent_GET() 호출");
     	logger.debug(" post_id : " + post_id);
 
+    	// 본문 내용 호출
     	List<Post_boardDTO> PostOneList = cService.PostOneList(post_id);
+
+    	// 조회수 증가
+    	cService.updateCount(post_id);
+    	
     	
 		logger.debug("size : "+ PostOneList.size());
 		logger.debug("size : "+ PostOneList);

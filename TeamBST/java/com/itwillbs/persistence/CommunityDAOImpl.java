@@ -67,6 +67,19 @@ public class CommunityDAOImpl implements CommunityDAO{
 			
 		sqlSession.update(NAMESPACE+"deleteContent",post_id);
 	}
-	
 
+	@Override
+	public void updateCount(int post_id) throws Exception {
+		logger.debug("DAO : updateCount(int post_id)");
+		
+		sqlSession.update(NAMESPACE+"updateCount",post_id);
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 }
