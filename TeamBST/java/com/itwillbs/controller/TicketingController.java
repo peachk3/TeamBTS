@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,23 +44,19 @@ public class TicketingController {
         logger.debug("stad_id : " + stad_id);
 
         List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
-        model.addAttribute("TeamScheduleList", TeamScheduleList);
-        model.addAttribute("selectedStadium", stad_id); // 선택한 stadium id를 모델에 추가
 
         return "ticketing/ticketing"; // 실제 JSP 페이지 이름으로 변경하세요
     }
 	
 	
 	
-	@RequestMapping(value="/ticketing",method=RequestMethod.POST)
+	@RequestMapping(value="/ticketing",method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	 public String TeamTicketing(@RequestParam("stad_id") String stad_id, Model model) throws Exception{
         logger.debug("티켓팅 홈 페이지");
         logger.debug("stad_id : " + stad_id);
 
         List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
-        model.addAttribute("TeamScheduleList", TeamScheduleList);
-        model.addAttribute("selectedStadium", stad_id); // 선택한 stadium id를 모델에 추가
         
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule()); // Java 8 날짜 타입 지원

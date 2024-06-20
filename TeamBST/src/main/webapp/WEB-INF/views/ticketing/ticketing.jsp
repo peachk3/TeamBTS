@@ -4,16 +4,16 @@
 
 <!--  	<form action="/ticketing/ticketing" method="post"> -->
 		<select name="stad_id" id="stad_id">
-			<option value="All" ${selectedStadium == 'All' ? 'selected' : ''}>전체 구장</option>
-			<option value="GC" ${selectedStadium == 'GC' ? 'selected' : ''}>고척 스카이돔</option>
-			<option value="GJ" ${selectedStadium == 'GJ' ? 'selected' : ''}>광주 챔피언스 필드</option>
-			<option value="DG" ${selectedStadium == 'DG' ? 'selected' : ''}>대구 라이온즈파크</option>
-			<option value="DJ" ${selectedStadium == 'DJ' ? 'selected' : ''}>대전 이글스파크</option>
-			<option value="SJ" ${selectedStadium == 'SJ' ? 'selected' : ''}>부산 사직야구장</option>
-			<option value="JS" ${selectedStadium == 'JS' ? 'selected' : ''}>서울 잠실야구장</option>
-			<option value="SW" ${selectedStadium == 'SW' ? 'selected' : ''}>수원 KT위즈파크</option>
-			<option value="IC" ${selectedStadium == 'IC' ? 'selected' : ''}>인천 랜더스필드</option>
-			<option value="CW" ${selectedStadium == 'CW' ? 'selected' : ''}>창원 NC파크</option>
+			<option value="All">전체 구장</option>
+			<option value="GC">고척 스카이돔</option>
+			<option value="GJ">광주 챔피언스 필드</option>
+			<option value="DG">대구 라이온즈파크</option>
+			<option value="DJ">대전 이글스파크</option>
+			<option value="SJ">부산 사직야구장</option>
+			<option value="JS"}>서울 잠실야구장</option>
+			<option value="SW">수원 KT위즈파크</option>
+			<option value="IC">인천 랜더스필드</option>
+			<option value="CW">창원 NC파크</option>
 		</select> 
 <!-- 		<input type="submit" value="검색" id="submit"> -->
 <!-- 	</form> -->
@@ -50,6 +50,8 @@
 	<script>
 	
 	$(document).ready(function(){
+		getMemberList();
+		
 		$("#stad_id").change(getMemberList); //id="listButton"인 태그에 click하면 function getMemberList() 실행
 	});
 	

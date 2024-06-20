@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.persistence.CommunityDAO;
 
@@ -28,12 +29,20 @@ public class CommunityServiceImpl implements CommunityService{
 		
 		logger.debug("공지사항 작성 성공");
 	}
-
+	
 	@Override
-	public List<Post_boardDTO> PostList() throws Exception {
+	public List<Post_boardDTO> PostListAll() throws Exception {
 		logger.debug("공지사항 글목록 조회");
 		
-		return cdao.PostList();
+		return cdao.PostListAll();
+	}
+
+	@Override
+	public List<Post_boardDTO> PostList(Category cate) throws Exception {
+		logger.debug("공지사항 글목록 조회");
+		logger.debug("cate"+ cate);
+		
+		return cdao.PostList(cate);
 	}
 
 	@Override
