@@ -37,12 +37,13 @@ public class CommunityController {
 	
 	@RequestMapping(value="/community",method=RequestMethod.GET)
 	public void coummnityMain_GET(Model model) throws Exception {
-		logger.debug("거래 게시판 호출");
+		logger.debug("거래 게시판 메인 호출");
+		logger.debug(" /community -> coummnityMain_GET() 호출");
 		
 		// 서비스 -> DB의 정보를 가져오기
 		List<Post_boardDTO> pBoardList = cService.PostList();
 		logger.debug("size : "+ pBoardList.size());
-		logger.debug("size : "+ pBoardList);
+		logger.debug("pBoardList : "+ pBoardList);
 		
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("pBoardList", pBoardList);
@@ -56,7 +57,7 @@ public class CommunityController {
         logger.debug("user_id : "+ user_id);
 		
 		  if(user_id != null) {
-			  logger.debug("거래 게시판 호출");
+			  logger.debug("거래 게시판 글쓰기 호출");
 			  logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
 	        
 	        	return "/community/communityWrite";
@@ -73,7 +74,7 @@ public class CommunityController {
 	@RequestMapping(value="/communityWrite",method=RequestMethod.POST)
 	public String coummnityWrite_POST(Post_boardDTO dto,HttpSession session) {
         String user_id = (String) session.getAttribute("user_id");
-		logger.debug("거래 게시판 호출");
+		logger.debug("거래 게시판 글쓰기 호출");
 		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_POST() 호출");
 		dto.setPost_writer_id(user_id);
 		logger.debug("dto : "+ dto);
@@ -86,7 +87,8 @@ public class CommunityController {
 	//  거래 게시판 본문 확인하기
 	@GetMapping(value="/communityContent")
 	public void communityContent_GET(@RequestParam("post_id") int post_id, Model model) throws Exception{
-		logger.debug("본문 내용 호출");
+		logger.debug("거래 게시판 본문 내용 호출");
+		logger.debug(" /communityContent -> communityContent_GET() 호출");
     	logger.debug(" post_id : " + post_id);
 
     	List<Post_boardDTO> PostOneList = cService.PostOneList(post_id);
@@ -102,7 +104,8 @@ public class CommunityController {
 //  게시판 글 수정하기(기존의 글정보 확인) - GET
 	@GetMapping(value="/communityModify")
 	public String communityModify_GET(Post_boardDTO pbdto,HttpSession session,Model model,@RequestParam("post_id") int post_id,@RequestParam("post_writer_id") String post_writer_id) throws Exception{
-		logger.debug(" communityModifyGET() 실행");
+		logger.debug("거래 게시판 본문 수정 호출");
+		logger.debug(" /communityModify -> communityModify_GET() 호출");
 			// 전달정보 bno 저장
 			logger.debug(" post_id : "+ post_id);
 			String user_id = (String) session.getAttribute("user_id");
@@ -134,7 +137,8 @@ public class CommunityController {
 //  게시판 글 수정하기(기존의 글정보 확인) - POST
 	@PostMapping(value="/communityModify")
 	public String communityModify_POST(Post_boardDTO pbdto,@RequestParam("post_id") int post_id) throws Exception{
-		logger.debug("modifyPOST()실행 ");
+		logger.debug("거래 게시판 본문 수정 호출");
+		logger.debug(" /communityModify -> communityModify_POST() 호출");
 		// 한글처리 인코딩(필터)
 		// 전달 정보 저장
 		logger.debug("수정할 내용, {} ",pbdto);
@@ -150,7 +154,8 @@ public class CommunityController {
 //  게시판 글 삭제하기(기존의 글정보 확인) - POST
 	@PostMapping(value="/communityDelete")
 	public String communityDelete_GET(Post_boardDTO pbdto,HttpSession session,Model model,@RequestParam("post_id") int post_id,@RequestParam("post_writer_id") String post_writer_id) throws Exception{
-		logger.debug(" communityDeleteGET() 실행");
+		logger.debug("거래 게시판 글 삭제 호출");
+		logger.debug(" /communityDelete -> communityDelete_GET() 호출");
 			// 전달정보 post_id 저장
 			logger.debug(" post_id : "+ post_id);
 			String user_id = (String) session.getAttribute("user_id");
