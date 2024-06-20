@@ -36,10 +36,12 @@
 					<th>게시글</th>
 					<th>닉네임</th>
 					<th>등록일</th>
+					<th>조회수</th>
 				</tr>
 				<c:forEach var="dto" items="${pBoardList}">
 					<tr>
 						<td>${dto.post_id }</td>
+						
 						<td>
 				<c:choose>
 					<c:when test="${dto.sale_status.equals('SALE')}">
@@ -58,7 +60,10 @@
 						</c:forEach>
 						<td><fmt:formatDate value="${dto.post_cre_date}"
 								pattern="yyyy-MM-dd" /></td>
+						<td>${dto.post_view }</td>
 					</tr>
+					
+					
 				</c:forEach>
 
 			</tbody>

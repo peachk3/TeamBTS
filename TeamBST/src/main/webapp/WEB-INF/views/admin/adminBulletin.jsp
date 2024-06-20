@@ -44,10 +44,6 @@
 					</c:otherwise>
 				</c:choose>						
 						
-						
-						
-						
-						
 						</td>
 						<c:forEach var="dto_" items="${dto.userList}">
 							<td>${dto_.user_nick}</td>

@@ -57,6 +57,14 @@ public class CommunityServiceImpl implements CommunityService{
 		cdao.deleteContent(post_id);
 	}
 
+	@Override
+	public void updateCount(int post_id) throws Exception {
+		logger.debug(" 조회수 증가 ");
+		
+		
+		cdao.updateCount(post_id);
+	}
+
 	
 	
 	

@@ -74,6 +74,18 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 		adao.bulletinDelete(quest_id);
 	}
 
+	@Override
+	public void updateNoticeCount(String notice_id) throws Exception {
+
+		adao.updateNoticeCount(notice_id);
+	}
+
+	@Override
+	public void updateQuestCount(int quest_id) throws Exception {
+
+		adao.updateQuestCount(quest_id);
+	}
+
 	
 	
 	

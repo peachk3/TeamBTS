@@ -51,7 +51,7 @@
             <span>작성자: ${quest.quest_writer_id }</span> &nbsp; | &nbsp; 
             <span>작성일: ${quest.quest_cre_date }</span>
             &nbsp; | &nbsp; 
-<%--             <span>조회수: ${quest.quest_view }</span> --%>
+            <span>조회수: ${quest.quest_view }</span>
          </div>
       </div>
       <div class="post-content">

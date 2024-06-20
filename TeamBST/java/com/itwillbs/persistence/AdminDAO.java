@@ -46,7 +46,7 @@ public interface AdminDAO {
 	public List<Question_boardDTO> questionList() throws Exception;
 
 	// 관리자 - 문의 게시판 본문 
-	public List<Post_boardDTO> QuestionOneList(int quest_id) throws Exception;
+	public List<Question_boardDTO> QuestionOneList(int quest_id) throws Exception;
 	
 	// 관리자 - 문의 게시판 답변 작성
 	public void questionCommend(Question_commendDTO qcdto) throws Exception;
@@ -68,6 +68,12 @@ public interface AdminDAO {
 
 	// 관리자 공지사항 삭제
 	public void deleteNoticeContent(int notice_id) throws Exception;
+
+	// 관리자 공지사항 조회수 증가
+	public void updateNoticeCount(int notice_id) throws Exception;
+
+	// 관리자 문의게시글 조회수 증가
+	public void updateQuestCount(int quest_id) throws Exception;
 
 	
 }

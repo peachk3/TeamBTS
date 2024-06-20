@@ -102,6 +102,10 @@ public class AnnouncementController {
 		logger.debug("본문 내용 호출");
     	logger.debug(" notice_id : " + notice_id);
 
+    	// 조회수 1 증가
+    	aService.updateNoticeCount(notice_id);
+
+    	
     	List<Post_boardDTO> noticeOneList = aService.noticeOneList(notice_id);
     	
 		logger.debug("size : "+ noticeOneList.size());
@@ -118,6 +122,11 @@ public class AnnouncementController {
 		logger.debug("본문 내용 호출");
     	logger.debug(" quest_id : " + quest_id);
 
+    	
+    	// 조회수 1 증가
+    	aService.updateQuestCount(quest_id);
+
+    	
     	List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
     	
 		logger.debug("size : "+ QuestionOneList.size());

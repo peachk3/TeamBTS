@@ -112,7 +112,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Post_boardDTO> QuestionOneList(int quest_id) throws Exception {
+	public List<Question_boardDTO> QuestionOneList(int quest_id) throws Exception {
 		logger.debug("관리자 - 문의 게시판 본문 조회");
 
 		
@@ -146,6 +146,20 @@ public class AdminServiceImpl implements AdminService{
 			
 		
 		adao.deleteNoticeContent(notice_id);
+	}
+
+	@Override
+	public void updateNoticeCount(int notice_id) throws Exception {
+		logger.debug("관리자 - 공지사항 조회수 증가");
+		
+		adao.updateNoticeCount(notice_id);
+	}
+
+	@Override
+	public void updateQuestCount(int quest_id) throws Exception {
+		logger.debug("관리자 - 문의게시글 조회수 증가");
+		
+		adao.updateQuestCount(quest_id);
 	}
 	
 	

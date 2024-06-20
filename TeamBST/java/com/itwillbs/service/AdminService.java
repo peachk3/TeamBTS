@@ -48,7 +48,7 @@ public interface AdminService {
 	public List<Question_boardDTO> questionList() throws Exception;
 
 	// 관리자 - 문의 게시판 본문 조회
-	public List<Post_boardDTO> QuestionOneList(int quest_id) throws Exception;
+	public List<Question_boardDTO> QuestionOneList(int quest_id) throws Exception;
 
 	// 관리자 - 문의 게시판 답변하기 
 	public void questionCommend(Question_commendDTO qcdto) throws Exception;
@@ -61,6 +61,12 @@ public interface AdminService {
 
 	// 관리자 - 공지사항 글 삭제
 	public void deleteNoticeContent(int notice_id) throws Exception;
+
+	// 관리자 - 공지사항 조회수 증가
+	public void updateNoticeCount(int notice_id) throws Exception;
+
+	// 관리자 - 문의글 조회수 증가
+	public void updateQuestCount(int quest_id) throws Exception;
 
 	
 }
