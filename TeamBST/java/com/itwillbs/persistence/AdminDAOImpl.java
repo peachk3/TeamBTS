@@ -30,7 +30,7 @@ public class AdminDAOImpl implements AdminDAO{
 // 관리자 - 공지사항
 	
 	@Override
-	public void insertNotice(Notice_boardDTO dto) {
+	public void insertNotice(Notice_boardDTO dto) throws Exception{
 		
 		logger.debug("DAO : insertNotice(dto) 호출");
 		
@@ -49,7 +49,7 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 
 	@Override
-	public void insertSchedule(Game_scheduleDTO dto) {
+	public void insertSchedule(Game_scheduleDTO dto) throws Exception{
 		
 		logger.debug("DAO : insertSchedule(dto) 호출");
 		
@@ -70,7 +70,7 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 	
 	@Override
-	public void updateSchedule(Game_scheduleDTO dto) {
+	public void updateSchedule(Game_scheduleDTO dto) throws Exception{
 		
 		logger.debug("DAO : updateSchedule(dto) 호출");
 		
@@ -82,7 +82,7 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 	
 	@Override
-	public Game_scheduleDTO ScheduleOne(int game_id) {
+	public Game_scheduleDTO ScheduleOne(int game_id) throws Exception{
 		
 		logger.debug("DAO : ScheduleOne() 호출");
 		
@@ -143,11 +143,25 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 
 
-	public List<Game_scheduleDTO> memberTicketingList(String user_id) {
+	public List<Game_scheduleDTO> memberTicketingList(String user_id) throws Exception{
 
 		logger.debug(" DAO : memberTicketingList(user_id) 호출");
 		
 		return sqlSession.selectList(NAMESPACE+"memberTicketingList",user_id);
+	}
+
+	@Override
+	public void adminNoticeModify(Notice_boardDTO nbdto) throws Exception {
+		logger.debug(" DAO :  adminNoticeModify(Post_boardDTO pbdto) 호출");
+		
+		sqlSession.update(NAMESPACE+"adminNoticeModify",nbdto);
+	}
+
+	@Override
+	public void deleteNoticeContent(int notice_id) throws Exception {
+		logger.debug(" DAO : deleteNoticeContent(int notice_id) 호출");
+		
+		sqlSession.update(NAMESPACE+"deleteNoticeContent",notice_id);
 	}
 	
 	
