@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Post_boardDTO;
 
 @Repository
@@ -31,12 +32,19 @@ public class CommunityDAOImpl implements CommunityDAO{
 		logger.debug("DAO : 공지사항 작성 완료");
 		
 	}
+	
+	@Override
+	public List<Post_boardDTO> PostListAll() throws Exception {
+		logger.debug("DAO : PostListAll() 호출");
+		
+		return sqlSession.selectList(NAMESPACE + "PostListAll");
+	}
 
 	@Override
-	public List<Post_boardDTO> PostList() throws Exception {
+	public List<Post_boardDTO> PostList(Category cate) throws Exception {
 		logger.debug("DAO : PostList() 호출");
 		
-		return sqlSession.selectList(NAMESPACE + "PostList");
+		return sqlSession.selectList(NAMESPACE + "PostList", cate);
 	}
 
 	@Override
