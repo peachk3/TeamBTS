@@ -25,7 +25,7 @@ public class AdminServiceImpl implements AdminService{
 	private AdminDAO adao;
 
 	@Override
-	public void NoticeJoin(Notice_boardDTO dto) {
+	public void NoticeJoin(Notice_boardDTO dto) throws Exception {
 		
 		logger.debug("NoticeJoin(dto) 실행");
 		
@@ -44,7 +44,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void ScheduleJoin(Game_scheduleDTO dto) {
+	public void ScheduleJoin(Game_scheduleDTO dto) throws Exception{
 
 		logger.debug("ScheduleJoin(dto) 실행");
 		
@@ -63,7 +63,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public void updateSchedule(Game_scheduleDTO dto) {
+	public void updateSchedule(Game_scheduleDTO dto) throws Exception {
 		
 		logger.debug("updateSchedule(dto) 실행");
 		
@@ -75,7 +75,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public Game_scheduleDTO ScheduleOne(int game_id) {
+	public Game_scheduleDTO ScheduleOne(int game_id) throws Exception {
 		logger.debug("경기일정 글 일부 조회");
 		
 		return adao.ScheduleOne(game_id);
@@ -131,6 +131,21 @@ public class AdminServiceImpl implements AdminService{
 		logger.debug("일반회원 예매현황 조회");
 		
 		return adao.memberTicketingList(user_id);
+	}
+
+	@Override
+	public void adminNoticeModify(Notice_boardDTO nbdto) throws Exception {
+		logger.debug("관리자 - 공지사항 글 수정 ");
+
+		adao.adminNoticeModify(nbdto);
+	}
+
+	@Override
+	public void deleteNoticeContent(int notice_id) throws Exception {
+		logger.debug("관리자 - 공지사항 글 삭제");
+			
+		
+		adao.deleteNoticeContent(notice_id);
 	}
 	
 	
