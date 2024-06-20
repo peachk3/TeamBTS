@@ -45,15 +45,15 @@
 	</select>
 	
 	<!-- 선택된 좌석 정보 변경 -->
-	<update id="getSelectedSeat">
+	<update id="postSelectedSeat" parameterType="com.itwillbs.domain.Seat_bookDTO">
 <!-- 		INSERT INTO seat_book (seat_id, game_id, booked_at) -->
 <!-- 		VALUES (#{seat_id}, #{game_id}, 1) -->
 <!-- IN (SELECT seat_id FROM seat WHERE seat_id=#{seat_id}) -->
 <!-- IN (SELECT game_id FROM game_schedule WHERE game_id=#{game_id}) -->
 		UPDATE seat_book
 		SET booked_at = 1
-		WHERE seat_id IN (SELECT seat_id FROM seat WHERE seat_id=#{seat_id})
-		AND game_id IN (SELECT game_id FROM game_schedule WHERE game_id=#{game_id}) 
+		WHERE seat_id = #{seat_id, jdbcType=VARCHAR}
+		  AND game_id = #{game_id, jdbcType=VARCHAR}
 	</update>
 	
 	
@@ -69,18 +69,7 @@
 		from seat_price
 		where seat_price_id LIKE '%_C' AND zone_id=#{zone_id} 
 	</select>
-	<!-- 선택된 좌석 정보 변경하기 -->
-<!-- 	<update id="getSelectedSeat"> -->
-<!-- 		update seat_book -->
-<!-- 		set booked_at = '1' -->
-<!-- 		where game_id=#{game_id} and seat_id=#{seat_id} -->
-<!-- 	</update> -->
 	
-<!-- 	<select id="getSelectedSeat" resultType="com.itwillbs.domain.SeatDTO"> -->
-<!-- 		select * -->
-<!-- 		from seat -->
-<!-- 		where seat_id =#{seat_id} -->
-<!-- 	</select> -->
 
 <!-- 	Seat --> 
 <!-- 	<select id="getSeatsByZoneId" resultType="com.itwillbs.domain.SeatDTO" > -->

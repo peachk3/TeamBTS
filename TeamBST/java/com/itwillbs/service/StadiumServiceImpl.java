@@ -60,10 +60,10 @@ public class StadiumServiceImpl implements StadiumService {
 	}
 
 	@Override
-	public void getSelectedSeat(String game_id, String seat_id) {
-		logger.debug("getSelectedSeat(String game_id) 호출");
+	public void postSelectedSeat(Integer game_id, String seat_id) {
+		logger.debug(" @@@ postSelectedSeat(String game_id) 호출");
 		
-		staddao.getSelectedSeat(game_id, seat_id);
+		staddao.postSelectedSeat(game_id, seat_id);
 	}
 
 	@Override

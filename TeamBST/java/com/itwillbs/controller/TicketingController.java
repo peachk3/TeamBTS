@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -91,7 +92,6 @@ public class TicketingController {
  	@RequestMapping(value="/stadium", method = RequestMethod.GET)
 	public String goStadiumGET(HttpSession session,@RequestParam("stad_id") String stad_id, Model model) {
         String user_id = (String) session.getAttribute("user_id");
-        
         logger.debug("user_id : "+ user_id);
  		
         if(user_id != null) {
@@ -139,6 +139,7 @@ public class TicketingController {
 		return "/ticketing/displaySeats";
 	}	
 	
+	
 	@GetMapping(value="/reservation/{stad_id}/{game_id}/{zone_ty}/{zone_id}/{seat_row}/{seat_num}/{seat_id}")
 	public String bookTicket(HttpSession session, @PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("seat_row") String seat_row, @PathVariable("seat_num") String seat_num, 
 			@PathVariable("zone_ty") String zone_ty, @PathVariable("seat_id") String seat_id, @PathVariable("zone_id")String zone_id,  Model model) {
@@ -155,15 +156,20 @@ public class TicketingController {
 		// user_id 비교해서 user_name 가져오기
 		List<UserDTO> user = stadService.getUserName(user_id);
 		
-		
 		// 성인 좌석 가격
 		List<Seat_priceDTO> seatAdultPrice = stadService.getSeatAdultPrice(zone_id);
+		
 		// 초등학생 좌석 가격
 		List<Seat_priceDTO> seatChildPrice = stadService.getSeatChildPrice(zone_id);
 		
-		
-		
 		// List<SeatDTO> selectedSeat = stadService.getSelectedSeat(seat_id);
+		
+		Integer gameIdInteger = Integer.parseInt(game_id);
+	        
+			logger.debug("@@@@"); 
+			logger.debug("game_id: " + gameIdInteger);
+			// 예매하기 버튼 클릭 시 booked_at '1'로 업데이트
+			stadService.postSelectedSeat(gameIdInteger, seat_id);
 		
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("game_id", game_id);
@@ -171,7 +177,7 @@ public class TicketingController {
 		model.addAttribute("seat_row", seat_row);
 		model.addAttribute("seat_num", seat_num);
 //		model.addAttribute("zone_id", zone_id);
-		// model.addAttribute("seat_id", seat_id);
+// 		model.addAttribute("seat_id", seat_id);
 		model.addAttribute("seats", seats);
 //		model.addAttribute("user_name", user_name);
 		model.addAttribute("user", user);
@@ -184,16 +190,25 @@ public class TicketingController {
 		return "/ticketing/reservation";
 	}
 	
-	// 여기까지 성공
-	
-	@PostMapping(value="/reservation/{stad_id}/{game_id}/{zone_ty}/{zone_id}/{seat_row}/{seat_num}/{seat_id}")
-	public String updateBooked(HttpSession session, @PathVariable("stad_id") String stad_id, @PathVariable("game_id") String game_id, @PathVariable("seat_row") String seat_row, @PathVariable("seat_num") String seat_num, 
-			@PathVariable("zone_ty") String zone_ty, @PathVariable("seat_id") String seat_id, @PathVariable("zone_id")String zone_id,  Model model) {
+	// **** 좌석 선택 후 이동시 booked_at 1로 변경 
+	@PostMapping("/reservation")
+	public String updateBooked(HttpSession session, @PathVariable("game_id") String game_id, @PathVariable("seat_id") String seat_id) {
+		String user_id = (String) session.getAttribute("user_id");
+		logger.debug("user_id : "+ user_id);
+		
+		// Convert game_id to Integer if needed
+		Integer gameIdInteger = Integer.parseInt(game_id);
+		
+		logger.debug("@@@@"); 
+		logger.debug("game_id: " + gameIdInteger);
 		// 예매하기 버튼 클릭 시 booked_at '1'로 업데이트
-		stadService.getSelectedSeat(game_id, seat_id);
-
+		stadService.postSelectedSeat(gameIdInteger, seat_id);
+		
 		return "redirect:/ticketing/reservation";
 	}
+	
+	// 여기까지 성공
+	
 	
 //	public String goSeat(@PathVariable)
 	

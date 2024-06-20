@@ -35,7 +35,7 @@ public interface StadiumService {
 
 	public List<Game_scheduleDTO> getGameSche(String game_id);
 
-	public void getSelectedSeat(String game_id, String seat_id);
+	public void postSelectedSeat(Integer game_id, String seat_id);
 
 	public List<Seat_priceDTO> getSeatAdultPrice(String zone_id);
 

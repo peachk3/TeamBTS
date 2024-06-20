@@ -32,7 +32,7 @@ public interface StadiumDAO {
 
 	public List<Game_scheduleDTO> getGameSche(@RequestParam("game_id")String game_id);
 
-	public void getSelectedSeat(@RequestParam("game_id") String game_id, @RequestParam("seat_id") String seat_id);
+	public void postSelectedSeat(Integer game_id, String seat_id);
 
 	public List<Seat_priceDTO> getSeatAdultPrice(@RequestParam("zone_id") String zone_id);
 

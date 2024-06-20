@@ -74,9 +74,12 @@ public class StadiumDAOImpl implements StadiumDAO {
 	}
 
 	@Override
-	public void getSelectedSeat(String game_id, String seat_id) {
-		logger.debug("getSelectedSeat(String seat_id) 호출");
-		
+	public void postSelectedSeat(Integer game_id, String seat_id) {
+		logger.debug("postSelectedSeat(String game_id, String seat_id) 호출");
+		Map<String, Object> params = new HashMap<>();
+	    params.put("game_id", game_id);
+	    params.put("seat_id", seat_id);
+		sqlSession.update(NAMESPACE + "postSelectedSeat" , params);
 	}
 
 	@Override
