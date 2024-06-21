@@ -24,12 +24,29 @@ public class StadiumServiceImpl implements StadiumService {
 	@Inject
 	private StadiumDAO staddao;
 
+	// zoneList 출력
 	@Override
 	public List<ZoneDTO> getZonesByStadiumId(String game_id) {
 		logger.debug("getZonesByStadiumId(String game_id) 호출");
 		return staddao.getZonesByStadiumId(game_id);
 		
 	}
+	
+	// seatList 출력
+	@Override
+	public List<SeatDTO> getSeatsId(String zone_id) {
+		
+		logger.debug("getSeatsId(String zone_id) 호출 ");
+		
+		return staddao.getSeatsId(zone_id);
+	}
+//	@Override
+//	public List<SeatDTO> getSeatsId(String zone_id, String game_id) {
+//		
+//		logger.debug("getSeatsId(String zone_id, String game_id) 호출 ");
+//		
+//		return staddao.getSeatsId(zone_id, game_id);
+//	}
 
 	@Override
 	public List<SeatDTO> getSeatsByZone(String zone_ty, String game_id) {
@@ -47,12 +64,6 @@ public class StadiumServiceImpl implements StadiumService {
 //		return staddao.getZoneID(zone_ty, game_id);
 //	}
 
-	@Override
-	public List<SeatDTO> getSeatsId(String seat_id) {
-
-		logger.debug("getSeatsId(String zone_id) 호출 ");
-		return staddao.getSeatsId(seat_id);
-	}
 
 	@Override
 	public List<UserDTO> getUserName(String user_id) {

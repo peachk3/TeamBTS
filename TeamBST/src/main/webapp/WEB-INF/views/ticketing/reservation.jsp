@@ -223,6 +223,7 @@ select {
 
 	<p>Stadium ID : ${stad_id }</p>
 	<p>Game ID : ${game_id }</p>
+	<p>Zone TY : ${zone_ty }</p>
 	<p>Zone ID : ${zone_id }</p>
 	<p>Seat ID : ${seat_row }열 ${seat_num }번</p>
 

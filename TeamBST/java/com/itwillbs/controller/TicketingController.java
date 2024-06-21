@@ -100,6 +100,7 @@ public class TicketingController {
         model.addAttribute("zones", zones);
         model.addAttribute("game_id", game_id);
         
+        logger.debug("zones : " + zones);
         
         if(user_id != null) {
         	model.addAttribute("stad_id",stad_id);
@@ -145,14 +146,20 @@ public class TicketingController {
         
         // zone_id 출력
 //        String zoneId = stadService.getZoneId(zone_ty, game_id);
-        
-		List<SeatDTO> seats = stadService.getSeatsByZone(zone_ty, game_id);
+        // seat 출력
+//		List<SeatDTO> seats = stadService.getSeatsId(zone_id, game_id);
+		List<SeatDTO> seats = stadService.getSeatsId(zone_id);
 		
 		model.addAttribute("game_id", game_id);
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("zone_ty", zone_ty);
 		model.addAttribute("zone_id", zone_id);
 		model.addAttribute("seats", seats);
+		
+		logger.debug("seats : " + seats);
+		logger.debug("zone_id : " + zone_id);
+		logger.debug("game_id: " + game_id);
+		
 		return "/ticketing/displaySeats";
 	}	
 	
@@ -167,11 +174,12 @@ public class TicketingController {
 			@RequestParam("seat_id") String seat_id, 
 			@RequestParam("zone_id")String zone_id,  Model model) {
         
+		// user_id 전달
 		String user_id = (String) session.getAttribute("user_id");
         logger.debug("user_id : "+ user_id);
         
-        // seat_id 비교해서 seatList 가져오기 (seat_row, num ...)
-		List<SeatDTO> seats = stadService.getSeatsId(seat_id);
+        // zone_id 비교해서 seatList 가져오기 (seat_row, num ...)
+//		List<SeatDTO> seats = stadService.getSeatsId(zone_id, game_id); // ********************* 수정해야 함*******************
 	
 		// game_id 비교해서 gameSchedulelist 가져오기
 		List<Game_scheduleDTO> gameSchedule = stadService.getGameSche(game_id);
@@ -202,7 +210,7 @@ public class TicketingController {
 		model.addAttribute("seat_num", seat_num);
 //		model.addAttribute("zone_id", zone_id);
 // 		model.addAttribute("seat_id", seat_id);
-		model.addAttribute("seats", seats);
+//		model.addAttribute("seats", seats);
 //		model.addAttribute("user_name", user_name);
 		model.addAttribute("user", user);
 		model.addAttribute("gameSchedule", gameSchedule);

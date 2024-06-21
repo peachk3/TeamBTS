@@ -14,7 +14,7 @@
 		where game_id = #{game_id}
 	</select>
 
-	<!-- seat -->
+<!-- 	seat
 	<select id="getSeatsByZone" resultType="com.itwillbs.domain.ZoneDTO">
 		select s.seat_id, s.seat_row, s.seat_num, z.zone_id, z.zone_ty
 		from seat s
@@ -22,11 +22,15 @@
 		on s.zone_id = z.zone_id
 		join game_schedule g
 		on g.stad_id = z.stad_id
-		where zone_ty=#{zone_ty} and game_id = #{game_id}
-	</select>
+		where zone_ty=#{zone_ty} and game_id = #{game_id} 
+ 	</select> -->
 
 	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO">
-		SELECT * FROM seat WHERE seat_id = #{seat_id}
+		select s.seat_id, s.seat_row, s.seat_num, s.zone_id, z.zone_ty
+		from seat s
+		join zone z
+		on s.zone_id = z.zone_id
+		where s.zone_id=#{zone_id}
 	</select>
 	
 	<select id="getUserName" resultType="com.itwillbs.domain.UserDTO">

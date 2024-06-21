@@ -137,18 +137,21 @@
 	</ul>	
 
     <c:forEach var="seat" items="${seats}">
-     console.log('${seat.seat_id}');
+     ${seat}
      </c:forEach>
 		<h1 class="h">Selected Seat: ${zone_ty}구역</h1>
 		<h6 class="hh">구장: ${stad_id}</h6>
 		<h6 class="hh">게임ID: ${game_id}</h6>		
 		<h6 class="hhh">zone_id : ${zone_id}</h6>
+		<h6 class="hhhh">사용자 아이디 : ${user_id}</h6>
+		<h6 class="hhhh">zone_ty : ${zone_ty}</h6>
+		
 	 	<div class="container">
 			<div class="seating-chart">
 				<div class="field">필드</div> 
 				<!-- 좌석 배치 예제 -->
 					<div class="seats-grid">
-						<div class="seat" data-row="1" data-num="A">1A</div>
+						<div class="seat" data-row="${seat.seat_row }" data-num="${seat.seat_num }">1A</div>
 						<div class="seat" data-row="1" data-num="B">1B</div>
 						<div class="seat" data-row="1" data-num="C">1C</div>
 						<div class="seat" data-row="2" data-num="A">2A</div>

@@ -25,11 +25,14 @@ public interface StadiumService {
 	
 //	public SeatDTO getSeatById(String seat_id);
 
+	// zoneList 출력
 	public List<ZoneDTO> getZonesByStadiumId(String game_id);
 
+	// seatList 출력
+//	public List<SeatDTO> getSeatsId(String zone_id, String game_id);
+	public List<SeatDTO> getSeatsId(String zone_id);
+
 	public List<SeatDTO> getSeatsByZone(String zone_ty, String game_id);
-	
-	public List<SeatDTO> getSeatsId(String seat_id);
 
 	public List<UserDTO> getUserName(String user_id);
 
