@@ -74,6 +74,6 @@ public class AdminLoginController {
         //로그인 성공!
         session.setAttribute("user_id", resultDTO.getAdmin_id());
         
-        return "redirect:/admin/admin";
+        return "redirect:/admin/adminMember";
 	}
 }
