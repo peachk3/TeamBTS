@@ -45,11 +45,31 @@
 		select * from notice_board
 	</select>
 	
+	<!-- 공지사항 리스트 조회( 페이징 처리 2 ) -->
+	<select id="noticeListPage" resultType="Notice_boardDTO">
+		<![CDATA[
+		select * from notice_board
+		where notice_id > 0 
+		order by notice_id desc, notice_cre_date desc
+		limit #{pageStart},#{pageSize}
+		]]>
+	</select>
+	
+	
+	
+	
+	<!-- 공지 게시판 총 글의 개수(페이징처리) -->
+	<select id="countNoticePage" resultType="int">
+		select count(notice_id) from notice_board
+	</select>
+	
+	
 	<!-- 공지사항 글 내용 조회 -->
 		<select id="noticeOneList" resultType="Notice_boardDTO">
 		select * from notice_board
 		where notice_id = #{notice_id}
 	</select>
+	
 	
   	<!-- 공지사항 조회수 1증가 -->
 	  <update id="updateNoticeCount">
@@ -76,6 +96,26 @@
 		on qb.quest_writer_id = u.user_id
 		where quest_del_at = 'N'
 	</select>
+	
+	<!-- 문의 게시글  리스트 조회( 페이징 처리 2 ) -->
+	<select id="questionListPage" resultType="questMap">
+		<![CDATA[
+		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_public,qb.quest_view
+		from question_board qb join user u
+		on qb.quest_writer_id = u.user_id
+		where (quest_del_at = 'N' and quest_id > 0)
+		order by qb.quest_id desc, qb.quest_cre_date desc
+		limit #{pageStart},#{pageSize}
+		]]>
+	</select>
+	
+	<!-- 문의 게시판 총 글의 개수(페이징처리) -->
+	<select id="countQuestionPage" resultType="int">
+		select count(quest_id) from question_board
+	</select>	
+	
+	
+	
 	
 	<!-- 문의 게시글 내용 조회 -->
 	<select id="QuestionOneList" resultMap="questMap">

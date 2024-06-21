@@ -2,6 +2,7 @@ package com.itwillbs.service;
 
 import java.util.List;
 
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
@@ -12,10 +13,10 @@ public interface AnnouncementService {
 	public void QuestionJoin(Question_boardDTO dto);
 	
 	// 거래 게시글 목록 조회
-	public List<Question_boardDTO> QuestionList() throws Exception;
+	public List<Question_boardDTO> QuestionList(Criteria cri) throws Exception;
 
 	// 공지사항 목록 조회
-	public List<Notice_boardDTO> NoticeList() throws Exception;
+	public List<Notice_boardDTO> NoticeList(Criteria cri) throws Exception;
 
 	// 공지사항 글 내용 조회
 	public List<Post_boardDTO> noticeOneList(String notice_id) throws Exception;
@@ -34,6 +35,12 @@ public interface AnnouncementService {
 
 	// 문의 게시판 조회수 증가
 	public void updateQuestCount(int quest_id) throws Exception;
+
+	// 공지게시판 총 글개수 카운트 세기
+	public int getNoticeTotalCount() throws Exception;
+
+	// 문의게시판 총 글 개수 카운트 세기
+	public int getQuestTotalCount() throws Exception;
 
 
 }

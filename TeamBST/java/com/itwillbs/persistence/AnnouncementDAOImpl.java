@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
@@ -35,17 +36,17 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 	}
 
 	@Override
-	public List<Question_boardDTO> QuestionList() throws Exception {
-		logger.debug("DAO : QuestionList() 호출");
+	public List<Question_boardDTO> QuestionList(Criteria cri) throws Exception {
+		logger.debug("DAO : QuestionList(cri) 호출");
 		
-		return sqlSession.selectList(NAMESPACE + "QuestionList");
+		return sqlSession.selectList(NAMESPACE + "questionListPage",cri);
 	}
 
 	@Override
-	public List<Notice_boardDTO> NoticeList() throws Exception {
+	public List<Notice_boardDTO> NoticeList(Criteria cri) throws Exception {
 		logger.debug(" DAO : NoticeList() 호출");
 		
-		return sqlSession.selectList(NAMESPACE + "noticeList");
+		return sqlSession.selectList(NAMESPACE + "noticeListPage",cri);
 	}
 
 	@Override
@@ -88,6 +89,21 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 		logger.debug(" DAO : updateQuestCount(int quest_id)");
 		
 		sqlSession.update(NAMESPACE+"updateQuestCount",quest_id);
+	}
+
+	@Override
+	public int getNoticeTotalCount() throws Exception {
+		logger.debug(" getNoticeTotalCount() 실행");
+		
+		return sqlSession.selectOne(NAMESPACE+"countNoticePage");
+	}
+
+	@Override
+	public int getQuestTotalCount() throws Exception {
+		logger.debug(" getQuestTotalCount() 실행");
+		
+
+		return sqlSession.selectOne(NAMESPACE+"countQuestionPage");
 	}
 	
 	

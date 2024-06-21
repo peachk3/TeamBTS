@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
@@ -23,10 +24,10 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	private AnnouncementDAO adao;
 	
 	@Override
-	public List<Notice_boardDTO> NoticeList() throws Exception {
+	public List<Notice_boardDTO> NoticeList(Criteria cri) throws Exception {
 		logger.debug("공지사항 목록 조회");
 		
-		return adao.NoticeList();
+		return adao.NoticeList(cri);
 	}
 
 	@Override
@@ -40,10 +41,10 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	}
 
 	@Override
-	public List<Question_boardDTO> QuestionList() throws Exception {
+	public List<Question_boardDTO> QuestionList(Criteria cri) throws Exception {
 		logger.debug("문의 게시글 목록 조회");
 		
-		return adao.QuestionList();
+		return adao.QuestionList(cri);
 	}
 
 	@Override
@@ -84,6 +85,21 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	public void updateQuestCount(int quest_id) throws Exception {
 
 		adao.updateQuestCount(quest_id);
+	}
+
+	
+	
+	@Override
+	public int getNoticeTotalCount() throws Exception {
+		logger.debug(" DAO : getNoticeTotalCount() 실행");
+		return adao.getNoticeTotalCount();
+	}
+
+	@Override
+	public int getQuestTotalCount() throws Exception {
+		logger.debug(" DAO : getQuestTotalCount() 실행");
+		
+		return adao.getQuestTotalCount();
 	}
 
 	
