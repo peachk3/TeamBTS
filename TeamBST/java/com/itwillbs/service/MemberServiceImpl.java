@@ -82,6 +82,13 @@ public class MemberServiceImpl implements MemberService{
 		
 		return result;
 	}
+
+	//아이디 찾기
+	@Override
+	public UserDTO findId(UserDTO udto) {
+
+		return mdao.findId(udto);
+	}
 	
 	
 	

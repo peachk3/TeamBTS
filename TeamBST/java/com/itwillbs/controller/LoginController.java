@@ -3,6 +3,7 @@ package com.itwillbs.controller;
 import java.util.Date;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -142,19 +143,32 @@ public void findIdGET() {
 	
 }
 
-@RequestMapping(value = "findId", method = RequestMethod.POST)
-public String findIdPOST(@RequestParam String user_name, @RequestParam String user_phone, Model model ) {
+@RequestMapping(value = "/findId", method = RequestMethod.POST)
+public String findIdPOST(HttpServletRequest request,Model model, UserDTO udto,
+		@RequestParam String user_name,
+		@RequestParam String user_phone) {
+
 	
-	UserDTO resultDTO = mService.findId(user_name, user_phone);
 	
-	if(resultDTO != null) {
-		model.addAttribute("user_id", resultDTO.getUser_id());
-		
-		return false;
-	}
-	logger.debug("/findId -> findIdPOST() 호출");
+		/*
+		 * logger.debug("/findId -> findIdPOST() 호출");
+		 * 
+		 * try { udto.setUser_name(user_name); udto.setUser_phone(user_phone); UserDTO
+		 * fid = mService.findId(udto);
+		 * 
+		 * model.addAttribute("findId", fid); } catch(Exception e) {
+		 * model.addAttribute("msg", "오류가 발생되었습니다"); e.printStackTrace(); }
+		 */
+	return "/login/findId_result";
+	
 }
 
+//비밀번호 찾기 페이지로 이동 
+@RequestMapping(value = "findPwd")
+public void findPwdGET() {
+	
+}
 
+//비밀번호 찾기 실행
 
 }

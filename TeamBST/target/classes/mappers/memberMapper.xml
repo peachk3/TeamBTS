@@ -34,4 +34,24 @@
 <select id="emailCheck" parameterType="String" resultType="int">
 	select count(*)from user where user_email=#{user_email}
 </select>
+
+<!--  ID 찾기(핸드폰 번호로) -->
+<select id="findId" resultType="int">
+	select * from user where user_name=#{user_name} and user_phone=#{user_phone}
+</select>
+
+<!-- ID 찾기(이메일) -->
+<select id="findIdEmail" resultType="int">
+	select * from user where user_name=#{user_name} and user_email=#{user_email}
+</select>
+
+<!-- 비번 찾기 -->
+<select id="findPwd" resultType="Integer">
+	select count(*) from user where user_id
+</select>
+
+<!--  새로운 비밀번호 저장 -->
+<update id="findPwdUpdate">
+	update user set user_pwd=#{user_pwd} where user_id=#{user_id} and user_name=#{user_name} and user_email=#{user_email} 
+</update>
 </mapper>

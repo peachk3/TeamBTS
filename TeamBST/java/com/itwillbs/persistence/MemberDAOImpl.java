@@ -99,9 +99,17 @@ public class MemberDAOImpl implements MemberDAO {
 		 
 		return result ;
 	}
-	
-	
 
+	//아이디 찾기
+	@Override
+	public UserDTO findId(UserDTO udto) {
+
+		return sqlSession.selectOne(NAMESPACE+"findId",udto.getUser_name());
+	
+	}
+	
+	
+	
 	
 	
 	

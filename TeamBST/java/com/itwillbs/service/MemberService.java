@@ -21,6 +21,10 @@ public interface MemberService {
 	public int emailCheck(String user_email)throws Exception;
 
 	//아이디찾기
-	public UserDTO findId(String user_name, String user_phone);
+	public UserDTO findId(UserDTO udto);
+
+	
+
+
 	
 }
