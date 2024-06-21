@@ -32,7 +32,7 @@
 				</c:when>
 				<c:when test="${sessionScope.user_id == 'admin'}">
 					<!-- 관리자일 경우 -->
-					<a href="/admin/admin">관리자페이지</a>
+					<a href="/admin/admin">마이페이지</a>
 					<form id="logoutForm" action="${pageContext.request.contextPath}/login/logout" method="post" style="display: inline;">
                     <button type="submit" class="logout-button">로그아웃</button>
                     </form>
@@ -45,11 +45,10 @@
                     </form>
 				</c:otherwise>
 			</c:choose>
-          로그인시간 ( 58: 00 ) 
         </h6>
       </nav>
-  
-      
+  		
+                      
 
       <ul class="nav">
         <li class="nav-item">
