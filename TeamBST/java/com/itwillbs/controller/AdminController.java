@@ -38,28 +38,37 @@ public class AdminController {
 	//http://localhost:8088/admin/admin
 	@RequestMapping(value="/admin",method=RequestMethod.GET)
 	public String adminMain_GET(HttpSession session,Model model) throws Exception {
-		logger.debug("관리자 페이지 호출");
-		// id정보 가져오기
+//		logger.debug("관리자 페이지 호출");
+//		// id정보 가져오기
 		String user_id = (String) session.getAttribute("user_id");
-        
+//        
 		logger.debug("user_id : "+user_id);
-        // 서비스 -> DAO 회원정보 조회
-        AdminDTO resultDTO = aService.getMember(user_id);
-        logger.debug("회원정보: " + resultDTO);
-        
-        // 연결된 뷰페이지(/mypage/info.jsp)에 정보 전달
-        model.addAttribute("resultDTO", resultDTO);
-        
-        // 뷰페이지 이동
-    	return "/admin/admin";  // admin.jsp로 이동
-		
-		
-		
-		
-		
-		
-		
+//        // 서비스 -> DAO 회원정보 조회
+//        AdminDTO resultDTO = aService.getMember(user_id);
+//        logger.debug("회원정보: " + resultDTO);
+//        
+//        // 연결된 뷰페이지(/mypage/info.jsp)에 정보 전달
+//        model.addAttribute("resultDTO", resultDTO);
+//        
+//        // 뷰페이지 이동
+//    	return "/admin/admin";  // admin.jsp로 이동
+	    AdminDTO resultDTO = aService.getMember(user_id);
+	    logger.debug("회원정보: " + resultDTO);
+	    
+	    // 관리자인지 확인
+	    if (resultDTO == null || !resultDTO.isAdmin()) {
+	        logger.debug("관리자가 아님");
+	        return "redirect:/login/AdminLoginPage";
+	    }
+	    
+	    // 연결된 뷰페이지(/mypage/info.jsp)에 정보 전달
+	    model.addAttribute("resultDTO", resultDTO);
+	    
+	    // 뷰페이지 이동
+	    return "/admin/admin";  // admin.jsp로 이동
 	}
+		
+//}	
 	
 	
 	
