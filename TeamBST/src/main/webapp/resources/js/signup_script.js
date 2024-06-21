@@ -41,7 +41,7 @@ function checkNick(){
 		};
       
 //이메일 	
-		function checkEamil(){
+		function checkEmail(){
             var email = $('#user_email').val(); 
             $.ajax({
                 url:'/login/emailCheck?user_email='+email, 

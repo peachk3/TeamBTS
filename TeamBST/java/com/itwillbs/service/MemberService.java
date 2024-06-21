@@ -19,5 +19,8 @@ public interface MemberService {
 	
 	//이메일 중복체크
 	public int emailCheck(String user_email)throws Exception;
+
+	//아이디찾기
+	public UserDTO findId(String user_name, String user_phone);
 	
 }

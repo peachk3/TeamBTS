@@ -36,8 +36,8 @@
 
         <!-- 아이디찾기 비밀번호찾기 회원가입 화면 이동 버튼-->
         <div class="options">
-            <a href="findid.html">아이디 찾기</a> 
-            <a href="findpw.html">비밀번호 찾기</a>
+            <a href="findId.jsp">아이디 찾기</a> 
+            <a href="findPwd.jsp">비밀번호 찾기</a>
             <a href="signupPage">회원가입</a>
         </div>
     </form>

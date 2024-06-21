@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -133,6 +134,27 @@ public int emailCheck(@RequestParam("user_email")String user_email) throws Excep
 	
 	return result;
 }
+//---------------------------------------------------------
+//아이디 찾기
+@GetMapping(value = "/findId")
+public void findIdGET() {
+	logger.debug("/findId -> loginGET() 호출");
+	
+}
+
+@RequestMapping(value = "findId", method = RequestMethod.POST)
+public String findIdPOST(@RequestParam String user_name, @RequestParam String user_phone, Model model ) {
+	
+	UserDTO resultDTO = mService.findId(user_name, user_phone);
+	
+	if(resultDTO != null) {
+		model.addAttribute("user_id", resultDTO.getUser_id());
+		
+		return false;
+	}
+	logger.debug("/findId -> findIdPOST() 호출");
+}
+
 
 
 }

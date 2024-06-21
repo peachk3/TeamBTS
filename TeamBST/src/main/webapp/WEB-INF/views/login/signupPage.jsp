@@ -45,11 +45,11 @@
                 <!-- 비밀번호-->
                 <div class="form-group">
                 <label for="password"></label>
-                <input type="password" class="in-b"  id="password" name="user_pwd" maxlength='16' placeholder="비밀번호(8~16자의 영문,숫자,특수기호) *" >
+                <input type="password" class="in-b"  id="user_pwd" name="user_pwd" maxlength='16' placeholder="비밀번호(8~16자의 영문,숫자,특수기호) *" >
                 </div>
               <!-- 비밀번호 확인-->
                 <label for="confirm-password"></label>
-                <input class="in-b" type="password" id="confirm-password" name="user_confirm-password" placeholder="비밀번호 확인 *" >
+                <input class="in-b" type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인 *" >
     
     		 <!-- 생년월일 -->
     			 <div class="form-group">
@@ -116,7 +116,7 @@
                 <!-- 가입하기 & 로그인 버튼-->
             <div id="signup_n_login">
               <label>
-                <button type="submit" id="signupbtn" class="submit-btn">가입하기</button>
+                <button type="button" id="signupbtn" class="submit-btn">가입하기</button>
               </label>
               <label>
                 <button type="button" id="submit-btn" class="login-btn" onclick="location.href='/login/loginPage'">로그인</button>
@@ -125,6 +125,18 @@
         </form> <!-- signupForm-->
     </div> <!-- signup-box-->
 	<script>
+	
+	//가입하기 버튼 클릭 시 비밀번호,비밀번호 확인 불일치/일치 확인
+	$("#signupbtn").click(function(event) {
+		if ($("#user_pwd").val() == $("#pwdCheck").val()) {
+
+			alert('일치합니다')
+			//여기에 가입하기 로직 
+		}else{
+			alert('비밀번호가 일치하지 않습니다. ');
+		}
+	});
+	
 	// 로그인 버튼 클릭 시 체크박스 검사
 		$("#submit-btn").click(function(event) {
 			if (!$("#terms").is(":checked")) {
@@ -136,10 +148,10 @@
 			}
 		});
 		//----------------------------------------
+		//회원 이름 
 		$("#user_name").click(function(event){
 			checkName();
 		})
-		
 		
 		// 아이디 중복체크검사 
 		$("#idCheck").click(function(event) {
@@ -154,7 +166,6 @@
 		//이메일 중복체크 검사
 		$("#emailCheck").click(function(event){
 			checkEmail();	
-			alert("클릭");
 		});
 		
 		
@@ -173,6 +184,12 @@
 			    }
      	  		 var regExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,16}$/;
  		    		return regExp.test(user_id);   
+		}
+
+		//패스워드 유효성 
+		function regMemberPassword(user_pwd){ //패스워드 //8~16자 영문,숫자,특수기호 숫자최소 1 특수기호최소 1
+			var regExp= /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/;
+			return regExp.test(user_pwd);
 		}
 		
 		//닉네임 유효성 
@@ -217,6 +234,20 @@
                    return;
 			}      
 		}); 
+		
+		// 비밀번호에서 valuechange 유효송곰서
+		const user_pwd = document.getElementById("user_pwd");
+		user_pwd.addEventListener("change", function(e) {
+			var user_pwd = document.getElementById("user_pwd").value;
+			
+			regMemberPassword(user_pwd);
+			if(!regMemberPassword(user_pwd)) {
+                   document.getElementById("user_pwd").value = ''; 
+                   alert('8~16자의 영문자, 숫자(최소1글자), 특수기호(최소1글자)를 조합해서 입력해주세요. ');
+                   return;
+			}      
+		}); 
+		
 		// 닉네임박스에서 valuechange 
 		const user_nick = document.getElementById("user_nick");
 		user_nick.addEventListener("change", function(e) {
@@ -231,7 +262,7 @@
 		}); 
 
 		//이메일박스에서 valuechange
-		const user_email = document.getElementById("user_email");
+		 const user_email = document.getElementById("user_email");
 		user_email.addEventListener("change", function(e) {
 			var user_email = document.getElementById("user_email").value;
 			
@@ -241,7 +272,8 @@
                    alert('이메일을 입력해주세요 ');
                    return;
 			}      
-		}); 
+		});  
+		
 		
 
 	</script>
