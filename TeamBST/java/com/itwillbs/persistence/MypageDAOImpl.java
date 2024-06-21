@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
@@ -100,7 +101,13 @@ public class MypageDAOImpl implements MypageDAO {
 		return sqlSession.selectList(NAMESPACE + "openMatchList",user_id);
 	}
 
+	@Override
+	public List<Game_scheduleDTO> TicketList(Category cate) throws Exception {
+		logger.debug(" TicketList(cate) 실행 ");
+		return sqlSession.selectList(NAMESPACE + "ticketList", cate);
+	}
 
+	
 	
 	
 }

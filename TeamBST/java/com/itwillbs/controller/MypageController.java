@@ -1,20 +1,28 @@
 package com.itwillbs.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
@@ -41,7 +49,7 @@ public class MypageController {
     //http://localhost:8088/mypage/mypage
     // 마이페이지
     @GetMapping("/mypage")
-    public String mypage(HttpSession session, Model model) {
+    public String mypage(HttpSession session, Model model) throws Exception {
     	
     	// id정보 가져오기
         String user_id = (String) session.getAttribute("user_id");
@@ -62,7 +70,7 @@ public class MypageController {
     //http://localhost:8088/mypage/updateForm
     // 회원정보 수정 - 기존 회원정보
     @GetMapping(value = "/updateForm")
-    public void updateGET(HttpSession session, Model model) {
+    public void updateGET(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
         
         // 서비스 -> DAO 회원정보 조회
@@ -77,7 +85,7 @@ public class MypageController {
     
     // 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
     @RequestMapping(value = "/updateForm", method = RequestMethod.POST)
-    public String updatePost(UserDTO udto) {
+    public String updatePost(UserDTO udto) throws Exception {
     	logger.debug(" /update -> updatePost() 호출 ");
     	
     	// 수정할 회원정보를 저장
@@ -93,7 +101,7 @@ public class MypageController {
     //http://localhost:8088/mypage/deleteMember
     // 회원정보 삭제 - 사용자의 비밀번호 입력 / 아이디 세션
     @GetMapping(value = "/deleteMember")
-    public void deleteGET(HttpSession session, Model model) {
+    public void deleteGET(HttpSession session, Model model) throws Exception {
     	String user_id = (String) session.getAttribute("user_id");
     	UserDTO resultDTO = mService.getMember(user_id);
     	model.addAttribute("resultDTO", resultDTO);
@@ -101,7 +109,7 @@ public class MypageController {
     
     // 회원정보 삭제
     @PostMapping(value = "/deleteMember")
-    public String deleteMember(UserDTO ddto, HttpSession session,Model model) {
+    public String deleteMember(UserDTO ddto, HttpSession session,Model model) throws Exception {
     	logger.debug(" /deleteMember -> deleteMember() 호출 ");
     	
     	// 전달정보 저장
@@ -224,31 +232,76 @@ public class MypageController {
  		model.addAttribute("qbDTO", qbDTO);
  	}
     
+/*
+	@GetMapping(value="/myticket")
+	public String MyTicket(HttpSession session, @RequestParam(value = "state", required = false) String state, Model model) throws Exception {
+	    
+	    String user_id = (String) session.getAttribute("user_id");
+	    
+	    if ("will".equals(state)) {
+	        // 예정 경기 호출
+	        List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
+	        model.addAttribute("oMatchList", oMatchList);
+	    } else if ("previous".equals(state)) {
+	        // 지난 경기 호출
+	        List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
+	        model.addAttribute("pMatchList", pMatchList);
+	    } else {
+	        // 기본: 두 종류의 경기를 모두 조회
+	        List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
+	        List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
+	        model.addAttribute("oMatchList", oMatchList);
+	        model.addAttribute("pMatchList", pMatchList);
+	    }
+	
+	    return "/mypage/myticket";
+	}
+*/
+ 	
+ 	@GetMapping(value="/myticket")
+	public String MyTicket_GET() throws Exception {
+	    
+ 		logger.debug("마이페이지 myTicket 리스트 호출");
+		logger.debug(" /myticket -> MyTicket_GET() 호출");
+ 		
+	    return "/mypage/myticket";
+	}
+ 	
+ 	@ResponseBody
+ 	@PostMapping(value="/myticket", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+ 	/*public String myTicket_POST(String ticket_status, Model model, HttpSession session) throws Exception {
+ 		
+ 		Category cate = new Category();
+ 		cate.setUser_id((String)session.getAttribute("user_id"));
+ 		cate.setTicket_status(ticket_status);		*/
+	public String myTicket_POST(@RequestBody Category cate, Model model, HttpSession session) throws Exception {
+		
+		cate.setUser_id((String)session.getAttribute("user_id"));
+ 		
+ 		logger.debug("마이페이지 myTicket 리스트 호출");
+ 		logger.debug(" /myticket -> MyTicket_GET() 호출");
+		
+		// 서비스 -> DB의 정보를 가져오기
+		logger.debug("cate : "+ cate);
+		List<Game_scheduleDTO> mTicketList = mService.TicketList(cate);
+		logger.debug("size : "+ mTicketList.size());
+		logger.debug("pBoardList : "+ mTicketList);
+		model.addAttribute("mTicketList", mTicketList);
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+        mapper.registerModule(new JavaTimeModule()); // Java 8 날짜 타입 지원
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false); // 타임스탬프로 변환하지 않음
+        // 원하는 날짜 포맷 설정 (예: "yyyy-MM-dd")
+        mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+        
+        String jsonMyTiketList = mapper.writeValueAsString(mTicketList);
+        logger.debug("o(*^▽^*)┛o(*^▽^*)┛jsonMyTiketList : " + jsonMyTiketList);
 
-@GetMapping(value="/myticket")
-public String MyTicket(HttpSession session, @RequestParam(value = "state", required = false) String state, Model model) throws Exception {
-    
-    String user_id = (String) session.getAttribute("user_id");
-    
-    if ("will".equals(state)) {
-        // 예정 경기 호출
-        List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
-        model.addAttribute("oMatchList", oMatchList);
-    } else if ("previous".equals(state)) {
-        // 지난 경기 호출
-        List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
-        model.addAttribute("pMatchList", pMatchList);
-    } else {
-        // 기본: 두 종류의 경기를 모두 조회
-        List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
-        List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
-        model.addAttribute("oMatchList", oMatchList);
-        model.addAttribute("pMatchList", pMatchList);
-    }
-
-    return "/mypage/myticket";
-}
-
+        return jsonMyTiketList;
+ 		
+ 	}
 
 	@GetMapping(value="/mywrite")
 	public void Mywrite_GET(HttpSession session,Model model) throws Exception{

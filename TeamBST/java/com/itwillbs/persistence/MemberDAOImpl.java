@@ -32,7 +32,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public void memberJoin(UserDTO mdto) {
-		System.out.println("DAO : insertUser(udto) 호출");
+		System.out.println("DAO : memberJoin(mdto) 호출");
 		
 		//mapper 생성된 sql 구문 실행
 		//sqlSession.insert(sql구문, 전달할 값);
@@ -44,7 +44,7 @@ public class MemberDAOImpl implements MemberDAO {
 	//로그인
 	@Override
 	public UserDTO memberLogin(UserDTO udto) {
-		System.out.println("DAO : userLogin(UserDTO mdto) 실행");
+		System.out.println("DAO : memberLogin(UserDTO mdto) 실행");
 		
 		UserDTO resultDTO = sqlSession.selectOne(NAMESPACE+"loginCheck", udto);
 		
