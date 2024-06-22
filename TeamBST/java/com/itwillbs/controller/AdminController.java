@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.AdminDTO;
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.Question_commendDTO;
@@ -73,16 +75,26 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminNotice",method=RequestMethod.GET)
-	public String adminNotice_GET(Model model) throws Exception{
+	public String adminNotice_GET(Criteria cri,Model model) throws Exception{
 		logger.debug("관리자 공지사항 리스트 호출");
 		
 		// 서비스 -> DB의 정보를 가져오기
-		List<Notice_boardDTO> nBoardList = aService.NoticeList();
+//		List<Notice_boardDTO> nBoardList = aService.NoticeList();
+		
+		// 페이징 처리된 리스트
+		List<Notice_boardDTO> nBoardList = aService.NoticeListPage(cri);
 		logger.debug("size : "+ nBoardList.size());
+	
+		// 하단 페이징 처리 
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setCri(cri);
+		pageDTO.setTotalCount(aService.getNoticeTotalCount());
+		
 		
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("nBoardList", nBoardList);
-		
+		model.addAttribute("pageDTO", pageDTO);
+
 		return "/admin/adminNotice";
 
 	}
@@ -230,27 +242,55 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/adminGeneralMember",method=RequestMethod.GET)
-	public String adminGeneralUserList_GET(Model model) throws Exception {
+	public String adminGeneralUserList_GET(Criteria cri,Model model) throws Exception {
 		logger.debug("관리자 일반회원 호출");
 		
-		List<UserDTO> generalMemberList = aService.generalMemberList();
+		// 일반회원 리스트
+//		List<UserDTO> generalMemberList = aService.generalMemberList();
+		// 페이징 처리한 일반회원
+		List<UserDTO> generalMemberList = aService.generalMemberList(cri);
 		
+		logger.debug("size : "+ generalMemberList.size());
+		logger.debug("size : "+ generalMemberList);
+		
+		// 하단 페이징 처리 
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setCri(cri);
+//		pageVO.setTotalCount(5136);
+		pageDTO.setTotalCount(aService.getGeneralMemberTotalCount());
+		
+		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("generalMemberList", generalMemberList);
+		model.addAttribute("pageDTO", pageDTO);
 		
 		return "/admin/adminGeneralMember";
 		
 	}	
 	
 	@RequestMapping(value="/adminWithdrawMember",method=RequestMethod.GET)
-	public String adminWithdrawMember_GET(Model model) throws Exception {
+	public String adminWithdrawMember_GET(Criteria cri,Model model) throws Exception {
 		logger.debug("관리자 탈퇴회원 호출");
 		
-		List<UserDTO> withdrawMemberList = aService.withdrawMemberList();
+		// 탈퇴회원 리스트
+//		List<UserDTO> withdrawMemberList = aService.withdrawMemberList();
 		
-
-		logger.debug("dd"+withdrawMemberList);
+		// 페이징 처리한 탈퇴회원
+		List<UserDTO> withdrawMemberList = aService.withdrawMemberListPage(cri);
+		
+		logger.debug("size : "+ withdrawMemberList.size());
+		logger.debug("size : "+ withdrawMemberList);
+		
+		// 하단 페이징 처리 
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setCri(cri);
+//		pageVO.setTotalCount(5136);
+		pageDTO.setTotalCount(aService.getwithdrawMemberTotalCount());
+		
+		// 연결된 뷰페이지로 정보 전달
+		
 		
 		model.addAttribute("withdrawMemberList", withdrawMemberList);
+		model.addAttribute("pageDTO", pageDTO);
 		
 		return "/admin/adminWithdrawMember";
 		
@@ -260,22 +300,41 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminSchedule",method=RequestMethod.GET)
-	public void adminSchedule_GET(Model model) throws Exception {
+	public String adminSchedule_GET(Criteria cri,Model model) throws Exception {
 		logger.debug("관리자 경기일정 호출");
 
 		// 서비스 -> DB의 정보를 가져오기
-		List<Game_scheduleDTO> gScheduleList = aService.ScheduleList();
+//		List<Game_scheduleDTO> gScheduleList = aService.ScheduleList();
+
+		// 페이징 처리된 리스트
+		List<Notice_boardDTO> gScheduleList = aService.ScheduleListPage(cri);
 		logger.debug("size : "+ gScheduleList.size());
+	
+		// 하단 페이징 처리 
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setCri(cri);
+		pageDTO.setTotalCount(aService.getScheduleTotalCount());
+		
 		
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("gScheduleList", gScheduleList);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		
+		return "admin/adminSchedule";
 
 	}	
 	
 	@RequestMapping(value="/adminScheduleUpload",method=RequestMethod.GET)
 	public void adminScheduleUpload_GET() throws Exception{
 		logger.debug("관리자 경기일정 업로드 호출");
+		
+		
 		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
+		
+		
+		
+		
 		
 	}
 	
@@ -323,20 +382,32 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminBulletin",method=RequestMethod.GET)
-	public void adminWithdrawBulletin_GET(Model model) throws Exception{
+	public void adminWithdrawBulletin_GET(Criteria cri,Model model) throws Exception{
 		logger.debug("관리자 문의 게시판 호출");
 
-			List<Question_boardDTO> questionList = aService.questionList();
+//			List<Question_boardDTO> questionList = aService.questionList();
+			List<Notice_boardDTO> questionList = aService.questionListPage(cri);
+			// 페이징 처리된 리스트
 			logger.debug("size : "+ questionList.size());
-			logger.debug("size : "+ questionList);
+		
+			// 하단 페이징 처리 
+			PageDTO pageDTO = new PageDTO();
+			pageDTO.setCri(cri);
+			pageDTO.setTotalCount(aService.getQestionTotalCount());
+			
 			
 			// 연결된 뷰페이지로 정보 전달
 			model.addAttribute("questionList", questionList);
+			model.addAttribute("pageDTO", pageDTO);
 			
 			
 			
 		}
 		
+	
+	
+	
+	
 //  관리자 - 문의 게시판 본문 확인하기
 	@GetMapping(value="/adminbulletinContent")
 	public void adminbulletinContent_GET(@RequestParam("quest_id") int quest_id, Model model) throws Exception{
@@ -394,8 +465,20 @@ public class AdminController {
 		
 		List<Game_scheduleDTO> memberTicketingList = aService.memberTicketingList(user_id);
 		
+		
+		
+		
+		
+		
+		
+		
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("memberTicketingList", memberTicketingList);
+		
+		
+		
+		
+		
 		
 	}
 	

@@ -42,13 +42,8 @@
 					</c:otherwise>
 				</c:choose>						
 						
-						
-						
-						
-						
-						</td>
-						<c:forEach var="dto_" items="${dto.userList}">
-							<td>${dto_.user_nick}</td>
+						<c:forEach var="dto2" items="${dto.userList}">
+							<td>${dto2.user_nick}</td>
 						</c:forEach>
 						<td><fmt:formatDate value="${dto.quest_cre_date}"
 								pattern="yyyy-MM-dd" /></td>
@@ -62,6 +57,29 @@
 	<br>
 
         <button onclick="location.href='/announcement/bulletinWrite'">글쓰기</button>
+
+
+ <div class="box-footer clearfix">
+		<ul class="pagination pagination-sm no-margin pull-right">
+			
+			<c:if test="${pageDTO.prev }">
+			<li><a href="/announcement/bulletin?page=${pageDTO.startPage-1 }">«</a></li>
+			</c:if>
+			
+			<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+		
+			<li ${pageDTO.cri.page == i? 'class="active"':'' }><a href="/announcement/bulletin?page=${i }">${i }</a></li>
+		
+			</c:forEach>
+			
+			<c:if test="${pageDTO.next && pageDTO.endPage > 0 }">
+			<li><a href="/announcement/bulletin?page=${pageDTO.endPage+1 }">»</a></li>
+			</c:if>
+		</ul>
+	</div> 
+
+
+
 
 
 </body>

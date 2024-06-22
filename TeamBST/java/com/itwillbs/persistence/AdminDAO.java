@@ -3,6 +3,7 @@ package com.itwillbs.persistence;
 import java.util.List;
 
 import com.itwillbs.domain.AdminDTO;
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
@@ -84,6 +85,36 @@ public interface AdminDAO {
 
 	// 관리자 개인정보 확인
 	public AdminDTO getMember(String user_id) throws Exception;
+
+	// 관리자 공지사항 페이징 처리
+	public List<Notice_boardDTO> NoticeListPage(Criteria cri) throws Exception;
+
+	// 관리자 공지사항 글 개수 확인
+	public int getNoticeTotalCount() throws Exception;
+
+	// 관리자 문의 게시판 페이징 처리
+	public List<Notice_boardDTO> questionListPage(Criteria cri) throws Exception;
+
+	// 관리자 문의 게시판 글 개수 확인
+	public int getQestionTotalCount() throws Exception;
+
+	// 관리자 경기일정 페이징 처리
+	public List<Notice_boardDTO> ScheduleListPage(Criteria cri) throws Exception;
+
+	// 관리자 경기일정 총 개수 정하기
+	public int getScheduleTotalCount() throws Exception;
+
+	// 관리자 일반회원 리스트 페이징처리
+	public List<UserDTO> generalMemberList(Criteria cri) throws Exception;
+
+	// 관리자 일반회원 리스트 총 인원 확인
+	public int getGeneralMemberTotalCount() throws Exception;
+
+	// 관리자 탈퇴회원 리스트 총 인원 페이징 처리
+	public List<UserDTO> withdrawMemberListPage(Criteria cri) throws Exception;
+
+	// 관리자 탈퇴회원 리스트 총 인원 확인
+	public int getwithdrawMemberTotalCount() throws Exception;
 
 	
 }

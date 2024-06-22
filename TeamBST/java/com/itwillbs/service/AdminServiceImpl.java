@@ -2,6 +2,7 @@ package com.itwillbs.service;
 
 import java.util.List;
 
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.AdminDTO;
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
@@ -16,6 +18,7 @@ import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.Question_commendDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.persistence.AdminDAO;
+
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -185,9 +188,94 @@ public class AdminServiceImpl implements AdminService{
 		
 		return adao.getMember(user_id);
 	}
-	
-	
 
+	@Override
+	public List<Notice_boardDTO> NoticeListPage(Criteria cri) throws Exception {
+		logger.debug("관리자 - 공지사항 페이징 처리");
+
+		
+		return adao.NoticeListPage(cri);
+	}
+
+	@Override
+	public int getNoticeTotalCount() throws Exception {
+		logger.debug("관리자 - 공지사항 글 총 개수 세기");
+
+		
+		return adao.getNoticeTotalCount();
+	}
+
+	@Override
+	public List<Notice_boardDTO> questionListPage(Criteria cri) throws Exception {
+		logger.debug("관리자 - 문의 게시글 페이징 처리");
+
+		
+		return adao.questionListPage(cri);
+	}
+
+	@Override
+	public int getQestionTotalCount() throws Exception {
+		logger.debug("관리자 - 문의 게시글 총 게시글 수");
+
+		
+		return adao.getQestionTotalCount();
+	}
+
+	@Override
+	public List<Notice_boardDTO> ScheduleListPage(Criteria cri) throws Exception{
+		logger.debug("관리자 - 경기 일정 페이지 페이징 처리");
+
+		
+		return adao.ScheduleListPage(cri);
+	}
+
+	@Override
+	public int getScheduleTotalCount() throws Exception {
+		logger.debug("관리자 - 경기일정 총 개수 찾기");
+
+		
+		
+		return adao.getScheduleTotalCount();
+	}
+
+	@Override
+	public List<UserDTO> generalMemberList(Criteria cri) throws Exception {
+
+		logger.debug("관리자 - 일반회원 리스트 페이징 처리");
+
+		
+		return adao.generalMemberList(cri);
+	}
+
+	@Override
+	public int getGeneralMemberTotalCount() throws Exception {
+
+		logger.debug("관리자 - 일반회원 리스트 회원 총인원수 확인");
+
+		
+		return adao.getGeneralMemberTotalCount();
+	}
+
+	@Override
+	public List<UserDTO> withdrawMemberListPage(Criteria cri) throws Exception {
+
+		logger.debug("관리자 - 탈퇴회원 리스트 회원 총인원수 확인");
+
+		
+		return adao.withdrawMemberListPage(cri);
+	}
+
+	@Override
+	public int getwithdrawMemberTotalCount() throws Exception {
+
+		logger.debug("관리자 - 탈퇴회원 리스트 회원 총 인원수 확인");
+
+		
+		return adao.getwithdrawMemberTotalCount();
+	}
+	
+	
+	
 	
 
 }

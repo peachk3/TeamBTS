@@ -2,6 +2,7 @@ package com.itwillbs.controller;
 
 import java.util.List;
 
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Notice_boardDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.service.AnnouncementService;
@@ -31,31 +34,52 @@ public class AnnouncementController {
 	private AnnouncementService aService;
 
 	@RequestMapping(value="/announcement",method=RequestMethod.GET)
-	public void AnnouncementMain_GET(Model model) throws Exception {
+	public String AnnouncementMain_GET(Criteria cri,Model model) throws Exception {
 		logger.debug("공지 게시판 호출");
 
 		// 서비스 -> DB의 정보를 가져오기
-		List<Notice_boardDTO> nBoardList = aService.NoticeList();
+		List<Notice_boardDTO> nBoardList = aService.NoticeList(cri);
 		logger.debug("size : "+ nBoardList.size());
 		logger.debug("size : "+ nBoardList);
 		
+		// 하단 페이징 처리 
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setCri(cri);
+//		pageVO.setTotalCount(5136);
+		pageDTO.setTotalCount(aService.getNoticeTotalCount());
+		
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("nBoardList", nBoardList);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "/announcement/announcement";
+		
 		
 	}
 	
 	
 	@RequestMapping(value="/bulletin",method=RequestMethod.GET)
-	public void announcementBulletin_GET(Model model) throws Exception {
+	public String announcementBulletin_GET(Criteria cri,Model model) throws Exception {
 		logger.debug("문의 게시판 호출");
 
 		// 서비스 -> DB의 정보를 가져오기
-		List<Question_boardDTO> qBoardList = aService.QuestionList();
+//		List<Question_boardDTO> qBoardList = aService.QuestionList();
+		
+		List<Question_boardDTO> qBoardList = aService.questionListPage(cri);
 		logger.debug("size : "+ qBoardList.size());
 		logger.debug("size : "+ qBoardList);
 		
+		// 하단 페이징 처리 
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setCri(cri);
+		pageDTO.setTotalCount(aService.getQuestTotalCount());
+		
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("qBoardList", qBoardList);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "/announcement/bulletin";
+		
 		
 	}
 	

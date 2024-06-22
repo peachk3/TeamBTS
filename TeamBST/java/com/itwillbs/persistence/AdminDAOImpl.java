@@ -2,6 +2,7 @@ package com.itwillbs.persistence;
 
 import java.util.List;
 
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,12 +11,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.AdminDTO;
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.Question_commendDTO;
 import com.itwillbs.domain.UserDTO;
+
 
 @Repository
 public class AdminDAOImpl implements AdminDAO{
@@ -197,6 +200,90 @@ public class AdminDAOImpl implements AdminDAO{
 		logger.debug(" DAO : getMember() 호출");
 		
 		return sqlSession.selectOne(NAMESPACE+"getMember",user_id);
+	}
+
+	@Override
+	public List<Notice_boardDTO> NoticeListPage(Criteria cri) throws Exception {
+		logger.debug(" DAO : getMember() 호출");
+
+		
+		return sqlSession.selectList(NAMESPACE+"noticeListPage", cri);
+	}
+
+	@Override
+	public int getNoticeTotalCount() throws Exception {
+		logger.debug(" DAO : getNoticeTotalCount() 호출");
+
+		
+		return sqlSession.selectOne(NAMESPACE+"countNoticePage");
+	}
+
+	@Override
+	public List<Notice_boardDTO> questionListPage(Criteria cri) throws Exception {
+		logger.debug(" DAO : questionListPage() 호출");
+
+		
+		return sqlSession.selectList(NAMESPACE+"questionListPage",cri);
+	}
+
+	@Override
+	public int getQestionTotalCount() throws Exception {
+		logger.debug("DAO : getQestionTotalCount() 호출");
+
+		
+		return sqlSession.selectOne(NAMESPACE+"countQuestionPage");
+	}
+
+	@Override
+	public List<Notice_boardDTO> ScheduleListPage(Criteria cri) throws Exception {
+		logger.debug(" DAO : ScheduleListPage() 호출");
+
+		
+		return sqlSession.selectList(NAMESPACE+"scheduleListPage",cri);
+	}
+
+	@Override
+	public int getScheduleTotalCount() throws Exception {
+		logger.debug(" DAO : getScheduleTotalCount() 호출");
+
+		
+		
+		return sqlSession.selectOne(NAMESPACE+"countSchedulePage");
+	}
+
+	@Override
+	public List<UserDTO> generalMemberList(Criteria cri) throws Exception {
+		logger.debug(" DAO : generalMemberList(cri) 호출");
+
+		
+		
+		return sqlSession.selectList(NAMESPACE+"generalMemberListPage", cri);
+	}
+
+	@Override
+	public int getGeneralMemberTotalCount() throws Exception {
+		logger.debug(" DAO : getGeneralMemberTotalCount() 호출");
+
+		
+		
+		return sqlSession.selectOne(NAMESPACE+"countGeneralMemberPage");
+	}
+
+	@Override
+	public List<UserDTO> withdrawMemberListPage(Criteria cri) throws Exception {
+		logger.debug(" DAO : withdrawMemberListPage() 호출");
+
+		
+		return sqlSession.selectList(NAMESPACE+"withdrawMemberListPage",cri);
+	}
+
+	@Override
+	public int getwithdrawMemberTotalCount() throws Exception {
+		logger.debug(" DAO : getwithdrawMemberTotalCount() 호출");
+
+		
+		
+		return sqlSession.selectOne(NAMESPACE+"countWithdrawMemberPage");
 	}
 	
 	
