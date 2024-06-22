@@ -63,7 +63,9 @@ public class AnnouncementController {
 		logger.debug("문의 게시판 호출");
 
 		// 서비스 -> DB의 정보를 가져오기
-		List<Question_boardDTO> qBoardList = aService.QuestionList(cri);
+//		List<Question_boardDTO> qBoardList = aService.QuestionList();
+		
+		List<Question_boardDTO> qBoardList = aService.questionListPage(cri);
 		logger.debug("size : "+ qBoardList.size());
 		logger.debug("size : "+ qBoardList);
 		

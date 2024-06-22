@@ -13,7 +13,7 @@ public interface AnnouncementDAO {
 	public void insertQuestion(Question_boardDTO dto);
 	
 	// 질문 게시글 목록 조회
-	public List<Question_boardDTO> QuestionList(Criteria cri) throws Exception;
+	public List<Question_boardDTO> QuestionList(/* Criteria cri */) throws Exception;
 
 	// 공지사항 목록 조회
 	public List<Notice_boardDTO> NoticeList(Criteria cri) throws Exception;
@@ -41,6 +41,9 @@ public interface AnnouncementDAO {
 
 	// 문의 글 카운트 세기
 	public int getQuestTotalCount() throws Exception;
+
+	// 문의 글 페이징 처리
+	public List<Question_boardDTO> questionListPage(Criteria cri) throws Exception;
 
 
 	

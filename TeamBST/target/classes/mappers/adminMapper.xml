@@ -55,6 +55,23 @@
 		select * from notice_board
 		where notice_del_at = 'N'
 	</select>
+	
+	<!-- 공지사항 페이징 처리로 조회 -->
+		<select id="noticeListPage" resultType="Notice_boardDTO">
+		<![CDATA[
+		select * from notice_board
+		where notice_id > 0 
+		order by notice_id desc, notice_cre_date desc
+		limit #{pageStart},#{pageSize}
+		]]>
+	</select>
+	
+	<!-- 공지 게시판 총 글의 개수(페이징처리) -->
+	<select id="countNoticePage" resultType="int">
+		select count(notice_id) from notice_board
+	</select>
+	
+	
 
 	<!-- 공지사항 본문 조회 -->
 	<select id="noticeOneList" resultType="Notice_boardDTO">
@@ -100,6 +117,26 @@
 		on qb.quest_writer_id = u.user_id
 		where quest_del_at = 'N'
 	</select>
+	
+	
+	<!-- 문의 게시글 페이징 처리  -->
+	
+ 	<select id="questionListPage" resultMap="questMap">
+		<![CDATA[
+		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick, qb.quest_public, qb.quest_view
+		from question_board qb
+		join user u on qb.quest_writer_id = u.user_id
+		where (qb.quest_del_at = 'N' and qb.quest_id > 0)
+		order by qb.quest_id desc, qb.quest_cre_date desc
+		limit #{pageStart}, #{pageSize}
+		]]>
+	</select>
+		<!-- 문의 게시판 총 글의 개수(페이징처리) -->
+	<select id="countQuestionPage" resultType="int">
+		select count(quest_id) from question_board
+	</select>	
+	
+	
 
 
 	<!-- 문의 게시글 내용 조회 -->
@@ -144,6 +181,24 @@
 		select * from game_schedule
 	</select>
 
+		<!-- 경기 일정 조회 -->
+		<select id="scheduleListPage" resultType="Game_scheduleDTO">
+		<![CDATA[
+		select * from game_schedule
+		where game_id > 0 
+		order by game_id desc, game_date desc
+		limit #{pageStart},#{pageSize}
+		]]>
+	</select>
+	
+
+	<!-- 경기일정 총 글의 개수(페이징처리) -->
+	<select id="countSchedulePage" resultType="int">
+		select count(game_id) from game_schedule
+	</select>
+	
+
+
 	<!-- 경기정보 수정시 리스트 조회 -->
 	<select id="scheduleOne" resultType="Game_scheduleDTO">
 		select * from game_schedule where game_id = #{game_id}
@@ -167,11 +222,45 @@
 		where user_status="USE"
 	</select>
 
+		<!-- 일반회원 조회 페이징 처리 -->
+		<select id="generalMemberListPage" resultType="UserDTO">
+		<![CDATA[
+		select * from user
+		where ( user_status="USE")
+		order by join_date desc
+		limit #{pageStart},#{pageSize}
+		]]>
+	</select>
+
+		<!-- 일반회원 조회 회원수(페이징처리) -->
+	<select id="countGeneralMemberPage" resultType="int">
+		select count(user_id) from user
+		where ( user_status="USE")
+	</select>	
+
 	<!-- 탈퇴회원 조회 -->
 	<select id="withdrawMemberList" resultType="UserDTO">
 		select * from user
 		where user_status="OUT"
 	</select>
+	
+	
+		<!-- 탈퇴 회원 조회 페이징 처리 -->
+		<select id="withdrawMemberListPage" resultType="UserDTO">
+		<![CDATA[
+		select * from user
+		where user_status="OUT"
+		order by withdraw_date desc
+		limit #{pageStart},#{pageSize}
+		]]>
+	</select>
+		<!-- 탈퇴회원 조회 회원수(페이징처리) -->
+	<select id="countWithdrawMemberPage" resultType="int">
+		select count(user_id) from user
+		where ( user_status="OUT")
+	</select>	
+
+
 
 	
 	<!-- 일반 회원수 출력 -->

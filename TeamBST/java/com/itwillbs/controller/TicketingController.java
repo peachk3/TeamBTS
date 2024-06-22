@@ -56,7 +56,12 @@ public class TicketingController {
         logger.debug("티켓팅 홈 페이지");
         logger.debug("stad_id : " + stad_id);
 
+        // 경기 정보 호출
+//        List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
         List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
+        
+        // 페이징 처리된 경기 정보 호출
+        
         
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule()); // Java 8 날짜 타입 지원

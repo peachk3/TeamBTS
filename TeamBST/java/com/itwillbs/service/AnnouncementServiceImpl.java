@@ -41,12 +41,22 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	}
 
 	@Override
-	public List<Question_boardDTO> QuestionList(Criteria cri) throws Exception {
+	public List<Question_boardDTO> QuestionList(/* Criteria cri */) throws Exception {
 		logger.debug("문의 게시글 목록 조회");
 		
-		return adao.QuestionList(cri);
+		return adao.QuestionList(/* cri */);
 	}
 
+	@Override
+	public List<Question_boardDTO> questionListPage(Criteria cri) throws Exception{
+		logger.debug(" DAO : questionListPage(Criteria cri)");
+
+		
+		return adao.questionListPage(cri);
+	}
+
+	
+	
 	@Override
 	public List<Post_boardDTO> noticeOneList(String notice_id) throws Exception {
 		logger.debug("공지 게시글 내용 조회");
@@ -101,6 +111,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 		
 		return adao.getQuestTotalCount();
 	}
+
 
 	
 	

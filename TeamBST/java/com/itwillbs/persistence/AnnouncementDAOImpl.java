@@ -36,15 +36,15 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 	}
 
 	@Override
-	public List<Question_boardDTO> QuestionList(Criteria cri) throws Exception {
+	public List<Question_boardDTO> QuestionList(/* Criteria cri */) throws Exception {
 		logger.debug("DAO : QuestionList(cri) 호출");
 		
-		return sqlSession.selectList(NAMESPACE + "questionListPage",cri);
+		return sqlSession.selectList(NAMESPACE + "QuestionList"/* ,cri */);
 	}
 
 	@Override
 	public List<Notice_boardDTO> NoticeList(Criteria cri) throws Exception {
-		logger.debug(" DAO : NoticeList() 호출");
+		logger.debug(" DAO : NoticeList(cri) 호출");
 		
 		return sqlSession.selectList(NAMESPACE + "noticeListPage",cri);
 	}
@@ -104,6 +104,14 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 		
 
 		return sqlSession.selectOne(NAMESPACE+"countQuestionPage");
+	}
+
+	@Override
+	public List<Question_boardDTO> questionListPage(Criteria cri) throws Exception {
+		logger.debug(" questionListPage() 실행");
+
+		
+		return sqlSession.selectList(NAMESPACE+"questionListPage",cri);
 	}
 	
 	
