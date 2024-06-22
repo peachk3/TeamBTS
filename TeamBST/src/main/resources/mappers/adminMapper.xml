@@ -285,6 +285,25 @@
 	
 	
 	
+  <!-- 관리자 개인정보  수정 -->
+  <update id="updateAdminMember">
+    UPDATE admin
+    SET
+      admin_name = #{admin_name},
+      admin_nick = #{admin_nick},
+      admin_phone = #{admin_phone},
+      admin_email = #{admin_email},
+      admin_birth = #{admin_birth}
+    WHERE admin_id = #{admin_id} and admin_pwd = #{admin_pwd}
+  </update>
+
+
+<!-- 관리자 개인정보 탈퇴 -->
+	<update id="deleteAdminMember">
+		UPDATE admin
+		set admin_status = "OUT"
+		where admin_id = #{admin_id} AND admin_pwd = #{admin_pwd}
+	</update>
 
 
 

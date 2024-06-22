@@ -4,7 +4,7 @@
     
       
       
-      <button type="button" class="community" onclick="location.href='/mypage/info'">회원정보 조회</button>
+      <button type="button" class="community" onclick="location.href='/mypage/mypage'">회원정보 조회</button>
       <br>
       <button type="button" class="community" onclick="location.href='/mypage/myticket'">MY 티켓</button>
       <br>

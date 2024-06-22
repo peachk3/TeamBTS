@@ -107,6 +107,13 @@ public interface AdminService {
 
 	// 관리자 - 탈퇴회원 리스트 총 인원수 확인
 	public int getwithdrawMemberTotalCount() throws Exception;
+
+	
+	// 관리자 - 관리자 개인 정보 수정
+	public void updateAdminMember(AdminDTO adto) throws Exception;
+
+	// 관리자 - 관리자 개인 탈퇴
+	public boolean deleteAdminMember(AdminDTO adto) throws Exception;
 	
 
 

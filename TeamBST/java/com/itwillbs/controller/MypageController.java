@@ -135,7 +135,7 @@ public class MypageController {
 
             return "mypage/deleteMember";  // 삭제 실패 시 다시 삭제 페이지로 이동
 	}    
-        }
+}
     	
 //    	// Service -> DAO 회원정보 삭제
 //    	int result = mService.deleteMember(ddto);

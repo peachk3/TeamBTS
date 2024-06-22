@@ -39,7 +39,7 @@
 				</c:when>
 				<c:otherwise>
 					<!-- 일반사용자일 경우 -->
-					<a href="/mypage/mypage">마이페이지</a>
+					<a href="/admin/admin">마이페이지</a>
 					<form id="logoutForm" action="${pageContext.request.contextPath}/login/generalLogout" method="post" style="display: inline;">
                     <button type="submit" class="logout-button">로그아웃</button>
                     </form>
