@@ -9,16 +9,20 @@
 	<button type="button" class="community" onclick="location.href='/mypage/myticket'">MY 티켓</button> <br>
 	<button type="button" class="community" onclick="location.href='/mypage/mywrite'">MY 게시글</button><br>
 
-	<div class="box-body">
+	<select name="boardTable_id" id="boardTable_id">
+		<option value="All">전체 게시판</option>
+		<option value="Community">거래 게시판</option>
+		<option value="Bulletin">문의 게시판</option>
+	</select>
+
+<div class="box-body">
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<th>글번호</th>
+					<th>No.</th>
 					<th>제목</th>
 					<th>작성일</th>
-					<th>구장</th>
 					<th>조회수</th>
-					<th>상태</th>
 				</tr>
 			</tbody>
 		</table>
@@ -72,53 +76,41 @@
 	 
 	 <script>
 	
-	$(document).ready(function(){
-
+	 $(document).ready(function(){
 		$('table td').remove();
+		 getBoardList();
 		
-		getTicketList();
-		
-		$("#Past").click(ticketPastStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
-		$("#Upcoming").click(ticketUpcomingStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
+		$("#boardTable_id").change(getBoardList); //id="listButton"인 태그에 click하면 function getMemberList() 실행
 	});
 	
-	function ticketPastStatusSet(){
-		var ticket_status = $('#Past').val();
-		getTicketList(ticket_status);
-	}
-	
-	function ticketUpcomingStatusSet(){
-		var ticket_status = $('#Upcoming').val();
-		getTicketList(ticket_status);
-	}
-	
-	function getTicketList(ticket_status){
-		console.log(ticket_status);
+	function getBoardList(){
+		var boardTable_id = $('#boardTable_id').val();
+		console.log(boardTable_id);
 		
 		$('table td').remove();
 			
 		$.ajax({
-        	url : "/mypage/myticket",
+        	url : "/mypage/mywrite",
         	type : "post",
-        	data : JSON.stringify({ ticket_status : ticket_status}),
-        	contentType: 'application/json; charset=utf-8',
+        	data : JSON.stringify({ boardTable_id: boardTable_id }),
+        	contentType : "application/json",
         	dataType : "json",
         	success : function(data){
-//         		alert("JTBC 다녀옴");
+// 	       		alert("JTBC 다녀옴");
 // 				console.log(data);
-        		
-        		// body 태그에 내용 추가
-        		$(data).each(function(idx, item){
-        			
-        			$('table').append("<tr><td>"+ item.game_date +"</td><td>"+ item.game_time +"</a></td><td>"+ item.stad_id +"</td><td>"+ item.home_team_id +"</td><td>"+ item.away_team_id +"</td></tr>")
-        			
-        		});
-        	},
-        	error: function(jqXHR, textStatus, errorThrown) {
-                console.log("AJAX 요청 실패: " + jqXHR.status + ", " + jqXHR.statusText + ", " + textStatus + ", " + errorThrown);
-                alert("AJAX 요청 실패!");
-            }
-        });
+	       		
+	       		// body 태그에 내용 추가
+	       		$(data).each(function(idx, item){
+	       			
+	       			$('table').append("<tr><td>"+ (parseInt(idx)+1) +"</td><td>"+ item.board_sub +"</td><td>"+ item.board_cre_date +"</a></td><td>"+ item.board_view +"</td></tr>")
+	       			
+	       		});
+	       	},
+	       	error: function(jqXHR, textStatus, errorThrown) {
+               console.log("AJAX 요청 실패: " + jqXHR.status + ", " + jqXHR.statusText + ", " + textStatus + ", " + errorThrown);
+               alert("AJAX 요청 실패!");
+	        }
+	    });
 	}
 	
 	</script>

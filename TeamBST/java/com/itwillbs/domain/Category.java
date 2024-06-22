@@ -11,6 +11,7 @@ public class Category {
 	private String stad_id;
 	
 	private String ticket_status;
+	private String boardTable_id;
 	private String user_id;
 	
 	
@@ -18,6 +19,7 @@ public class Category {
 		this.sale_status = "ALL";
 		this.stad_id = "ALL";
 		this.ticket_status = "Upcoming";
+		this.boardTable_id = "All";
 	}
 	
 	public String getSale_status() {
@@ -47,15 +49,20 @@ public class Category {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+	
+	public String getBoardTable_id() {
+		return boardTable_id;
+	}
+
+	public void setBoardTable_id(String boardTable_id) {
+		this.boardTable_id = boardTable_id;
+	}
 
 	@Override
 	public String toString() {
 		return "Category [sale_status=" + sale_status + ", stad_id=" + stad_id + ", ticket_status=" + ticket_status
-				+ ", user_id=" + user_id + "]";
+				+ ", boardTable_id=" + boardTable_id + ", user_id=" + user_id + "]";
 	}
-
-
-	
 
 	
 }
