@@ -116,5 +116,11 @@ public interface AdminDAO {
 	// 관리자 탈퇴회원 리스트 총 인원 확인
 	public int getwithdrawMemberTotalCount() throws Exception;
 
+	// 관리자 개인정보 수정
+	public void updateAdminMember(AdminDTO adto) throws Exception;
+
+	// 관리자 개인정보 탈퇴
+	public int deleteAdminMember(AdminDTO adto) throws Exception;
+
 	
 }

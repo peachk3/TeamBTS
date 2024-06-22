@@ -72,6 +72,80 @@ public class AdminController {
 		
 //}	
 	
+    //http://localhost:8088/admin/adminUpdateForm
+    // 관리자 개인정보 수정 - 기존 정보
+    @GetMapping(value = "/adminUpdateForm")
+    public void updateGET(HttpSession session, Model model) throws Exception {
+        String user_id = (String) session.getAttribute("user_id");
+        
+        // 서비스 -> DAO 회원정보 조회
+        AdminDTO resultDTO = aService.getMember(user_id);
+//        Game_scheduleDTO gameDTO = sService.gameScheduleList(name)
+        
+        // 연결된 뷰페이지로 정보 전달
+        model.addAttribute("resultDTO", resultDTO);
+        
+        // 연결된 뷰페이지(/admin/adminUpdate.jsp)에 출력
+    }
+    
+    // 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
+    @RequestMapping(value = "/adminUpdateForm", method = RequestMethod.POST)
+    public String updatePost(AdminDTO adto) throws Exception {
+    	logger.debug(" /update -> updatePost() 호출 ");
+    	
+    	// 수정할 회원정보를 저장
+    	logger.debug(" adto : " + adto);
+    	
+    	// Service -> DAO 회원정보 수정
+        aService.updateAdminMember(adto);
+        logger.debug(" adto : " + adto);
+        
+        return "redirect:/admin/admin";
+    }
+	
+	
+    //http://localhost:8088/mypage/adminDeleteMember
+    // 회원정보 삭제 - 사용자의 비밀번호 입력 / 아이디 세션
+    @GetMapping(value = "/adminDeleteMember")
+    public void deleteGET(HttpSession session, Model model) throws Exception {
+    	String user_id = (String) session.getAttribute("user_id");
+    	AdminDTO resultDTO = aService.getMember(user_id);
+    	model.addAttribute("resultDTO", resultDTO);
+    }
+    
+    // 회원정보 삭제
+    @PostMapping(value = "/adminDeleteMember")
+    public String deleteMember(AdminDTO adto, HttpSession session,Model model) throws Exception {
+    	logger.debug(" /deleteMember -> deleteMember() 호출 ");
+    	
+    	// 전달정보 저장
+    	logger.debug(" userDTO : " + adto );
+        
+        // 계정 정보 삭제( USE -> OUT으로 상태 변경)
+        boolean isDeleted = aService.deleteAdminMember(adto);
+        
+        if (isDeleted) {
+            session.invalidate();  // 세션 무효화
+            logger.debug("비밀번호가 일치합니다 -> 회원탈퇴 성공!");
+            
+            return "redirect:/admin/admin";  // 삭제 성공 시 메인 페이지로 리다이렉트
+        } else {
+        	   // 삭제 실패 시 현재 세션에서 user_id를 다시 가져와서 resultDTO에 설정
+            String user_id = (String) session.getAttribute("user_id");
+            AdminDTO resultDTO = aService.getMember(user_id);
+            model.addAttribute("resultDTO", resultDTO);
+            model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
+
+            logger.debug("비밀번호가 일치하지 않습니다");
+
+            return "admin/adminDeleteMember";  // 삭제 실패 시 다시 삭제 페이지로 이동
+	}    
+}
+	
+	
+	
+	
+	
 	
 	
 	@RequestMapping(value="/adminNotice",method=RequestMethod.GET)
@@ -481,6 +555,7 @@ public class AdminController {
 		
 		
 	}
+	
 	
 	
 	

@@ -273,6 +273,21 @@ public class AdminServiceImpl implements AdminService{
 		
 		return adao.getwithdrawMemberTotalCount();
 	}
+
+	@Override
+	public void updateAdminMember(AdminDTO adto) throws Exception {
+		logger.debug("관리자 - 관리자 개인 정보 수정");
+
+		
+		adao.updateAdminMember(adto);
+	}
+
+	@Override
+	public boolean deleteAdminMember(AdminDTO adto) throws Exception {
+        int result =  adao.deleteAdminMember(adto);
+        
+        return result > 0;
+	}
 	
 	
 	

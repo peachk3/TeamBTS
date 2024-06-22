@@ -285,6 +285,22 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		return sqlSession.selectOne(NAMESPACE+"countWithdrawMemberPage");
 	}
+
+	@Override
+	public void updateAdminMember(AdminDTO adto) throws Exception {
+		logger.debug(" DAO : updateAdminMember(adto) 호출 ");
+
+		
+		sqlSession.update(NAMESPACE+"updateAdminMember",adto);
+	}
+
+	@Override
+	public int deleteAdminMember(AdminDTO adto) throws Exception {
+		logger.debug(" DAO : deleteAdminMember(AdminDTO adto) 호출");
+
+		
+		return sqlSession.delete(NAMESPACE + "deleteAdminMember", adto);
+	}
 	
 	
 	

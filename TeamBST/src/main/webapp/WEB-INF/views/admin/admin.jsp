@@ -47,7 +47,9 @@
 
 
 
-
+<input type="button" value="메인으로" class="btn" onclick="location.href='/admin/admin'">
+<input type="button" value="정보수정" class="btn" onclick="location.href='/admin/adminUpdateForm'">
+<input type="button" value="회원탈퇴" class="btn" onclick="location.href='/admin/adminDeleteMember'">
 
 
 
