@@ -135,6 +135,25 @@ public int emailCheck(@RequestParam("user_email")String user_email) throws Excep
 	
 	return result;
 }
+
+//---------------------------------------------------------
+// 핸드폰 중복확인
+@GetMapping("/phoneCheck")
+@ResponseBody 
+public int phoneCheck(@RequestParam("user_phone")String user_phone) throws Exception{
+	logger.debug("user_phone" + user_phone);
+	
+	int result = mService.phoneCheck(user_phone);
+	
+	logger.debug("결과값 : " + result);
+	
+	return result;
+}
+
+
+
+
+
 //---------------------------------------------------------
 //아이디 찾기
 @GetMapping(value = "/findId")

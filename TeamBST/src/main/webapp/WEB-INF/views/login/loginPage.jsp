@@ -23,7 +23,7 @@
 		
         <!-- 패스워드 입력-->
         <label for="userPwd"></label>
-        <input type="password" id="user_pwd" name="user_pwd" maxsize='16' placeholder="비밀번호" required>
+        <input type="password" id="user_pwd" name="user_pwd" maxlength='16' placeholder="비밀번호" required>
 
         <!-- 아이디 저장-->
         <div class="save-id">

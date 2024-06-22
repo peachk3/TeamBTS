@@ -100,6 +100,20 @@ public class MemberDAOImpl implements MemberDAO {
 		return result ;
 	}
 
+	//핸드폰 중복체크
+	
+	@Override
+	public int phoneCheck(String user_phone) {
+	
+		int result = sqlSession.selectOne(NAMESPACE+"phoneCheck",user_phone);
+		
+		logger.debug("result : " + result);
+		
+		return result;
+	}
+	
+	
+	
 	//아이디 찾기
 	@Override
 	public UserDTO findId(UserDTO udto) {

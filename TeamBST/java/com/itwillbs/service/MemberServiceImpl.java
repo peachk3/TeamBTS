@@ -82,6 +82,23 @@ public class MemberServiceImpl implements MemberService{
 		
 		return result;
 	}
+	
+	//핸드폰번호 중복체크
+	
+	@Override
+	public int phoneCheck(String user_phone) throws Exception {
+
+		int result  = mdao.phoneCheck(user_phone);
+		
+		logger.debug("result :" + result);
+		
+		return result;
+	}
+	
+	
+	
+	
+	
 
 	//아이디 찾기
 	@Override
@@ -89,6 +106,7 @@ public class MemberServiceImpl implements MemberService{
 
 		return mdao.findId(udto);
 	}
+
 	
 	
 	

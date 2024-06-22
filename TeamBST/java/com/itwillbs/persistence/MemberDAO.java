@@ -21,6 +21,10 @@ public interface MemberDAO {
 		//이메일 중복체크
 		public int emailCheck(String user_email) throws Exception;
 
+		//핸드폰 중복체크
+		public int phoneCheck(String user_phone);
+		
 		//아이디찾기
 		public UserDTO findId(UserDTO udto);
+
 }
