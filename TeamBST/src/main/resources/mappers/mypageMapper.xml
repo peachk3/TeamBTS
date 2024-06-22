@@ -39,34 +39,69 @@
 
 
 
-  <!-- 내 게시글 목록 -->
+  <!-- 내 거래 게시글 목록 -->
+  <!-- 
   <select id="postBoardList" resultType="com.itwillbs.domain.Post_boardDTO">
     SELECT *
     FROM post_board
     WHERE post_writer_id = #{user_id}
   </select>
+   -->
   
-  <!-- 내 게시글 조회수 1증가 -->
+   <!-- 내 질문글 목록 -->
+   <!-- 
+  <select id="questionBoardList" resultType="com.itwillbs.domain.Question_boardDTO">
+	SELECT *
+	FROM question_board
+	WHERE quest_writer_id = #{user_id};
+  </select>
+    -->
+    
+	<!-- 내 게시글 목록 -->
+	<select id="myBoardList" resultType="MyBoardDTO">
+	  	<if test="boardTable_id == 'All'">
+		  	<![CDATA[
+		  		select post_id as "board_id", post_sub as "board_sub", post_cre_date as "board_cre_date", post_view as "board_view"
+				from post_board
+				WHERE post_writer_id = #{user_id}
+				union all
+				select quest_id, quest_sub, quest_cre_date, quest_view
+				from question_board
+				WHERE quest_writer_id = #{user_id}
+		  	]]>
+	  	</if>
+	  	<if test="boardTable_id != 'All'">
+		  	<if test="boardTable_id == 'Community'">
+			  	<![CDATA[
+					select post_id as "board_id", post_sub as "board_sub", post_cre_date as "board_cre_date", post_view as "board_view"
+					from post_board
+					WHERE post_writer_id = #{user_id}
+			  	]]>
+		  	</if>
+		  	<if test="boardTable_id == 'Bulletin'">
+			  	<![CDATA[
+					select quest_id as "board_id", quest_sub as "board_sub", quest_cre_date as "board_cre_date", quest_view as "board_view"
+					from question_board
+					WHERE quest_writer_id = #{user_id}
+			  	]]>
+		  	</if>
+		</if>
+	</select>
+  
+  <!-- 내 거래 게시글 조회수 1증가 -->
   <update id="pbUpdateReadCnt">
   	UPDATE post_board
   	SET post_view=post_view+1
   	WHERE post_id=#{post_id}
   </update>
   
-  <!-- 내 게시글 본문 -->
+  <!-- 내 거래 게시글 본문 -->
   <select id="pGetBoard" resultType="com.itwillbs.domain.Post_boardDTO">
 	SELECT *
 	FROM post_board
 	WHERE post_id=#{post_id}  
   </select>
   
-  
-   <!-- 내 질문글 목록 -->
-  <select id="questionBoardList" resultType="com.itwillbs.domain.Question_boardDTO">
-	SELECT *
-	FROM question_board
-	WHERE quest_writer_id = #{user_id};
-  </select>
   
   
   <!-- 내 질문글 조회수 1증가 -->
