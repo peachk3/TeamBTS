@@ -26,8 +26,7 @@ public interface MemberService {
 	//아이디찾기
 	public UserDTO findId(UserDTO udto);
 
-	//본인인증
-	public void sendSmsAndSaveCode(String user_phone, int cerNum);
+
 
 
 	

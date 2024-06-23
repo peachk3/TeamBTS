@@ -131,74 +131,15 @@
 			var regExp= /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 			return regExp.test(user_email);
 		}
-		//이메일 중복체크 검사
-
-        $('#emailCheck').click(function(event) {
-			var email = document.getElementById("user_email").value;
-			regMemberEmail(email);
-			
-			if(!regMemberEmail(email)) {
-                document.getElementById("user_email").value = ''; 
-                alert('이메일을 입력해주세요 ');
-                return;
-			} else{
-				  $.ajax({
-		                url:'/login/emailCheck?user_email='+email, 
-		                type:'get', //get 방식으로 전달
-		                success:function(res) { 
-		                    if(res == 0) { 
-		                    	alert('사용 가능한 이메일입니다. ');
-		                    } else if(res == 1) { // cnt가 1일 경우 -> 이미 존재하는 아이디
-		                        alert("이미 사용하고 있는 이메일입니다. ");
-		                        $('#user_email').val('');
-		                        
-		                    } else{
-		                    	alert("유효하지 않은 이메일 형식입니다.")
-		                    }
-		                },
-		                error:function()
-		                {
-		                    alert("시스템 에러입니다");
-		                }
-		            });
-				};	
-     });
 		
 //핸드폰
 		//핸드폰 유효성 
-		/*function regMemberPhone(user_phone){
+		function regMemberPhone(user_phone){
 			var regExp =/^010-\d{4}-\d{4}$/;
 			return regExp.test(user_phone);
 		}
 		
-		function checkPhone(){
-			var phone = document.getElementById("user_phone").value;
-			regMemberPhone(phone);
-			
-			if(!regMemberPhone(phone)) {
-				document.getElementById("user_phone").value = '';
-                alert('유효하지 않은 핸드폰 번호입니다. ');
-                return;
 		
-			}else{
-				$.ajax({
-					url:'/login/phoneCheck?user_phone='+phone, 
-					type:'get', //get 방식으로 전달
-					success:function(res) { 
-						if(res == 0) { 
-							alert('유효한 핸드폰 번호입니다. ');
-						} else  { // cnt가 1일 경우 -> 이미 존재하는 아이디
-							alert("이미 사용하고 있는 핸드폰 번호입니다 ");
-							$('#user_phone').val('');
-						}
-					},
-					error:function()
-					{
-						alert("시스템 에러입니다");
-					}
-				});
-			}
-		};		*/
 		 $(document).ready(function() {
 	            let isPhoneVerified = false; // 중복 확인 여부 저장
 
@@ -237,7 +178,7 @@
 	                });
 	            }
 
-	            function verifyCheck() {
+	          /*  function verifyCheck() {
 	                if (!isPhoneVerified) { // 중복 확인이 되지 않은 경우
 	                    alert('먼저 휴대폰 번호 중복 체크를 해주세요.');
 	                    return;
@@ -261,7 +202,7 @@
 	                    }
 	                });
 	            }
-
+*/
 	           $('#phoneCheck').click(function(event) {
 	                event.preventDefault();
 	                checkPhone();
@@ -276,6 +217,40 @@
 	            $('#verifyCheck').attr('disabled', true);
 	        });
      });
+	 
+	 
+	//이메일 중복체크 검사
+
+     $('#emailCheck').click(function(event) {
+			var email = document.getElementById("user_email").value;
+			regMemberEmail(email);
+			
+			if(!regMemberEmail(email)) {
+             document.getElementById("user_email").value = ''; 
+             alert('이메일을 입력해주세요 ');
+             return;
+			} else{
+				  $.ajax({
+		                url:'/login/emailCheck?user_email='+email, 
+		                type:'get', //get 방식으로 전달
+		                success:function(res) { 
+		                    if(res == 0) { 
+		                    	alert('사용 가능한 이메일입니다. ');
+		                    } else if(res == 1) { // cnt가 1일 경우 -> 이미 존재하는 아이디
+		                        alert("이미 사용하고 있는 이메일입니다. ");
+		                        $('#user_email').val('');
+		                        
+		                    } else{
+		                    	alert("유효하지 않은 이메일 형식입니다.")
+		                    }
+		                },
+		                error:function()
+		                {
+		                    alert("시스템 에러입니다");
+		                }
+		            });
+				};	
+  });
 		
 		
 //회원가입

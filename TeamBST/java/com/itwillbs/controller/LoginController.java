@@ -1,9 +1,5 @@
 package com.itwillbs.controller;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -59,18 +55,7 @@ public String signupPOST(UserDTO udto) {
      return "redirect:/login/loginPage"; // 리다이렉트할 경로 반환
 }
 
-/*
- * @RequestMapping("/signupPage")
- * 
- * public Map<String, String> signup( @RequestBody UserDTO udto) { Map<String,
- * String> response = new HashMap<>();
- * 
- * try { mService.memberJoin(udto); response.put("status", "success"); } catch
- * (Exception e) { response.put("status", "error"); response.put("message",
- * e.getMessage()); }
- * 
- * return response; }
- */
+
 //-----------------------------------------------------------------------
 // 회원로그인 
 @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
@@ -171,15 +156,8 @@ public int phoneCheck(@RequestParam("user_phone")String user_phone) throws Excep
 }
 
 //-----------------------------------------------------------
-@RequestMapping(value = "/sendCode", method = RequestMethod.GET)
-@ResponseBody
-public String sendSMS(@RequestParam("phone") String userPhoneNumber) { // 휴대폰 문자보내기
-	int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
+//이메일 본인인증 
 
-	mService.sendSmsAndSaveCode(userPhoneNumber,randomNumber);
-	
-	return Integer.toString(randomNumber);
-}
 //---------------------------------------------------------
 //아이디 찾기
 @GetMapping(value = "/findId")
@@ -192,8 +170,6 @@ public void findIdGET() {
 public String findIdPOST(HttpServletRequest request,Model model, UserDTO udto,
 		@RequestParam String user_name,
 		@RequestParam String user_phone) {
-
-	
 	
 		/*
 		 * logger.debug("/findId -> findIdPOST() 호출");

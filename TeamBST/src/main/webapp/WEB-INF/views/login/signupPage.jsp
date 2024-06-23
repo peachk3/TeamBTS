@@ -65,38 +65,36 @@
                   <input type="text" id="user_nick" name="user_nick" maxlength="12" placeholder="닉네임 *" >
                   <button type="button" class="check-button" name="nickCheck" id="nickCheck"  >중복확인</button>
                 </div>
+                
+                 <!-- 핸드폰-->
+                <label for="phone"></label>
+                <div class="btn-group">
+                  <input type="text" id="user_phone" name="user_phone" placeholder="010-1234-5678">
+                 	 <button type="button" class="check-button" id="phoneCheck" name="phoneCheck">중복확인</button> 
+                </div>        
+                
                
                 <!-- 이메일 -->
                 <label for="email"></label>
                 <div class="btn-group"> <!-- 닉네임 중복확인-->
                   <input type="email" id="user_email" name="user_email"  placeholder="이메일 *" >
                   <button type="button" class="check-button" name="emailCheck" id="emailCheck" >중복확인</button>
-                </div>
-                
-                <!-- 핸드폰-->
-                <label for="phone"></label>
-                <div class="btn-group">
-                  <input type="text" id="user_phone" name="user_phone" placeholder="010-1234-5678">
-                 	 <button type="button" class="check-button" id="phoneCheck" name="phoneCheck">중복확인</button> 
-					 <button type="button" class="verify-button" id="verifyCheck" >인증번호 전송</button>
+                   <button type="button" class="verify-button" id="verifyCheck" >인증번호 전송</button>
             		    <div style="display: none;" class="sendCodeMessage">
                  			<b>인증 번호가 발송되었습니다</b>
 						</div>
-                </div>        
-
+                </div>
+                
+        
             
-                <!-- 휴대폰 인증번호 입력 칸-->
+                <!-- 이메일 인증번호 입력 칸-->
              <label for="verification"></label> 
                 <div class="btn-group">
-                  <input type="text" name="phoneCode" id="phoneCode">
-                  	<button type="button" onclick="checkMessage()" value="인증번호 확인">확인</button>
+                  <input type="text" name="emailCode" id="emailCode">
+                  	<button type="button" name="Demailcode" id="Demailcode"  value="인증번호 확인">확인</button>
                  	<div style="display:none;" class="successMessge">
 						<b>인증 성공!</b>
                 	</div>	
-                  <button type="button" class="emailCode" value="재전송" onclick="emailCode()">재전송</button>
-					<div style="display: none;" class="sendCodeMessage">
-                 		<b>인증 번호가 발송되었습니다</b>
-					</div>
                 </div>
 	           </div> 	<!-- div - form-group 끝-->
 

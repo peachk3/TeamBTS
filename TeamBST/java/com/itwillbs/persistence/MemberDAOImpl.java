@@ -29,7 +29,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	private static final String NAMESPACE="com.itwillbs.mapper.MemberMapper.";
 	
-
+	//회원가입
 	@Override
 	public void memberJoin(UserDTO mdto) {
 		System.out.println("DAO : insertUser(udto) 호출");

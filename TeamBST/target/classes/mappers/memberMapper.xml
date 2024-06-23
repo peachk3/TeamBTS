@@ -35,11 +35,15 @@
 	select count(*)from user where user_email=#{user_email}
 </select>
 
+<!-- 이메일 본인인증 -->
+
+
+
+
 <!-- 핸드폰 중복체크 -->
 <select id="phoneCheck" parameterType="String" resultType="int">
 	select count(*) from user where user_phone=#{user_phone}
 </select>
-
 
 
 <!--  ID 찾기(핸드폰 번호로) -->
