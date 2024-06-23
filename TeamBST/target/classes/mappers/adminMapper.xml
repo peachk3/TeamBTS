@@ -53,33 +53,97 @@
 	<!-- 공지사항 리스트 조회 -->
 	<select id="noticeList" resultType="Notice_boardDTO">
 		select * from notice_board
+		where notice_del_at = 'N'
 	</select>
+	
+	<!-- 공지사항 페이징 처리로 조회 -->
+		<select id="noticeListPage" resultType="Notice_boardDTO">
+		<![CDATA[
+		select * from notice_board
+		where notice_id > 0 
+		order by notice_id desc, notice_cre_date desc
+		limit #{pageStart},#{pageSize}
+		]]>
+	</select>
+	
+	<!-- 공지 게시판 총 글의 개수(페이징처리) -->
+	<select id="countNoticePage" resultType="int">
+		select count(notice_id) from notice_board
+	</select>
+	
+	
 
 	<!-- 공지사항 본문 조회 -->
 	<select id="noticeOneList" resultType="Notice_boardDTO">
 		select * from notice_board
 		where notice_id = #{notice_id}
 	</select>
-
-
+	
+	 <!-- 공지사항 조회수 1증가 -->
+	  <update id="updateNoticeCount">
+		UPDATE notice_board
+		SET notice_view=notice_view+1
+		WHERE notice_id=#{notice_id}
+	  </update>
+	  
+	  
+	 <!-- 문의게시글 조회수 1증가 -->
+	  <update id="updateQuestCount">
+		UPDATE question_board
+		SET quest_view=quest_view+1
+		WHERE quest_id=#{quest_id}
+	  </update>
+	
+	
+	<!-- 공지 게시판 글 내용 수정 -->
+	<update id="adminNoticeModify">
+		update notice_board set notice_sub=#{notice_sub},notice_cont=#{notice_cont},admin_id=#{admin_id},photo_url=#{photo_url}
+		where notice_id = #{notice_id}
+	</update>
+	
+		<!-- 거래 게시판 글 내용 삭제 -->
+	<update id="deleteNoticeContent">
+		update notice_board
+		set notice_del_at = 'Y', notice_del_date = now()
+		where notice_id = #{notice_id}
+	</update>
 
 
 	<!-- 문의 게시글 목록 조회 -->
 	<select id="questionList" resultMap="questMap">
-		select qb.quest_id,
-		qb.quest_sub, qb.quest_cre_date, u.user_nick, qb.quest_public
+		select qb.quest_id,qb.quest_sub, qb.quest_cre_date, u.user_nick, qb.quest_public,qb.quest_view
 		from question_board qb
 		join user u
 		on qb.quest_writer_id = u.user_id
+		where quest_del_at = 'N'
 	</select>
+	
+	
+	<!-- 문의 게시글 페이징 처리  -->
+	
+ 	<select id="questionListPage" resultMap="questMap">
+		<![CDATA[
+		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick, qb.quest_public, qb.quest_view
+		from question_board qb
+		join user u on qb.quest_writer_id = u.user_id
+		where (qb.quest_del_at = 'N' and qb.quest_id > 0)
+		order by qb.quest_id desc, qb.quest_cre_date desc
+		limit #{pageStart}, #{pageSize}
+		]]>
+	</select>
+		<!-- 문의 게시판 총 글의 개수(페이징처리) -->
+	<select id="countQuestionPage" resultType="int">
+		select count(quest_id) from question_board
+	</select>	
+	
+	
 
 
 	<!-- 문의 게시글 내용 조회 -->
 	<select id="QuestionOneList" resultMap="questMap">
 		select qb.quest_id,
-		qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id,qb.quest_public
-		from
-		question_board qb join user u
+		qb.quest_sub, qb.quest_cre_date, u.user_nick,qb.quest_cont,qb.quest_writer_id,qb.quest_public,qb.quest_view
+		from question_board qb join user u
 		on qb.quest_writer_id = u.user_id
 		where
 		quest_id = #{quest_id}
@@ -117,12 +181,38 @@
 		select * from game_schedule
 	</select>
 
+		<!-- 경기 일정 조회 -->
+		<select id="scheduleListPage" resultType="Game_scheduleDTO">
+		<![CDATA[
+		select * from game_schedule
+		where game_id > 0 
+		order by game_id desc, game_date desc
+		limit #{pageStart},#{pageSize}
+		]]>
+	</select>
+	
+
+	<!-- 경기일정 총 글의 개수(페이징처리) -->
+	<select id="countSchedulePage" resultType="int">
+		select count(game_id) from game_schedule
+	</select>
+	
+
+
 	<!-- 경기정보 수정시 리스트 조회 -->
 	<select id="scheduleOne" resultType="Game_scheduleDTO">
 		select * from game_schedule where game_id = #{game_id}
 	</select>
 
-
+		 	<!-- 일반회원의 예매 내역 조회 -->
+	 <!-- 	<select id="memberTicketingList" resultType="Game_scheduleDTO">
+			select game_date, game_time, stad_id, home_team_id, away_team_id
+			from (reservation_info ri1 join game_schedule gs
+			on ri1.game_id = gs.game_id), 
+			(reservation_info ri2 join user u
+			on ri2.user_id = u.user_id)
+			where u.user_id = #{user_id};
+	 	</select> -->
 
 
 
@@ -132,14 +222,110 @@
 		where user_status="USE"
 	</select>
 
+		<!-- 일반회원 조회 페이징 처리 -->
+		<select id="generalMemberListPage" resultType="UserDTO">
+		<![CDATA[
+		select * from user
+		where ( user_status="USE")
+		order by join_date desc
+		limit #{pageStart},#{pageSize}
+		]]>
+	</select>
+
+		<!-- 일반회원 조회 회원수(페이징처리) -->
+	<select id="countGeneralMemberPage" resultType="int">
+		select count(user_id) from user
+		where ( user_status="USE")
+	</select>	
+
 	<!-- 탈퇴회원 조회 -->
 	<select id="withdrawMemberList" resultType="UserDTO">
 		select * from user
 		where user_status="OUT"
 	</select>
+	
+	
+		<!-- 탈퇴 회원 조회 페이징 처리 -->
+		<select id="withdrawMemberListPage" resultType="UserDTO">
+		<![CDATA[
+		select * from user
+		where user_status="OUT"
+		order by withdraw_date desc
+		limit #{pageStart},#{pageSize}
+		]]>
+	</select>
+		<!-- 탈퇴회원 조회 회원수(페이징처리) -->
+	<select id="countWithdrawMemberPage" resultType="int">
+		select count(user_id) from user
+		where ( user_status="OUT")
+	</select>	
+
+
 
 	
+	<!-- 일반 회원수 출력 -->
+	<select id="generalMemberCount" resultType="int">
+		select count(*)
+        from user
+        where user_status = "USE";
+	</select>
+
+	<!-- 탈퇴 회원수 출력 -->
+	<select id="withdrawMemberCount" resultType="int">
+		select count(*)
+        from user
+        where user_status = "OUT";
+	</select>
+
+  <!-- 회원정보 조회 (by user_id) -->
+  <select id="getMember" resultType="AdminDTO">
+    SELECT * FROM admin
+    WHERE admin_id = #{user_id}
+  </select>
 	
+	
+	
+  <!-- 관리자 개인정보  수정 -->
+  <update id="updateAdminMember">
+    UPDATE admin
+    SET
+      admin_name = #{admin_name},
+      admin_nick = #{admin_nick},
+      admin_phone = #{admin_phone},
+      admin_email = #{admin_email},
+      admin_birth = #{admin_birth}
+    WHERE admin_id = #{admin_id} and admin_pwd = #{admin_pwd}
+  </update>
+
+
+<!-- 관리자 개인정보 탈퇴 -->
+	<update id="deleteAdminMember">
+		UPDATE admin
+		set admin_status = "OUT"
+		where admin_id = #{admin_id} AND admin_pwd = #{admin_pwd}
+	</update>
+
+
+
+
+<!-- 예매내역 페이징 처리 - gpt 코드 -->
+
+	<select id="memberTicketingList" parameterType="map" resultType="Game_scheduleDTO">
+	    select game_date, game_time, stad_id, home_team_id, away_team_id
+		from (reservation_info ri1 join game_schedule gs
+		on ri1.game_id = gs.game_id), 
+		(reservation_info ri2 join user u
+		on ri2.user_id = u.user_id)
+		where ri2.user_id = "user5" and ri1.game_id = ri2.game_id
+		ORDER BY game_date
+	    LIMIT #{cri.pageStart}, #{cri.pageSize}
+	</select>
+	
+	<select id="getTotalCount" parameterType="String" resultType="int">
+	    SELECT COUNT(user_id) FROM reservation_info WHERE user_id = #{user_id}
+	</select>
+
+
 
 
 </mapper>

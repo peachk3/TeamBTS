@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.persistence.CommunityDAO;
 
@@ -28,19 +29,49 @@ public class CommunityServiceImpl implements CommunityService{
 		
 		logger.debug("공지사항 작성 성공");
 	}
-
+	
 	@Override
-	public List<Post_boardDTO> PostList() throws Exception {
+	public List<Post_boardDTO> PostListAll() throws Exception {
 		logger.debug("공지사항 글목록 조회");
 		
-		return cdao.PostList();
+		return cdao.PostListAll();
 	}
 
 	@Override
-	public List<Post_boardDTO> PostOneList(String post_id) throws Exception {
+	public List<Post_boardDTO> PostList(Category cate) throws Exception {
+		logger.debug("공지사항 글목록 조회");
+		logger.debug("cate"+ cate);
+		
+		return cdao.PostList(cate);
+	}
+
+	@Override
+	public List<Post_boardDTO> PostOneList(int post_id) throws Exception {
 		logger.debug("글 내용 조회");
-	
+		
 		return cdao.PostOneList(post_id);
+	}
+
+	@Override
+	public void modifyContent(Post_boardDTO pbdto) throws Exception {
+		logger.debug("글 내용 수정");
+
+		cdao.modifyContent(pbdto);
+	}
+
+	@Override
+	public void deleteContent(int post_id) throws Exception {
+		logger.debug("게시글 삭제");
+		
+		cdao.deleteContent(post_id);
+	}
+
+	@Override
+	public void updateCount(int post_id) throws Exception {
+		logger.debug(" 조회수 증가 ");
+		
+		
+		cdao.updateCount(post_id);
 	}
 
 	

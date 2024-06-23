@@ -93,12 +93,13 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 
 //-----------------------------------------------------
 // 회원 로그아웃 
-@RequestMapping(value = "/logout",method = RequestMethod.POST)
-public String logoutPOST(HttpSession session) {
+@RequestMapping(value = "/generalLogout",method = RequestMethod.POST)
+public String generalLogoutPOST(HttpSession session) {
 	logger.debug("/logout -> logoutPOST() 호출");
 	session.invalidate(); // 세션 무효화
 	return "redirect:/login/loginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
 }
+
 //-----------------------------------------------------
 //아이디 중복 체크 
 @GetMapping("/idCheck")
@@ -133,6 +134,18 @@ public int nickCheck(@RequestParam("user_nick")String user_nick)throws Exception
 @ResponseBody
 public int emailCheck(@RequestParam("user_email")String user_email) throws Exception{
 	logger.debug("user_email" + user_email);
+
+
+// 관리자 로그아웃
+@RequestMapping(value = "/adminLogout",method = RequestMethod.POST)
+public String adminLogoutPOST(HttpSession session) {
+	logger.debug("/logout -> logoutPOST() 호출");
+	session.invalidate(); // 세션 무효화
+	return "redirect:/login/AdminLoginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
+}
+
+
+//아이디 중복 체크
 	
 	int result = mService.emailCheck(user_email);
 	

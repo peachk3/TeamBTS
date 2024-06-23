@@ -29,7 +29,7 @@
 						<td>${dto.admin_id}</td>
 						<td><fmt:formatDate value="${dto.notice_cre_date}"
 								pattern="yyyy-MM-dd" /></td>
-						<td><span class="badge bg-purple">${dto.notice_view}</span></td>
+						<td><span>${dto.notice_view}</span></td>
 					</tr>
 				</c:forEach>
 
@@ -51,6 +51,25 @@
 
 
 
+
+ <div class="box-footer clearfix">
+		<ul class="pagination pagination-sm no-margin pull-right">
+			
+			<c:if test="${pageDTO.prev }">
+			<li><a href="/admin/adminNotice?page=${pageDTO.startPage-1 }">«</a></li>
+			</c:if>
+			
+			<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+		
+			<li ${pageDTO.cri.page == i? 'class="active"':'' }><a href="/admin/adminNotice?page=${i }">${i }</a></li>
+		
+			</c:forEach>
+			
+			<c:if test="${pageDTO.next && pageDTO.endPage > 0 }">
+			<li><a href="/admin/adminNotice?page=${pageDTO.endPage+1 }">»</a></li>
+			</c:if>
+		</ul>
+	</div> 
 
 
 

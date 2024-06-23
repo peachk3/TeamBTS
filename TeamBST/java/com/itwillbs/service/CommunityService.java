@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Post_boardDTO;
 
 @Service
@@ -13,9 +14,24 @@ public interface CommunityService {
 	public void PostJoin(Post_boardDTO dto);
 	
 	// 거래 게시글 목록 조회
-	public List<Post_boardDTO> PostList() throws Exception;
+	public List<Post_boardDTO> PostList(Category cate) throws Exception;
 
-	public List<Post_boardDTO> PostOneList(String post_id) throws Exception;
+	// 거래 게시글 목록 전체 조회
+	public List<Post_boardDTO> PostListAll() throws Exception;
+
+	// 거래 게시글 본문 조회
+	public List<Post_boardDTO> PostOneList(int post_id) throws Exception;
+
+	// 거래 게시글 수정
+	public void modifyContent(Post_boardDTO pbdto) throws Exception;
+
+	// 거래 게시글 삭제
+	public void deleteContent(int post_id) throws Exception;
+
+	// 조회수 증가
+	public void updateCount(int post_id) throws Exception;
+
+
 
 	
 	

@@ -44,10 +44,6 @@
 					</c:otherwise>
 				</c:choose>						
 						
-						
-						
-						
-						
 						</td>
 						<c:forEach var="dto_" items="${dto.userList}">
 							<td>${dto_.user_nick}</td>
@@ -63,6 +59,34 @@
 	</div>
 
 	<br>
+
+
+
+ <div class="box-footer clearfix">
+		<ul class="pagination pagination-sm no-margin pull-right">
+			
+			<c:if test="${pageDTO.prev }">
+			<li><a href="/admin/adminBulletin?page=${pageDTO.startPage-1 }">«</a></li>
+			</c:if>
+			
+			<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+		
+			<li ${pageDTO.cri.page == i? 'class="active"':'' }><a href="/admin/adminBulletin?page=${i }">${i }</a></li>
+		
+			</c:forEach>
+			
+			<c:if test="${pageDTO.next && pageDTO.endPage > 0 }">
+			<li><a href="/admin/adminBulletin?page=${pageDTO.endPage+1 }">»</a></li>
+			</c:if>
+		</ul>
+	</div> 
+
+
+
+
+
+
+
 
 
 
