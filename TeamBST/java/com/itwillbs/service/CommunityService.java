@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Post_commendDTO;
 
 @Service
 public interface CommunityService {
@@ -30,6 +31,9 @@ public interface CommunityService {
 
 	// 조회수 증가
 	public void updateCount(int post_id) throws Exception;
+
+	// 거래 게시글 댓글 달기
+	public void communityCommend(Post_commendDTO pcdto) throws Exception;
 
 
 

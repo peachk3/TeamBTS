@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Post_commendDTO;
 
 @Repository
 public class CommunityDAOImpl implements CommunityDAO{
@@ -73,6 +74,15 @@ public class CommunityDAOImpl implements CommunityDAO{
 		logger.debug("DAO : updateCount(int post_id)");
 		
 		sqlSession.update(NAMESPACE+"updateCount",post_id);
+		
+		
+	}
+
+	@Override
+	public void communityCommend(Post_commendDTO pcdto) throws Exception{
+		logger.debug(" DAO : communityCommend(Post_commendDTO pcdto) ");
+
+		sqlSession.insert(NAMESPACE+"communityCommend",pcdto);
 		
 		
 	}

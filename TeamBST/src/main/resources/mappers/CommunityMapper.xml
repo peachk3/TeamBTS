@@ -103,5 +103,14 @@
 		set post_del_at = 'Y', post_del_date = now()
 		where post_id = #{post_id}
 	</update>
+		
+		
+		<!-- 거래 게시글 댓글 작성 -->
+	<insert id="communityCommend">
+    insert into post_commend(post_id, comm_cont, comm_cre_date, comm_writer_id)
+    values(#{post_id}, #{comm_cont}, now() , #{comm_writer_id})
+	</insert>
+		
+		
 
 </mapper>

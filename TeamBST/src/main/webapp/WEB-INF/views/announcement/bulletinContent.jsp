@@ -66,7 +66,7 @@
 			<input type="submit" value="삭제">
 		</form>	
 				
-                <button type="button" onclick="window.history.back();">취소</button>
+                <button type="button" onclick="window.history.back();">뒤로가기</button>
   
    
    

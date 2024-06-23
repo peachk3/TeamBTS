@@ -4,6 +4,7 @@
 
 
 
+
    <style>
       body {
          font-family: Arial, sans-serif;
@@ -40,8 +41,19 @@
          padding-left: 30px;
          font-size: 16px;
       }
+              .answer {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+        .buttons {
+            text-align: right;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
    </style>
-   
    
 <c:forEach var="post" items="${PostOneList}">
    <div class="post">
@@ -57,6 +69,22 @@
       </div>
    </div>
    
+
+   
+
+   <div class="answer">
+        <form action="/community/communityContent" method="post">
+            <input type="hidden" name="post_id" value="${post.post_id}" />
+            <p><strong>답변</strong></p>
+            <textarea name="comm_cont" placeholder="답변 내용을 입력하세요..."></textarea>
+            <div class="buttons">
+                <button type="button" onclick="window.history.back();">취소</button>
+                <button type="submit">등록</button>
+            </div>
+        </form>
+    </div>
+</c:forEach> 
+
               <button type="submit" onclick="location.href='/community/communityModify?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }'">수정</button>
 
 		<form action="/community/communityDelete?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }" method="post">
@@ -65,8 +93,8 @@
 		</form>	
 				
                 <button type="button" onclick="window.history.back();">취소</button>
-   
-</c:forEach>
+
+
    
 </body>
 </html>
