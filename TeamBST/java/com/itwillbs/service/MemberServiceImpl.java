@@ -1,5 +1,5 @@
 package com.itwillbs.service;
-
+import java.util.HashMap;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.persistence.MemberDAO;
+import net.nurigo.sdk.message.model.Message;
 
+import java.util.Random;
 /**
  * 서비스는 컨트롤러와 DAO를 연결
  * => 서비스는 DAO를 호출한다 -> DAO는 mapper를 통해 db와 연결
@@ -28,6 +30,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Inject
 	private MemberDAO mdao;
+	
 
 	//회원가입
 	@Override
@@ -94,23 +97,67 @@ public class MemberServiceImpl implements MemberService{
 		
 		return result;
 	}
-	
-	
-	
-	
+
+	//핸드폰 본인인증
 	
 
-	//아이디 찾기
 	@Override
-	public UserDTO findId(UserDTO udto) {
-
-		return mdao.findId(udto);
+	public void sendSmsAndSaveCode(String user_phone, int cerNum) {
+		// TODO Auto-generated method stub
+		
 	}
 
+	/*
+	 * public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
+	 * String api_key = "NCSEOY0OIVK17B9D"; String api_secret =
+	 * "Y1CP03WHUJCXPCOFMUXRY5BUHCZUJGZG"; Message coolsms = new Message(api_key,
+	 * api_secret);
+	 * 
+	 * HashMap<String, String> params = new HashMap<String, String>();
+	 * params.put("to", userPhoneNumber); // 수신전화번호 params.put("from", "자신의 번호"); //
+	 * 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨 params.put("type", "SMS");
+	 * params.put("text", "[TEST] 인증번호는" + "["+randomNumber+"]" + "입니다."); // 문자 내용
+	 * 입력 params.put("app_version", "test app 1.2"); // application name and version
+	 * 
+	 * try { JSONObject obj = (JSONObject) coolsms.send(params);
+	 * System.out.println(obj.toString()); } catch (CoolsmsException e) {
+	 * System.out.println(e.getMessage()); System.out.println(e.getCode()); }
+	 * 
+	 * }
+	 */
+	/*
+	private final String api_key="NCSEOY0OIVK17B9D";
+	private final String api_secret="Y1CP03WHUJCXPCOFMUXRY5BUHCZUJGZG";
 	
-	
-	
-	
-	
+	@Override
+	public void sendSmsAndSaveCode(String user_phone, String cerNum) {
+
+		Message coolsms = new Message(api_key,api_secret);
+		
+		 HashMap<String, String> params = new HashMap<String, String>();
+	        params.put("to", user_phone); // 수신전화번호
+	        params.put("from", "010-0000-0000"); // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
+	        params.put("type", "SMS");
+	        params.put("text", "[모두 야구 예매해] 문자 본인인증 서비스 : 인증번호는 " + "[" + cerNum + "]" + " 입니다.");
+	        params.put("app_version", "test app 1.2"); // application name and version
+		
+
+	        try {
+	            JSONObject obj = (JSONObject)coolsms.send(params);
+	            System.out.println(obj.toString());
+	        } catch (CoolsmsException e) {
+	            System.out.println(e.getMessage());
+	            System.out.println(e.getCode());
+	        }
+		
+	}
+	*/
+	//아이디 찾기
+
+	@Override
+	public UserDTO findId(UserDTO udto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

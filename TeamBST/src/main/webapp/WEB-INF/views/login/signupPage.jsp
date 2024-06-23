@@ -38,7 +38,7 @@
                 <label for="userid"></label>
                 <div class="btn-group"> <!-- 아이디 중복확인 버튼-->
                   <input type="text" id="user_id" name="user_id" maxlength="16" placeholder="아이디 *">
-                  <button type="button" class="check-button" name="idCheck" id="idCheck" onclick="checkId()">중복확인</button>
+                  <button type="button" class="check-button" name="idCheck" id="idCheck">중복확인</button>
                  </div>
                 
             	
@@ -51,7 +51,7 @@
                 <label for="pwdCheck "></label>
                 	<div class="btn-group">
                	 		<input class="in-b" type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인 *" required >
-               	 		<button type="submit" class="button-primary" onclick="checkPwd()">확인</button>
+               	 		<button type="button" class="button-primary" id = "pwdDcheck" >확인</button>
     		 		</div>
     		 <!-- 생년월일 -->
     			 <div class="form-group">
@@ -63,33 +63,28 @@
                 <label for="nickname"></label>
                 <div class="btn-group"> <!-- 닉네임 중복확인-->
                   <input type="text" id="user_nick" name="user_nick" maxlength="12" placeholder="닉네임 *" >
-                  <button type="button" class="check-button" name="nickCheck" id="nickCheck" onclick="checkNick()" >중복확인</button>
+                  <button type="button" class="check-button" name="nickCheck" id="nickCheck"  >중복확인</button>
                 </div>
                
                 <!-- 이메일 -->
                 <label for="email"></label>
                 <div class="btn-group"> <!-- 닉네임 중복확인-->
                   <input type="email" id="user_email" name="user_email"  placeholder="이메일 *" >
-                  <button type="button" class="check-button" name="emailCheck" id="emailCheck" onclick="checkEmail()" >중복확인</button>
+                  <button type="button" class="check-button" name="emailCheck" id="emailCheck" >중복확인</button>
                 </div>
                 
                 <!-- 핸드폰-->
                 <label for="phone"></label>
                 <div class="btn-group">
-                  <input type="text" id="user_phone" name="user_phone" placeholder="010-0000-0000">
-                  <button type="button" class="check-button" name="phoneCheck" id=phoneCheck onclick="checkPhone()">중복확인</button> 
+                  <input type="text" id="user_phone" name="user_phone" placeholder="010-1234-5678">
+                 	 <button type="button" class="check-button" id="phoneCheck" name="phoneCheck">중복확인</button> 
+					 <button type="button" class="verify-button" id="verifyCheck" >인증번호 전송</button>
+            		    <div style="display: none;" class="sendCodeMessage">
+                 			<b>인증 번호가 발송되었습니다</b>
+						</div>
                 </div>        
 
-                <!-- 휴대폰 인증-->
-                <label for="phoneCode"></label>
-                <div class="btn-group">
-                  <input type="email" id="emailCode" name="emailCode" placeholder="휴대폰 인증번호">
-                  <button type="button" class="sendCode" onclick="sendCode()" value="인증번호받기">인증번호 전송</button> <!-- 이메일 인증번호 전송버튼-->
-               		<div style="display: none;" class="successMessage">
-               			<b>인증 번호가 발송 되었습니다</b>
-               		</div>
-				</div>
-
+            
                 <!-- 휴대폰 인증번호 입력 칸-->
              <label for="verification"></label> 
                 <div class="btn-group">
@@ -125,7 +120,7 @@
                 <!-- 가입하기 & 로그인 버튼-->
             <div id="signup_n_login">
               <label>
-                <button type="button" id="signup-btn" class="submit-btn">가입하기</button>
+                <button type="submit" id="signup-btn" class="submit-btn">가입하기</button>
               </label>
               <label>
                 <button type="button" id="submit-btn" class="login-btn" onclick="location.href='/login/loginPage'">로그인</button>

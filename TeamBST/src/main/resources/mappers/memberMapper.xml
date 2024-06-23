@@ -6,7 +6,7 @@
 <mapper namespace="com.itwillbs.mapper.MemberMapper">
 
 <!-- 회원가입  -->
-<insert id="userJoin">
+<insert id="memberJoin"  parameterType="com.itwillbs.domain.UserDTO">
 	insert into user (user_id, user_birth, user_pwd, user_name, user_nick, user_phone, user_email, join_date, user_info_agree, user_serv_agree )
 	 values(#{user_id},#{user_birth}, #{user_pwd},#{user_name},#{user_nick},#{user_phone},#{user_email}, now(),#{user_info_agree}, #{user_serv_agree})
 	 
@@ -39,6 +39,8 @@
 <select id="phoneCheck" parameterType="String" resultType="int">
 	select count(*) from user where user_phone=#{user_phone}
 </select>
+
+
 
 <!--  ID 찾기(핸드폰 번호로) -->
 <select id="findId" resultType="int">

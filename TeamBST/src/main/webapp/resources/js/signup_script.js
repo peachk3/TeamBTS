@@ -10,9 +10,9 @@
                 var user_name = $('#user_name').val();
                 if (!regMemberName(user_name)) {
                     $('#user_name').val('');
-                    alert('이름을 입력해주세요.');
-                } else {
                     alert('유효하지 않은 이름입니다.');
+                } else {
+                    alert('사용가능한 이름입니다. ');
                 }
             }
 
@@ -32,7 +32,7 @@
  		    		return regExp.test(user_id);   
 		}
 		//아이디 중복체크
-		function checkId(){
+		 $('#idCheck').click(function(event) {
 			  var id = document.getElementById("user_id").value;
 			     regMemberId(id);
 			     
@@ -57,37 +57,32 @@
 				            }
 				        });
 				     };
-				}      
-		      
+	        });
+
 //비밀번호		
 		//패스워드 유효성
-		 $(document).ready(function() {
 			 function regMemberPassword(user_pwd){ //패스워드 //8~16자 영문,숫자,특수기호 숫자최소 1 특수기호최소 1
 					var regExp= /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/;
 					return regExp.test(user_pwd);
 	            }
-			 function checkPwd(){
-				   var upwd = document.getElementById("user_pwd").value;
-				   var cpwd = document.getElementById("pwdCheck").value;
-				     
-				     if (!regMemberPassword(upwd)) {
-				    	 document.getElementById("user_pwd").value = ''; 
-				    	 alert('비밀번호는 8~16자의 영문, 숫자, 특수기호를 포함해야 합니다.');
-				    	 return;
-				  } 
-				     if (upwd !== cpwd) {
-				    	 document.getElementById("pwdCheck").value = ''; 
-		                    alert('비밀번호가 일치하지 않습니다.');
-		                    return;
-		                }
-				     alert('비밀번호가 일치합니다.');
-		            } 
-				   
 			 $('.button-primary').click(function(event) {
 	                event.preventDefault(); // 폼 제출 막기
-	                checkPwd();
+	                var upwd = document.getElementById("user_pwd").value;
+					   var cpwd = document.getElementById("pwdCheck").value;
+					     
+					     if (!regMemberPassword(upwd)) {
+					    	 document.getElementById("user_pwd").value = ''; 
+					    	 alert('비밀번호는 8~16자의 영문, 숫자, 특수기호를 포함해야 합니다.');
+					    	 return;
+					     } 
+					     if (upwd != cpwd) {
+					    	 document.getElementById("pwdCheck").value = ''; 
+			                    alert('비밀번호가 일치하지 않습니다.');
+			                    return;
+		                }else{
+		                		alert('비밀번호가 일치합니다.');
+			            } 
 	            });	 
-	        });
 	
      
 //닉네임
@@ -98,9 +93,10 @@
 		}
      
      //닉네임 중복체크
-	     function checkNick(){
+
+	 $('#nickCheck').click(function(event) {
 	     var nick = document.getElementById("user_nick").value;
-	     regMemberPhone(nick);
+	     regMemberNick(nick);
 	     
 	     if(!regMemberNick(nick)) {
 	         document.getElementById("user_nick").value = ''; 
@@ -125,7 +121,7 @@
 		             }
 		         });
 				};
-			}      
+     });
            
     
      
@@ -136,9 +132,10 @@
 			return regExp.test(user_email);
 		}
 		//이메일 중복체크 검사
-		function checkEmail(){
+
+        $('#emailCheck').click(function(event) {
 			var email = document.getElementById("user_email").value;
-			regMemberPhone(email);
+			regMemberEmail(email);
 			
 			if(!regMemberEmail(email)) {
                 document.getElementById("user_email").value = ''; 
@@ -165,12 +162,11 @@
 		                }
 		            });
 				};	
-			}     
-          
+     });
 		
 //핸드폰
 		//핸드폰 유효성 
-		function regMemberPhone(user_phone){
+		/*function regMemberPhone(user_phone){
 			var regExp =/^010-\d{4}-\d{4}$/;
 			return regExp.test(user_phone);
 		}
@@ -202,52 +198,119 @@
 					}
 				});
 			}
-		};		
+		};		*/
+		 $(document).ready(function() {
+	            let isPhoneVerified = false; // 중복 확인 여부 저장
+
+	            function regMemberPhone(phone) {
+	                var regExp = /^010-\d{4}-\d{4}$/;
+	                return regExp.test(phone);
+	            }
+            	
+	            function checkPhone() {
+	                var phone = document.getElementById("user_phone").value;
+	                if (!regMemberPhone(phone)) {
+	                    document.getElementById("user_phone").value = '';
+	                    alert('유효하지 않은 핸드폰 번호입니다.');
+	                    return;
+	                }
+
+	                $.ajax({
+	                    url: '/login/phoneCheck',
+	                    type: 'get',
+	                    data: { user_phone: phone },
+	                    success: function(res) {
+	                        if (res == 0) {
+	                            alert('유효한 핸드폰 번호입니다.');
+	                            $('#verifyCheck').attr('disabled', false);
+	                            isPhoneVerified = true; // 사용 가능한 번호로 설정
+	                        } else {
+	                            alert("이미 사용하고 있는 핸드폰 번호입니다.");
+	                            $('#user_phone').val('');
+	                            $('#verifyCheck').attr('disabled', true);
+	                            isPhoneVerified = false; // 중복된 번호로 설정
+	                        }
+	                    },
+	                    error: function() {
+	                        alert("시스템 에러입니다");
+	                    }
+	                });
+	            }
+
+	            function verifyCheck() {
+	                if (!isPhoneVerified) { // 중복 확인이 되지 않은 경우
+	                    alert('먼저 휴대폰 번호 중복 체크를 해주세요.');
+	                    return;
+	                }
+
+	                var phone = $('#user_phone').val();
+
+	                $.ajax({
+	                    url: '/sendCode?phone='+phone,
+	                    type: 'GET',
+	                    success: function(response) {
+	                      if(response.status === "success"){
+	                    	  alert(response); // 인증번호 전송 성공 메시지
+	                    	  $('.sendCodeMessage').show(); // 성공 메시지 표시
+	                      }else{
+	                    	  alert(response.message);//인증번호 전송 실패 메시지
+	                      }
+	                    },
+	                    error: function() {
+	                        alert('인증번호 전송에 실패했습니다.');
+	                    }
+	                });
+	            }
+
+	           $('#phoneCheck').click(function(event) {
+	                event.preventDefault();
+	                checkPhone();
+	            });
+	           /* 
+	            $('#verifyCheck').click(function(event) {
+	                event.preventDefault();
+	                verifyCheck();
+	            });*/
+
+	            // 초기 상태에서 인증번호 전송 버튼 비활성화
+	            $('#verifyCheck').attr('disabled', true);
+	        });
+     });
 		
+		
+//회원가입
+// 회원가입 버튼 클릭 시 체크박스 검사
+			    $('#signup-btn').click(function(event) {
+			        event.preventDefault(); // 기본 동작 방지
 
-		// 회원가입 버튼 클릭 시 체크박스 검사
-		$("#signup-btn").click(function(event) {
-			register();
-		});
-	 	
-		//회원가입 완료
-	
-		 function register() {
-            if (!checkPhone()) {
-                return;
-            }
+			        // 폼 데이터 수집
+			        var formData = {
+			            user_name: $('#user_name').val(),
+			            user_id: $('#user_id').val(),
+			            user_pwd: $('#user_pwd').val(),
+			            pwdCheck: $('#pwdCheck').val(),
+			            user_birth: $('#date').val(),
+			            user_nick: $('#user_nick').val(),
+			            user_email: $('#user_email').val(),
+			            user_phone: $('#user_phone').val(),
+			            phoneCode: $('#phoneCode').val(),
+			            user_info_agree: $('#terms').is(':checked') ? 'Y' : 'N',
+			            user_serv_agree: $('input[name="user_serv_agree"]:checked').val()
+			        };
 
-            var name = $('#user_name').val();
-            var id = $('#user_id').val();
-            var password = $('#user_pwd').val();
-            var confirmPassword = $('#pwdCheck').val();
-            var birth = $('#date').val();
-            var nick = $('#user_nick').val();
-            var phone = $('#user_phone').val();
-            var terms = $('#terms').is(':checked');
-            var privacyPeriod = $('input[name="user_serv_agree"]:checked').val();
+			        // AJAX 요청 보내기
+			        $.ajax({
+			            type: 'POST',
+			            url: '/login/signupPage',
+			            data: JSON.stringify(formData),
+			            contentType: 'application/json',
+			            success: function(response) {
+			             
+			            },
+			            error: function() {
+			                alert('시스템 오류가 발생했습니다.');
+			            }
+			        });
+			    });
 
-            $.ajax({
-                url: '/member/userJoin',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    name: name,
-                    id: id,
-                    password: password,
-                    birth: birth,
-                    nick: nick,
-                    phone: phone,
-                    privacyPeriod: privacyPeriod
-                }),
-                success: function(res) {
-                    alert('회원가입을 축하합니다.');
-                    window.location.href = '/login/loginPage';
-                },
-                error: function() {
-                    alert('회원가입 중 오류가 발생했습니다.');
-                }
-            })
-		}
-	 });
-	
+			

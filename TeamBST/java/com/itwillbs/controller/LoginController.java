@@ -1,6 +1,9 @@
 package com.itwillbs.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.service.MemberService;
 
+
+
 //http://localhost:8088/login/signupPage
 //http://localhost:8088/login/loginPage
+
 
 @Controller
 @RequestMapping(value="/login/*")
@@ -30,6 +37,7 @@ public class LoginController{
 
 @Inject
 private MemberService mService;
+
 
 @RequestMapping(value = "/signupPage", method = RequestMethod.GET)
 	public void signupGET() {
@@ -51,6 +59,18 @@ public String signupPOST(UserDTO udto) {
      return "redirect:/login/loginPage"; // 리다이렉트할 경로 반환
 }
 
+/*
+ * @RequestMapping("/signupPage")
+ * 
+ * public Map<String, String> signup( @RequestBody UserDTO udto) { Map<String,
+ * String> response = new HashMap<>();
+ * 
+ * try { mService.memberJoin(udto); response.put("status", "success"); } catch
+ * (Exception e) { response.put("status", "error"); response.put("message",
+ * e.getMessage()); }
+ * 
+ * return response; }
+ */
 //-----------------------------------------------------------------------
 // 회원로그인 
 @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
@@ -150,10 +170,16 @@ public int phoneCheck(@RequestParam("user_phone")String user_phone) throws Excep
 	return result;
 }
 
+//-----------------------------------------------------------
+@RequestMapping(value = "/sendCode", method = RequestMethod.GET)
+@ResponseBody
+public String sendSMS(@RequestParam("phone") String userPhoneNumber) { // 휴대폰 문자보내기
+	int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
 
-
-
-
+	mService.sendSmsAndSaveCode(userPhoneNumber,randomNumber);
+	
+	return Integer.toString(randomNumber);
+}
 //---------------------------------------------------------
 //아이디 찾기
 @GetMapping(value = "/findId")
