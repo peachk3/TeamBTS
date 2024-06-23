@@ -91,7 +91,7 @@
 			</div>
 			<div class="card-footer">
 				<button type="submit" class="btn btn-primary mr-2">Submit</button>
-				<button type="reset" class="btn btn-secondary" onclick="location.href='/admin/adminBulletin'">Cancel</button>
+				<button type="reset" class="btn btn-secondary" onclick="window.history.back();">Cancel</button>
 			</div>
 		</form>
 		<!--end::Form-->

@@ -34,6 +34,8 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Post_commendDTO;
+import com.itwillbs.domain.Question_commendDTO;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.service.AdminService;
 import com.itwillbs.service.CommunityService;
@@ -184,6 +186,27 @@ public class CommunityController {
     	
 	}
 	
+	@PostMapping(value="/communityContent")
+	public String adminbulletinContent_POST(Post_commendDTO pcdto,HttpSession session,@RequestParam("post_id") int post_id) throws Exception{
+		logger.debug("관리자 문의게시판 답변 쓰기 호출");
+		logger.debug(" /adminbulletinContent -> adminbulletinContent_POST() 호출");
+		 // 세션에서 user_id 가져오기
+	    String userId = (String) session.getAttribute("user_id");
+	    logger.debug("세션에서 가져온 user_id: " + userId);
+	    
+	    // user_id를 dto의 admin_id에 설정
+	    pcdto.setComm_writer_id(userId);
+	    pcdto.setPost_id(post_id);
+	    // 답변 등록 로직처리
+        cService.communityCommend(pcdto);
+        logger.debug("pcdto : " + pcdto);
+	    
+	    
+        return "redirect:/community/communityContent?post_id=" + post_id;
+	}	
+	
+	
+	
 //  게시판 글 수정하기(기존의 글정보 확인) - GET
 	@GetMapping(value="/communityModify")
 	public String communityModify_GET(Post_boardDTO pbdto,HttpSession session,Model model,@RequestParam("post_id") int post_id,@RequestParam("post_writer_id") String post_writer_id) throws Exception{
@@ -261,9 +284,7 @@ public class CommunityController {
 	        }
 	    }
 			  
-		
-	
-	
+
 	
 	
 	

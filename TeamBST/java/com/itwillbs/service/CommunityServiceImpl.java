@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Post_boardDTO;
+import com.itwillbs.domain.Post_commendDTO;
 import com.itwillbs.persistence.CommunityDAO;
 
 @Service
@@ -72,6 +73,14 @@ public class CommunityServiceImpl implements CommunityService{
 		
 		
 		cdao.updateCount(post_id);
+	}
+
+	@Override
+	public void communityCommend(Post_commendDTO pcdto) throws Exception{
+		logger.debug(" 거래게시글 댓글 달기 ");
+
+		
+		cdao.communityCommend(pcdto);
 	}
 
 	
