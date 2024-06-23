@@ -1,19 +1,26 @@
 package com.itwillbs.controller;
 
-import java.util.Date;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.service.MemberService;
+
+
 
 //http://localhost:8088/login/signupPage
 //http://localhost:8088/login/loginPage
@@ -26,6 +33,7 @@ public class LoginController{
 
 @Inject
 private MemberService mService;
+
 
 @RequestMapping(value = "/signupPage", method = RequestMethod.GET)
 	public void signupGET() {
@@ -46,6 +54,7 @@ public String signupPOST(UserDTO udto) {
 
      return "redirect:/login/loginPage"; // 리다이렉트할 경로 반환
 }
+
 
 //-----------------------------------------------------------------------
 // 회원로그인 
@@ -77,15 +86,9 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 	//로그인 성공!
 	session.setAttribute("user_id", resultDTO.getUser_id());
 	
-	
-	
-	
-	
 	return "redirect:/main/main";
 	
 	}
-
-
 
 
 //-----------------------------------------------------
@@ -97,6 +100,42 @@ public String generalLogoutPOST(HttpSession session) {
 	return "redirect:/login/loginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
 }
 
+//-----------------------------------------------------
+//아이디 중복 체크 
+@GetMapping("/idCheck")
+@ResponseBody
+public int idCheck(@RequestParam("user_id")String user_id)throws Exception{
+	logger.debug("user_id" + user_id);
+	
+	int result = mService.idCheck(user_id);
+	
+	logger.debug("결과값" + result);
+	
+	return result;
+}
+	
+//------------------------------------------------------
+//닉네임 중복 체크
+@GetMapping("/nickCheck")
+@ResponseBody
+public int nickCheck(@RequestParam("user_nick")String user_nick)throws Exception{
+	logger.debug("user_nick " + user_nick);
+
+	int result = mService.nickCheck(user_nick);
+	
+	logger.debug("결과값 : "  + result );
+
+	return result;
+}
+
+//------------------------------------------------------
+//이메일 중복 체크
+@GetMapping("/emailCheck")
+@ResponseBody
+public int emailCheck(@RequestParam("user_email")String user_email) throws Exception{
+	logger.debug("user_email" + user_email);
+
+
 // 관리자 로그아웃
 @RequestMapping(value = "/adminLogout",method = RequestMethod.POST)
 public String adminLogoutPOST(HttpSession session) {
@@ -106,13 +145,64 @@ public String adminLogoutPOST(HttpSession session) {
 }
 
 
-
-
-
-
-
-//===============================================
-//아이디 중복 체크 (비동기식)
+//아이디 중복 체크
 	
+	int result = mService.emailCheck(user_email);
+	
+	logger.debug( "결과값 : " + result);
+	
+	return result;
+}
+
+//---------------------------------------------------------
+// 핸드폰 중복확인
+@GetMapping("/phoneCheck")
+@ResponseBody 
+public int phoneCheck(@RequestParam("user_phone")String user_phone) throws Exception{
+	logger.debug("user_phone" + user_phone);
+	
+	int result = mService.phoneCheck(user_phone);
+	
+	logger.debug("결과값 : " + result);
+	
+	return result;
+}
+
+//-----------------------------------------------------------
+//이메일 본인인증 
+
+//---------------------------------------------------------
+//아이디 찾기
+@GetMapping(value = "/findId")
+public void findIdGET() {
+	logger.debug("/findId -> loginGET() 호출");
+	
+}
+
+@RequestMapping(value = "/findId", method = RequestMethod.POST)
+public String findIdPOST(HttpServletRequest request,Model model, UserDTO udto,
+		@RequestParam String user_name,
+		@RequestParam String user_phone) {
+	
+		/*
+		 * logger.debug("/findId -> findIdPOST() 호출");
+		 * 
+		 * try { udto.setUser_name(user_name); udto.setUser_phone(user_phone); UserDTO
+		 * fid = mService.findId(udto);
+		 * 
+		 * model.addAttribute("findId", fid); } catch(Exception e) {
+		 * model.addAttribute("msg", "오류가 발생되었습니다"); e.printStackTrace(); }
+		 */
+	return "/login/findId_result";
+	
+}
+
+//비밀번호 찾기 페이지로 이동 
+@RequestMapping(value = "findPwd")
+public void findPwdGET() {
+	
+}
+
+//비밀번호 찾기 실행
 
 }

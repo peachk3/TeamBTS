@@ -23,7 +23,7 @@
 		
         <!-- 패스워드 입력-->
         <label for="userPwd"></label>
-        <input type="password" id="user_pwd" name="user_pwd" maxsize='16' placeholder="비밀번호" required>
+        <input type="password" id="user_pwd" name="user_pwd" maxlength='16' placeholder="비밀번호" required>
 
         <!-- 아이디 저장-->
         <div class="save-id">
@@ -36,9 +36,9 @@
 
         <!-- 아이디찾기 비밀번호찾기 회원가입 화면 이동 버튼-->
         <div class="options">
-            <a href="findid.html">아이디 찾기</a> 
-            <a href="findpw.html">비밀번호 찾기</a>
-            <a href="signupPage">회원가입</a>
+            <a href="/login/findId">아이디 찾기</a> 
+            <a href="/login/findPwd">비밀번호 찾기</a>
+            <a href="/login/signupPage">회원가입</a>
         </div>
     </form>
 
