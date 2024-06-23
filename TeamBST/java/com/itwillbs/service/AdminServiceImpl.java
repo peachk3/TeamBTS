@@ -136,6 +136,24 @@ public class AdminServiceImpl implements AdminService{
 		
 		return adao.memberTicketingList(user_id);
 	}
+	
+	
+	// 예매 내역 조회 - gpt 코드
+	   @Override
+	    public List<Game_scheduleDTO> memberTicketingList(String user_id, Criteria cri) throws Exception {
+	        return adao.memberTicketingList(user_id, cri);
+	    }
+
+	    @Override
+	    public int getTotalCount(String user_id) throws Exception {
+	        return adao.getTotalCount(user_id);
+	    }
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public void adminNoticeModify(Notice_boardDTO nbdto) throws Exception {
