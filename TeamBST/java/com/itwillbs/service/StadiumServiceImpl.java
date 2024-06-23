@@ -24,22 +24,71 @@ public class StadiumServiceImpl implements StadiumService {
 	@Inject
 	private StadiumDAO staddao;
 
-	// zoneList 출력
+	// stadium -> zoneList 출력
 	@Override
 	public List<ZoneDTO> getZonesByStadiumId(String game_id) {
 		logger.debug("getZonesByStadiumId(String game_id) 호출");
+
 		return staddao.getZonesByStadiumId(game_id);
-		
+	}
+
+	// zone -> Seat 출력 (displaySeats)
+	@Override
+	public List<SeatDTO> getSeatsId(String game_id, String zone_id) {
+
+		logger.debug("getSeatsId(String zone_id) 호출 ");
+
+		return staddao.getSeatsId(game_id, zone_id);
+	}
+
+	// user_id 비교해서 user_name 가져오기 (예매자명 출력)
+	@Override
+	public List<UserDTO> getUserName(String user_id) {
+		logger.debug("getUserName(String user_id) 호출");
+
+		return staddao.getUserName(user_id);
+	}
+
+	// game_id 비교해서 gameSchedulelist 가져오기 (경기 정보 출력)
+	@Override
+	public List<Game_scheduleDTO> getGameSche(String game_id) {
+		logger.debug("getGameSche(String game_id) 호출");
+
+		return staddao.getGameSche(game_id);
+	}
+
+	// 성인 좌석 가격
+	@Override
+	public List<Seat_priceDTO> getSeatAdultPrice(String zone_id) {
+		logger.debug("getSeatPrice(String zone_id) 호출");
+
+		return staddao.getSeatAdultPrice(zone_id);
+	}
+
+	// 초등학생 좌석 가격
+	@Override
+	public List<Seat_priceDTO> getSeatChildPrice(String zone_id) {
+		logger.debug("getSeatChildPrice(String zone_id) 호출");
+		return staddao.getSeatChildPrice(zone_id);
+	}
+
+	// 좌석 정보 업데이트 (booked_at = 1로 업데이트)
+	@Override
+	public void postSelectedSeat(Integer game_id, String seat_id) {
+		logger.debug(" @@@ postSelectedSeat(String game_id) 호출");
+
+		staddao.postSelectedSeat(game_id, seat_id);
 	}
 	
+	
 	// seatList 출력
-	@Override
-	public List<SeatDTO> getSeatsId(String zone_id) {
-		
-		logger.debug("getSeatsId(String zone_id) 호출 ");
-		
-		return staddao.getSeatsId(zone_id);
-	}
+//	@Override
+//	public List<SeatDTO> getSeatsId(String zone_id) {
+//		
+//		logger.debug("getSeatsId(String zone_id) 호출 ");
+//		
+//		return staddao.getSeatsId(zone_id);
+//	}
 //	@Override
 //	public List<SeatDTO> getSeatsId(String zone_id, String game_id) {
 //		
@@ -48,12 +97,12 @@ public class StadiumServiceImpl implements StadiumService {
 //		return staddao.getSeatsId(zone_id, game_id);
 //	}
 
-	@Override
-	public List<SeatDTO> getSeatsByZone(String zone_ty, String game_id) {
-		logger.debug("getSeatsByZone(String zone_ty, String game_id) 호출 ");
-		
-		return staddao.getSeatsByZone(zone_ty, game_id);
-	}
+//	@Override
+//	public List<SeatDTO> getSeatsByZone(String zone_ty, String game_id) {
+//		logger.debug("getSeatsByZone(String zone_ty, String game_id) 호출 ");
+//		
+//		return staddao.getSeatsByZone(zone_ty, game_id);
+//	}
 
 	
 	
@@ -65,39 +114,12 @@ public class StadiumServiceImpl implements StadiumService {
 //	}
 
 
-	@Override
-	public List<UserDTO> getUserName(String user_id) {
-		logger.debug("getUserName(String user_id) 호출");
-		
-		return staddao.getUserName(user_id);
-	}
 
-	@Override
-	public List<Game_scheduleDTO> getGameSche(String game_id) {
-		logger.debug("getGameSche(String game_id) 호출");
-		
-		return staddao.getGameSche(game_id);
-	}
-
-	@Override
-	public void postSelectedSeat(Integer game_id, String seat_id) {
-		logger.debug(" @@@ postSelectedSeat(String game_id) 호출");
-		
-		staddao.postSelectedSeat(game_id, seat_id);
-	}
-
-	@Override
-	public List<Seat_priceDTO> getSeatAdultPrice(String zone_id) {
-		logger.debug("getSeatPrice(String zone_id) 호출");
-		
-		return staddao.getSeatAdultPrice(zone_id);
-	}
-
-	@Override
-	public List<Seat_priceDTO> getSeatChildPrice(String zone_id) {
-		logger.debug("getSeatChildPrice(String zone_id) 호출");
-		return staddao.getSeatChildPrice(zone_id);
-	}
+//	@Override
+//	public List<Seat_bookDTO> getBookedAt(String game_id, String zone_id) {
+//		logger.debug("getBookedAt(String game_id, String zone_id) 실행");
+//		return staddao.getBookedAt(game_id, zone_id);
+//	}
 
 	
 	

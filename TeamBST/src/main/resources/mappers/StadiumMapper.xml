@@ -5,7 +5,7 @@
 
 <mapper namespace="com.itwillbs.mapper.StadiumMapper">
 
-	<!-- Zone -->
+	<!-- stadium -> zoneList 출력 -->
 	<select id="getZonesByStadiumId" resultType="com.itwillbs.domain.ZoneDTO" >
 		select z.zone_id, z.zone_ty, z.stad_id
 		from zone z
@@ -13,6 +13,97 @@
 		on g.stad_id = z.stad_id
 		where game_id = #{game_id}
 	</select>
+ 	
+	<!--  zone -> Seat 출력 -->
+	<!-- **** 원래 코드임 ******* -->
+	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO">
+		select s.seat_id, s.seat_row, s.seat_num, s.seat_id, s.zone_id, z.zone_ty
+		from seat s
+		join zone z
+		on s.zone_id = z.zone_id
+		where s.zone_id=#{zone_id}
+	</select>
+<!-- 	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO"> -->
+<!-- 		select s.seat_id, s.seat_row, s.seat_num, s.zone_id, z.zone_ty, sb.seat_id, sb.booked_at -->
+<!-- 		from seat s -->
+<!-- 		join zone z -->
+<!-- 		on s.zone_id = z.zone_id -->
+<!-- 		join seat_book sb -->
+<!-- 		on s.seat_id = sb.seat_id -->
+<!-- 		where sb.game_id=#{game_id} and s.zone_id=#{zone_id} -->
+<!-- 	</select> -->
+	<!-- user_id -> user_name 전달 -->
+	<select id="getUserName" resultType="com.itwillbs.domain.UserDTO">
+		select *
+		from user
+		where user_id = #{user_id}
+	</select>
+	
+	<!-- gameSchedulelist 가져오기 -->
+	<select id="getGameSche" resultType="com.itwillbs.domain.Game_scheduleDTO">
+		select *
+		from game_schedule
+		where game_id = #{game_id}
+	</select>
+	
+		<!-- 성인 좌석 가격 -->
+	<select id="getSeatAdultPrice" resultType="com.itwillbs.domain.Seat_priceDTO">
+		select * 
+		from seat_price
+		where seat_price_id LIKE '%_A' AND zone_id=#{zone_id};
+	</select>
+	
+	<!-- 초등학생 좌석 가격 -->
+	<select id="getSeatChildPrice" resultType="com.itwillbs.domain.Seat_priceDTO">
+		select * 
+		from seat_price
+		where seat_price_id LIKE '%_C' AND zone_id=#{zone_id} 
+	</select>
+	
+	<!-- 선택된 좌석 정보 변경 -->
+	<update id="postSelectedSeat" parameterType="com.itwillbs.domain.Seat_bookDTO">
+		UPDATE seat_book
+		SET booked_at=1
+		WHERE seat_id = #{seat_id} AND game_id = #{game_id}
+	</update>
+	
+<!-- 		INSERT INTO seat_book (seat_id, game_id, booked_at) -->
+<!-- 		VALUES (#{seat_id}, #{game_id}, 1) -->
+<!-- IN (SELECT seat_id FROM seat WHERE seat_id=#{seat_id}) -->
+<!-- IN (SELECT game_id FROM game_schedule WHERE game_id=#{game_id}) -->
+	
+	
+	<!-- 좌석 예매 가능 여부 확인 -->
+<!-- 	<select id="getbBookedAt" resultType="com.itwillbs.domain.Seat_bookDTO"> -->
+<!-- 		select sb.game_id, sb.seat_id, sb.booked_at -->
+<!-- 		from seat_book sb -->
+<!-- 		join seat s -->
+<!-- 		on s.seat_id = sb.seat_id -->
+<!-- 		where sb.game_id=#{game_id} and s.zone_id=#{zone_id} -->
+<!-- 	</select> -->
+	
+
+	
+	
+<!--  10분 이후 정보 다시 업데이트 -->
+<!-- 	<update id="resetSeatData"> -->
+<!-- 		UPDATE seat_book -->
+<!-- 		SET booked_at = 0 -->
+<!-- 		WHERE seat_id = #{seat_id} AND game_id = #{game_id} -->
+<!-- 	</update> -->
+	
+	
+	<!-- 결제완료시 결제 정보 업데이트 -->
+	
+
+<!-- 	Seat --> 
+<!-- 	<select id="getSeatsByZoneId" resultType="com.itwillbs.domain.SeatDTO" > -->
+<!-- 		SELECT * FROM seat WHERE zone_id = #{zone_id} -->
+<!-- 	</select> -->
+
+<!-- 	<select id="getSeatById" resultType="com.itwillbs.domain.SeatDTO"> -->
+<!-- 		SELECT * FROM seat WHERE seat_id=#{seat_id} -->
+<!-- 	</select> -->
 
 <!-- 	seat
 	<select id="getSeatsByZone" resultType="com.itwillbs.domain.ZoneDTO">
@@ -24,59 +115,4 @@
 		on g.stad_id = z.stad_id
 		where zone_ty=#{zone_ty} and game_id = #{game_id} 
  	</select> -->
-
-	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO">
-		select s.seat_id, s.seat_row, s.seat_num, s.zone_id, z.zone_ty
-		from seat s
-		join zone z
-		on s.zone_id = z.zone_id
-		where s.zone_id=#{zone_id}
-	</select>
-	
-	<select id="getUserName" resultType="com.itwillbs.domain.UserDTO">
-		select *
-		from user
-		where user_id = #{user_id}
-	</select>
-	
-	<select id="getGameSche" resultType="com.itwillbs.domain.Game_scheduleDTO">
-		select *
-		from game_schedule
-		where game_id = #{game_id}
-	</select>
-	
-	<!-- 선택된 좌석 정보 변경 -->
-	<update id="postSelectedSeat" parameterType="com.itwillbs.domain.Seat_bookDTO">
-<!-- 		INSERT INTO seat_book (seat_id, game_id, booked_at) -->
-<!-- 		VALUES (#{seat_id}, #{game_id}, 1) -->
-<!-- IN (SELECT seat_id FROM seat WHERE seat_id=#{seat_id}) -->
-<!-- IN (SELECT game_id FROM game_schedule WHERE game_id=#{game_id}) -->
-		UPDATE seat_book
-		SET booked_at = 1
-		WHERE seat_id = #{seat_id}
-		  AND game_id = #{game_id}
-	</update>
-	
-	<!-- 좌석 가격 -->
-	<select id="getSeatAdultPrice" resultType="com.itwillbs.domain.Seat_priceDTO">
-		select * 
-		from seat_price
-		where seat_price_id LIKE '%_A' AND zone_id=#{zone_id};
-	</select>
-	
-	<select id="getSeatChildPrice" resultType="com.itwillbs.domain.Seat_priceDTO">
-		select * 
-		from seat_price
-		where seat_price_id LIKE '%_C' AND zone_id=#{zone_id} 
-	</select>
-	
-
-<!-- 	Seat --> 
-<!-- 	<select id="getSeatsByZoneId" resultType="com.itwillbs.domain.SeatDTO" > -->
-<!-- 		SELECT * FROM seat WHERE zone_id = #{zone_id} -->
-<!-- 	</select> -->
-
-<!-- 	<select id="getSeatById" resultType="com.itwillbs.domain.SeatDTO"> -->
-<!-- 		SELECT * FROM seat WHERE seat_id=#{seat_id} -->
-<!-- 	</select> -->
 </mapper>

@@ -81,6 +81,50 @@ select {
 	color: white;
 	border: 1px solid black;
 }
+
+#teamsymbol {
+	width: 100px;
+	height: 100px;
+}
+
+/* 모달 배경 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        /* 모달 내용 */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* 닫기 버튼 */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
 </style>
 
 
@@ -106,8 +150,7 @@ select {
 	<div class="reserve_content">
 		<div class="reserve_left">
 			<div class="pointb_box">
-				<p class="inner_txt">"선택하신 좌석을 10분 이내에 결제하지 않으실 경우 선점 좌석이
-					해제됩니다."</p>
+				<p class="inner_txt">"선택하신 좌석을 10분 이내에 결제하지 않으실 경우 선점 좌석이 해제됩니다."</p>
 			</div>
 			<!-- 좌석 매수 표출 -->
 			<div id="seat-count"></div>
@@ -157,23 +200,52 @@ select {
 				<c:forEach var="gs" items="${gameSchedule}">
 					<h2>경기 정보</h2>
 					<p>
-						팀: <span id="team-name">${gs.away_team_id} VS
-							${gs.home_team_id}</span>
+						팀: <span id="team-name">
+						${gs.away_team_id} VS ${gs.home_team_id} <br>
+						<c:if test="${gs.away_team_id == 'KIWOOM' or gs.home_team_id == 'KIWOOM'}">
+						<img id="teamsymbol"src="../resources/team/kiwoom.png" alt="KIWOOM 로고">
+						</c:if>
+						<c:if test="${gs.away_team_id == 'LOTTE' or gs.home_team_id == 'LOTTE'}">
+						<img id="teamsymbol"src="../resources/team/lotte.png" alt="LOTTE 로고">
+						</c:if>
+						<c:if test="${gs.away_team_id == 'DOSAN' or gs.home_team_id == 'DOSAN'}">
+						<img id="teamsymbol"src="../resources/team/dosan.png" alt="DOSAN 로고">
+						</c:if>
+						<c:if test="${gs.away_team_id == 'HANHWA' or gs.home_team_id == 'HANHWA'}">
+						<img id="teamsymbol"src="../resources/team/hanhwa.png" alt="HANHWA 로고">
+						</c:if>
+						<c:if test="${gs.away_team_id == 'KIA' or gs.home_team_id == 'KIA'}">
+						<img id="teamsymbol"src="../resources/team/kiwoom.png" alt="KIA 로고">
+						</c:if>
+						<c:if test="${gs.away_team_id == 'KT' or gs.home_team_id == 'KT'}">
+						<img id="teamsymbol"src="../resources/team/kt.png" alt="KT 로고">
+						</c:if>
+						<c:if test="${gs.away_team_id == 'NC' or gs.home_team_id == 'NC'}">
+						<img id="teamsymbol"src="../resources/team/nc.png" alt="NC로고">
+						</c:if>
+						<c:if test="${gs.away_team_id == 'SAMSUNG' or gs.home_team_id == 'SAMSUNG'}">
+						<img id="teamsymbol"src="../resources/team/samsung.png" alt="SAMSUNG 로고">
+						</c:if>
+						<c:if test="${gs.away_team_id == 'SSG' or gs.home_team_id == 'SSG'}">
+						<img id="teamsymbol"src="../resources/team/ssg.png" alt="SSG 로고">
+						</c:if>
+
+						</span>
 					</p>
 					<p>
 						일시: <span id="match-date">${gs.game_date} ${gs.game_time}</span>
 					</p>
 					<p>
-						경기장 : <span id="match-stadium"> <c:if
-								test="${gs.stad_id == 'CW'}">창원 NC 파크</c:if> <c:if
-								test="${gs.stad_id == 'DG'}">대구 라이온즈파크</c:if> <c:if
-								test="${gs.stad_id == 'DJ'}">대전 이글스파크</c:if> <c:if
-								test="${gs.stad_id == 'GC'}">고척 스카이돔</c:if> <c:if
-								test="${gs.stad_id == 'GJ'}">광주 챔피언스필드</c:if> <c:if
-								test="${gs.stad_id == 'IC'}">인천 랜더스필드</c:if> <c:if
-								test="${gs.stad_id == 'JS'}">서울 잠실야구장</c:if> <c:if
-								test="${gs.stad_id == 'SJ'}">부산 사직야구장</c:if> <c:if
-								test="${gs.stad_id == 'SW'}">수원 KT위즈파크</c:if>
+						경기장 : <span id="match-stadium"> 
+						<c:if test="${gs.stad_id == 'CW'}">창원 NC 파크</c:if> 
+						<c:if test="${gs.stad_id == 'DG'}">대구 라이온즈파크</c:if> 
+						<c:if test="${gs.stad_id == 'DJ'}">대전 이글스파크</c:if> 
+						<c:if test="${gs.stad_id == 'GC'}">고척 스카이돔</c:if> 
+						<c:if test="${gs.stad_id == 'GJ'}">광주 챔피언스필드</c:if> 
+						<c:if test="${gs.stad_id == 'IC'}">인천 랜더스필드</c:if> 
+						<c:if test="${gs.stad_id == 'JS'}">서울 잠실야구장</c:if> 
+						<c:if test="${gs.stad_id == 'SJ'}">부산 사직야구장</c:if> 
+						<c:if test="${gs.stad_id == 'SW'}">수원 KT위즈파크</c:if>
 						</span>
 					</p>
 				</c:forEach>
@@ -181,27 +253,41 @@ select {
 					<p>예매자명 : ${use.user_name}</p>
 				</c:forEach>
 
-				<!-- 선택된 좌석 리스트로 출력해야 함! -->
-				<p>
-					선택 좌석 :
-					<%-- 					<c:forEach var="seat" items="${selectedSeat}" varStatus="status"> --%>
-					<c:choose>
-						<c:when test="${status.index == 0}">
-								${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번
-            				</c:when>
-						<c:otherwise>
-                				, ${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번
-            				</c:otherwise>
-					</c:choose>
-					<%-- 					</c:forEach> --%>
-					<span id="selected-seats"> </span>
-				</p>
+				<!-- ******** 선택된 좌석 리스트로 출력해야 함! ******** -->
+				<div>
+					선택 좌석 : ${seat_id } <p id="seatInfo"></p>
+				</div>
+<%-- 				<c:forEach var="zone" items="${param.zone_ty}" varStatus="status"> --%>
+<%-- 				</c:forEach> --%>
+<%-- 				<c:forEach var="seatList" items="${param.seat_row }"> --%>
+<%-- 					<c:choose> --%>
+<%-- 						<c:when test="${status.index == 0}"> --%>
+<%-- 								${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번 --%>
+<%--             			</c:when> --%>
+<%-- 						<c:otherwise> --%>
+<%--                 				, ${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번 --%>
+<%--             			</c:otherwise> --%>
+<%-- 					</c:choose> --%>
+<%-- 				</c:forEach> --%>
+<!-- 					<span id="selected-seats"> </span> -->
 				<div>
 					티켓 금액: <span id="total-price">0</span>
 				</div>
 				<p>
 					예매 수수료: <span id="booking-fee">0</span>
 				</p>
+				<p>
+					취소 기한: 
+				</p>
+				<p>	
+					취소 수수료: 티켓 금액의 0 ~ 10 % <button id="myBtn">상세보기</button>
+				</p>
+				<div id="myModal" class="modal">
+					<div class="modal-content">
+						<span class="close">&times;</span>
+						<p> 취소 수수료는 1000만원입니다. 참고하시길.</p>
+					</div>
+				</div>
 				<p>
 					결제 금액: <span id="total-amount">0</span>
 				</p>
@@ -210,49 +296,60 @@ select {
 		</div>
 
 	</div>
-
-	<form action="/payment">
-		<!-- method="post" -->
-		<%--         <input type="hidden" name="schedule_id" value="${schedule.schedule_id}"> --%>
-		<%--         <input type="hidden" name="seat_id" value="${seat.seat_id}"> --%>
+		<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>
+	<form action="/payment" method="get" id="amountForm">
+					<input type="hidden" name="totalAmount" id="hidden-total-amount">
+					<input type="hidden" name="totalPrice" id="hidden-total-price">
 		<button type="button" id="payment">결제하기</button>
 	</form>
 
+<%-- 
+//     String zone_ty = request.getParameter("zone_ty");
+//     String seatRow = request.getParameter("seat_row");
+//     String seatNum = request.getParameter("seat_num");
+//     String zone_id = request.getParameter("zone_id");
+    	request.getParameter 
+	<p>Zone Type: <%= zone_ty %></p>
+    <p>Seat Row: <%= seatRow %></p> 
+    <p>Seat Number: <%= seatNum %></p>
+    <p>Zone ID:<%=zone_id %> --%>
 
-	<h1>예매</h1>
-
+	<hr>
+	<!-- 정보 전달 확인창 -->
 	<p>Stadium ID : ${stad_id }</p>
 	<p>Game ID : ${game_id }</p>
 	<p>Zone TY : ${zone_ty }</p>
 	<p>Zone ID : ${zone_id }</p>
-	<p>Seat ID : ${seat_row }열 ${seat_num }번</p>
+	<P>Seat ID : ${seat_id }</P>
+<!-- 	<p>Seat ID : <p id="seatInfo"></p> -->
 
 
-	<script type="text/javascript">
-		//    window.onload = function() {
 
-		// 현재 URL을 가져옵니다.
+<script type="text/javascript">
+
+		// 현재 URL
 		const currentUrl = window.location.href;
 
-		// URL에서 좌석 ID 부분을 추출합니다.
-		const seatIdsIndex = currentUrl.lastIndexOf('/') + 1;
+		// URL에서 seat_id 추출
+		const seatIdsIndex = currentUrl.lastIndexOf('&') + 1;
 		const seatIdsString = currentUrl.substring(seatIdsIndex);
+// 		const seatRowIndex = currentUrl.
 
-		// 좌석 ID 문자열을 쉼표(,)로 분리하여 배열로 만듭니다.
+		// seat_id 문자열을 쉼표(,)로 분리하여 배열로 생성
 		const seatIds = seatIdsString.split(',');
+// 		const 
 
 		// 선택된 좌석 수를 계산
 		let seatCount = seatIds.length;
 
-		// 콘솔에 seatCount 출력
+		// 콘솔 출력
 		console.log(seatCount);
 
 		// 선택된 좌석 수를 화면에 출력
-		document.getElementById('seat-count').innerText = '선택하신 좌석의 수: '
-				+ seatCount;
-
+		document.getElementById('seat-count').innerText = '선택하신 좌석의 수: '+ seatCount;
 		// ***** 여기까지 문제 없음 ******* 
 
+		
 		// ****** 예매 수수료 ************
 		const bookFee = seatCount * 1000;
 		document.getElementById('booking-fee').innerText = bookFee;
@@ -263,17 +360,15 @@ select {
 		function calculateTotal() {
 			// 선택된 성인 수
 			const selectedAdults = document.getElementById("adultNum").value;
-
-			// 성인 가격 (서버에서 가져온 가격)
-			const adultPrice = parseFloat(document.querySelector(
-					'label[for="adultNum"]').getAttribute('data-price'));
-			//             var adultPrice = document.getAttribute('data-price'); // 여기서 sap.price는 서버에서 가져온 가격으로 대체되어야 합니다.
-
-			const childPrice = parseFloat(document.querySelector(
-					'label[for="childNum"]').getAttribute('data-price'));
-
+			
 			// 선택된 초등학생 수
 			const selectedChildren = document.getElementById("childNum").value;
+
+			// 성인 가격
+			const adultPrice = parseFloat(document.querySelector('label[for="adultNum"]').getAttribute('data-price'));
+
+			// 초등학생 가격 
+			const childPrice = parseFloat(document.querySelector('label[for="childNum"]').getAttribute('data-price'));
 
 			// 계산된 결과
 			const totalAdultPrice = selectedAdults * adultPrice;
@@ -347,14 +442,19 @@ select {
 		document.getElementById('payment').onclick = function() {
 			// validateSeatSelection 함수를 호출하여 확인
 			if (validateSeatSelection()) {
+				 var totalAmount = document.getElementById('total-amount').textContent;
+		            localStorage.setItem('totalAmount', totalAmount);
+				 var totalPrice = document.getElementById('total-price').textContent;
+		            localStorage.setItem('totalPrice', totalPrice);
 				// 유효성 검사 통과 시 다음 페이지로 이동
-				window.location.href = '/ticketing/payment'; // 이동할 페이지 URL을 설정
+				window.location.href = '/ticketing/payment?stad_id=${stad_id}&game_id=${game_id}&zone_ty=${zone_ty}&zone_id=${zone_id}&seat_row=${seat_row}&seat_num=${seat_num}&seat_id=${seat_id}'; // 이동할 페이지 URL을 설정
+				
 			}
 		};
 
 		// ******* 선택한 좌석 수 = 권종 수 확인 ******** 
-// 		const validateButton = document.getElementById('payment');
-// 		validateButton.addEventListener('click', validateSeatSelection);
+		// const validateButton = document.getElementById('payment');
+		// validateButton.addEventListener('click', validateSeatSelection);
 		// => alret 창 두 번 반복해서 뜸
 
 		function validateSeatSelection() {
@@ -366,7 +466,7 @@ select {
 
 			if (seatCount !== totalSelectedCount) {
 				alert("선택된 좌석 수와 티켓 수가 맞지 않습니다.");
-				// 							history.back();
+				// history.back();
 				return false
 			} else {
 				// alert("선택된 좌석 수와 티켓 수 동일함 확인되었습니다")
@@ -374,6 +474,62 @@ select {
 			}
 		}
 
+		
+		// 예매 취소 수수료 팝업창
+		// 모달 요소
+	    var modal = document.getElementById("myModal");
+	
+	    // 버튼 요소
+	    var btn = document.getElementById("myBtn");
+	
+	    // 닫기 버튼 요소
+	    var span = document.getElementsByClassName("close")[0];
+	
+	    // 클릭시 모달 출력
+	    btn.onclick = function() {
+	        modal.style.display = "block";
+	    }
+	
+	    // 닫기 클릭시 모달 숨김
+	    span.onclick = function() {
+	        modal.style.display = "none";
+	    }
+	
+	    // 외부 클릭시 모달 숨김
+	    window.onclick = function(event) {
+	        if (event.target == modal) {
+	            modal.style.display = "none";
+	        }
+	    }
+		
+	    
+	    
+	    function displayParameters() {
+            var params = new URLSearchParams(window.location.search);
+
+            var zoneTypes = params.get("zone_ty").split(",");
+            var seatRows = params.get("seat_row").split(",");
+            var seatNums = params.get("seat_num").split(",");
+            var seatInfo = [];
+
+            for (var i = 0; i < seatRows.length; i++) {
+                seatInfo.push(zoneTypes + "구역" + seatRows[i] + "열 " + seatNums[i] + "번");
+                
+            }
+
+            document.getElementById("seatInfo").innerHTML = seatInfo.join("<br>");
+            
+        }
+
+        window.addEventListener('load', (event) => {
+            displayParameters();
+        });
+	    
+        
+        
+        function goBack() {
+            history.back();
+        }
 		// ******* 선택한 좌석 수 = 권종 수 확인 ******** 
 
 		// 					function validateSeatSelection() {
