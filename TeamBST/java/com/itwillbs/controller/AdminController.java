@@ -531,31 +531,48 @@ public class AdminController {
 
 	
 	// 일반회원의 예매 내역 조회
-	@GetMapping(value="/adminMemberTicket")
-	public void adminMemberticketing(@RequestParam("user_id") String user_id, Model model) throws Exception {
-		logger.debug("관리자 - 일반회원의 예매 내역 리스트 조회");
-		
-		logger.debug("user_id = "+user_id);
-		
-		List<Game_scheduleDTO> memberTicketingList = aService.memberTicketingList(user_id);
-		
-		
-		
-		
-		
-		
-		
-		
-		// 연결된 뷰페이지로 정보 전달
-		model.addAttribute("memberTicketingList", memberTicketingList);
-		
-		
-		
-		
-		
-		
-	}
+//	@GetMapping(value="/adminMemberTicket")
+//	public void adminMemberticketing(@RequestParam("user_id") String user_id, Model model) throws Exception {
+//		logger.debug("관리자 - 일반회원의 예매 내역 리스트 조회");
+//		
+//		logger.debug("user_id = "+user_id);
+//		
+//		List<Game_scheduleDTO> memberTicketingList = aService.memberTicketingList(user_id);
+//		
+//		// 연결된 뷰페이지로 정보 전달
+//		model.addAttribute("memberTicketingList", memberTicketingList);
+//		
+//	}
+//	
+//	
 	
+	// gpt 코드
+	@GetMapping(value="/adminMemberTicket")
+	public String adminMemberticketing(@RequestParam("user_id") String user_id,
+	                                   @RequestParam(value = "page", defaultValue = "1") int page,
+	                                   @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
+	                                   Model model) throws Exception {
+	    logger.debug("관리자 - 일반회원의 예매 내역 리스트 조회");
+	    logger.debug("user_id = " + user_id);
+	    
+	    Criteria cri = new Criteria();
+	    cri.setPage(page);
+	    cri.setPageSize(pageSize);
+	    
+	    List<Game_scheduleDTO> memberTicketingList = aService.memberTicketingList(user_id, cri);
+	    int totalCount = aService.getTotalCount(user_id);  // 총 예매 내역 수를 가져오는 메소드 호출
+	    
+	    PageDTO pageDTO = new PageDTO();
+	    pageDTO.setCri(cri);
+	    pageDTO.setTotalCount(totalCount);
+	    
+	    model.addAttribute("memberTicketingList", memberTicketingList);
+	    model.addAttribute("pageDTO", pageDTO);  // pageMaker에서 pageDTO로 수정
+	    
+	    return "admin/adminMemberTicket";  // 해당 JSP 페이지로 이동
+	}
+
+
 	
 	
 	

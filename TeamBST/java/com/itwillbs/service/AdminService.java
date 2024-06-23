@@ -54,9 +54,16 @@ public interface AdminService {
 	// 관리자 - 문의 게시판 답변하기 
 	public void questionCommend(Question_commendDTO qcdto) throws Exception;
 
-	
+	// 예매 내역 조회
 	public List<Game_scheduleDTO> memberTicketingList(String user_id) throws Exception;
 
+	// 예매 내역 조회 - GPT 코드
+    List<Game_scheduleDTO> memberTicketingList(String user_id, Criteria cri) throws Exception;
+    int getTotalCount(String user_id) throws Exception;
+	
+	
+	
+	
 	// 관리자 - 공지사항 글 수정
 	public void adminNoticeModify(Notice_boardDTO nbdto) throws Exception;
 

@@ -205,14 +205,14 @@
 	</select>
 
 		 	<!-- 일반회원의 예매 내역 조회 -->
-	 	<select id="memberTicketingList" resultType="Game_scheduleDTO">
+	 <!-- 	<select id="memberTicketingList" resultType="Game_scheduleDTO">
 			select game_date, game_time, stad_id, home_team_id, away_team_id
 			from (reservation_info ri1 join game_schedule gs
 			on ri1.game_id = gs.game_id), 
 			(reservation_info ri2 join user u
 			on ri2.user_id = u.user_id)
 			where u.user_id = #{user_id};
-	 	</select>
+	 	</select> -->
 
 
 
@@ -304,6 +304,30 @@
 		set admin_status = "OUT"
 		where admin_id = #{admin_id} AND admin_pwd = #{admin_pwd}
 	</update>
+
+
+
+
+<!-- 예매내역 페이징 처리 - gpt 코드 -->
+
+	<select id="memberTicketingList" parameterType="map" resultType="Game_scheduleDTO">
+	    select game_date, game_time, stad_id, home_team_id, away_team_id
+	    from (reservation_info ri1 join game_schedule gs
+	    on ri1.game_id = gs.game_id), 
+	    (reservation_info ri2 join user u
+	    on ri2.user_id = u.user_id)
+	    where u.user_id = #{user_id}
+	    ORDER BY game_date
+	    LIMIT #{cri.pageStart}, #{cri.pageSize}
+	</select>
+	
+	<select id="getTotalCount" parameterType="String" resultType="int">
+	    SELECT COUNT(user_id) FROM reservation_info WHERE user_id = #{user_id}
+	</select>
+
+
+
+
 
 
 

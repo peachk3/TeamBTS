@@ -58,12 +58,15 @@ public interface AdminDAO {
 	
 	
 
-	
-	
-	
-
 	// 일반 회원 예매 내역 조회
 	public List<Game_scheduleDTO> memberTicketingList(String user_id) throws Exception;
+	
+	// 일반 회원 예매 내역 조회 - gpt 코드
+	
+	 List<Game_scheduleDTO> memberTicketingList(String user_id, Criteria cri) throws Exception;
+    int getTotalCount(String user_id) throws Exception;
+	
+
 
 	// 관리자 공지사항 수정
 	public void adminNoticeModify(Notice_boardDTO nbdto) throws Exception;

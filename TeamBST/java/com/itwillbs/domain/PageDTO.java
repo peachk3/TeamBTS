@@ -44,8 +44,9 @@ public class PageDTO {
 		next = endPage * cri.getPageSize() < totalCount;
 				
 //	prev
-		prev = startPage != 1;
-		
+//		prev = startPage != 1;
+        prev = startPage > 1;
+
 		System.out.println("==========페이징 처리 정보 계산 완료 ==============");	
 				
 		
