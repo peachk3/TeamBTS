@@ -1,97 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-  <!-- 타이틀 -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>야모해</title>
-  
-  <!-- PLUGINS CSS STYLE -->
-  <!-- Bootstrap -->
-  <link href="${pageContext.request.contextPath }/resources/plugins/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-  <!-- Themefisher Font -->  
-  <link href="${pageContext.request.contextPath }/resources/plugins/themefisher-font/style.css" type="text/css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="${pageContext.request.contextPath }/resources/plugins/font-awsome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-  <!-- Magnific Popup -->
-  <link href="${pageContext.request.contextPath }/resources/plugins/magnific-popup/magnific-popup.css" type="text/css" rel="stylesheet">
-  <!-- Slick Carousel -->
-  <link href="${pageContext.request.contextPath }/resources/plugins/slick/slick.css" type="text/css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath }/resources/plugins/slick/slick-theme.css" type="text/css" rel="stylesheet">
-  <!-- CUSTOM CSS -->
-  <link href="${pageContext.request.contextPath }/resources/css/style.css" type="text/css" rel="stylesheet">
-
-  <!-- FAVICON -->
-  <link href="${pageContext.request.contextPath }/resources/images/favicon.png" type="text/css" rel="shortcut icon">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
-
-</head>
-
-<body class="body-wrapper">
-
-
-<!--========================================
-=            Navigation Section            =
-=========================================-->
-
-<nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
-  <div class="container-fluid p-0">
-      <!-- logo -->
-      <a class="navbar-brand" href="/main/main">
-        <img src="/images/logo.png" alt="logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="fa fa-bars"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/ticketing/ticketing?stad_id=All">예매하기
-            <span>/</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/community/community">거래게시판<span>/</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="sponsors.html">고객센터</a>
-        </li>
-      </ul>
-      <button onclick="location.href='/login/loginPage';" class="login-btn btn-1">
-        로그인
-      </button>
-      <button onclick="location.href='/login/signupPage';" class="signup-btn btn-1">
-        회원가입
-      </button>
-      <div id="menuToggle">
-	      <input type="checkbox" />
-	      <span></span>
-	      <span></span>
-	      <span></span>
-	      <ul id="menu">
-	        <a href="#"><li>Home</li></a>
-	        <a href="#"><li>About</li></a>
-	        <a href="#"><li>Info</li></a>
-	        <a href="#"><li>Contact</li></a>
-	        <a href="https://erikterwan.com/" target="_blank"><li>Show me more</li></a>
-	      </ul>
-	    </div>
-      </div>
-  </div>
-</nav>
-
-<!--====  End of Navigation Section  ====-->
-
-
+<%@ include file="../include/header.jsp"%>
 
 <!--============================
 =            Banner            =
@@ -1049,6 +959,3 @@
 </body>
 
 </html>
-
-
-

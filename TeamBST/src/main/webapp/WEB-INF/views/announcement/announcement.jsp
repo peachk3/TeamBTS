@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 
+<body>
+	<%@ include file="../include/header.jsp"%> <!-- 여기서 헤더를 포함합니다 -->
 
 	<button type="button" class="community"
 		onclick="location.href='/announcement/announcement'">공지사항</button>
@@ -15,8 +17,6 @@
 		<input type="text" placeholder="검색어 입력">
 		<button>검색</button>
 	</div>
-
-
 
 	<div class="box-body">
 		<table class="table table-bordered">
@@ -40,9 +40,7 @@
 		</table>
 	</div>
 
-
-
-<div class="box-footer clearfix">
+	<div class="box-footer clearfix">
 		<ul class="pagination pagination-sm no-margin pull-right">
 			
 			<c:if test="${pageDTO.prev }">
@@ -60,11 +58,5 @@
 			</c:if>
 		</ul>
 	</div>
-
-
-
-
-
-
 </body>
 </html>
