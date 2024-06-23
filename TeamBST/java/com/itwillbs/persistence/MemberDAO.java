@@ -10,6 +10,9 @@ public interface MemberDAO {
 		
 		//로그인
 		public UserDTO memberLogin(UserDTO udto);
+		
+		
+		
 		public UserDTO memberLogin(String user_id, String user_pwd);
 	
 }

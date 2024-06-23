@@ -312,12 +312,12 @@
 
 	<select id="memberTicketingList" parameterType="map" resultType="Game_scheduleDTO">
 	    select game_date, game_time, stad_id, home_team_id, away_team_id
-	    from (reservation_info ri1 join game_schedule gs
-	    on ri1.game_id = gs.game_id), 
-	    (reservation_info ri2 join user u
-	    on ri2.user_id = u.user_id)
-	    where u.user_id = #{user_id}
-	    ORDER BY game_date
+		from (reservation_info ri1 join game_schedule gs
+		on ri1.game_id = gs.game_id), 
+		(reservation_info ri2 join user u
+		on ri2.user_id = u.user_id)
+		where ri2.user_id = "user5" and ri1.game_id = ri2.game_id
+		ORDER BY game_date
 	    LIMIT #{cri.pageStart}, #{cri.pageSize}
 	</select>
 	
