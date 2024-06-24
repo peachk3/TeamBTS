@@ -111,6 +111,12 @@ public class CommunityDAOImpl implements CommunityDAO{
 		
 		
 	}
+
+	@Override
+	public List<Post_commendDTO> getComments(int post_id) throws Exception {
+		// TODO Auto-generated method stub
+        return sqlSession.selectList(NAMESPACE + "getComments", post_id);
+	}
 	
 	
 	

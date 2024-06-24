@@ -479,34 +479,82 @@ public class AdminController {
 		}
 		
 	
-	
-	
+// 기존 코드
 	
 //  관리자 - 문의 게시판 본문 확인하기
-	@GetMapping(value="/adminbulletinContent")
-	public void adminbulletinContent_GET(@RequestParam("quest_id") int quest_id, Model model) throws Exception{
-		logger.debug("관리자 - 문의게시판 본문 내용 호출");
-    	logger.debug(" quest_id : " + quest_id);
-
-    	// 본문 호출
-    	List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
-    	
-    	// 조회수 증가 로직
-    	aService.updateQuestCount(quest_id);
-    	
-		logger.debug("size : "+ QuestionOneList.size());
-		logger.debug("size : "+ QuestionOneList);
+//	@GetMapping(value="/adminbulletinContent")
+//	public void adminbulletinContent_GET(@RequestParam("quest_id") int quest_id, Model model) throws Exception{
+//		logger.debug("관리자 - 문의게시판 본문 내용 호출");
+//    	logger.debug(" quest_id : " + quest_id);
+//
+//    	// 본문 호출
+//    	List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
+//    	
+//    	// 조회수 증가 로직
+//    	aService.updateQuestCount(quest_id);
+//    	
+//		logger.debug("size : "+ QuestionOneList.size());
+//		logger.debug("size : "+ QuestionOneList);
+//		
+//		// 연결된 뷰페이지로 정보 전달
+//		model.addAttribute("QuestionOneList", QuestionOneList);
+//		
+//	}
+//	
+//	@PostMapping(value="/adminbulletinContent")
+//	public String adminbulletinContent_POST(Question_commendDTO qcdto,HttpSession session,@RequestParam("quest_id") int quest_id) throws Exception{
+//		logger.debug("관리자 문의게시판 답변 쓰기 호출");
+//		logger.debug(" /adminbulletinContent -> adminbulletinContent_POST() 호출");
+//		 // 세션에서 user_id 가져오기
+//	    String userId = (String) session.getAttribute("user_id");
+//	    logger.debug("세션에서 가져온 user_id: " + userId);
+//	    
+//	    // user_id를 dto의 admin_id에 설정
+//	    qcdto.setAdmin_id(userId);
+//	    qcdto.setQuest_id(quest_id);
+//	    // 답변 등록 로직처리
+//        aService.questionCommend(qcdto);
+//        logger.debug("qcdto : " + qcdto);
+//	    
+//	    
+//        return "redirect:/admin/adminbulletinContent?quest_id=" + quest_id;
+//	}
 		
-		// 연결된 뷰페이지로 정보 전달
-		model.addAttribute("QuestionOneList", QuestionOneList);
-		
-	}
 	
+// gpt 코드
+	// 관리자 - 문의 게시판 본문 확인하기
+	@GetMapping(value="/adminbulletinContent")
+	public String adminbulletinContent_GET(@RequestParam("quest_id") int quest_id, Model model) throws Exception{
+	    logger.debug("관리자 - 문의게시판 본문 내용 호출");
+	    logger.debug("quest_id : " + quest_id);
+
+	    // 본문 호출
+	    List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
+	    
+	    // 답변 호출
+	    List<Question_commendDTO> CommentList = aService.getComments(quest_id);
+
+	    // 조회수 증가 로직
+	    aService.updateQuestCount(quest_id);
+	    
+	    logger.debug("QuestionOneList size : "+ QuestionOneList.size());
+	    logger.debug("QuestionOneList : "+ QuestionOneList);
+	    logger.debug("CommentList size : "+ CommentList.size());
+	    logger.debug("CommentList : "+ CommentList);
+	    
+	    // 연결된 뷰페이지로 정보 전달
+	    model.addAttribute("QuestionOneList", QuestionOneList);
+	    model.addAttribute("CommentList", CommentList);
+
+	    return "/admin/adminbulletinContent"; // JSP 파일 경로 수정 필요
+	}
+
+
 	@PostMapping(value="/adminbulletinContent")
-	public String adminbulletinContent_POST(Question_commendDTO qcdto,HttpSession session,@RequestParam("quest_id") int quest_id) throws Exception{
-		logger.debug("관리자 문의게시판 답변 쓰기 호출");
-		logger.debug(" /adminbulletinContent -> adminbulletinContent_POST() 호출");
-		 // 세션에서 user_id 가져오기
+	public String adminbulletinContent_POST(Question_commendDTO qcdto, HttpSession session, @RequestParam("quest_id") int quest_id) throws Exception{
+	    logger.debug("관리자 문의게시판 답변 쓰기 호출");
+	    logger.debug(" /adminbulletinContent -> adminbulletinContent_POST() 호출");
+	    // 세션에서 user_id 가져오기
 	    String userId = (String) session.getAttribute("user_id");
 	    logger.debug("세션에서 가져온 user_id: " + userId);
 	    
@@ -514,16 +562,11 @@ public class AdminController {
 	    qcdto.setAdmin_id(userId);
 	    qcdto.setQuest_id(quest_id);
 	    // 답변 등록 로직처리
-        aService.questionCommend(qcdto);
-        logger.debug("qcdto : " + qcdto);
+	    aService.questionCommend(qcdto);
+	    logger.debug("qcdto : " + qcdto);
 	    
-	    
-        return "redirect:/admin/adminbulletinContent?quest_id=" + quest_id;
-	}
-		
-	
-	
-	
+	    return "redirect:/admin/adminbulletinContent?quest_id=" + quest_id;
+	}	
 		
 	
 	

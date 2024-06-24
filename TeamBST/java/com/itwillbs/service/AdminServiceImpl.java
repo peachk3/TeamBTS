@@ -306,9 +306,13 @@ public class AdminServiceImpl implements AdminService{
         
         return result > 0;
 	}
-	
-	
-	
-	
 
+	@Override
+	public List<Question_commendDTO> getComments(int quest_id) throws Exception {
+		  return adao.selectCommentsByQuestId(quest_id);
+	}
+	
+    public boolean isAnswered(int quest_id) {
+        return adao.countAnswersByQuestId(quest_id) > 0;
+    }
 }

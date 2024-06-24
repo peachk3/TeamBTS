@@ -121,6 +121,12 @@ public interface AdminService {
 
 	// 관리자 - 관리자 개인 탈퇴
 	public boolean deleteAdminMember(AdminDTO adto) throws Exception;
+
+	// 관리지 - 답변호출
+	public List<Question_commendDTO> getComments(int quest_id) throws Exception;
+
+	// 관리자 - 답변 잇는지 여부
+	public boolean isAnswered(int quest_id) throws Exception;
 	
 
 

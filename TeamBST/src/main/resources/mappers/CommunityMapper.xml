@@ -166,6 +166,9 @@
     values(#{post_id}, #{comm_cont}, now() , #{comm_writer_id})
 	</insert>
 		
-		
+		<!-- 거래 게시글 댓글 확인 -->
+<select id="getComments" parameterType="int" resultType="Post_commendDTO">
+    SELECT * FROM post_commend WHERE post_id = #{post_id}
+</select>
 
 </mapper>
