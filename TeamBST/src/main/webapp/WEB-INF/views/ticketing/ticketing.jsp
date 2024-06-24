@@ -1,6 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제하기 버튼</title>
+    <!-- 포트원 결제 -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <!-- 포트원 결제 -->
+</head>
+
+<body>
 
 <!--  	<form action="/ticketing/ticketing" method="post"> -->
 		<select name="stad_id" id="stad_id">
@@ -42,8 +60,9 @@
 				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.stad_id}</a></td>
 				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.away_team_id}</a></td>
 				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.home_team_id}</a></td>
-				<td><a href="/ticketing/stadium/${vo.stad_id }/${vo.game_id}">예매하기</a></td>
-				<td><a href="/ticketing/stadium?stad_id=${vo.stad_id },${vo.game_id}">예매하기</a></td>
+				<td><a href="/ticketing/stadium?game_id=${vo.game_id }&stad_id=${vo.stad_id}"> 예매하기</a></td>
+<%-- 				<td><a href="/ticketing/stadium?stad_id=${vo.stad_id },${vo.game_id}">예매하기</a></td> --%>
+
 			</tr>
 		</c:forEach> --%>
 
