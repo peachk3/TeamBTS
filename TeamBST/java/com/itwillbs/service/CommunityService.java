@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Category;
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Post_commendDTO;
 
@@ -14,8 +15,16 @@ public interface CommunityService {
 	// 거래 게시글 작성
 	public void PostJoin(Post_boardDTO dto);
 	
-	// 거래 게시글 목록 조회
-	public List<Post_boardDTO> PostList(Category cate) throws Exception;
+	// 거래 게시글 목록 조회 - 원래 코드
+//	public List<Post_boardDTO> PostList(Category cate) throws Exception;
+	
+	// gpt 코드
+	public List<Post_boardDTO> PostList(Category cate, Criteria cri) throws Exception;
+	
+	public int getTotalCount(Category cate) throws Exception;
+	
+	
+	
 
 	// 거래 게시글 목록 전체 조회
 	public List<Post_boardDTO> PostListAll() throws Exception;

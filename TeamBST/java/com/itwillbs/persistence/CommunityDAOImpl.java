@@ -1,6 +1,8 @@
 package com.itwillbs.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.Category;
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Post_commendDTO;
 
@@ -41,13 +44,35 @@ public class CommunityDAOImpl implements CommunityDAO{
 		return sqlSession.selectList(NAMESPACE + "PostListAll");
 	}
 
-	@Override
-	public List<Post_boardDTO> PostList(Category cate) throws Exception {
-		logger.debug("DAO : PostList() 호출");
-		
-		return sqlSession.selectList(NAMESPACE + "PostList", cate);
+	// 원래 코드
+//	@Override
+//	public List<Post_boardDTO> PostList(Category cate) throws Exception {
+//		logger.debug("DAO : PostList() 호출");
+//		
+//		return sqlSession.selectList(NAMESPACE + "PostList", cate);
+//	}
+
+	// gpt 코드
+	public List<Post_boardDTO> PostList(Category cate, Criteria cri) throws Exception {
+	    Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("cate", cate);
+	    paramMap.put("cri", cri);
+	    return sqlSession.selectList(NAMESPACE + "PostList", paramMap);
 	}
 
+	public int getTotalCount(Category cate) throws Exception {
+	    return sqlSession.selectOne(NAMESPACE + "getTotalCount", cate);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public List<Post_boardDTO> PostOneList(int post_id) throws Exception {
 		logger.debug("DAO : PostOneList(int PostOneList) 호출");

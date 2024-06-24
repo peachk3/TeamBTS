@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Category;
+import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Post_commendDTO;
 import com.itwillbs.persistence.CommunityDAO;
@@ -38,13 +39,31 @@ public class CommunityServiceImpl implements CommunityService{
 		return cdao.PostListAll();
 	}
 
-	@Override
-	public List<Post_boardDTO> PostList(Category cate) throws Exception {
-		logger.debug("공지사항 글목록 조회");
-		logger.debug("cate"+ cate);
-		
-		return cdao.PostList(cate);
+	
+	// 원래 코드
+//	@Override
+//	public List<Post_boardDTO> PostList(Category cate) throws Exception {
+//		logger.debug("공지사항 글목록 조회");
+//		logger.debug("cate"+ cate);
+//		
+//		return cdao.PostList(cate);
+//	}
+	
+	
+	// gpt 코드
+	public List<Post_boardDTO> PostList(Category cate, Criteria cri) throws Exception {
+	    return cdao.PostList(cate, cri);
 	}
+
+	public int getTotalCount(Category cate) throws Exception {
+	    return cdao.getTotalCount(cate);
+	}
+
+	
+	
+	
+	
+	
 
 	@Override
 	public List<Post_boardDTO> PostOneList(int post_id) throws Exception {
