@@ -60,7 +60,7 @@
 		<select id="noticeListPage" resultType="Notice_boardDTO">
 		<![CDATA[
 		select * from notice_board
-		where notice_id > 0 
+		where notice_id > 0 and notice_del_at = 'N'
 		order by notice_id desc, notice_cre_date desc
 		limit #{pageStart},#{pageSize}
 		]]>
@@ -76,7 +76,8 @@
 	<!-- 공지사항 본문 조회 -->
 	<select id="noticeOneList" resultType="Notice_boardDTO">
 		select * from notice_board
-		where notice_id = #{notice_id}
+		where notice_id = #{notice_id} 
+		
 	</select>
 	
 	 <!-- 공지사항 조회수 1증가 -->
