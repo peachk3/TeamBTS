@@ -1,21 +1,30 @@
 package com.itwillbs.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.itwillbs.domain.Category;
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.MyBoardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
 import com.itwillbs.domain.UserDTO;
@@ -41,16 +50,7 @@ public class MypageController {
     //http://localhost:8088/mypage/mypage
     // 마이페이지
     @GetMapping("/mypage")
-    public String mypage(HttpSession session, Model model) {
-    	// 필요시 로직 추가
-    	return "/mypage/mypage";  // mypage.jsp로 이동
-    }
-    
-    //http://localhost:8088/mypage/info
-    // 회원정보 조회
-    @RequestMapping(value="/info", method = RequestMethod.GET)
-    public String infoGET(HttpSession session, Model model) {
-    	logger.debug(" /info -> infoGET() 호출 ");
+    public String mypage(HttpSession session, Model model) throws Exception {
     	
     	// id정보 가져오기
         String user_id = (String) session.getAttribute("user_id");
@@ -63,14 +63,15 @@ public class MypageController {
         model.addAttribute("resultDTO", resultDTO);
         
         // 뷰페이지 이동
-        return "/mypage/info";
+    	return "/mypage/mypage";  // mypage.jsp로 이동
     }
+    
     
     
     //http://localhost:8088/mypage/updateForm
     // 회원정보 수정 - 기존 회원정보
     @GetMapping(value = "/updateForm")
-    public void updateGET(HttpSession session, Model model) {
+    public void updateGET(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
         
         // 서비스 -> DAO 회원정보 조회
@@ -85,7 +86,7 @@ public class MypageController {
     
     // 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
     @RequestMapping(value = "/updateForm", method = RequestMethod.POST)
-    public String updatePost(UserDTO udto) {
+    public String updatePost(UserDTO udto) throws Exception {
     	logger.debug(" /update -> updatePost() 호출 ");
     	
     	// 수정할 회원정보를 저장
@@ -101,7 +102,7 @@ public class MypageController {
     //http://localhost:8088/mypage/deleteMember
     // 회원정보 삭제 - 사용자의 비밀번호 입력 / 아이디 세션
     @GetMapping(value = "/deleteMember")
-    public void deleteGET(HttpSession session, Model model) {
+    public void deleteGET(HttpSession session, Model model) throws Exception {
     	String user_id = (String) session.getAttribute("user_id");
     	UserDTO resultDTO = mService.getMember(user_id);
     	model.addAttribute("resultDTO", resultDTO);
@@ -109,7 +110,7 @@ public class MypageController {
     
     // 회원정보 삭제
     @PostMapping(value = "/deleteMember")
-    public String deleteMember(UserDTO ddto, HttpSession session,Model model) {
+    public String deleteMember(UserDTO ddto, HttpSession session,Model model) throws Exception {
     	logger.debug(" /deleteMember -> deleteMember() 호출 ");
     	
     	// 전달정보 저장
@@ -134,7 +135,7 @@ public class MypageController {
 
             return "mypage/deleteMember";  // 삭제 실패 시 다시 삭제 페이지로 이동
 	}    
-        }
+}
     	
 //    	// Service -> DAO 회원정보 삭제
 //    	int result = mService.deleteMember(ddto);
@@ -147,8 +148,8 @@ public class MypageController {
 //    	}
 //    	logger.debug(" 삭제 실패, 비밀번호를 다시 확인하세요! ");
     
-    
-  //http://localhost:8088/mypage/postBoardList
+    /*
+    //http://localhost:8088/mypage/postBoardList
     // 내 게시글
     @GetMapping(value = "/postBoardList")
     public String postBoardList(HttpSession session, Model model) throws Exception {
@@ -164,6 +165,21 @@ public class MypageController {
         
     }
     
+    //http://localhost:8088/mypage/questionBoardList
+    // 내 질문글
+    @GetMapping(value = "/questionBoardList")
+    public String questionBoardList(HttpSession session, Model model) throws Exception {
+    	String user_id = (String) session.getAttribute("user_id");
+    	
+    	List<Question_boardDTO> qBoardList = mService.questionBoardList(user_id);
+    	logger.debug(" 확인 : " + qBoardList.size());
+    	
+    	logger.debug(" qBoardList() 실행 ");
+    	
+    	model.addAttribute("qBoardList", qBoardList);
+    	return "/mypage/questionBoardList";
+    }
+    */
     
     // 내 게시글 본문
     @RequestMapping(value = "/pbread",method = RequestMethod.GET)
@@ -185,25 +201,7 @@ public class MypageController {
     	model.addAttribute("pbDTO", pbDTO);
     }
     
-    
-    
-    //http://localhost:8088/mypage/questionBoardList
-    // 내 질문글
-    @GetMapping(value = "/questionBoardList")
-    public String questionBoardList(HttpSession session, Model model) throws Exception {
-        String user_id = (String) session.getAttribute("user_id");
-        
-        List<Question_boardDTO> qBoardList = mService.questionBoardList(user_id);
-        logger.debug(" 확인 : " + qBoardList.size());
-        
-        logger.debug(" qBoardList() 실행 ");
-        
-        model.addAttribute("qBoardList", qBoardList);
-        return "/mypage/questionBoardList";
-    }
-    
     // http://localhost:8088/mypage/qbread
-    
     // 질문글 본문보기 - qbreadGET
  	@RequestMapping(value = "/qbread",method = RequestMethod.GET)
  	public void qbreadGET(@ModelAttribute("quest_id") int quest_id, Model model) throws Exception {
@@ -232,51 +230,123 @@ public class MypageController {
  		model.addAttribute("qbDTO", qbDTO);
  	}
     
+/*
+	@GetMapping(value="/myticket")
+	public String MyTicket(HttpSession session, @RequestParam(value = "state", required = false) String state, Model model) throws Exception {
+	    
+	    String user_id = (String) session.getAttribute("user_id");
+	    
+	    if ("will".equals(state)) {
+	        // 예정 경기 호출
+	        List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
+	        model.addAttribute("oMatchList", oMatchList);
+	    } else if ("previous".equals(state)) {
+	        // 지난 경기 호출
+	        List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
+	        model.addAttribute("pMatchList", pMatchList);
+	    } else {
+	        // 기본: 두 종류의 경기를 모두 조회
+	        List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
+	        List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
+	        model.addAttribute("oMatchList", oMatchList);
+	        model.addAttribute("pMatchList", pMatchList);
+	    }
+	
+	    return "/mypage/myticket";
+	}
+*/
+ 	
+ 	@GetMapping(value="/myticket")
+	public void MyTicket_GET() throws Exception {
+	    
+ 		logger.debug("마이페이지 myTicket 리스트 호출");
+		logger.debug(" /myticket -> MyTicket_GET() 호출");
+	}
+ 	
+ 	@ResponseBody
+ 	@PostMapping(value="/myticket", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+ 	/*public String myTicket_POST(String ticket_status, Model model, HttpSession session) throws Exception {
+ 		
+ 		Category cate = new Category();
+ 		cate.setUser_id((String)session.getAttribute("user_id"));
+ 		cate.setTicket_status(ticket_status);		*/
+	public String myTicket_POST(@RequestBody Category cate, HttpSession session) throws Exception {
+		
+		cate.setUser_id((String)session.getAttribute("user_id"));
+ 		
+ 		logger.debug("마이페이지 myTicket 리스트 호출");
+ 		logger.debug(" /myticket -> myTicket_POST() 호출");
+		
+		// 서비스 -> DB의 정보를 가져오기
+		logger.debug("cate : "+ cate);
+		List<Game_scheduleDTO> mTicketList = mService.TicketList(cate);
+		logger.debug("size : "+ mTicketList.size());
+		logger.debug("pBoardList : "+ mTicketList);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+        mapper.registerModule(new JavaTimeModule()); // Java 8 날짜 타입 지원
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false); // 타임스탬프로 변환하지 않음
+        // 원하는 날짜 포맷 설정 (예: "yyyy-MM-dd")
+        mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+        
+        String jsonMyTiketList = mapper.writeValueAsString(mTicketList);
+        logger.debug("jsonMyTiketList : " + jsonMyTiketList);
 
-@GetMapping(value="/myticket")
-public String MyTicket(HttpSession session, @RequestParam(value = "state", required = false) String state, Model model) throws Exception {
-    
-    String user_id = (String) session.getAttribute("user_id");
-    
-    if ("will".equals(state)) {
-        // 예정 경기 호출
-        List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
-        model.addAttribute("oMatchList", oMatchList);
-    } else if ("previous".equals(state)) {
-        // 지난 경기 호출
-        List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
-        model.addAttribute("pMatchList", pMatchList);
-    } else {
-        // 기본: 두 종류의 경기를 모두 조회
-        List<Game_scheduleDTO> oMatchList = mService.openMatchList(user_id);
-        List<Game_scheduleDTO> pMatchList = mService.previousMatchList(user_id);
-        model.addAttribute("oMatchList", oMatchList);
-        model.addAttribute("pMatchList", pMatchList);
-    }
-
-    return "/mypage/myticket";
-}
-
-
+        return jsonMyTiketList;
+ 		
+ 	}
+	
+ 	/*
 	@GetMapping(value="/mywrite")
 	public void Mywrite_GET(HttpSession session,Model model) throws Exception{
-	    String user_id = (String) session.getAttribute("user_id");
-
-	    // 판매 게시글 확인하기
-        List<Post_boardDTO> postBoardList = mService.postBoardList(user_id);
-        
-        // 문의 게시글 확인하기
-        List<Question_boardDTO> questionBoardList = mService.questionBoardList(user_id);
+		String user_id = (String) session.getAttribute("user_id");
 		
-        model.addAttribute("postBoardList", postBoardList);
-        model.addAttribute("questionBoardList", questionBoardList);
-        
-        
+		// 판매 게시글 확인하기
+		List<Post_boardDTO> postBoardList = mService.postBoardList(user_id);
 		
+		// 문의 게시글 확인하기
+		List<Question_boardDTO> questionBoardList = mService.questionBoardList(user_id);
+		
+		model.addAttribute("postBoardList", postBoardList);
+		model.addAttribute("questionBoardList", questionBoardList);
+	}
+	*/
+	
+	@GetMapping(value="/mywrite")
+	public void myWrite_GET() throws Exception{
+		logger.debug("마이페이지 myWrite 리스트 호출");
+		logger.debug(" /mywrite -> myWrite_GET() 호출");
 	}
 
-
-
+	@ResponseBody
+	@RequestMapping(value="/mywrite",method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public String myWrite_POST(@RequestBody Category cate, HttpSession session) throws Exception {
+		
+		cate.setUser_id((String)session.getAttribute("user_id"));
+		
+		logger.debug("마이페이지 myWrite 리스트 호출");
+		logger.debug(" /mywrite -> myWrite_POST() 호출");
+		
+		// 서비스 -> DB의 정보를 가져오기
+		logger.debug("cate : "+ cate);
+		List<MyBoardDTO> mBoardList = mService.MyBoardList(cate);
+		logger.debug("size : "+ mBoardList.size());
+		logger.debug("mWriteList : "+ mBoardList);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		mapper.registerModule(new JavaTimeModule()); // Java 8 날짜 타입 지원
+		mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false); // 타임스탬프로 변환하지 않음
+		// 원하는 날짜 포맷 설정 (예: "yyyy-MM-dd")
+		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+		
+		String jsonMyBoardList = mapper.writeValueAsString(mBoardList);
+		logger.debug("jsonMyBoardList : " + jsonMyBoardList);
+		
+		return jsonMyBoardList;
+		
+	}
 
 
 

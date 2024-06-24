@@ -16,8 +16,6 @@ import com.itwillbs.domain.Team_n_stadiumDTO;
 @Repository
 public class Game_scheduleDAOImpl implements Game_scheduleDAO {
 
-
-
 	private static final Logger logger = LoggerFactory.getLogger(Game_scheduleDAOImpl.class);
 	
 	@Inject

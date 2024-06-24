@@ -22,7 +22,32 @@
 			</c:forEach>
 		
 		</table>
-	
+		
+                    <button type="button" onclick="window.history.back();">뒤로가기</button>
+		
+		
+		
+		
+<div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+        
+        <c:if test="${pageDTO.prev}">
+            <li><a href="/admin/adminMemberTicket?page=${pageDTO.startPage - 1 }&user_id=${param.user_id}">«</a></li>
+        </c:if>
+        
+        <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+            <li ${pageDTO.cri.page == i ? 'class="active"' : ''}><a href="/admin/adminMemberTicket?page=${i }&user_id=${param.user_id}">${i }</a></li>
+        </c:forEach>
+        
+        <c:if test="${pageDTO.next && pageDTO.endPage > 0}">
+            <li><a href="/admin/adminMemberTicket?page=${pageDTO.endPage + 1 }&user_id=${param.user_id}">»</a></li>
+        </c:if>
+    </ul>
+</div>
+
+
+
+
 
 </body>
 </html>

@@ -6,9 +6,9 @@
 <mapper namespace="com.itwillbs.mapper.MemberMapper">
 
 <!-- 회원가입  -->
-<insert id="userJoin">
-	insert into user (user_id, user_birth, user_pwd, user_name, user_nick, user_phone, user_email, join_date, user_info_agree, user_serv_agree, user_login_time, user_active, user_status )
-	 values(#{user_id},#{user_birth}, #{user_pwd},#{user_name},#{user_nick},#{user_phone},#{user_email}, now(),#{user_info_agree}, #{user_serv_agree},now(), #{user_active},#{user_status})
+<insert id="memberJoin"  parameterType="com.itwillbs.domain.UserDTO">
+	insert into user (user_id, user_birth, user_pwd, user_name, user_nick, user_phone, user_email, join_date, user_info_agree, user_serv_agree )
+	 values(#{user_id},#{user_birth}, #{user_pwd},#{user_name},#{user_nick},#{user_phone},#{user_email}, now(),#{user_info_agree}, #{user_serv_agree})
 	 
 
 </insert>
@@ -16,7 +16,53 @@
 <!-- 로그인체크 -->
 <select id="loginCheck" resultType="com.itwillbs.domain.UserDTO">
 	select * from user
-	where user_id=#{user_id} and user_pwd=#{user_pwd}
+	where user_id=#{user_id} and user_pwd=#{user_pwd} and user_status="USE"
 </select>
 
+
+<!-- 아이디 중복체크 -->
+<select id="idCheck" parameterType="String" resultType="int">
+	select count(*)from user where user_id=#{user_id}
+</select>
+
+<!-- 닉네임 중복체크 -->
+<select id="nickCheck" parameterType="String" resultType="int">
+	select count(*)from user where user_nick=#{user_nick}
+</select>
+
+<!-- 이메일 중복체크 -->
+<select id="emailCheck" parameterType="String" resultType="int">
+	select count(*)from user where user_email=#{user_email}
+</select>
+
+<!-- 이메일 본인인증 -->
+
+
+
+
+<!-- 핸드폰 중복체크 -->
+<select id="phoneCheck" parameterType="String" resultType="int">
+	select count(*) from user where user_phone=#{user_phone}
+</select>
+
+
+<!--  ID 찾기(핸드폰 번호로) -->
+<select id="findId" resultType="int">
+	select * from user where user_name=#{user_name} and user_phone=#{user_phone}
+</select>
+
+<!-- ID 찾기(이메일) -->
+<select id="findIdEmail" resultType="int">
+	select * from user where user_name=#{user_name} and user_email=#{user_email}
+</select>
+
+<!-- 비번 찾기 -->
+<select id="findPwd" resultType="Integer">
+	select count(*) from user where user_id
+</select>
+
+<!--  새로운 비밀번호 저장 -->
+<update id="findPwdUpdate">
+	update user set user_pwd=#{user_pwd} where user_id=#{user_id} and user_name=#{user_name} and user_email=#{user_email} 
+</update>
 </mapper>

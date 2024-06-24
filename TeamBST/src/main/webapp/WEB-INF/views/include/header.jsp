@@ -8,6 +8,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>개바리조</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+			integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+			crossorigin='anonymous'></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="../resources/css/index.css" rel="stylesheet">
     <style>
@@ -29,10 +32,11 @@
 				<c:when test="${empty sessionScope.user_id}">
 					<!-- 로그인하지 않은 경우 -->
 					<a href="/login/loginPage">로그인</a>
+					| <a href="/login/signupPage">회원가입</a>
 				</c:when>
 				<c:when test="${sessionScope.user_id == 'admin'}">
 					<!-- 관리자일 경우 -->
-					<a href="/admin/admin">관리자페이지</a>
+					<a href="/admin/admin">마이페이지</a>
 					<form id="logoutForm" action="${pageContext.request.contextPath}/login/logout" method="post" style="display: inline;">
                     <button type="submit" class="logout-button">로그아웃</button>
                     </form>
@@ -40,12 +44,14 @@
 				<c:otherwise>
 					<!-- 일반사용자일 경우 -->
 					<a href="/mypage/mypage">마이페이지</a>
-					<form id="logoutForm" action="${pageContext.request.contextPath}/login/logout" method="post" style="display: inline;">
+					<form id="logoutForm" action="${pageContext.request.contextPath}/login/generalLogout" method="post" style="display: inline;">
                     <button type="submit" class="logout-button">로그아웃</button>
                     </form>
 				</c:otherwise>
 			</c:choose>
-			로그인시간 ( 58: 00 )
+	
+
+
 		</h6>
 		<ul class="nav">
         <li class="nav-item">

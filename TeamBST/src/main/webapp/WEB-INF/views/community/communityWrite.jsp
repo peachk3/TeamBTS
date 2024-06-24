@@ -21,7 +21,7 @@
 		<!--begin::Form-->
 		<form class="form" action="/community/communityWrite" method="post">
 			<div class="card-body">
-
+<%-- ?user_id=${user_id} --%>
 				<div class="form-group">
 					<label>제목 <input type="text" name="post_sub"
 						class="form-control form-control-solid"></label>
@@ -58,9 +58,9 @@
 					<label> 파일선택 <input type="file" name="photo_url"
 						class="form-control form-control-solid"></label>
 				</div>
-
-
 			</div>
+
+			
 			<div class="card-footer">
 				<button type="submit" class="btn btn-primary mr-2">Submit</button>
 				<button type="reset" class="btn btn-secondary"

@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link href="../resources/css/signup.css" rel="stylesheet"> <!--signup.css 파일 연결 -->
-    <script src="../resources/js/signup_script.js"></script>
+  <!--  <script src="../resources/js/kakao_login.js"></script>  -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../resources/js/signup_script.js"></script>
     <script src="https://developers.kakao.com/sdk/kakao.min.js"></script><!-- 카카오 SDK 파일-->
 </head>
 <body>
@@ -25,62 +26,75 @@
         <hr class="hr-5">
 
         <h2>회원가입</h2> <!-- signup.jsp 연결 -->
-        <form id="signupForm" action="/login/signupPage" method="post" onsubmit="return validateForm()">
+        <form id="signupForm" action="/login/signupPage" method="post" >
             <div class="form-group">
                <!-- 이름 -->
                 <div class="form-group">
                 <label for="name"></label>
-                <input type="text" class="in-b"  id="name" name="user_name" placeholder="이름 *" >
+                <input type="text" class="in-b"  id="user_name" name="user_name" autocomplete="off" placeholder="이름 *"  >
                 </div>
 
                  <!-- 아이디-->
-                <label for="username"></label>
+                <label for="userid"></label>
                 <div class="btn-group"> <!-- 아이디 중복확인 버튼-->
-                  <input type="text" id="id" name="user_id" placeholder="아이디 *" >
-                  <button type="button" class="check-button" onclick="checkDuplicate('id')">중복확인</button>
+                  <input type="text" id="user_id" name="user_id" maxlength="16" placeholder="아이디 *">
+                  <button type="button" class="check-button" name="idCheck" id="idCheck">중복확인</button>
                  </div>
-            
+                
+            	
                 <!-- 비밀번호-->
                 <div class="form-group">
-                <label for="password"></label>
-                <input type="password" class="in-b"  id="password" name="user_pwd" maxsize='16' placeholder="비밀번호(8~16자의 영문,숫자,특수기호) *" >
+                <label for="user_pwd"></label>
+                	<input type="password" class="in-b"  id="user_pwd" name="user_pwd" maxlength='16' placeholder="비밀번호(8~16자의 영문,숫자,특수기호) *"  >
                 </div>
               <!-- 비밀번호 확인-->
-                <label for="confirm-password"></label>
-                <input class="in-b" type="password" id="confirm-password" name="user_confirm-password" placeholder="비밀번호 확인 *" >
-    
+                <label for="pwdCheck "></label>
+                	<div class="btn-group">
+               	 		<input class="in-b" type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인 *" required >
+               	 		<button type="button" class="button-primary" id = "pwdDcheck" >확인</button>
+    		 		</div>
     		 <!-- 생년월일 -->
-    			 <p >날짜 : 
-        		<input type="date" id="date" max="2077-06-20" min="1900-01-01" name="user_birth">
-    			 </p>
-    			  
+    			 <div class="form-group">
+    			 <label for="birth"></label>
+        		날짜 : <input type="date" id="date" max="2077-06-20" min="1900-01-01" name="user_birth">
+    			 </div>
+    			 
                 <!--닉네임-->
                 <label for="nickname"></label>
                 <div class="btn-group"> <!-- 닉네임 중복확인-->
-                  <input type="text" id="nickname" name="user_nick" placeholder="닉네임 *" >
-                  <button type="button" class="check-button" onclick="checkDuplicate('nickname')" >중복확인</button>
+                  <input type="text" id="user_nick" name="user_nick" maxlength="12" placeholder="닉네임 *" >
+                  <button type="button" class="check-button" name="nickCheck" id="nickCheck"  >중복확인</button>
                 </div>
                 
-                <!-- 이메일-->
-                <label for="email"></label>
-                <div class="btn-group">
-                  <input type="email" id="email" name="user_email" placeholder="이메일 *">
-                  <button type="button" class="check-button" onclick="checkDuplicate('email')">중복확인</button> 
-                </div>        
-
-                <!-- 휴대폰 번호-->
+                 <!-- 핸드폰-->
                 <label for="phone"></label>
                 <div class="btn-group">
-                  <input type="tel" id="phone" name="user_phone" placeholder="휴대폰번호">
-                  <button type="button" class="check-button" onclick="sendCode()">인증번호 전송</button> <!-- 휴대전화 인증번호 전송버튼-->
+                  <input type="text" id="user_phone" name="user_phone" placeholder="010-1234-5678">
+                 	 <button type="button" class="check-button" id="phoneCheck" name="phoneCheck">중복확인</button> 
+                </div>        
+                
+               
+                <!-- 이메일 -->
+                <label for="email"></label>
+                <div class="btn-group"> <!-- 닉네임 중복확인-->
+                  <input type="email" id="user_email" name="user_email"  placeholder="이메일 *" >
+                  <button type="button" class="check-button" name="emailCheck" id="emailCheck" >중복확인</button>
+                   <button type="button" class="verify-button" id="verifyCheck" >인증번호 전송</button>
+            		    <div style="display: none;" class="sendCodeMessage">
+                 			<b>인증 번호가 발송되었습니다</b>
+						</div>
                 </div>
-
-                <!-- 휴대폰 인증번호 입력 칸-->
+                
+        
+            
+                <!-- 이메일 인증번호 입력 칸-->
              <label for="verification"></label> 
                 <div class="btn-group">
-                  <input type="text" id="verification" name="verification" placeholder="인증번호 입력 *">
-                  <button type="button" class="verifyCode" onclick="verifyCode()">확인</button>
-                  <button type="button" class="resendCode" onclick="resendCode()">재전송</button>
+                  <input type="text" name="emailCode" id="emailCode">
+                  	<button type="button" name="Demailcode" id="Demailcode"  value="인증번호 확인">확인</button>
+                 	<div style="display:none;" class="successMessge">
+						<b>인증 성공!</b>
+                	</div>	
                 </div>
 	           </div> 	<!-- div - form-group 끝-->
 
@@ -104,7 +118,7 @@
                 <!-- 가입하기 & 로그인 버튼-->
             <div id="signup_n_login">
               <label>
-                <button type="submit" id="submit-btn" class="submit-btn" >가입하기</button>
+                <button type="submit" id="signup-btn" class="submit-btn">가입하기</button>
               </label>
               <label>
                 <button type="button" id="submit-btn" class="login-btn" onclick="location.href='/login/loginPage'">로그인</button>
@@ -112,18 +126,6 @@
             </div>
         </form> <!-- signupForm-->
     </div> <!-- signup-box-->
-	<script>
-		// 로그인 버튼 클릭 시 체크박스 검사
-		$("#submit-btn").click(function(event) {
-			if (!$("#terms").is(":checked")) {
-				event.preventDefault(); // 폼 제출 방지
-				alert("필수 체크 항목입니다");
-			} else {
-				// 여기서 폼을 제출할 수 있습니다.
-				alert("회원가입 완료"); // 폼 제출 성공 시 메시지
-			}
-		});
-	</script>
 </body>
 </html>
 	

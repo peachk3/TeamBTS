@@ -21,6 +21,13 @@ public class AdminDTO {
 	
 	
 	
+    public boolean isAdmin() {
+        return admin_id != null && !admin_id.isEmpty();
+    }
+    
+	
+	
+	
 	
 	
 
