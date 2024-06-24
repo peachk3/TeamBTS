@@ -13,6 +13,7 @@ import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
+import com.itwillbs.domain.Question_commendDTO;
 
 @Repository
 public class AnnouncementDAOImpl implements AnnouncementDAO{
@@ -112,6 +113,13 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 
 		
 		return sqlSession.selectList(NAMESPACE+"questionListPage",cri);
+	}
+
+	@Override
+	public List<Question_commendDTO> QuestionCommendList(int quest_id) throws Exception {
+
+		
+		return sqlSession.selectList(NAMESPACE+"QuestionCommendList",quest_id);
 	}
 	
 	

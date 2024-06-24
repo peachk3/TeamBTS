@@ -21,6 +21,7 @@ import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
+import com.itwillbs.domain.Question_commendDTO;
 import com.itwillbs.service.AnnouncementService;
 
 @Controller
@@ -150,14 +151,18 @@ public class AnnouncementController {
     	// 조회수 1 증가
     	aService.updateQuestCount(quest_id);
 
-    	
     	List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
     	
-		logger.debug("size : "+ QuestionOneList.size());
-		logger.debug("size : "+ QuestionOneList);
+    	List<Question_commendDTO> QuestionCommendList = aService.QuestionCommendList(quest_id);
+    	
+    	
+    	logger.debug("size : "+ QuestionOneList.size());
+    	logger.debug("size : "+ QuestionOneList);
+    	
 		
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("QuestionOneList", QuestionOneList);
+		model.addAttribute("QuestionCommendList", QuestionCommendList);
     	
 	}
 	
