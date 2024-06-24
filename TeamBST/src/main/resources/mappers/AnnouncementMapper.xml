@@ -147,5 +147,10 @@
 		where quest_id = #{quest_id}
 	</update>
 
+	<!-- 문의 게시판 답변 확인 -->
+	<select id="QuestionCommendList" resultType="Question_commendDTO">
+		select * from question_commend
+		where quest_id = #{quest_id}
+	</select>
 
 </mapper>

@@ -6,6 +6,7 @@ import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
+import com.itwillbs.domain.Question_commendDTO;
 
 public interface AnnouncementService {
 	
@@ -44,6 +45,9 @@ public interface AnnouncementService {
 
 	// 문의게시판 총 글 개수 카운트 세기
 	public int getQuestTotalCount() throws Exception;
+
+	// 문의게시판 답변 보기
+	public List<Question_commendDTO> QuestionCommendList(int quest_id) throws Exception;
 
 
 }
