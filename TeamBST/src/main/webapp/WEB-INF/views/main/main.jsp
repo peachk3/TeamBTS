@@ -7,22 +7,30 @@
 =            Banner            =
 =============================-->
 
-<section class="banner bg-banner-one overlay">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<!-- Content Block -->
-				<div class="block">
-					<h1>야모해</h1>
-					<h2>ITWILL</h2>
-					<h6>7강의실 2조</h6>
-					<!-- Action Button -->
-					<a href="/ticketing/ticketing?stad_id=All" class="btn btn-white-md">get ticket now</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+<!-- <section class="banner bg-banner-one overlay"> -->
+<!-- 	<div class="container"> -->
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-lg-12"> -->
+<!-- 				Content Block -->
+<!-- 				<div class="block"> -->
+<!-- 					<h1>야모해</h1> -->
+<!-- 					<h2>ITWILL</h2> -->
+<!-- 					<h6>7강의실 2조</h6> -->
+<!-- 					Action Button -->
+<!-- 					<a href="/ticketing/ticketing?stad_id=All" class="btn btn-white-md">get ticket now</a> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </section> -->
+
+<div class="slider">
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+</div>
 	
 <!--====  End of Banner  ====-->
 
@@ -36,7 +44,6 @@
 			<div class="col-12">
 				<div class="section-title">
 					<h3>Event <span class="alternate">Schedule</span></h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusm tempor incididunt ut labore</p>
 				</div>
 			</div>
 		</div>

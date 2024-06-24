@@ -33,27 +33,6 @@
   
   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
-  <style>
-  	#nav { font-family:'arial'; }
-	#nav ul{ width:100%; margin:0; padding:0; }
-	#nav ul.menu li{ position:relative; float:left; width:100%; list-style-type:none; font-size:40px;}
-	#nav ul.menu li a{ display:block; width:100%; height:100%; line-height:100px; text-indent:30px; color:#000; font-weight:bold; text-decoration:none; }
-	#nav ul.menu li a:hover{ background:#eee; }
-	#nav ul.menu li .sub a{ position:relative; float:left; display:block; width:100%; z-index:999; background:#ccc; }
-	#nav ul.menu li .sub a:hover{ background:#444; color:#fff; }
-	</style>
-
-  	}
-  </style>
-  	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#nav ul.sub").hide();
-			$("#nav ul.menu li").click(function(){
-				$("ul",this).slideToggle("fast");
-			});
-		});
-	</script>
 </head>
 
 <body class="body-wrapper">
@@ -67,7 +46,7 @@
   <div class="container-fluid p-0">
       <!-- logo -->
       <a class="navbar-brand" href="/main/main">
-        <img src="/images/logo.png" alt="logo">
+        <img src="/resources/images/logo1.png" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="fa fa-bars"></span>
@@ -95,44 +74,104 @@
 						<button onclick="location.href='/admin/admin';"
 							class="login-btn btn-1">관리자페이지</button>
 						<form id="logoutForm" action="${pageContext.request.contextPath}/login/adminLogout" method="post" style="display: inline;">
-                    <button type="submit" class="signup-btn btn-1">로그아웃</button>
-                    </form>
-						</form>
+	                    	<button type="submit" class="signup-btn btn-1">로그아웃</button>
+	                    </form>
 					</c:when>
 					<c:otherwise>
 						<!-- 일반사용자일 경우 -->
-						<a href="/mypage/mypage">마이페이지</a>
+						<button onclick="location.href='/mypage/mypage';"
+							class="login-btn btn-1">마이페이지</button>
 						<form id="logoutForm" action="${pageContext.request.contextPath}/login/generalLogout" method="post" style="display: inline;">
 							<button type="submit" class="signup-btn btn-1">로그아웃</button>
 						</form>
 					</c:otherwise>
 				</c:choose>
-				<div id="menuToggle">
+		<!-- 햄버거 메뉴 -->
+		<div id="menuToggle">
 	      <input type="checkbox" />
-	      <span></span>
-	      <span></span>
-	      <span></span>
-	      <ul id="menu">
-	        <a href="#"><li>Home</li></a>
-	        <a href="#"><li>Home</li></a>
-	        <a href="#"><li>About</li></a>
-	        <a href="#"><li>Info</li></a>
-	        <a href="#"><li>Contact</li></a>
-	        <a href="https://erikterwan.com/" target="_blank"><li>Show me more</li></a>
-	      </ul>
+		      <span></span>
+		      <span></span>
+		      <span></span>
+		      <ul id="menu">
+        <li class="dropdown">
+            <a class="dropdown-toggle" href="/main/main#stadium">구장  /  구단</a>
+            <div class="dropdown-menu">
+            	<div class="dropdown-column">
+					<p><a href="/main/main#stadium" style="color:mediumslateblue;"><b>구장</b></a></p>            	
+                    <a href="#" data-stadium-id="GC">고척 스카이돔</a>
+                    <a href="#" data-stadium-id="GJ">광주 챔피언스 필드</a>
+                    <a href="#" data-stadium-id="DG">대구 라이온즈파크</a>
+                    <a href="#" data-stadium-id="DJ">대전 이글스파크</a>
+                    <a href="#" data-stadium-id="SJ">부산 사직야구장</a>
+                    <a href="#" data-stadium-id="JS">서울 잠실야구장</a>
+                    <a href="#" data-stadium-id="SW">수원 KT위즈파크</a>
+                    <a href="#" data-stadium-id="IC">인천 랜더스필드</a>
+                    <a href="#" data-stadium-id="CW">창원 NC파크</a>
+                </div>
+                
+            	<div class="dropdown-column">
+                    <p><a href="/main/team" style="color:mediumslateblue;"><b>구단</b></a></p>
+                    <a href="/main/teamPage?team_id=kia">KIA</a>
+                    <a href="/main/teamPage?team_id=lg">LG</a>
+                    <a href="/main/teamPage?team_id=samsung">삼성</a>
+                    <a href="/main/teamPage?team_id=dosan">두산</a>
+                    <a href="/main/teamPage?team_id=ssg">SSG</a>
+                    <a href="/main/teamPage?team_id=kt">KT</a>
+                    <a href="/main/teamPage?team_id=hanhwa">한화</a>
+                    <a href="/main/teamPage?team_id=lotte">롯데</a>
+                    <a href="/main/teamPage?team_id=kiwoom">키움</a>
+                </div>
+            </div>
+        </li>
+        <hr>
+		        <a href="#"><li>Home</li></a>
+		        <a href="#"><li>About</li></a>
+		        <a href="#"><li>Info</li></a>
+		      </ul>
 	    </div>
       </div>
   </div>
 </nav>
+<hr>
 
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#nav ul.sub").hide();
-		$("#nav ul.menu li").click(function(){
-			$("ul",this).slideToggle("fast");
-		});
-	});
-</script>
+<!-- Hidden form for POST request -->
+<form id="stadiumForm" action="/ticketing/ticketing" method="post" style="display: none;">
+    <input type="hidden" name="stad_id" id="stadiumInput">
+</form>
 
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var dropdownToggle = document.querySelector('.dropdown-toggle');
+            var dropdown = document.querySelector('.dropdown');
+
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                dropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('show');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.dropdown-menu a[data-stadium-id]').forEach(anchor => {
+            anchor.addEventListener('click', function(event) {
+                event.preventDefault();
+                const stadiumId = this.getAttribute('data-stadium-id');
+                document.getElementById('stadiumInput').value = stadiumId;
+                document.getElementById('stadiumForm').submit();
+            });
+        });
+        
+        document.querySelectorAll('.container a').forEach(anchor => {
+            anchor.addEventListener('click', function(event) {
+                event.preventDefault();
+                const stadiumId = this.getAttribute('data-stadium-id');
+                document.getElementById('stadiumInput').value = stadiumId;
+                document.getElementById('stadiumForm').submit();
+            });
+        });
+    </script>
 <!--====  End of Navigation Section  ====-->
