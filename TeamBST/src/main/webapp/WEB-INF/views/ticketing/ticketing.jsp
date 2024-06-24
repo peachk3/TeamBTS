@@ -60,11 +60,11 @@
 				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.stad_id}</a></td>
 				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.away_team_id}</a></td>
 				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.home_team_id}</a></td>
-				<td><a href="/ticketing/stadium?game_id=${vo.game_id }&stad_id=${vo.stad_id}"> 예매하기</a></td>
-<%-- 				<td><a href="/ticketing/stadium?stad_id=${vo.stad_id },${vo.game_id}">예매하기</a></td> --%>
-
+				<td><a href="/ticketing/stadium/${vo.stad_id }/${vo.game_id}">예매하기</a></td>
+				<td><a href="/ticketing/stadium?stad_id=${vo.stad_id },${vo.game_id}">예매하기</a></td>
 			</tr>
 		</c:forEach> --%>
+
 
 	<script>
 	
