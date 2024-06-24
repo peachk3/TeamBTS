@@ -102,6 +102,12 @@ public class CommunityServiceImpl implements CommunityService{
 		cdao.communityCommend(pcdto);
 	}
 
+	@Override
+	public List<Post_commendDTO> getComments(int post_id) throws Exception {
+
+        return cdao.getComments(post_id);
+	}
+
 	
 	
 	

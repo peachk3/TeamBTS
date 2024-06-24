@@ -324,6 +324,17 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		return sqlSession.delete(NAMESPACE + "deleteAdminMember", adto);
 	}
+
+	@Override
+	public List<Question_commendDTO> selectCommentsByQuestId(int quest_id) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"selectCommentsByQuestId", quest_id);
+	}
+	
+	 public int countAnswersByQuestId(int quest_id) {
+	        return sqlSession.selectOne(NAMESPACE + "countAnswersByQuestId", quest_id);
+	    }	
+	
+	
 	
 	
 	

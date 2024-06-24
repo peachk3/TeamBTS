@@ -125,5 +125,8 @@ public interface AdminDAO {
 	// 관리자 개인정보 탈퇴
 	public int deleteAdminMember(AdminDTO adto) throws Exception;
 
-	
+	// 관리자 문의게시글의 답변 적기
+	public List<Question_commendDTO> selectCommentsByQuestId(int quest_id) throws Exception;
+
+    public int countAnswersByQuestId(int quest_id);
 }

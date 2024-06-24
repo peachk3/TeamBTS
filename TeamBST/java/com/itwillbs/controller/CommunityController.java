@@ -242,7 +242,8 @@ public class CommunityController {
     	
 		logger.debug("size : "+ PostOneList.size());
 		logger.debug("size : "+ PostOneList);
-		
+		List<Post_commendDTO> commentList = cService.getComments(post_id);
+        model.addAttribute("CommentList", commentList);
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("PostOneList", PostOneList);
     	

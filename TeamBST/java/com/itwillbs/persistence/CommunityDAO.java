@@ -45,6 +45,9 @@ public interface CommunityDAO {
 	// 거래 게시글 댓글 달기
 	public void communityCommend(Post_commendDTO pcdto) throws Exception;
 
+	// 거래 게시판 댓긇 확인
+	public List<Post_commendDTO> getComments(int post_id) throws Exception;
+
 
 	
 	
