@@ -96,7 +96,8 @@ public class AnnouncementController {
         	return "/announcement/bulletinWrite";
         } else {
         	
-        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
+        	logger.debug("로그인을 해야 글쓰기를 할 수 있습니다");
+        	session.setAttribute("alertMessage", "로그인을 해야 글쓰기를 할 수 있습니다");
         	
         	return "redirect:/login/loginPage";
         }
@@ -179,6 +180,8 @@ public class AnnouncementController {
 	        
 	        if (user_id == null) {
 	            logger.debug("로그인을 해야 수정을 할 수 있습니다");
+	        	session.setAttribute("alertMessage", "로그인을 해야 수정을 할 수 있습니다");
+
 	            return "redirect:/login/loginPage";
 	        }
 	        
@@ -192,6 +195,8 @@ public class AnnouncementController {
 	            return "/announcement/bulletinModify";
 	        } else {
 	        	logger.debug("본인이 작성한 글이 아닙니다");
+	        	session.setAttribute("alertMessage", "본인이 작성한 글이 아닙니다");
+
 	            return "redirect:/announcement/bulletinContent?quest_id="+quest_id;
 	        }
 	    }
@@ -227,6 +232,8 @@ public class AnnouncementController {
 	        
 	        if (user_id == null) {
 	            logger.debug("로그인을 해야 삭제를 할 수 있습니다");
+	        	session.setAttribute("alertMessage", "로그인을 해야 삭제를 할 수 있습니다");
+
 	            return "redirect:/login/loginPage";
 	        }
 	        
@@ -237,6 +244,8 @@ public class AnnouncementController {
 	            return "redirect:/announcement/bulletin";
 	        } else {
 	        	logger.debug("본인이 작성한 글이 아닙니다");
+	        	session.setAttribute("alertMessage", "본인이 작성한 글이 아닙니다");
+
 	            return "redirect:/announcement/bulletinContent?quest_id="+quest_id;
 	        }
 	    }	

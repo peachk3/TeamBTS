@@ -22,6 +22,12 @@
 			</c:forEach>
 		
 		</table>
+		
+                    <button type="button" onclick="window.history.back();">뒤로가기</button>
+		
+		
+		
+		
 <div class="box-footer clearfix">
     <ul class="pagination pagination-sm no-margin pull-right">
         
@@ -38,6 +44,10 @@
         </c:if>
     </ul>
 </div>
+
+
+
+
 
 </body>
 </html>

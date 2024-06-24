@@ -91,12 +91,12 @@
         <input type="submit" value="삭제">
     </form>
 
-    <button type="button" onclick="window.history.back();">뒤로가기</button>
+    <button type="button" onclick="location.href='/announcement/bulletin'">목록</button>
 </c:forEach>
 
-    <!-- 댓글 목록 -->
+    <!-- 답변 내용 -->
     <div class="comments">
-        <h3>댓글</h3>
+        <h3>답변</h3>
         <c:forEach var="comment" items="${QuestionCommendList}">
             <div class="comment">
                 <div class="comment-info">
@@ -110,7 +110,16 @@
         </c:forEach>
     </div>
 
-   
+     <script type="text/javascript">
+        <%-- alertMessage가 존재할 경우에만 alert 창을 띄움 --%>
+        <% if (session.getAttribute("alertMessage") != null) { %>
+            alert("<%= session.getAttribute("alertMessage") %>");
+        <% 
+            // alert를 한 번 띄운 후 session에서 해당 메시지를 삭제
+            session.removeAttribute("alertMessage");
+           %>
+        <% } %>
+    </script>
    
 </body>
 </html>

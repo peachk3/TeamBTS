@@ -206,7 +206,8 @@ public class CommunityController {
 	        } else {
 	        	
 	        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
-	        	
+	            session.setAttribute("alertMessage", "로그인을 해야 예매하기를 할 수 있습니다");
+
 	        	return "redirect:/login/loginPage";
 	        }
 		
@@ -228,10 +229,9 @@ public class CommunityController {
 	
 	//  거래 게시판 본문 확인하기
 	@GetMapping(value="/communityContent")
-	public void communityContent_GET(@RequestParam("post_id") int post_id, Model model) throws Exception{
+	public void communityContent_GET(@RequestParam("post_id") int post_id,HttpSession session, Model model) throws Exception{
 		logger.debug("거래 게시판 본문 내용 호출");
 		logger.debug(" /communityContent -> communityContent_GET() 호출");
-    	logger.debug(" post_id : " + post_id);
 
     	// 본문 내용 호출
     	List<Post_boardDTO> PostOneList = cService.PostOneList(post_id);
@@ -256,16 +256,23 @@ public class CommunityController {
 		 // 세션에서 user_id 가져오기
 	    String userId = (String) session.getAttribute("user_id");
 	    logger.debug("세션에서 가져온 user_id: " + userId);
-	    
 	    // user_id를 dto의 admin_id에 설정
 	    pcdto.setComm_writer_id(userId);
 	    pcdto.setPost_id(post_id);
 	    // 답변 등록 로직처리
-        cService.communityCommend(pcdto);
-        logger.debug("pcdto : " + pcdto);
+        if(userId != null) {
+        	cService.communityCommend(pcdto);
+        	logger.debug("pcdto : " + pcdto);
+        	return "redirect:/community/communityContent?post_id=" + post_id;
+	        
+	        } else {
+	        	
+	        	logger.debug("로그인을 해야 댓글을 작성 할 수 있습니다");
+	            session.setAttribute("alertMessage", "로그인을 해야 댓글을 작성 할 수 있습니다");
+
+	        	return "redirect:/login/loginPage";
+	        }
 	    
-	    
-        return "redirect:/community/communityContent?post_id=" + post_id;
 	}	
 	
 	
@@ -283,6 +290,7 @@ public class CommunityController {
 	        
 	        if (user_id == null) {
 	            logger.debug("로그인을 해야 수정을 할 수 있습니다");
+	            session.setAttribute("alertMessage", "로그인을 해야 수정을 할 수 있습니다");
 	            return "redirect:/login/loginPage";
 	        }
 	        
@@ -296,6 +304,7 @@ public class CommunityController {
 	            return "/community/communityModify";
 	        } else {
 	        	logger.debug("본인이 작성한 글이 아닙니다");
+	            session.setAttribute("alertMessage", "본인이 작성한 글이 아닙니다");
 	            return "redirect:/community/communityContent?post_id="+post_id;
 	        }
 	    }
@@ -333,6 +342,8 @@ public class CommunityController {
 	        
 	        if (user_id == null) {
 	            logger.debug("로그인을 해야 삭제를 할 수 있습니다");
+	            session.setAttribute("alertMessage", "로그인을 해야 삭제를 할 수 있습니다");
+
 	            return "redirect:/login/loginPage";
 	        }
 	        
@@ -343,6 +354,7 @@ public class CommunityController {
 	            return "redirect:/community/community";
 	        } else {
 	        	logger.debug("본인이 작성한 글이 아닙니다");
+	        	session.setAttribute("alertMessage", "본인이 작성한 글이 아닙니다");
 	            return "redirect:/community/communityContent?post_id="+post_id;
 	        }
 	    }

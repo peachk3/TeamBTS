@@ -181,7 +181,7 @@
     <input type="hidden" name="post_id" >
     <input type="submit" value="삭제">
 </form>	
-<button type="button" onclick="window.history.back();">취소</button>
+<button type="button" onclick="location.href='/community/community'">목록</button>
 
 
 <!-- 댓글 목록 -->
@@ -211,7 +211,16 @@
 
 
 
-
+    <script type="text/javascript">
+        <%-- alertMessage가 존재할 경우에만 alert 창을 띄움 --%>
+        <% if (session.getAttribute("alertMessage") != null) { %>
+            alert("<%= session.getAttribute("alertMessage") %>");
+        <% 
+            // alert를 한 번 띄운 후 session에서 해당 메시지를 삭제
+            session.removeAttribute("alertMessage");
+           %>
+        <% } %>
+    </script>
 
 
 

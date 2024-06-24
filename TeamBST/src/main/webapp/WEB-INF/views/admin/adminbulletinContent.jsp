@@ -201,6 +201,7 @@ textarea {
 				</div>
 
 				<hr>
+    <button type="button" onclick="location.href='/admin/adminBulletin'">목록</button>
 
 				<!-- 답변 부분 -->
 				<c:if test="${not empty commend}">
