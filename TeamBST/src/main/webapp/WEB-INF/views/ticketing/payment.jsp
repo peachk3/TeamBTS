@@ -29,7 +29,7 @@
 }
 
 #kakaoPay {
-	width: 100px;
+	width: 150px;
 	height: 80px;
 	text-align: center;
 }
@@ -210,7 +210,7 @@ select {
 	<div class="reserve_content">
 		<div class="reserve_left">
 
-			<div class="paymethod">
+			<div class="paymethod" onclick="kakaoPay()">
 				<p>카카오페이</p>
 				<img id="kakaoPay" src="../resources/img/kakaoPay.jpg" alt="kakaoPay">
 			</div>
@@ -316,7 +316,8 @@ select {
 
 	</div>
 	<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>		
-
+	<button id="payment">구매하기</button> <!-- 결제하기 버튼 생성 -->
+    <script src="payment.js"></script>
 
 
 
@@ -431,68 +432,30 @@ const bookFee = seatCount * 1000;
         history.back();
     }
     
-    document.getElementById("paymethod").addEventListener("click", function() {
-        // Replace the URL with the actual payment window URL
-        window.open("https://example.com/payment", "PaymentWindow", "width=600,height=400");
-    });
     
     
     function kakaoPay() {
-        const myAmount = Number(document.getElementById("amount").value);
-
-        const IMP = window.IMP; // 생략 가능
-        IMP.init("가맹점식별코드"); // Example: imp00000000
-        IMP.request_pay(
-          {
-            // param
-            pg: "kakaopay",
-            pay_method: "card",
-            name: "마우스",
-            amount: myAmount,
-            buyer_email: "gildong@gmail.com",
-            buyer_name: "홍길동",
-            buyer_tel: "010-4242-4242",
-            buyer_addr: "서울특별시 강남구 신사동",
-            buyer_postcode: "01181",
-            m_redirect_url: "", // 모바일 결제후 리다이렉트될 주소!!
-          },
-          async (rsp) => {
-            // callback
-            if (rsp.success) {
-              // 결제 성공시
-              await axios.post(
-                "http://localhost:3000/graphql",
-                {
-                  query: `
-                      mutation {
-                        buyTicket(impUid: "${rsp.imp_uid}", amount: ${rsp.paid_amount},pay_method:"${rsp.pay_method}") {
-                          id
-                          count
-                          money
-                          method
-                        }
-                      }
-                    `,
-                },
-                {
-                  headers: {
-                    authorization:
-                      "Bearer 액세스토큰",
-                  },
-                }
-              );
-            } else {
-              // 결제 실패시
-            }
-          }
-        );
-      }
+    	//전달할 데이터
+    	// 구매자명
+    	// 경기 일정(날짜, 해당 팀, 해당 구장, 경기 일시)
+    	// 좌석 정보(좌석)
+    	// 결제 정보 (가격(수수료를 포함한 총액))
+    	// 취소 가능 일자
+    	
+    	
+    	window.open("https://example.com/payment", "PaymentWindow", "width=600,height=400");
     
+    	
+    
+    }
+//     document.getElementById("paymethod").addEventListener("click", function() {
+//         // Replace the URL with the actual payment window URL
+        
+//     });
+    
+    
+       
     
     </script>
-    
-    
-    
-    
 </body>
 </html>

@@ -104,38 +104,10 @@
         console.log('Selected zone type:', zone_ty);
         console.log('Selected zone ID:', zone_id);
 
-        // Navigate to the next page with query parameters
-//         const nextPage = 'nextPage.jsp'; // Change this to the actual next page URL
         const url = "/ticketing/displaySeats?stad_id=${stad_id}&game_id=${game_id}&zone_ty=" + zone_ty + "&zone_id="+ zone_id;
         window.location.href = url;
     }
-//     console.log('Selected zone:',zone_id);
-    
-//     }
-// 	function selectZone(zone) {
-// 	    document.getElementById('selectedZone').value = zone;
-// 	    document.getElementById('zoneForm').submit();
-// 	}
-// document.addEventListener("DOMContentLoaded", function() {
-// 	Cfunctsion selectZone(zone_ty){
-		
-// 		const stad_id = document.getElementById("stad_id").value;
-// 		document.getElementById("stad_id").value;
-// 		const game_id = document.getElementById("game_id").value;
-// 		document.getElementById("game_id").value;
-// 		const zone_id = document.getElementById("zone_id").value;
-		
-// 		zone_ty + stad_id
-// 		const zone_id = stad_id + zone_ty;
-		
-// 		const url = "/ticketing/displaySeats/" + stad_id + "/" + game_id + "/" + zone_ty;
-// 		const url = "/ticketing/displaySeats/" + stad_id + "/" + game_id + "/"+ zone_ty + "/"+ zone_id ;
-// 		const url = "/ticketing/displaySeats?stad_id=${stad_id}&game_id=${game_id}&zone_ty=${zone_ty}&zone_id=${zone_id}";
-// 		window.location.href= url;
-		
-// 	}
-// 	 window.selectZone = selectZone;
-// });	 
+
 </script>
 
 </body>

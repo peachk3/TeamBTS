@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.xml.stream.events.Namespace;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.Game_scheduleDTO;
 import com.itwillbs.domain.SeatDTO;
@@ -88,23 +86,6 @@ public class StadiumDAOImpl implements StadiumDAO {
 		sqlSession.update(NAMESPACE + "postSelectedSeat" , params);
 	}
 	
-	
-//	@Override
-//	public Game_scheduleDTO getStadiumById(String stad_id) {
-//		logger.debug("getStadiumById(String game_id) 호출");
-//	
-//		return sqlSession.selectOne(NAMESPACE + "getStadiumById", stad_id);
-//	}
-	
-
-//	@Override
-//	public List<SeatDTO> getSeatsId(String zone_id) {
-//		
-//		logger.debug("getSeatsId(String seat_id) 호출");
-//		
-//		
-//		return sqlSession.selectList(NAMESPACE + "getSeatsId", zone_id);
-//	}
 	@Override
 	public List<SeatDTO> getSeatsId(String game_id, String zone_id) {
 		
@@ -115,60 +96,12 @@ public class StadiumDAOImpl implements StadiumDAO {
 		
 		return sqlSession.selectList(NAMESPACE + "getSeatsId", params);
 	}
-	
-	
-//	@Override
-//	public List<SeatDTO> getSeatsId(String zone_id, String game_id) {
-//		
-//		logger.debug("getSeatsId(String seat_id, String game_id) 호출");
-//		Map<String, String> params = new HashMap<>();
-//		
-//		
-//		return sqlSession.selectList(NAMESPACE + "getSeatsId", params);
-//	}
 
-
-
-//	@Override
-//	public List<Seat_bookDTO> getBookedAt(String game_id, String zone_id) {
-//		logger.debug("getBookedAt(String game_id, String zone_id) 호출");
-//		Map<Object, Object> params = new HashMap<>();
-//	    params.put("game_id", game_id);
-//	    params.put("zone_id", zone_id);
-//		return sqlSession.selectList(NAMESPACE + "getbBookedAt", params);
-//	}
-
+	@Override
+	public List<Seat_bookDTO> getSeatBooked(String zone_id) {
+		logger.debug("getSeatBooked(String zone_id) 호출");
+		
+		return sqlSession.selectList(NAMESPACE + "getSeatBooked", zone_id);
+	}
 	
-
-	
-//	@Override
-//	public List<SeatDTO> getSelectedSeat(String seat_id) {
-//		logger.debug("getSelectedSeat(String seat_id) 호출");
-//		return sqlSession.selectList(NAMESPACE + "getSelectedSeat", seat_id);
-//	}
-
-	
-	
-//	@Override
-//	public SeatDTO getSeatByZone(String seat_id) {
-//		logger.debug("getSeatByZone(String seat_id) 호출");
-//		
-//		
-//		return sqlSession.selectList(NAMESPACE + "getSeatsById", seat_id);
-//	}
-	
-	
-	
-
-//	@Override
-//	public List<SeatDTO> getSeatsByZoneId(String zone_id) {
-//		logger.debug("getSeatsByZoneId(String zone_id) 호출");
-//		List<SeatDTO> seatList = sqlSession.selectList(NAMESPACE + "getSeatsByZoneId", zone_id);
-//		return seatList;
-//	}
-
-
-	
-	
-
 }

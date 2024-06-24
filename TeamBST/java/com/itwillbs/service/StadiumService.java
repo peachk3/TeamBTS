@@ -34,28 +34,8 @@ public interface StadiumService {
 
 	// 좌석 정보 업데이트 (booked_at = 1로 업데이트)
 	public void postSelectedSeat(Integer game_id, String seat_id);
-	
-//	public List<SeatDTO> getSeatsId(String zone_id)
-	
-	
-//	public Game_scheduleDTO getStadiumById(String stad_id);
-	
-//	public ZoneDTO getZonesByStadiumId(String Zone_id);
-	
-//	public List<ZoneDTO> getZonesByStadiumId(String stad_id);
-	
-//	public List<SeatDTO> getSeatsByZoneId(String zone_id);
-	
-//	public SeatDTO getSeatById(String seat_id);
 
-//	public List<SeatDTO> getSeatsByZone(String zone_ty, String game_id);
-	
-//	public List<Seat_bookDTO> getBookedAt(String game_id, String zone_id);
-
-//	public String getZoneId(String zone_ty, String game_id);
-
-//	int getSelectedSeat(String game_id);
-
-	// public List<SeatDTO> getSelectedSeat(String seat_id);
+	// 예매 가능 좌석 및 여부 출력 
+	public List<Seat_bookDTO> getSeatBooked(String zone_id);
 	
 }

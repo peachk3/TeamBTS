@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -255,7 +255,12 @@ select {
 
 				<!-- ******** 선택된 좌석 리스트로 출력해야 함! ******** -->
 				<div>
-					선택 좌석 : ${seat_id } <p id="seatInfo"></p>
+				<%
+					String[] seat_rows = request.getParameterValues("seat_row");
+        			String[] seat_nums = request.getParameterValues("seat_num");
+        			String[] seat_ids = request.getParameterValues("seat_id"); 
+        		%>
+					선택 좌석 : <p id="seatInfo"></p>
 				</div>
 <%-- 				<c:forEach var="zone" items="${param.zone_ty}" varStatus="status"> --%>
 <%-- 				</c:forEach> --%>
@@ -320,13 +325,13 @@ select {
 	<p>Game ID : ${game_id }</p>
 	<p>Zone TY : ${zone_ty }</p>
 	<p>Zone ID : ${zone_id }</p>
-	<P>Seat ID : ${seat_id }</P>
+	<P>Seat ID : ${param.seatIds }</P>
+	
 <!-- 	<p>Seat ID : <p id="seatInfo"></p> -->
 
 
 
-<script type="text/javascript">
-
+<script type="text/javascript">    
 		// 현재 URL
 		const currentUrl = window.location.href;
 
@@ -505,12 +510,12 @@ select {
 	    
 	    
 	    function displayParameters() {
-            var params = new URLSearchParams(window.location.search);
+//             var params = new URLSearchParams(window.location.search);
 
             var zoneTypes = params.get("zone_ty").split(",");
             var seatRows = params.get("seat_row").split(",");
             var seatNums = params.get("seat_num").split(",");
-            var seatInfo = [];
+//             var seatInfo = [];
 
             for (var i = 0; i < seatRows.length; i++) {
                 seatInfo.push(zoneTypes + "구역" + seatRows[i] + "열 " + seatNums[i] + "번");
