@@ -37,12 +37,11 @@
 
 <body>
 <nav>
-		<a href="/main/main"><h1>야모해</h1></a>
 			<c:choose>
 				<c:when test="${empty sessionScope.user_id}">
 					<!-- 로그인하지 않은 경우 -->
 					<a href="/login/loginPage">로그인</a>
-					| <a href="/login/signupPage">회원가입</a>
+					<a href="/login/signupPage">회원가입</a>
 				</c:when>
 				<c:when test="${sessionScope.user_id == 'admin'}">
 					<!-- 관리자일 경우 -->

@@ -37,7 +37,6 @@
 
 <body>
 <nav>
-		<a href="/main/main"><h1>야모해</h1></a>
 			<c:choose>
 				<c:when test="${empty sessionScope.user_id}">
 					<!-- 로그인하지 않은 경우 -->
@@ -71,7 +70,7 @@
 <nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
   <div class="container-fluid p-0">
       <!-- logo -->
-      <a class="navbar-brand" href="/main/main">
+      <a class="navbar-brand" href="/admin/adminMember">
         <img src="/resources/images/logo1.png" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
