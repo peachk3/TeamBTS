@@ -79,7 +79,7 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 	
 	if(resultDTO == null) {
 		logger.debug("로그인 실패");
-		
+        session.setAttribute("alertMessage", "로그인에 실패하였습니다");
 		return "redirect:/login/loginPage";
 	}
 	
