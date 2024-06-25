@@ -102,6 +102,13 @@ public class MypageServiceImpl implements MypageService {
 		
 		return mypageDAO.TicketList(cate);
 	}
+
+	@Override
+	public String getPassword(String user_id) throws Exception {
+
+		
+		return mypageDAO.getPassword(user_id);
+	}
 	
 	
     

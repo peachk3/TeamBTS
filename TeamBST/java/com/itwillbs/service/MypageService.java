@@ -55,5 +55,8 @@ public interface MypageService {
  	// 내 티켓 목록
 	public List<Game_scheduleDTO> TicketList(Category cate) throws Exception;
 
+	// 아이디 비번 비교
+	public String getPassword(String user_id) throws Exception;
+
 
 }
