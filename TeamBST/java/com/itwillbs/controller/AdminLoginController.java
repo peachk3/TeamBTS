@@ -66,7 +66,8 @@ public class AdminLoginController {
         
         if (resultDTO == null) {
             logger.debug("관리자 로그인 실패");
-            
+            session.setAttribute("alertMessage", "로그인에 실패하였습니다");
+
             
             return "redirect:/login/AdminLoginPage	";
         }
