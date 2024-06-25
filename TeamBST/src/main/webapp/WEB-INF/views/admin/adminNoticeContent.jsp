@@ -72,6 +72,6 @@
                 <button type="button" onclick="window.history.back();">취소</button>
    
 </c:forEach>
-   
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

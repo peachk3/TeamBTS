@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
-
-
-
-
 	<!--begin::Card-->
 	<div class="card card-custom gutter-b example example-compact">
 		<div class="card-header">
@@ -70,6 +66,6 @@
 		<!--end::Form-->
 	</div>
 	<!--end::Card-->
-
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

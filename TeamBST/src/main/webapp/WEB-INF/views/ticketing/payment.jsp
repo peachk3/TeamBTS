@@ -18,6 +18,7 @@
 <!-- 포트원 결제 -->
     <title>Payment Page</title>
 </head>
+<%@ include file="../include/header.jsp"%>
 <body>
 <style>
 
@@ -457,5 +458,6 @@ const bookFee = seatCount * 1000;
        
     
     </script>
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

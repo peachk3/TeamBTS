@@ -11,7 +11,7 @@
     <link href="/../../resources/css/index.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
-
+<%@ include file="../include/header.jsp"%>
 <body>
 <style>
 /* css */
@@ -343,6 +343,6 @@ function goBack() {
 }
 
 </script>
-
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

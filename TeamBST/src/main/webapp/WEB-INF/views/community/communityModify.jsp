@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
-
-
-
 <c:forEach var="post" items="${PostOneList}">
 	<!--begin::Card-->
 	<div class="card card-custom gutter-b example example-compact">
@@ -80,6 +77,6 @@
 	</div>
 	<!--end::Card-->
 </c:forEach>
-
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

@@ -15,6 +15,6 @@
         <p style="color:red">${error}</p>
     </c:if>
 </fieldset>
-    
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

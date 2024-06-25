@@ -57,5 +57,6 @@
 <!--end::Form-->
 
 <!--end::Card-->
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
