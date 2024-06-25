@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
@@ -69,9 +70,10 @@ public class MypageController {
     
     
     //http://localhost:8088/mypage/updateForm
+    //http://localhost:8088/mypage/updateForm
     // 회원정보 수정 - 기존 회원정보
     @GetMapping(value = "/updateForm")
-    public void updateGET(HttpSession session, Model model) throws Exception {
+    public void updateGET(HttpSession session, Model model) throws Exception{
         String user_id = (String) session.getAttribute("user_id");
         
         // 서비스 -> DAO 회원정보 조회
@@ -84,15 +86,25 @@ public class MypageController {
         // 연결된 뷰페이지(/mypage/update.jsp)에 출력
     }
     
-    // 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
+ // 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
     @RequestMapping(value = "/updateForm", method = RequestMethod.POST)
-    public String updatePost(UserDTO udto) throws Exception {
-    	logger.debug(" /update -> updatePost() 호출 ");
-    	
-    	// 수정할 회원정보를 저장
-    	logger.debug(" udto : " + udto);
-    	
-    	// Service -> DAO 회원정보 수정
+    public String updatePost(@RequestParam("user_id") String user_id, 
+                             @RequestParam("user_pwd") String user_pwd,
+                             UserDTO udto, HttpSession session, Model model) throws Exception {
+        logger.debug(" /update -> updatePost() 호출 ");
+        
+        // 사용자 ID로 현재 비밀번호 조회
+        String currentPwd = mService.getPassword(user_id);
+        
+        // 입력한 비밀번호와 현재 비밀번호를 비교
+        if (!user_pwd.equals(currentPwd)) {
+            session.setAttribute("alertMessage", "비밀번호가 틀려 수정에 실패했습니다");
+            UserDTO resultDTO = mService.getMember(user_id);
+            model.addAttribute("resultDTO", resultDTO);
+        	return "mypage/updateForm"; // 수정 페이지로 다시 이동
+        }
+        
+        // 비밀번호가 일치하면 회원정보 수정
         mService.updateMember(udto);
         
         return "redirect:/mypage/mypage";

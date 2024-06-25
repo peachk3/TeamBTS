@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <table border="1">
 	<tr>
 		<td>장소</td>
@@ -13,23 +12,22 @@
 		<td>예매하기 버튼</td>
 	</tr>
 
-
-
-	<c:forEach var="vo" items="${homeTeamInfoList}">
-		<tr>
-			<td>${vo.stad_id}</td>
-			<td>${vo.game_time}</td>
-			<td>${vo.game_date}</td>
-			<td>${vo.home_team_id}</td>
-	</c:forEach>
-	<c:forEach var="vo" items="${awayTeamInfoList}">
-			<td>vs</td>
-			<td>${vo.away_team_id}</td>
-			<td><a href="/ticketing/stadium/stad_id=${vo.stad_id }">예매하기</a></td>
-		</tr>
-	</c:forEach>
+    <c:forEach var="vo" items="${homeTeamInfoList}">
+        <tr>
+            <td>${vo.stad_id}</td>
+            <td>${vo.game_time}</td>
+            <td>${vo.game_date}</td>
+            <td>${vo.home_team_id}</td>
+        </tr>
+    </c:forEach>
+    <c:forEach var="vo" items="${awayTeamInfoList}">
+        <tr>
+            <td>vs</td>
+            <td>${vo.away_team_id}</td>
+            <td><a href="/ticketing/stadium?stad_id=${vo.stad_id}&game_id=${game_id}">예매하기</a></td>
+        </tr>
+    </c:forEach>
 </table>
-
 
 
 <!-- 경기장 , 홈팀 ,어웨이 팀 사진  -->

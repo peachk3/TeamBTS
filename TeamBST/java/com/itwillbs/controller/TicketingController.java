@@ -94,7 +94,8 @@ public class TicketingController {
 		
 		model.addAttribute("homeTeamInfoList", homeTeamInfoList);
 		model.addAttribute("awayTeamInfoList", awayTeamInfoList);
-		
+	    model.addAttribute("game_id", game_id); // game_id를 모델에 추가
+
 		 
 		// 새로운 JSP 페이지로 이동
 		return "/ticketing/gameInfo"; // 반환할 JSP 페이지 이름
@@ -128,8 +129,9 @@ public class TicketingController {
         	logger.debug("zones : " + zones);
         	return "/ticketing/stadium";
         } else {
-        	
+
         	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
+        	session.setAttribute("alertMessage", "로그인을 해야 예매하기를 할 수 있습니다");
         	
         	return "/login/loginPage";
         }

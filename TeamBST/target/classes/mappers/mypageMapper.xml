@@ -118,6 +118,10 @@
 	WHERE quest_id=#{quest_id}
   </select>
   
+  <!-- 아이디 비번 비교 -->
+  <select id="getPassword" resultType="string" parameterType="string">
+    SELECT user_pwd FROM user WHERE user_id = #{user_id}
+</select>
   
   
   <!-- 내 지난경기목록 -->

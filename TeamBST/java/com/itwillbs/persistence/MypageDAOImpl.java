@@ -113,6 +113,13 @@ public class MypageDAOImpl implements MypageDAO {
 		return sqlSession.selectList(NAMESPACE + "ticketList", cate);
 	}
 
+	@Override
+	public String getPassword(String user_id) throws Exception {
+
+		
+        return sqlSession.selectOne(NAMESPACE+"getPassword", user_id);
+	}
+
 	
 	
 	

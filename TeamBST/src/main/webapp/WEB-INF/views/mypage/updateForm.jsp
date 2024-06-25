@@ -21,5 +21,28 @@
 			<input type="button" class="btn" value="마이페이지" onclick="location.href='/mypage/mypage'">
 		</form>
 	</fieldset>
+	
+	
+	
+	 <script type="text/javascript">
+        <%-- alertMessage가 존재할 경우에만 alert 창을 띄움 --%>
+        <% if (session.getAttribute("alertMessage") != null) { %>
+            alert("<%= session.getAttribute("alertMessage") %>");
+        <% 
+            // alert를 한 번 띄운 후 session에서 해당 메시지를 삭제
+            session.removeAttribute("alertMessage");
+           %>
+        <% } %>
+        </script>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
