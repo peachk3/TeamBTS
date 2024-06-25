@@ -100,11 +100,12 @@ public String generalLogoutPOST(HttpSession session) {
 	return "redirect:/login/loginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
 }
 
+
 //-----------------------------------------------------
 //아이디 중복 체크 
 @GetMapping("/idCheck")
 @ResponseBody
-public int idCheck(@RequestParam("user_id")String user_id)throws Exception{
+public int idCheck(@RequestParam("user_id")String user_id) throws Exception{
 	logger.debug("user_id" + user_id);
 	
 	int result = mService.idCheck(user_id);
