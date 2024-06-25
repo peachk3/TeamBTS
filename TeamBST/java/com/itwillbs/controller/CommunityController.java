@@ -206,7 +206,7 @@ public class CommunityController {
 	        } else {
 	        	
 	        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
-	            session.setAttribute("alertMessage", "로그인을 해야 예매하기를 할 수 있습니다");
+	            session.setAttribute("alertMessage", "로그인을 해야 글을 작성할 수 있습니다");
 
 	        	return "redirect:/login/loginPage";
 	        }
