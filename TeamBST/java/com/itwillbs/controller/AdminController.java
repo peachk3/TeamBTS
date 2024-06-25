@@ -43,17 +43,9 @@ public class AdminController {
 //		logger.debug("관리자 페이지 호출");
 //		// id정보 가져오기
 		String user_id = (String) session.getAttribute("user_id");
-//        
 		logger.debug("user_id : "+user_id);
-//        // 서비스 -> DAO 회원정보 조회
-//        AdminDTO resultDTO = aService.getMember(user_id);
-//        logger.debug("회원정보: " + resultDTO);
-//        
-//        // 연결된 뷰페이지(/mypage/info.jsp)에 정보 전달
-//        model.addAttribute("resultDTO", resultDTO);
-//        
-//        // 뷰페이지 이동
-//    	return "/admin/admin";  // admin.jsp로 이동
+		
+		// 회원정보 조회
 	    AdminDTO resultDTO = aService.getMember(user_id);
 	    logger.debug("회원정보: " + resultDTO);
 	    
@@ -88,7 +80,7 @@ public class AdminController {
         // 연결된 뷰페이지(/admin/adminUpdate.jsp)에 출력
     }
     
-    // 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
+    // 관리자 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
     @RequestMapping(value = "/adminUpdateForm", method = RequestMethod.POST)
     public String updatePost(AdminDTO adto) throws Exception {
     	logger.debug(" /update -> updatePost() 호출 ");
@@ -105,7 +97,7 @@ public class AdminController {
 	
 	
     //http://localhost:8088/mypage/adminDeleteMember
-    // 회원정보 삭제 - 사용자의 비밀번호 입력 / 아이디 세션
+    // 관리자 회원정보 삭제 - 사용자의 비밀번호 입력 / 아이디 세션
     @GetMapping(value = "/adminDeleteMember")
     public void deleteGET(HttpSession session, Model model) throws Exception {
     	String user_id = (String) session.getAttribute("user_id");
@@ -113,7 +105,7 @@ public class AdminController {
     	model.addAttribute("resultDTO", resultDTO);
     }
     
-    // 회원정보 삭제
+    // 관리자 회원정보 삭제
     @PostMapping(value = "/adminDeleteMember")
     public String deleteMember(AdminDTO adto, HttpSession session,Model model) throws Exception {
     	logger.debug(" /deleteMember -> deleteMember() 호출 ");
@@ -149,9 +141,19 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminNotice",method=RequestMethod.GET)
-	public String adminNotice_GET(Criteria cri,Model model) throws Exception{
+	public String adminNotice_GET(HttpSession session,Criteria cri,Model model) throws Exception{
 		logger.debug("관리자 공지사항 리스트 호출");
-		
+//		// id정보 가져오기
+	    String user_id = (String) session.getAttribute("user_id");
+	    logger.debug("user_id : "+user_id);
+	    AdminDTO resultDTO = aService.getMember(user_id);
+
+	    // 관리자인지 확인
+	    if (resultDTO == null || !resultDTO.isAdmin()) {
+	        logger.debug("관리자가 아님");
+	        return "redirect:/login/AdminLoginPage";
+	    }
+	    
 		// 서비스 -> DB의 정보를 가져오기
 //		List<Notice_boardDTO> nBoardList = aService.NoticeList();
 		
@@ -196,11 +198,11 @@ public class AdminController {
 	public void adminNoticeWrite_GET(Notice_boardDTO dto, HttpSession session) {
 	    logger.debug("관리자 공지사항 글쓰기 호출");
 	    logger.debug(" /adminNoticeWrite -> adminNoticeWrite_GET() 호출");
-
+	    
 	    // 세션에서 user_id 가져오기
 	    String userId = (String) session.getAttribute("user_id");
 	    logger.debug("세션에서 가져온 user_id: " + userId);
-
+	    
 	    // user_id를 dto의 admin_id에 설정
 	    dto.setAdmin_id(userId);
 
@@ -297,9 +299,18 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminMember",method=RequestMethod.GET)
-	public String adminMember_GET(Model model) throws Exception{
+	public String adminMember_GET(HttpSession session,Model model) throws Exception{
 		logger.debug("관리자 회원현황 호출");
-		
+//		// id정보 가져오기
+	    String user_id = (String) session.getAttribute("user_id");
+	    logger.debug("user_id : "+user_id);
+	    AdminDTO resultDTO = aService.getMember(user_id);
+
+	    // 관리자인지 확인
+	    if (resultDTO == null || !resultDTO.isAdmin()) {
+	        logger.debug("관리자가 아님");
+	        return "redirect:/login/AdminLoginPage";
+	    }
 		// 일반 회원수 출력
 		int generalMemberNum = aService.generalMemberCount();
 		model.addAttribute("generalMemberNum", generalMemberNum);
@@ -374,9 +385,18 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminSchedule",method=RequestMethod.GET)
-	public String adminSchedule_GET(Criteria cri,Model model) throws Exception {
+	public String adminSchedule_GET(HttpSession session,Criteria cri,Model model) throws Exception {
 		logger.debug("관리자 경기일정 호출");
+//		// id정보 가져오기
+	    String user_id = (String) session.getAttribute("user_id");
+	    logger.debug("user_id : "+user_id);
+	    AdminDTO resultDTO = aService.getMember(user_id);
 
+	    // 관리자인지 확인
+	    if (resultDTO == null || !resultDTO.isAdmin()) {
+	        logger.debug("관리자가 아님");
+	        return "redirect:/login/AdminLoginPage";
+	    }
 		// 서비스 -> DB의 정보를 가져오기
 //		List<Game_scheduleDTO> gScheduleList = aService.ScheduleList();
 
