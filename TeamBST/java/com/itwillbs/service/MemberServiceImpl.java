@@ -1,5 +1,5 @@
 package com.itwillbs.service;
-
+import java.util.HashMap;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.domain.UserDTO;
 import com.itwillbs.persistence.MemberDAO;
 
+
+import java.util.Random;
 /**
  * 서비스는 컨트롤러와 DAO를 연결
  * => 서비스는 DAO를 호출한다 -> DAO는 mapper를 통해 db와 연결
@@ -28,6 +30,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Inject
 	private MemberDAO mdao;
+	
 
 	//회원가입
 	@Override
@@ -51,6 +54,58 @@ public class MemberServiceImpl implements MemberService{
 		
 		return resultDTO;
 		
+	}
+
+	//아이디 중복체크 
+	@Override
+	public int idCheck(String user_id) throws Exception {
+		int result = mdao.idCheck(user_id);
+		
+		logger.debug("result : 	"+ result);
+		
+		return result;
+	}
+
+	//닉네임 중복체크
+	@Override
+	public int nickCheck(String user_nick) throws Exception {
+		int result = mdao.nickCheck(user_nick);
+		
+		logger.debug("result" + result);
+		
+		return result;
+	}
+
+	
+	//핸드폰번호 중복체크
+	
+	@Override
+	public int phoneCheck(String user_phone) throws Exception {
+
+		int result  = mdao.phoneCheck(user_phone);
+		
+		logger.debug("result :" + result);
+		
+		return result;
+	}
+
+	//이메일 중복체크
+		@Override
+		public int emailCheck(String user_email) throws Exception {
+			int result = mdao.emailCheck(user_email);
+			
+			logger.debug("result" + result);
+			
+			return result;
+		}
+	
+
+	//아이디 찾기
+
+	@Override
+	public UserDTO findId(UserDTO udto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -58,12 +58,15 @@ public interface AdminDAO {
 	
 	
 
-	
-	
-	
-
 	// 일반 회원 예매 내역 조회
 	public List<Game_scheduleDTO> memberTicketingList(String user_id) throws Exception;
+	
+	// 일반 회원 예매 내역 조회 - gpt 코드
+	
+	 List<Game_scheduleDTO> memberTicketingList(String user_id, Criteria cri) throws Exception;
+    int getTotalCount(String user_id) throws Exception;
+	
+
 
 	// 관리자 공지사항 수정
 	public void adminNoticeModify(Notice_boardDTO nbdto) throws Exception;
@@ -122,5 +125,8 @@ public interface AdminDAO {
 	// 관리자 개인정보 탈퇴
 	public int deleteAdminMember(AdminDTO adto) throws Exception;
 
-	
+	// 관리자 문의게시글의 답변 적기
+	public List<Question_commendDTO> selectCommentsByQuestId(int quest_id) throws Exception;
+
+    public int countAnswersByQuestId(int quest_id);
 }

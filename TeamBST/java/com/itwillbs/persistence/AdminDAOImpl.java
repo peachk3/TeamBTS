@@ -1,7 +1,8 @@
 package com.itwillbs.persistence;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -153,6 +154,28 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		return sqlSession.selectList(NAMESPACE+"memberTicketingList",user_id);
 	}
+	
+	// 일반회원 예매 내역 조회 - gpt 코드
+	
+	  @Override
+	    public List<Game_scheduleDTO> memberTicketingList(String user_id, Criteria cri) throws Exception {
+	        logger.debug("DAO: memberTicketingList(user_id, cri) 호출");
+	        
+	        Map<String, Object> params = new HashMap<>();
+	        params.put("user_id", user_id);
+	        params.put("cri", cri);
+	        
+	        return sqlSession.selectList(NAMESPACE + "memberTicketingList", params);
+	    }
+
+	    @Override
+	    public int getTotalCount(String user_id) throws Exception {
+	        logger.debug("DAO: getTotalCount(user_id) 호출");
+	        return sqlSession.selectOne(NAMESPACE + "getTotalCount", user_id);
+	    }
+	
+	
+	
 
 	@Override
 	public void adminNoticeModify(Notice_boardDTO nbdto) throws Exception {
@@ -301,6 +324,17 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		return sqlSession.delete(NAMESPACE + "deleteAdminMember", adto);
 	}
+
+	@Override
+	public List<Question_commendDTO> selectCommentsByQuestId(int quest_id) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"selectCommentsByQuestId", quest_id);
+	}
+	
+	 public int countAnswersByQuestId(int quest_id) {
+	        return sqlSession.selectOne(NAMESPACE + "countAnswersByQuestId", quest_id);
+	    }	
+	
+	
 	
 	
 	

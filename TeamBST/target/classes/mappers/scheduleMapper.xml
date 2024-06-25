@@ -20,10 +20,11 @@
 		    <choose>
 		        <when test="!_parameter.equals('All')">
 		     	   select * from game_schedule
-		            where stad_id = #{stad_id}
+		           WHERE stad_id = #{stad_id}
+         				 AND game_date BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 30 DAY)
 		        </when>
 	           <when test="_parameter.equals('All')">
-		     	   select * from game_schedule
+		     	   select * from game_schedule  WHERE game_date BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 30 DAY)
 		        </when>
 		</choose>
 	</select>

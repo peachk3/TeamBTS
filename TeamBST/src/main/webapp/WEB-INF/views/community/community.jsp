@@ -70,9 +70,16 @@
 	<br>
 
 
+
+
+
+
+
+
+
 	<button onclick="location.href='/community/communityWrite'">글쓰기</button>
 	
-	<script>
+<!-- 	<script>
 	
 	$(document).ready(function(){
 
@@ -119,8 +126,80 @@
         });
 	}
 	
-	</script>
+	</script> -->
 
+<div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+        <c:if test="${pageDTO.prev }">
+            <li><a href="javascript:void(0);" onclick="getMemberList(${pageDTO.startPage - 1});">«</a></li>
+        </c:if>
+        
+        <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+            <li ${pageDTO.cri.page == i ? 'class="active"' : '' }><a href="javascript:void(0);" onclick="getMemberList(${i});">${i }</a></li>
+        </c:forEach>
+        
+        <c:if test="${pageDTO.next && pageDTO.endPage > 0 }">
+            <li><a href="javascript:void(0);" onclick="getMemberList(${pageDTO.endPage + 1});">»</a></li>
+        </c:if>
+    </ul>
+</div>
+
+<script>
+function getMemberList(page) {
+    var sale_status = $('#sale_status').val();
+    var stad_id = $('#stad_id').val();
+    
+    $('table td').remove();
+    
+    var category = {
+        sale_status: sale_status,
+        stad_id: stad_id
+    };
+    
+    $.ajax({
+        url: "/community/community",
+        type: "post",
+        data: JSON.stringify(category),
+        contentType: 'application/json; charset=utf-8',
+        dataType: "json",
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("page", page);
+            xhr.setRequestHeader("pageSize", 10);
+        },
+        success: function(data) {
+            // body 태그에 내용 추가
+            $(data.pBoardList).each(function(idx, item){
+                var statusLabel = item.sale_status == 'SALE' ? '[판매중]' : '[판매완료]';
+                $('table').append("<tr><td>" + (parseInt(idx)+1) + "</td><td><a href='/community/communityContent?post_id="+ item.post_id +"'>"+ statusLabel +" "+ item.post_sub +"</a></td><td>"+ item.userList[0].user_nick +"</td><td>"+ item.post_cre_date +"</td><td>"+ item.post_view +"</td></tr>");
+            });
+            
+            var paginationHTML = ''; 
+            if(data.pageDTO.prev) {
+                paginationHTML += '<li><a href="javascript:void(0);" onclick="getMemberList(' + (data.pageDTO.startPage - 1) + ');">«</a></li>';
+            }
+            for(var i = data.pageDTO.startPage; i <= data.pageDTO.endPage; i++) {
+                var activeClass = data.pageDTO.cri.page == i ? 'class="active"' : '';
+                paginationHTML += '<li ' + activeClass + '><a href="javascript:void(0);" onclick="getMemberList(' + i + ');">' + i + '</a></li>';
+            }
+            if(data.pageDTO.next && data.pageDTO.endPage > 0) {
+                paginationHTML += '<li><a href="javascript:void(0);" onclick="getMemberList(' + (data.pageDTO.endPage + 1) + ');">»</a></li>';
+            }
+            $('.pagination').html(paginationHTML);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log("AJAX 요청 실패: " + jqXHR.status + ", " + jqXHR.statusText + ", " + textStatus + ", " + errorThrown);
+            alert("AJAX 요청 실패!");
+        }
+    });
+}
+
+$(document).ready(function(){
+    getMemberList(1);
+    $("#sale_status").change(function() { getMemberList(1); });
+    $("#stad_id").change(function() { getMemberList(1); });
+});
+
+</script>
 
 
 

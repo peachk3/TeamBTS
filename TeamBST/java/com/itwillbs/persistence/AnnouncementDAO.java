@@ -6,6 +6,7 @@ import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
+import com.itwillbs.domain.Question_commendDTO;
 
 public interface AnnouncementDAO {
 	
@@ -44,6 +45,9 @@ public interface AnnouncementDAO {
 
 	// 문의 글 페이징 처리
 	public List<Question_boardDTO> questionListPage(Criteria cri) throws Exception;
+
+	// 문의게시글의 답변 확인
+	public List<Question_commendDTO> QuestionCommendList(int quest_id) throws Exception;
 
 
 	

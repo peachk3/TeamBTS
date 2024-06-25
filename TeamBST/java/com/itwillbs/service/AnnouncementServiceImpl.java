@@ -12,6 +12,7 @@ import com.itwillbs.domain.Criteria;
 import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
+import com.itwillbs.domain.Question_commendDTO;
 import com.itwillbs.persistence.AnnouncementDAO;
 import com.itwillbs.persistence.CommunityDAO;
 
@@ -110,6 +111,13 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 		logger.debug(" DAO : getQuestTotalCount() 실행");
 		
 		return adao.getQuestTotalCount();
+	}
+
+	@Override
+	public List<Question_commendDTO> QuestionCommendList(int quest_id) throws Exception {
+
+		
+		return adao.QuestionCommendList(quest_id);
 	}
 
 

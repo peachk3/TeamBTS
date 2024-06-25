@@ -66,7 +66,8 @@ public class AdminLoginController {
         
         if (resultDTO == null) {
             logger.debug("관리자 로그인 실패");
-            
+            session.setAttribute("alertMessage", "로그인에 실패하였습니다");
+
             
             return "redirect:/login/AdminLoginPage	";
         }
@@ -76,4 +77,17 @@ public class AdminLoginController {
         
         return "redirect:/admin/adminMember";
 	}
+	
+	
+	// 관리자 로그아웃
+	@RequestMapping(value = "/adminLogout",method = RequestMethod.POST)
+	public String adminLogoutPOST(HttpSession session) {
+		logger.debug("/logout -> logoutPOST() 호출");
+		session.invalidate(); // 세션 무효화
+		return "redirect:/login/AdminLoginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
+	}
+	
+	
+	
+	
 }

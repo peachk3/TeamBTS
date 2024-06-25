@@ -49,8 +49,8 @@
 		values (#{post_writer_id}, #{post_sub}, #{post_cont}, #{stad_id}, #{photo_url}, #{sale_ty})
 	</insert>
 
-	<!-- 거래 게시글 목록 조회 -->
-	<select id="PostList" resultMap="postMap">
+	<!-- 거래 게시글 목록 조회 - 원래 콬드-->
+<!-- 	<select id="PostList" resultMap="postMap">
 		<![CDATA[
 			select pb.post_sub, pb.post_cre_date, u.user_nick, pb.post_id, pb.sale_status, pb.post_view
 			from post_board pb
@@ -70,9 +70,64 @@
 					end
 				)
 		]]>
-	</select>
+	</select> -->
 
+<!-- gpt 코드 -->
+	<!-- 거래 게시글 목록 조회 -->
+<select id="PostList" resultMap="postMap">
+    <![CDATA[
+        select pb.post_sub, pb.post_cre_date, u.user_nick, pb.post_id, pb.sale_status, pb.post_view
+        from post_board pb
+        join user u
+        on pb.post_writer_id = u.user_id
+        where pb.post_del_at = 'N' 
+            and (
+                case 
+                    when #{cate.sale_status} = 'ALL' then pb.sale_status in ('SALE', 'COMP')
+                    else pb.sale_status = #{cate.sale_status}
+                end
+            )
+            and (
+                case 
+                    when #{cate.stad_id} = 'ALL' then pb.stad_id in ('SJ', 'GJ', 'DG', 'JS', 'GC', 'IC', 'SW', 'DJ', 'CW')
+                    else pb.stad_id = #{cate.stad_id}
+                end
+            )
+        order by pb.post_id desc
+        limit #{cri.pageStart}, #{cri.pageSize}
+    ]]>
+</select>
 
+<!-- 전체 게시글 수 조회 -->
+<select id="getTotalCount" resultType="int">
+    <![CDATA[
+        select count(*)
+        from post_board pb
+        where pb.post_del_at = 'N'
+            and (
+                case 
+                    when #{sale_status} = 'ALL' then pb.sale_status in ('SALE', 'COMP')
+                    else pb.sale_status = #{sale_status}
+                end
+            )
+            and (
+                case 
+                    when #{stad_id} = 'ALL' then pb.stad_id in ('SJ', 'GJ', 'DG', 'JS', 'GC', 'IC', 'SW', 'DJ', 'CW')
+                    else pb.stad_id = #{stad_id}
+                end
+            )
+    ]]>
+</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 거래 게시판 글 내용 조회 -->
 	<select id="PostOneList" resultMap="postMap">
 		select pb.post_sub,pb.post_cre_date, u.user_nick,pb.post_cont,pb.post_writer_id,pb.post_view,pb.post_id,pb.stad_id,pb.sale_status,pb.sale_ty
@@ -103,5 +158,17 @@
 		set post_del_at = 'Y', post_del_date = now()
 		where post_id = #{post_id}
 	</update>
+		
+		
+		<!-- 거래 게시글 댓글 작성 -->
+	<insert id="communityCommend">
+    insert into post_commend(post_id, comm_cont, comm_cre_date, comm_writer_id)
+    values(#{post_id}, #{comm_cont}, now() , #{comm_writer_id})
+	</insert>
+		
+		<!-- 거래 게시글 댓글 확인 -->
+<select id="getComments" parameterType="int" resultType="Post_commendDTO">
+    SELECT * FROM post_commend WHERE post_id = #{post_id}
+</select>
 
 </mapper>

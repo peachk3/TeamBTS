@@ -29,7 +29,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	private static final String NAMESPACE="com.itwillbs.mapper.MemberMapper.";
 	
-
+	//회원가입
 	@Override
 	public void memberJoin(UserDTO mdto) {
 		System.out.println("DAO : memberJoin(mdto) 호출");
@@ -69,8 +69,62 @@ public class MemberDAOImpl implements MemberDAO {
 		//결과를 수정없이 전달
 		return sqlSession.selectOne(NAMESPACE + "loginCheck", sendDTO);
 	}
+	
+	//아이디 중복체크 
+	@Override
+	public int idCheck(String user_id) throws Exception {
+		int result = sqlSession.selectOne(NAMESPACE+"idCheck",user_id);
+		
+		logger.debug("result : "+ result);
+	
+		return result;
+		
+	}
+	//닉네임 중복체크
+	@Override
+	public int nickCheck(String user_nick) throws Exception {
+		int result = sqlSession.selectOne(NAMESPACE+"nickCheck", user_nick);
+		
+		logger.debug("result : " + result);
+		
+		return result;
+	}
+	
+	//이메일 중복체크
+	@Override
+	public int emailCheck(String user_email) throws Exception {
+		int result = sqlSession.selectOne(NAMESPACE+"emailCheck", user_email);
+		
+		logger.debug("result : " + result );
+		 
+		return result ;
+	}
 
+	//핸드폰 중복체크
+	
+	@Override
+	public int phoneCheck(String user_phone) {
+	
+		int result = sqlSession.selectOne(NAMESPACE+"phoneCheck",user_phone);
+		
+		logger.debug("result : " + result);
+		
+		return result;
+	}
+	
+	
+	
+	//아이디 찾기
+	@Override
+	public UserDTO findId(UserDTO udto) {
 
+		return sqlSession.selectOne(NAMESPACE+"findId",udto.getUser_name());
+	
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -136,6 +136,24 @@ public class AdminServiceImpl implements AdminService{
 		
 		return adao.memberTicketingList(user_id);
 	}
+	
+	
+	// 예매 내역 조회 - gpt 코드
+	   @Override
+	    public List<Game_scheduleDTO> memberTicketingList(String user_id, Criteria cri) throws Exception {
+	        return adao.memberTicketingList(user_id, cri);
+	    }
+
+	    @Override
+	    public int getTotalCount(String user_id) throws Exception {
+	        return adao.getTotalCount(user_id);
+	    }
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public void adminNoticeModify(Notice_boardDTO nbdto) throws Exception {
@@ -288,9 +306,13 @@ public class AdminServiceImpl implements AdminService{
         
         return result > 0;
 	}
-	
-	
-	
-	
 
+	@Override
+	public List<Question_commendDTO> getComments(int quest_id) throws Exception {
+		  return adao.selectCommentsByQuestId(quest_id);
+	}
+	
+    public boolean isAnswered(int quest_id) {
+        return adao.countAnswersByQuestId(quest_id) > 0;
+    }
 }

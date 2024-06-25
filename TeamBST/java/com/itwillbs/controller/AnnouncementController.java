@@ -21,6 +21,7 @@ import com.itwillbs.domain.Notice_boardDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.Post_boardDTO;
 import com.itwillbs.domain.Question_boardDTO;
+import com.itwillbs.domain.Question_commendDTO;
 import com.itwillbs.service.AnnouncementService;
 
 @Controller
@@ -95,7 +96,8 @@ public class AnnouncementController {
         	return "/announcement/bulletinWrite";
         } else {
         	
-        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
+        	logger.debug("로그인을 해야 글쓰기를 할 수 있습니다");
+        	session.setAttribute("alertMessage", "로그인을 해야 글쓰기를 할 수 있습니다");
         	
         	return "redirect:/login/loginPage";
         }
@@ -122,10 +124,10 @@ public class AnnouncementController {
 	
 //  공지사항 게시판 본문 확인하기
 	@GetMapping(value="/announcementContent")
-	public void communityContent_GET(@RequestParam("notice_id") String notice_id, Model model) throws Exception{
+	public void communityContent_GET(@RequestParam("notice_id") String notice_id,Model model) throws Exception{
 		logger.debug("본문 내용 호출");
     	logger.debug(" notice_id : " + notice_id);
-
+        
     	// 조회수 1 증가
     	aService.updateNoticeCount(notice_id);
 
@@ -140,26 +142,77 @@ public class AnnouncementController {
     	
 	}
 	
+	// 기존코드
 //  문의 게시판 본문 확인하기
-	@GetMapping(value="/bulletinContent")
-	public void bulletinContent_GET(@RequestParam("quest_id") int quest_id, Model model) throws Exception{
-		logger.debug("본문 내용 호출");
-    	logger.debug(" quest_id : " + quest_id);
+//	@GetMapping(value="/bulletinContent")
+//	public void bulletinContent_GET(@RequestParam("quest_id") int quest_id,HttpSession session,  Model model) throws Exception{
+//		logger.debug("본문 내용 호출");
+//    	logger.debug(" quest_id : " + quest_id);
+//        String user_id = (String) session.getAttribute("user_id");
+//
+//    	
+//    	// 조회수 1 증가
+//    	aService.updateQuestCount(quest_id);
+//
+//    	List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
+//    	
+//    	List<Question_commendDTO> QuestionCommendList = aService.QuestionCommendList(quest_id);
+//    	
+//    	
+//    	logger.debug("size : "+ QuestionOneList.size());
+//    	logger.debug("size : "+ QuestionOneList);
+//    	
+//		
+//		// 연결된 뷰페이지로 정보 전달
+//		model.addAttribute("QuestionOneList", QuestionOneList);
+//		model.addAttribute("QuestionCommendList", QuestionCommendList);
+//    	
+//	}
+	
+	// 변경된 코드
+//  문의 게시판 본문 확인하기
+@GetMapping(value="/bulletinContent")
+public String bulletinContent_GET(@RequestParam("quest_id") int quest_id, HttpSession session, Model model) throws Exception {
+    logger.debug("본문 내용 호출");
+    logger.debug(" quest_id : " + quest_id);
+    String user_id = (String) session.getAttribute("user_id");
 
-    	
-    	// 조회수 1 증가
-    	aService.updateQuestCount(quest_id);
+    // 조회수 1 증가
+    aService.updateQuestCount(quest_id);
 
-    	
-    	List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
-    	
-		logger.debug("size : "+ QuestionOneList.size());
-		logger.debug("size : "+ QuestionOneList);
-		
-		// 연결된 뷰페이지로 정보 전달
-		model.addAttribute("QuestionOneList", QuestionOneList);
-    	
-	}
+    List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
+
+    // 게시글의 공개 여부와 작성자 아이디 확인
+    if (QuestionOneList.size() > 0) {
+        Question_boardDTO question = QuestionOneList.get(0);
+        String questPublic = question.getQuest_public(); // 비공개 여부 확인
+        String writer_id = question.getQuest_writer_id();
+
+        // 비공개 게시글일 경우 작성자와 현재 사용자 비교
+        if ("N".equals(questPublic) && !writer_id.equals(user_id)) {
+            session.setAttribute("alertMessage", "본인이 작성한 게시글만 열람할수 있는 게시물입니다");
+            return "redirect:/announcement/bulletin"; // 에러 페이지로 이동
+        }
+    }
+
+    List<Question_commendDTO> QuestionCommendList = aService.QuestionCommendList(quest_id);
+
+    logger.debug("size : " + QuestionOneList.size());
+    logger.debug("size : " + QuestionOneList);
+
+    // 연결된 뷰페이지로 정보 전달
+    model.addAttribute("QuestionOneList", QuestionOneList);
+    model.addAttribute("QuestionCommendList", QuestionCommendList);
+    
+    return "/announcement/bulletinContent"; // 뷰 페이지 이름 반환
+}
+
+	
+	
+	
+	
+	
+	
 	
 	
 //  게시판 글 수정하기(기존의 글정보 확인) - GET
@@ -174,6 +227,8 @@ public class AnnouncementController {
 	        
 	        if (user_id == null) {
 	            logger.debug("로그인을 해야 수정을 할 수 있습니다");
+	        	session.setAttribute("alertMessage", "로그인을 해야 수정을 할 수 있습니다");
+
 	            return "redirect:/login/loginPage";
 	        }
 	        
@@ -187,6 +242,8 @@ public class AnnouncementController {
 	            return "/announcement/bulletinModify";
 	        } else {
 	        	logger.debug("본인이 작성한 글이 아닙니다");
+	        	session.setAttribute("alertMessage", "본인이 작성한 글이 아닙니다");
+
 	            return "redirect:/announcement/bulletinContent?quest_id="+quest_id;
 	        }
 	    }
@@ -222,6 +279,8 @@ public class AnnouncementController {
 	        
 	        if (user_id == null) {
 	            logger.debug("로그인을 해야 삭제를 할 수 있습니다");
+	        	session.setAttribute("alertMessage", "로그인을 해야 삭제를 할 수 있습니다");
+
 	            return "redirect:/login/loginPage";
 	        }
 	        
@@ -232,6 +291,8 @@ public class AnnouncementController {
 	            return "redirect:/announcement/bulletin";
 	        } else {
 	        	logger.debug("본인이 작성한 글이 아닙니다");
+	        	session.setAttribute("alertMessage", "본인이 작성한 글이 아닙니다");
+
 	            return "redirect:/announcement/bulletinContent?quest_id="+quest_id;
 	        }
 	    }	

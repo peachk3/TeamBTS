@@ -35,6 +35,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 </head>
 
+<body>
+<nav>
+		<a href="/main/main"><h1>개바리조</h1></a>
+		<h6>
+			<c:choose>
+				<c:when test="${empty sessionScope.user_id}">
+					<!-- 로그인하지 않은 경우 -->
+					<a href="/login/loginPage">로그인</a>
+					| <a href="/login/signupPage">회원가입</a>
+				</c:when>
+				<c:when test="${sessionScope.user_id == 'admin'}">
+					<!-- 관리자일 경우 -->
+					<a href="/admin/admin">마이페이지</a>
+					<form id="logoutForm" action="${pageContext.request.contextPath}/login/logout" method="post" style="display: inline;">
+                    <button type="submit" class="logout-button">로그아웃</button>
+                    </form>
+				</c:when>
+				<c:otherwise>
+					<!-- 일반사용자일 경우 -->
+					<a href="/mypage/mypage">마이페이지</a>
+					<form id="logoutForm" action="${pageContext.request.contextPath}/login/generalLogout" method="post" style="display: inline;">
+                    <button type="submit" class="logout-button">로그아웃</button>
+                    </form>
+				</c:otherwise>
+			</c:choose>
+	
+
 <body class="body-wrapper">
 
 

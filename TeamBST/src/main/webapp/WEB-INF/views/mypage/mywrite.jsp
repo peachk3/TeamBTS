@@ -102,7 +102,7 @@
 	       		// body 태그에 내용 추가
 	       		$(data).each(function(idx, item){
 	       			
-	       			$('table').append("<tr><td>"+ (parseInt(idx)+1) +"</td><td>"+ item.board_sub +"</td><td>"+ item.board_cre_date +"</a></td><td>"+ item.board_view +"</td></tr>")
+	       			$('table').append("<tr><td>"+ (parseInt(idx)+1) +"</td><td>"+ item.board_sub +"</td><td>"+ item.board_cre_date +"</td><td>"+ item.board_view +"</td></tr>")
 	       			
 	       		});
 	       	},
