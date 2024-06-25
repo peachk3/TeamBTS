@@ -37,8 +37,7 @@
 
 <body>
 <nav>
-		<a href="/main/main"><h1>개바리조</h1></a>
-		<h6>
+		<a href="/main/main"><h1>야모해</h1></a>
 			<c:choose>
 				<c:when test="${empty sessionScope.user_id}">
 					<!-- 로그인하지 않은 경우 -->
@@ -61,7 +60,7 @@
 				</c:otherwise>
 			</c:choose>
 	
-
+</nav>
 <body class="body-wrapper">
 
 
@@ -146,6 +145,7 @@
                     <a href="/main/teamPage?team_id=hanhwa">한화</a>
                     <a href="/main/teamPage?team_id=lotte">롯데</a>
                     <a href="/main/teamPage?team_id=kiwoom">키움</a>
+                    <a href="/main/teamPage?team_id=nc">NC</a>
                 </div>
             </div>
         </li>

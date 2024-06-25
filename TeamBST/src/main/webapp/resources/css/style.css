@@ -106,7 +106,7 @@ p, a, li, blockquote, label {
    animation-timing-function: ease;
  }
 }
-/* 슬라이더 */
+/* 슬라이더 끝 */
 
 /* 페이지네이션 */
 .pagination {
@@ -661,7 +661,7 @@ select.form-control:not([size]):not([multiple]) {
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
-  margin-left: 500px;
+  margin-left: 800px;
 }
 
 .signup-btn {
