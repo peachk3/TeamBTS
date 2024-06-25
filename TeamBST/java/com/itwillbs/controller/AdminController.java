@@ -63,38 +63,67 @@ public class AdminController {
 	}
 		
 //}	
-	
-    //http://localhost:8088/admin/adminUpdateForm
-    // 관리자 개인정보 수정 - 기존 정보
+//	
+//    //http://localhost:8088/admin/adminUpdateForm
+//    // 관리자 개인정보 수정 - 기존 정보
+//    @GetMapping(value = "/adminUpdateForm")
+//    public void updateGET(HttpSession session, Model model) throws Exception {
+//        String user_id = (String) session.getAttribute("user_id");
+//        
+//        // 서비스 -> DAO 회원정보 조회
+//        AdminDTO resultDTO = aService.getMember(user_id);
+////        Game_scheduleDTO gameDTO = sService.gameScheduleList(name)
+//        
+//        // 연결된 뷰페이지로 정보 전달
+//        model.addAttribute("resultDTO", resultDTO);
+//        
+//        // 연결된 뷰페이지(/admin/adminUpdate.jsp)에 출력
+//    }
+//    
+//    // 관리자 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
+//    @RequestMapping(value = "/adminUpdateForm", method = RequestMethod.POST)
+//    public String updatePost(AdminDTO adto) throws Exception {
+//    	logger.debug(" /update -> updatePost() 호출 ");
+//    	
+//    	// 수정할 회원정보를 저장
+//    	logger.debug(" adto : " + adto);
+//    	
+//    	// Service -> DAO 회원정보 수정
+//        aService.updateAdminMember(adto);
+//        logger.debug(" adto : " + adto);
+//        
+//        return "redirect:/admin/admin";
+//    }
     @GetMapping(value = "/adminUpdateForm")
     public void updateGET(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
-        
+
         // 서비스 -> DAO 회원정보 조회
         AdminDTO resultDTO = aService.getMember(user_id);
-//        Game_scheduleDTO gameDTO = sService.gameScheduleList(name)
-        
+
         // 연결된 뷰페이지로 정보 전달
         model.addAttribute("resultDTO", resultDTO);
-        
+
         // 연결된 뷰페이지(/admin/adminUpdate.jsp)에 출력
     }
-    
+
     // 관리자 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
     @RequestMapping(value = "/adminUpdateForm", method = RequestMethod.POST)
-    public String updatePost(AdminDTO adto) throws Exception {
-    	logger.debug(" /update -> updatePost() 호출 ");
-    	
-    	// 수정할 회원정보를 저장
-    	logger.debug(" adto : " + adto);
-    	
-    	// Service -> DAO 회원정보 수정
-        aService.updateAdminMember(adto);
-        logger.debug(" adto : " + adto);
-        
-        return "redirect:/admin/admin";
+    public String updatePost(AdminDTO adto, @RequestParam("admin_pwd") String admin_pwd, HttpSession session,Model model) throws Exception {
+        String user_id = (String) session.getAttribute("user_id");
+
+        // 현재 비밀번호 확인
+        AdminDTO currentAdmin = aService.getMember(user_id);
+        if (currentAdmin != null && currentAdmin.getAdmin_pwd().equals(admin_pwd)) {
+            // 수정할 회원정보를 저장
+            aService.updateAdminMember(adto);
+            return "redirect:/admin/admin";
+        } else {
+            // 비밀번호 불일치 시 처리
+            session.setAttribute("alertMessage", "비밀번호가 일치하지않아 수정할 수 없습니다");
+            return "redirect:/admin/adminUpdateForm";
+        }
     }
-	
 	
     //http://localhost:8088/mypage/adminDeleteMember
     // 관리자 회원정보 삭제 - 사용자의 비밀번호 입력 / 아이디 세션
