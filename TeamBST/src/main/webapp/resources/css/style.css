@@ -73,22 +73,22 @@ p, a, li, blockquote, label {
 }
 
 .slider .slide:nth-child(2) {
-   background-image: url('https://images.unsplash.com/photo-1591019052241-e4d95a5dc3fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80');
+   background-image: url('/resources/images/background/homepage-two-banner.jpeg');
    animation-delay: -3s;
 }
 
 .slider .slide:nth-child(3) {
-   background-image: url('https://images.unsplash.com/photo-1543373014-cfe4f4bc1cdf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80');
+   background-image: url('/resources/images/background/homepage-three-banner.jpeg');
    animation-delay: -6s;
 }
 
 .slider .slide:nth-child(4) {
-   background-image: url('https://images.unsplash.com/photo-1517430554953-a5ba4678fe85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80');
+   background-image: url('/resources/images/background/homepage-four-banner.jpeg');
    animation-delay: -9s;
 }
 
 .slider .slide:nth-child(5) {
-   background-image: url('https://images.unsplash.com/photo-1583161178154-c362b3459d29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80');
+   background-image: url('/resources/images/background/homepage-five-banner.jpeg');
    animation-delay: -12s;
 }
 
@@ -107,6 +107,49 @@ p, a, li, blockquote, label {
  }
 }
 /* 슬라이더 */
+
+/* 페이지네이션 */
+.pagination {
+	display: flex;
+	padding-left: 0;
+	list-style: none;
+	border-radius: 0.25rem;
+}
+
+.pagination-sm .page-item {
+	margin: 0 2px;
+}
+
+.pagination-sm .page-item .page-link {
+	padding: 0.25rem 0.75rem;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	border-radius: 0.2rem;
+	border: 1px solid #dee2e6;
+	color: #007bff;
+	text-decoration: none;
+}
+
+.pagination-sm .page-item .page-link:hover {
+	background-color: #e9ecef;
+	border-color: #dee2e6;
+}
+
+.pagination-sm .page-item.active .page-link {
+	z-index: 1;
+	color: #fff;
+	background-color: #007bff;
+	border-color: #007bff;
+}
+
+.pagination-sm .page-item.disabled .page-link {
+	color: #6c757d;
+	pointer-events: none;
+	background-color: #fff;
+	border-color: #dee2e6;
+}
+/* 페이지네이션 */
+
 
 .form-control::-webkit-input-placeholder {
   color: #b3b3b3;
@@ -606,8 +649,9 @@ select.form-control:not([size]):not([multiple]) {
   padding: 13px 50px;
 }
 
+/* 로그인, 로그아웃, 마이페이지 버튼 */
 .login-btn {
-  width: 60px;
+  width: 120px;
   height: 40px;
   border: none;
   font-family: 'Noto Sans KR', sans-serif;
@@ -616,8 +660,7 @@ select.form-control:not([size]):not([multiple]) {
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-/*   display: inline-block; */
-  margin-right: 20px;
+  display: inline-block;
   margin-left: 500px;
 }
 
@@ -634,6 +677,7 @@ select.form-control:not([size]):not([multiple]) {
   display: inline-block;
   margin-right: 80px;
 }
+/* 로그인, 로그아웃, 마이페이지 버튼 */
 
 
 /* 햄버거 버튼 */
@@ -1632,7 +1676,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .schedule .schedule-contents .schedule-item li.headings {
-  padding: 22px 40px;
+  padding: 22px 0px;
   background: #8080ff;
 }
 

@@ -29,7 +29,7 @@
   <link href="${pageContext.request.contextPath }/resources/css/style.css" type="text/css" rel="stylesheet">
 
   <!-- FAVICON -->
-  <link href="${pageContext.request.contextPath }/resources/images/favicon.png" type="text/css" rel="shortcut icon">
+  <link href="${pageContext.request.contextPath }/resources/images/favicon.png" type="text/css" rel="stylesheet">
   
   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
@@ -54,8 +54,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item"><a class="nav-link"
-						href="/ticketing/ticketing?stad_id=All">예매하기 <span>/</span>
-					</a></li>
+						href="/ticketing/ticketing?stad_id=All">예매하기 <span>/</span></a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/community/community">거래게시판<span>/</span></a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -123,8 +122,7 @@
                 </div>
             </div>
         </li>
-        <hr>
-		        <a href="#"><li>Home</li></a>
+		        <a href="/main/main"><li>Home</li></a>
 		        <a href="#"><li>About</li></a>
 		        <a href="#"><li>Info</li></a>
 		      </ul>
