@@ -11,7 +11,7 @@
     
 </head>
 <body>
-	<a href="/main/main"><h1>개바리조</h1></a>
+	<a href="/main/main"><h1>야모해</h1></a>
 	
     <div class="login-box">
     <h2>Login</h2>

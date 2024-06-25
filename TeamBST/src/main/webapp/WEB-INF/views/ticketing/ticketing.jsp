@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +21,39 @@
 
 <body>
 
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제하기 버튼</title>
+    <!-- 포트원 결제 -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <!-- 포트원 결제 -->
+</head>
+
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>TICEKGING</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">예매하기</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
+<body>
+	<section class="section schedule">
+	<div class="container">
 <!--  	<form action="/ticketing/ticketing" method="post"> -->
 		<select name="stad_id" id="stad_id">
 			<option value="All">전체 구장</option>
@@ -51,7 +85,8 @@
 			</tbody>
 		</table>
 	</div>
-
+	</div>
+	</section>
 		<%-- <c:forEach var="vo" items="${TeamScheduleList}" id="result">
 			<tr>
 				<td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_id}</a></td>
@@ -114,6 +149,7 @@
 	</script>
 
 	
+<%@ include file="../include/footer.jsp"%>
 
 </body>
 </html>
