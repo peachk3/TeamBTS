@@ -101,7 +101,11 @@
 		            
 // 		            console.log(formattedDate); // 결과 확인용 콘솔 출력
 	            
-        			$('table').append("<tr><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ (parseInt(idx)+1) +"</a></td><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ item.game_date +"</a></td><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ item.game_time+"</a></td><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ item.stad_id +"</a></td><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ item.home_team_id+"</a></td><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ item.away_team_id +"</a></td><td><a href=/ticketing/stadium/"+ item.stad_id +"/"+item.game_id+">예매하기</a></td></tr>")
+        			$('table').append("<tr><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ (parseInt(idx)+1) +"</a></td><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ item.game_date +"</a></td><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ item.game_time+"</a></td><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ item.stad_id +"</a></td><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ item.home_team_id+"</a></td><td><a href=/ticketing/gameInfo?game_id="+item.game_id+">"+ item.away_team_id +"</a></td><td><a href=/ticketing/stadium?stad_id="+ item.stad_id +"&game_id="+item.game_id+">예매하기</a></td></tr>")
+//     																																																																																																																																												<td><a href="/ticketing/stadium?stad_id=${vo.stad_id },${vo.game_id}">예매하기</a></td>
+	
+        		
+        		
         		});
         	}
         });
@@ -109,7 +113,7 @@
 	
 	</script>
 
-
+	
 
 </body>
 </html>

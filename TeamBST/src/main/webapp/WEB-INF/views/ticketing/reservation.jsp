@@ -271,7 +271,7 @@ select {
 <%--             			</c:when> --%>
 <%-- 						<c:otherwise> --%>
 <%--                 				, ${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번 --%>
-<%--             			</c:otherwise> --%>
+<%--             			</c:otherwise> --%>.
 <%-- 					</c:choose> --%>
 <%-- 				</c:forEach> --%>
 <!-- 					<span id="selected-seats"> </span> -->
@@ -325,8 +325,11 @@ select {
 	<p>Game ID : ${game_id }</p>
 	<p>Zone TY : ${zone_ty }</p>
 	<p>Zone ID : ${zone_id }</p>
-	<P>Seat ID : ${param.seatIds }</P>
-	
+<%-- 	<p>Seat ID : ${param.seatIds }</p> --%>
+    <% String[] seatIds = request.getParameterValues("seatIds"); %>
+    <% for (String seatId : seatIds) { %>
+      <p>Seat ID: <%= seatId %><p>
+    <% } %>	
 <!-- 	<p>Seat ID : <p id="seatInfo"></p> -->
 
 
@@ -335,23 +338,54 @@ select {
 		// 현재 URL
 		const currentUrl = window.location.href;
 
-		// URL에서 seat_id 추출
-		const seatIdsIndex = currentUrl.lastIndexOf('&') + 1;
-		const seatIdsString = currentUrl.substring(seatIdsIndex);
-// 		const seatRowIndex = currentUrl.
+// 		// URL에서 seat_id 추출
+// 		const seatIdsIndex = currentUrl.lastIndexOf('&') + 1;
+// 		const seatIdsString = currentUrl.substring(seatIdsIndex);
+// // 		const seatRowIndex = currentUrl.
 
-		// seat_id 문자열을 쉼표(,)로 분리하여 배열로 생성
-		const seatIds = seatIdsString.split(',');
-// 		const 
+// 		// seat_id 문자열을 쉼표(,)로 분리하여 배열로 생성
+// 		const seatIds = seatIdsString.split(',');
+// // 		const 
 
-		// 선택된 좌석 수를 계산
-		let seatCount = seatIds.length;
+// 		// 선택된 좌석 수를 계산
+// 		let seatCount = seatIds.length;
 
-		// 콘솔 출력
-		console.log(seatCount);
+// 		// 콘솔 출력
+// 		console.log(seatCount);
 
-		// 선택된 좌석 수를 화면에 출력
+// 		// 선택된 좌석 수를 화면에 출력
+// 		document.getElementById('seat-count').innerText = '선택하신 좌석의 수: '+ seatCount;
+		// seatIds가 포함된 부분을 찾기 위해 'seatIds='의 위치를 찾음
+
+		// URL에서 '?' 이후의 쿼리 문자열을 추출
+		const queryString = currentUrl.split('?')[1];
+		
+		// 추출한 쿼리 문자열을 '&'로 분리하여 배열로 만듦
+		const paramsArray = queryString.split('&');
+		
+		let seatIds = [];
+		
+		// 각 파라미터를 순회하며 seatIds 파라미터를 찾아 값을 추출
+		paramsArray.forEach(param => {
+		    if (param.startsWith('seatIds=')) {
+		        // 'seatIds='로 시작하는 파라미터의 값을 추출
+		        const value = param.split('=')[1];
+		        // 추출한 값을 ','로 분리하여 seatIds 배열에 추가
+		        seatIds.push(...value.split(','));
+		    }
+		});
+		
+		// seatIds 배열의 길이를 출력하여 seatIds의 개수를 얻음
+		const seatCount = seatIds.length;
+		console.log('seatIds의 수:', seatCount);
 		document.getElementById('seat-count').innerText = '선택하신 좌석의 수: '+ seatCount;
+
+		
+		
+		
+		
+		
+		
 		// ***** 여기까지 문제 없음 ******* 
 
 		
@@ -510,12 +544,12 @@ select {
 	    
 	    
 	    function displayParameters() {
-//             var params = new URLSearchParams(window.location.search);
+            var params = new URLSearchParams(window.location.search);
 
             var zoneTypes = params.get("zone_ty").split(",");
             var seatRows = params.get("seat_row").split(",");
             var seatNums = params.get("seat_num").split(",");
-//             var seatInfo = [];
+            var seatInfo = [];
 
             for (var i = 0; i < seatRows.length; i++) {
                 seatInfo.push(zoneTypes + "구역" + seatRows[i] + "열 " + seatNums[i] + "번");

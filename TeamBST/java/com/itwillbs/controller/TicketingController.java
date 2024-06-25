@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -109,20 +110,22 @@ public class TicketingController {
 	public String goStadiumGET(HttpSession session, 
 			@RequestParam("game_id") String game_id, 
 			@RequestParam("stad_id") String stad_id, Model model) {
+ 		
+ 		
         String user_id = (String) session.getAttribute("user_id");
         logger.debug("user_id : "+ user_id);
  		
-        // stadium -> zoneList 출력
-        List<ZoneDTO> zones = stadService.getZonesByStadiumId(game_id);
-        model.addAttribute("zones", zones);
-        model.addAttribute("game_id", game_id);
-        
-        logger.debug("zones : " + zones);
         
         if(user_id != null) {
         	model.addAttribute("stad_id",stad_id);
         	logger.debug("goStadiumGET() 호출");
         
+        	// stadium -> zoneList 출력
+        	List<ZoneDTO> zones = stadService.getZonesByStadiumId(game_id);
+        	model.addAttribute("zones", zones);
+        	model.addAttribute("game_id", game_id);
+        	
+        	logger.debug("zones : " + zones);
         	return "/ticketing/stadium";
         } else {
         	
@@ -132,7 +135,7 @@ public class TicketingController {
         }
         
 	}
-	
+
  	
 	// 좌석 선택
 	@GetMapping("/displaySeats")

@@ -25,7 +25,7 @@
 	<c:forEach var="vo" items="${awayTeamInfoList}">
 			<td>vs</td>
 			<td>${vo.away_team_id}</td>
-			<td><a href="/ticketing/stadium?stad_id=${vo.stad_id }">예매하기</a></td>
+			<td><a href="/ticketing/stadium/stad_id=${vo.stad_id }">예매하기</a></td>
 		</tr>
 	</c:forEach>
 </table>

@@ -267,7 +267,6 @@ function deselectSeat(seat) {
                 selectedSeats = selectedSeats.filter(selectedSeat => selectedSeat !== seat);
             }
 
-            // 선택된 좌석 목록 업데이트
             updateSelectedSeatsList();
         });
     }
@@ -336,6 +335,7 @@ function deselectSeat(seat) {
         form.submit();
     });
 });
+
 
 // 이전 페이지로 이동하는 함수
 function goBack() {
