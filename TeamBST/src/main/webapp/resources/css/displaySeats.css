@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-	font-family: Arial, sans-serif;
+	font-family: "Noto Sans KR", sans-serif;
 }
 .container {
 	display: flex;
@@ -19,6 +19,8 @@ body {
 	text-align: center;
 	margin-top: 30px;
 	font-size: 70px;
+	font-weight: bold;
+	font-family: "Noto Sans KR", sans-serif;
 }
 
 .field {
@@ -26,7 +28,8 @@ body {
 	margin-top: 30px;
 	margin-bottom: 30px;
 	font-weight: bold;
-	font-size: 25px;
+	font-size: 30px;
+	font-family: "Noto Sans KR", sans-serif;
 }
 
 .seats-grid {
@@ -49,6 +52,7 @@ body {
 	border: 1px solid gray;
 	padding-top: 10px;
 	padding-bottom: 1px;
+	font-size: 20px;
 }
 
 .booked-seat {
@@ -79,7 +83,8 @@ body {
 	margin-top: 30px;
 	margin-bottom: 30px;
 	font-weight: bold;
-	font-size: 25px;
+	font-size: 30px;
+	font-family: "Noto Sans KR", sans-serif;
 }
 
 .selected-list{
@@ -88,18 +93,28 @@ body {
 	margin-bottom: 20px;
 	margin-right: 40px;
 	font-weight: bold;
+	font-size: 25px;
+}
+
+#selected-seats-list {
+	list-style-type: none;
 	font-size: 20px;
 }
 
-selected-list>#no-seats{
+.selected-list .no-seats{
 	font-color:black;
-	font-size: 15px;
+	font-size: 20px;
+	font-family: "Noto Sans KR", sans-serif;
 }
 
 .selected-seats>p {
 	text-align: center;
 }
 
+.selectSeatInfo>th {
+	 vertical-align: top;
+	 padding-top: 5px;
+}
 .reserve_btn {
 	text-align: center;
 }

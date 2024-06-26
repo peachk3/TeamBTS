@@ -2,17 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../include/header.jsp"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-	<title>Display Seats</title>
-	
+
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+
     <link href="../resources/css/index.css" rel="stylesheet">
     <link href="../resources/css/displaySeats.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-</head>
 
 <body>
 	<div>
@@ -48,8 +43,8 @@
 			<div class="selectedseattitle">선택한 좌석</div>
 	
 			<div class="selected-list">
-				<ul id="selected-seats-list" style="list-style-type: none">
-					<li id="no-seats">선택한 좌석이 없습니다</li> 
+				<ul id="selected-seats-list">
+					<li class="no-seats">선택한 좌석이 없습니다</li> 
 				</ul>
 			</div>
 		</div>
