@@ -116,7 +116,7 @@
 	<!-- 문의 게시판 총 글의 개수(페이징처리) -->
 	<select id="countQuestionPage" resultType="int">
 		select count(quest_id) from question_board
-		where qb.quest_del_at = 'N'
+		where quest_del_at = 'N'
 	</select>	
 	
 	

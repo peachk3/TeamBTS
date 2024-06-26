@@ -1,9 +1,12 @@
 package com.itwillbs.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -111,7 +114,8 @@ public class TicketingController {
  	@RequestMapping(value="/stadium", method = RequestMethod.GET)
 	public String goStadiumGET(HttpSession session, 
 			@RequestParam("game_id") String game_id, 
-			@RequestParam("stad_id") String stad_id, Model model) {
+			@RequestParam("stad_id") String stad_id,
+			HttpServletRequest request,Model model) throws Exception {
  		
  		
         String user_id = (String) session.getAttribute("user_id");
@@ -128,14 +132,20 @@ public class TicketingController {
         	model.addAttribute("game_id", game_id);
         	
         	logger.debug("zones : " + zones);
-        	return "/ticketing/stadium";
-        } else {
-
-        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
-        	session.setAttribute("alertMessage", "로그인을 해야 예매하기를 할 수 있습니다");
-        	
-        	return "/login/loginPage";
+        } if (session.getAttribute("user_id") == null) {
+            String redirectUrl = request.getRequestURL().toString();
+            String queryString = request.getQueryString();
+            if (queryString != null) {
+                redirectUrl += "?" + queryString;
+            }
+            return "redirect:/login/loginPage?redirect=" + URLEncoder.encode(redirectUrl, "UTF-8");
         }
+        
+        
+        
+        return "/ticketing/stadium";
+        
+        
         
 	}
 

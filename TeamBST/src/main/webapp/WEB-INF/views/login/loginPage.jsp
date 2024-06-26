@@ -32,6 +32,7 @@
         </div>
 
         <!-- 로그인 버튼-->
+         <input type="hidden" name="redirect" value="${param.redirect}">
         <input type="submit" value="로그인">
 
         <!-- 아이디찾기 비밀번호찾기 회원가입 화면 이동 버튼-->
