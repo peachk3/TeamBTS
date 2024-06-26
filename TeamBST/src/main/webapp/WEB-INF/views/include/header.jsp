@@ -147,7 +147,7 @@
             </div>
         </li>
 		        <a href="/main/main"><li>Home</li></a>
-		        <a href="#"><li>About</li></a>
+		        <a href="/main/about"><li>About</li></a>
 		        <a href="#"><li>Info</li></a>
 		      </ul>
 	    </div>
