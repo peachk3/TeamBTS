@@ -138,6 +138,7 @@ public class TicketingController {
             if (queryString != null) {
                 redirectUrl += "?" + queryString;
             }
+            session.setAttribute("alertMessage", "로그인을 해야 예매할수있습니다");
             return "redirect:/login/loginPage?redirect=" + URLEncoder.encode(redirectUrl, "UTF-8");
         }
         
