@@ -29,7 +29,7 @@ public interface MypageService {
     */
     
     // 내 거래 게시글 목록
-    public List<MyBoardDTO> MyBoardList(Category cate);
+    public List<MyBoardDTO> MyBoardList(Category cate) throws Exception;
     
 
     // 내 거래 게시글 조회수 1증가

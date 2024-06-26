@@ -11,7 +11,7 @@ import com.itwillbs.domain.Question_commendDTO;
 public interface AnnouncementService {
 	
 	// 거래 게시글 작성
-	public void QuestionJoin(Question_boardDTO dto);
+	public void QuestionJoin(Question_boardDTO dto) throws Exception;
 	
 	// 문의 게시글 목록 조회
 	public List<Question_boardDTO> QuestionList(/* Criteria cri */) throws Exception;

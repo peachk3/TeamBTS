@@ -38,7 +38,7 @@ private MemberService mService;
 
 //회원가입 - 입력 받은 정보 처리(GET)
 @RequestMapping(value = "/signupPage", method = RequestMethod.GET)
-	public void signupGET() {
+	public void signupGET() throws Exception{
     logger.debug("/views/login/signupPage.jsp");
     
     
@@ -46,7 +46,7 @@ private MemberService mService;
 
 // 회원가입 - 입력 받은 정보 처리(POST)
 @RequestMapping(value = "/signupPage", method = RequestMethod.POST)
-public String signupPOST(UserDTO udto) {
+public String signupPOST(UserDTO udto) throws Exception{
     logger.debug("/signupPage -> signupPOST() 호출");
     logger.debug("UserDTO : " + udto);
 
@@ -61,7 +61,7 @@ public String signupPOST(UserDTO udto) {
 //-----------------------------------------------------------------------
 // 회원로그인 
 @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
-public void loginGET() {
+public void loginGET() throws Exception{
 	logger.debug("/login -> loginGET() 호출");
 	
 }
@@ -106,7 +106,7 @@ public String loginPOST(HttpSession session,
 //-----------------------------------------------------
 // 회원 로그아웃 
 @RequestMapping(value = "/generalLogout",method = RequestMethod.POST)
-public String generalLogoutPOST(HttpSession session) {
+public String generalLogoutPOST(HttpSession session) throws Exception{
 	logger.debug("/logout -> logoutPOST() 호출");
 	session.invalidate(); // 세션 무효화
 	return "redirect:/login/loginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
@@ -181,7 +181,7 @@ public int phoneCheck(@RequestParam("user_phone")String user_phone) throws Excep
 //---------------------------------------------------------
 //아이디 찾기
 @GetMapping(value = "/findId")
-public void findIdGET() {
+public void findIdGET() throws Exception{
 	logger.debug("/findId -> loginGET() 호출");
 	
 }
@@ -206,7 +206,7 @@ public String findIdPOST(HttpServletRequest request,Model model, UserDTO udto,
 
 //비밀번호 찾기 페이지로 이동 
 @RequestMapping(value = "findPwd")
-public void findPwdGET() {
+public void findPwdGET() throws Exception {
 	
 }
 

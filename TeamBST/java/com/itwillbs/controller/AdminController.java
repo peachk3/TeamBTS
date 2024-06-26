@@ -240,7 +240,7 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminNoticeWrite", method=RequestMethod.GET)
-	public void adminNoticeWrite_GET(Notice_boardDTO dto, HttpSession session) {
+	public void adminNoticeWrite_GET(Notice_boardDTO dto, HttpSession session) throws Exception{
 	    logger.debug("관리자 공지사항 글쓰기 호출");
 	    logger.debug(" /adminNoticeWrite -> adminNoticeWrite_GET() 호출");
 	    

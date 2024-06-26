@@ -27,7 +27,7 @@ public class CommunityDAOImpl implements CommunityDAO{
 	public SqlSession sqlSession;
 
 	@Override
-	public void insertPost(Post_boardDTO dto) {
+	public void insertPost(Post_boardDTO dto) throws Exception{
 		logger.debug("DAO : insertPost(dto) 호출");
 		
 		logger.debug("dto : "+ dto);

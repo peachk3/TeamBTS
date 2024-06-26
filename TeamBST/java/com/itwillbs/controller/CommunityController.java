@@ -222,7 +222,7 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value="/communityWrite",method=RequestMethod.POST)
-	public String coummnityWrite_POST(Post_boardDTO dto,HttpSession session) {
+	public String coummnityWrite_POST(Post_boardDTO dto,HttpSession session) throws Exception{
         String user_id = (String) session.getAttribute("user_id");
 		logger.debug("거래 게시판 글쓰기 호출");
 		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_POST() 호출");

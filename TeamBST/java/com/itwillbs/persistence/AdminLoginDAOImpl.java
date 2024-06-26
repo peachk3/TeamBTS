@@ -24,7 +24,7 @@ public class AdminLoginDAOImpl implements AdminLoginDAO {
 
 	// 회원가입
 	@Override
-	public void adminJoin(AdminDTO adto) {
+	public void adminJoin(AdminDTO adto) throws Exception{
 		System.out.println("DAO : insertAdmin(adto)호출");
 		
 		sqlSession.insert(NAMESPACE+"adminJoin",adto);
@@ -33,7 +33,7 @@ public class AdminLoginDAOImpl implements AdminLoginDAO {
 	}
 	//로그인
 	@Override
-	public AdminDTO adminLogin(AdminDTO adto) {
+	public AdminDTO adminLogin(AdminDTO adto) throws Exception{
 		System.out.println("DAO :adminLogin(AdminDTO adto)실행");
 		
 		AdminDTO resultDTO = sqlSession.selectOne(NAMESPACE+ "adminLoginCheck", adto);
@@ -45,7 +45,7 @@ public class AdminLoginDAOImpl implements AdminLoginDAO {
 	
 	//로그인체크
 	@Override
-	public AdminDTO adminLogin(String admin_id, String admin_pwd) {
+	public AdminDTO adminLogin(String admin_id, String admin_pwd) throws Exception{
 		
 		System.out.println("DAO : memberLogin(String admin_id, String admin_pwd) 실행");
 		

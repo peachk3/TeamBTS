@@ -32,7 +32,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	}
 
 	@Override
-	public void QuestionJoin(Question_boardDTO dto) {
+	public void QuestionJoin(Question_boardDTO dto) throws Exception {
 		logger.debug("QuestionJoin(dto) 실행");
 		
 		// DAO 메서드 호출

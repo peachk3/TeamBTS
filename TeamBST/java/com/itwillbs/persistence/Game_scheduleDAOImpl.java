@@ -27,7 +27,7 @@ public class Game_scheduleDAOImpl implements Game_scheduleDAO {
 	
 	
 	@Override
-	public List<Game_scheduleDTO> GameSchedule(String team) {
+	public List<Game_scheduleDTO> GameSchedule(String team) throws Exception{
 		
 		// mppaer에서 전달받은 DTO 객체들을 자동으로 List에 저장
 		List<Game_scheduleDTO> resultDTO = sqlSession.selectList(NAMESPACE+"GameSchedule",team);
@@ -36,7 +36,7 @@ public class Game_scheduleDAOImpl implements Game_scheduleDAO {
 	}
 
 	@Override
-	public List<Team_n_stadiumDTO> teamInfo(String team_id) {
+	public List<Team_n_stadiumDTO> teamInfo(String team_id) throws Exception{
 		
 		List<Team_n_stadiumDTO> teamInfoDTO = sqlSession.selectList(NAMESPACE+"teamInfo",team_id);
 
@@ -46,7 +46,7 @@ public class Game_scheduleDAOImpl implements Game_scheduleDAO {
 
 
 	@Override
-	public List<Game_scheduleDTO> StadSchedule(String stad_id) {
+	public List<Game_scheduleDTO> StadSchedule(String stad_id) throws Exception{
 
 		List<Game_scheduleDTO> teamDTO = sqlSession.selectList(NAMESPACE+"TeamSchedule",stad_id);
 
@@ -57,7 +57,7 @@ public class Game_scheduleDAOImpl implements Game_scheduleDAO {
 
 
 	@Override
-	public List<Game_scheduleDTO> homeTeamInfo(String game_id) {
+	public List<Game_scheduleDTO> homeTeamInfo(String game_id) throws Exception{
 
 		List<Game_scheduleDTO> homeTeamDTO = sqlSession.selectList(NAMESPACE+"homeTeamInfo",game_id);
 		
@@ -68,7 +68,7 @@ public class Game_scheduleDAOImpl implements Game_scheduleDAO {
 
 	
 	@Override
-	public List<Game_scheduleDTO> awayTeamInfo(String game_id) {
+	public List<Game_scheduleDTO> awayTeamInfo(String game_id) throws Exception{
 
 		List<Game_scheduleDTO> awayTeamDTO = sqlSession.selectList(NAMESPACE+"awayTeamInfo",game_id);
 		

@@ -312,7 +312,8 @@ public class AdminServiceImpl implements AdminService{
 		  return adao.selectCommentsByQuestId(quest_id);
 	}
 	
-    public boolean isAnswered(int quest_id) {
+	@Override
+    public boolean isAnswered(int quest_id) throws Exception{
         return adao.countAnswersByQuestId(quest_id) > 0;
     }
 }

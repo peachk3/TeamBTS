@@ -8,19 +8,19 @@ import com.itwillbs.domain.Team_n_stadiumDTO;
 public interface Game_scheduleDAO {
 	
 	// 팀별 일정 조회
-	public List<Game_scheduleDTO> GameSchedule(String team);
+	public List<Game_scheduleDTO> GameSchedule(String team) throws Exception;
 	
-	public List<Team_n_stadiumDTO> teamInfo(String team_id);
+	public List<Team_n_stadiumDTO> teamInfo(String team_id) throws Exception;
 	
 	// 구장별 일정 조회
-	public List<Game_scheduleDTO> StadSchedule(String stad_id);
+	public List<Game_scheduleDTO> StadSchedule(String stad_id) throws Exception;
 	
 	
 	// 홈팀 경기 정보 조회
-	public List<Game_scheduleDTO> homeTeamInfo(String game_id);
+	public List<Game_scheduleDTO> homeTeamInfo(String game_id) throws Exception;
 	
 	// 어웨이팀 경기 정보 조회
-	public List<Game_scheduleDTO> awayTeamInfo(String game_id);
+	public List<Game_scheduleDTO> awayTeamInfo(String game_id) throws Exception;
 
 
 

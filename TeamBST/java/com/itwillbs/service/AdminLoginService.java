@@ -8,10 +8,10 @@ import com.itwillbs.domain.AdminDTO;
 public interface AdminLoginService {
 
 	// 회원가입
-	public void adminJoin(AdminDTO adto);
+	public void adminJoin(AdminDTO adto) throws Exception;
 
 	// 로그인
-	public AdminDTO adminLogin(AdminDTO adminLoginOk);
+	public AdminDTO adminLogin(AdminDTO adminLoginOk) throws Exception;
 
 	// 아이디 중복체크
 	public int aidCheck(String admin_id) throws Exception;
