@@ -122,15 +122,15 @@
             <div class="dropdown-menu">
             	<div class="dropdown-column">
 					<p><a href="/main/main#stadium" style="color:mediumslateblue;"><b>구장</b></a></p>            	
-                    <a href="#" data-stadium-id="GC">고척 스카이돔</a>
-                    <a href="#" data-stadium-id="GJ">광주 챔피언스 필드</a>
-                    <a href="#" data-stadium-id="DG">대구 라이온즈파크</a>
-                    <a href="#" data-stadium-id="DJ">대전 이글스파크</a>
-                    <a href="#" data-stadium-id="SJ">부산 사직야구장</a>
-                    <a href="#" data-stadium-id="JS">서울 잠실야구장</a>
-                    <a href="#" data-stadium-id="SW">수원 KT위즈파크</a>
-                    <a href="#" data-stadium-id="IC">인천 랜더스필드</a>
-                    <a href="#" data-stadium-id="CW">창원 NC파크</a>
+                    <a href="/ticketing/ticketing?stad_id=GC&selectedStadium=GC">고척 스카이돔</a>
+                    <a href="/ticketing/ticketing?stad_id=GJ&selectedStadium=GJ">광주 챔피언스 필드</a>
+                    <a href="/ticketing/ticketing?stad_id=DG&selectedStadium=DG">대구 라이온즈파크</a>
+                    <a href="/ticketing/ticketing?stad_id=DJ&selectedStadium=DJ">대전 이글스파크</a>
+                    <a href="/ticketing/ticketing?stad_id=SJ&selectedStadium=SJ">부산 사직야구장</a>
+                    <a href="/ticketing/ticketing?stad_id=JS&selectedStadium=JS">서울 잠실야구장</a>
+                    <a href="/ticketing/ticketing?stad_id=SW&selectedStadium=SW">수원 KT위즈파크</a>
+                    <a href="/ticketing/ticketing?stad_id=IC&selectedStadium=IC">인천 랜더스필드</a>
+                    <a href="/ticketing/ticketing?stad_id=CW&selectedStadium=CW">창원 NC파크</a>
                 </div>
                 
             	<div class="dropdown-column">
@@ -148,8 +148,8 @@
                 </div>
             </div>
         </li>
-		        <a href="/main/main"><li>Home</li></a>
-		        <a href="#"><li>About</li></a>
+		        <a href="/admin/admin"><li>Home</li></a>
+		        <a href="/main/about"><li>About</li></a>
 		        <a href="#"><li>Info</li></a>
 		      </ul>
 	    </div>

@@ -23,9 +23,6 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="schedule-contents bg-schedule">
-      <button type="button" class="btn" onclick="location.href='/admin/adminMember'">회원현황</button>
-      <button type="button" class="btn" onclick="location.href='/admin/adminGeneralMember'">일반회원</button>
-      <button type="button" class="btn" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
 					<div class="tab-content" id="pills-tabContent">
 					  <div class="tab-pane fade show active schedule-item" id="nov20">
 					  	<!-- Headings -->

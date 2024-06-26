@@ -144,20 +144,43 @@
 								</ul>
 							</div>
 						</div>
-						<div class="box-footer clearfix">
-							<ul class="pagination pagination-sm no-margin pull-right">
+	<!-- 페이지네이션 버튼  -->
+						<nav class="d-flex justify-content-center">
+						  <ul class="pagination">
+						    <!-- 이전 페이지로 이동하는 링크 -->
+						    <c:if test="${pageDTO.prev}">
+						      <li class="page-item">
+						        <a class="page-link" href="/announcement/bulletin?page=${pageDTO.startPage-1}" aria-label="prev">
+						          <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+						          <span class="sr-only">prev</span>
+						        </a>
+						      </li>
+						    </c:if>
+						    
+						    <!-- 페이지 번호를 나열하는 반복문 -->
+						    <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+						      <li class="page-item ${pageDTO.cri.page == i ? 'active' : ''}">
+						        <a class="page-link" href="/announcement/bulletin?page=${i}">${i}</a>
+						      </li>
+						    </c:forEach>
+						    
+						    <!-- 다음 페이지로 이동하는 링크 -->
+						    <c:if test="${pageDTO.next && pageDTO.endPage > 0}">
+						      <li class="page-item">
+						        <a class="page-link" href="/announcement/bulletin?page=${pageDTO.endPage+1}" aria-label="Next">
+						          <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+						          <span class="sr-only">Next</span>
+						        </a>
+						      </li>
+						    </c:if>
+						  </ul>
+						</nav>
+						<!-- 페이지네이션 버튼 끝 -->
 
-								<c:if test="${pageDTO.prev }">
-									<li><a
-										href="/announcement/bulletin?page=${pageDTO.startPage-1 }">«</a></li>
-								</c:if>
-
-								<c:forEach var="i" begin="${pageDTO.startPage }"
-									end="${pageDTO.endPage }" step="1">
 
 
-									<li ${pageDTO.cri.page == i? 'class="active"':'' }><a
-										href="/announcement/bulletin?page=${i }">${i }</a></li>
+
+
 
 <script type="text/javascript">
     <%-- alertMessage가 존재할 경우에만 alert 창을 띄움 --%>
@@ -171,7 +194,6 @@
 </script>
 
 
-								</c:forEach>
 
 								<c:if test="${pageDTO.next && pageDTO.endPage > 0 }">
 									<li><a

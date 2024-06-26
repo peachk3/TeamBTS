@@ -24,7 +24,8 @@
       <button type="button" class="btn" onclick="location.href='/admin/adminMember'">회원현황</button>
       <button type="button" class="btn" onclick="location.href='/admin/adminGeneralMember'">일반회원</button>
       <button type="button" class="btn" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
-
+</div>
+</section>
 
  <div class="box-body">
 		<table class="table table-bordered">
@@ -49,28 +50,39 @@
 		</tr>
 	</c:forEach>
 </table>
-
- <div class="box-footer clearfix">
-		<ul class="pagination pagination-sm no-margin pull-right">
-			
-			<c:if test="${pageDTO.prev }">
-			<li><a href="/admin/adminGeneralMember?page=${pageDTO.startPage-1 }">«</a></li>
-			</c:if>
-			
-			<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-		
-			<li ${pageDTO.cri.page == i? 'class="active"':'' }><a href="/admin/adminGeneralMember?page=${i }">${i }</a></li>
-		
-			</c:forEach>
-			
-			<c:if test="${pageDTO.next && pageDTO.endPage > 0 }">
-			<li><a href="/admin/adminGeneralMember?page=${pageDTO.endPage+1 }">»</a></li>
-			</c:if>
-		</ul>
-	</div>
-	</div> 
 </div>
-</section>
+<!-- 페이지네이션 버튼  -->
+						<nav class="d-flex justify-content-center">
+						  <ul class="pagination">
+						    <!-- 이전 페이지로 이동하는 링크 -->
+						    <c:if test="${pageDTO.prev}">
+						      <li class="page-item">
+						        <a class="page-link" href="/admin/adminGeneralMember?page=${pageDTO.startPage-1}" aria-label="prev">
+						          <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+						          <span class="sr-only">prev</span>
+						        </a>
+						      </li>
+						    </c:if>
+						    
+						    <!-- 페이지 번호를 나열하는 반복문 -->
+						    <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+						      <li class="page-item ${pageDTO.cri.page == i ? 'active' : ''}">
+						        <a class="page-link" href="/admin/adminGeneralMember?page=${i}">${i}</a>
+						      </li>
+						    </c:forEach>
+						    
+						    <!-- 다음 페이지로 이동하는 링크 -->
+						    <c:if test="${pageDTO.next && pageDTO.endPage > 0}">
+						      <li class="page-item">
+						        <a class="page-link" href="/admin/adminGeneralMember?page=${pageDTO.endPage+1}" aria-label="Next">
+						          <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+						          <span class="sr-only">Next</span>
+						        </a>
+						      </li>
+						    </c:if>
+						  </ul>
+						</nav>
+						<!-- 페이지네이션 버튼 끝 -->
 
 
 <%@ include file="../include/footer.jsp"%>
