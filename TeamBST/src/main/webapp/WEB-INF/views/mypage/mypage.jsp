@@ -301,7 +301,7 @@
 	       		// body 태그에 내용 추가
 	       		$(data).each(function(idx, item){
 	       			
-	       			$('#write_table').append('<li class="schedule-details"><div class="block"><div class="venue"><span class="time">'+ (parseInt(idx)+1) +'</span></div><div class="speaker"><span class="name">'+ item.board_sub +'</span></div><div class="time">'+ item.board_cre_date +'</div><div class="venue">'+ item.board_view +'</div></div></li>')
+	       			$('#write_table').append('<li class="schedule-details"><div class="block"><div class="venue"><span class="time">'+ (parseInt(idx)+1) +'</span></div><div class="speaker" style="margin-left:30px"><span class="name">'+ item.board_sub +'</span></div><div class="time" style="margin-left:350px">'+ item.board_cre_date +'</div><div class="venue" style="margin-left:15px">'+ item.board_view +'</div></div></li>')
 	       			
 	       		});
 	       	},
