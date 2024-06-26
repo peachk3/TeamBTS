@@ -31,7 +31,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	//회원가입
 	@Override
-	public void memberJoin(UserDTO mdto) {
+	public void memberJoin(UserDTO mdto) throws Exception{
 		System.out.println("DAO : memberJoin(mdto) 호출");
 		
 		//mapper 생성된 sql 구문 실행
@@ -43,7 +43,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	//로그인
 	@Override
-	public UserDTO memberLogin(UserDTO udto) {
+	public UserDTO memberLogin(UserDTO udto) throws Exception{
 		System.out.println("DAO : memberLogin(UserDTO mdto) 실행");
 		
 		UserDTO resultDTO = sqlSession.selectOne(NAMESPACE+"loginCheck", udto);
@@ -54,7 +54,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public UserDTO memberLogin(String user_id, String user_pwd) {
+	public UserDTO memberLogin(String user_id, String user_pwd) throws Exception{
 		
 		System.out.println("DAO : memberLogin(String user_id, Sting user_pwd) 실행");
 		
@@ -103,7 +103,7 @@ public class MemberDAOImpl implements MemberDAO {
 	//핸드폰 중복체크
 	
 	@Override
-	public int phoneCheck(String user_phone) {
+	public int phoneCheck(String user_phone) throws Exception{
 	
 		int result = sqlSession.selectOne(NAMESPACE+"phoneCheck",user_phone);
 		
@@ -116,7 +116,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	//아이디 찾기
 	@Override
-	public UserDTO findId(UserDTO udto) {
+	public UserDTO findId(UserDTO udto) throws Exception {
 
 		return sqlSession.selectOne(NAMESPACE+"findId",udto.getUser_name());
 	

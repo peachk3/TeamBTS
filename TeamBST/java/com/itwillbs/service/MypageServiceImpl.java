@@ -56,7 +56,7 @@ public class MypageServiceImpl implements MypageService {
     */
     
     @Override
-    public List<MyBoardDTO> MyBoardList(Category cate) {
+    public List<MyBoardDTO> MyBoardList(Category cate) throws Exception{
     	return mypageDAO.MyBoardList(cate);
     }
     

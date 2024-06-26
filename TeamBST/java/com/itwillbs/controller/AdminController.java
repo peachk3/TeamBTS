@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -172,6 +173,8 @@ public class AdminController {
 	@RequestMapping(value="/adminNotice",method=RequestMethod.GET)
 	public String adminNotice_GET(HttpSession session,Criteria cri,Model model) throws Exception{
 		logger.debug("관리자 공지사항 리스트 호출");
+	    session.setAttribute("viewed_post_ids", new ArrayList<Integer>());	     
+
 //		// id정보 가져오기
 	    String user_id = (String) session.getAttribute("user_id");
 	    logger.debug("user_id : "+user_id);
@@ -205,14 +208,27 @@ public class AdminController {
 	}
 	
 	@GetMapping(value="/adminNoticeContent")
-	public void adminNoticeContent_GET(@RequestParam("notice_id") int notice_id, Model model) throws Exception{
+	public void adminNoticeContent_GET(@RequestParam("notice_id") int notice_id, Model model,HttpSession session) throws Exception{
 		// 서비스 -> DB의 정보를 가져오기
 		logger.debug("관리자 - 공지사항 본문 내용 호출");
 		List<Notice_boardDTO> noticeOneList = aService.noticeOneList(notice_id);
 		logger.debug("size : "+ noticeOneList.size());
-		
+		 // 세션에서 'viewed_post_id' 속성 확인
+        @SuppressWarnings("unchecked")
+        List<Integer> viewedPostIds = (List<Integer>) session.getAttribute("viewed_post_ids");
+        
+        // 세션에 'viewed_post_id' 속성이 없으면 초기화
+        if (viewedPostIds == null) {
+            viewedPostIds = new ArrayList<>();
+            session.setAttribute("viewed_post_ids", viewedPostIds);
+        }
+        
+        // 현재 포스트 ID가 'viewed_post_id' 리스트에 없는 경우 조회수 증가
+        if (!viewedPostIds.contains(notice_id)) {
+        	aService.updateNoticeCount(notice_id);
+            viewedPostIds.add(notice_id);
+        }
 		// 조회수 증가 로직
-    	aService.updateNoticeCount(notice_id);
 
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("noticeOneList", noticeOneList);
@@ -224,7 +240,7 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminNoticeWrite", method=RequestMethod.GET)
-	public void adminNoticeWrite_GET(Notice_boardDTO dto, HttpSession session) {
+	public void adminNoticeWrite_GET(Notice_boardDTO dto, HttpSession session) throws Exception{
 	    logger.debug("관리자 공지사항 글쓰기 호출");
 	    logger.debug(" /adminNoticeWrite -> adminNoticeWrite_GET() 호출");
 	    
@@ -307,6 +323,7 @@ public class AdminController {
 	        
 	        if (user_id == null) {
 	            logger.debug("로그인을 해야 삭제를 할 수 있습니다");
+	            session.setAttribute("alertMessage", "로그인을 해야 삭제를 할 수 있습니다");
 	            return "redirect:/login/loginPage";
 	        }
 	        
@@ -317,6 +334,7 @@ public class AdminController {
 	            return "redirect:/admin/adminNotice";
 	        } else {
 	        	logger.debug("본인이 작성한 글이 아닙니다");
+	            session.setAttribute("alertMessage", "본인이 작성한 글이 아닙니다");
 	            return "redirect:/admin/adminNoticeContent?notice_id="+notice_id;
 	        }
 	    }
@@ -505,8 +523,9 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminBulletin",method=RequestMethod.GET)
-	public void adminWithdrawBulletin_GET(Criteria cri,Model model) throws Exception{
+	public void adminWithdrawBulletin_GET(Criteria cri,Model model,HttpSession session) throws Exception{
 		logger.debug("관리자 문의 게시판 호출");
+	    	session.setAttribute("viewed_post_ids", new ArrayList<Integer>());	     
 
 //			List<Question_boardDTO> questionList = aService.questionList();
 			List<Notice_boardDTO> questionList = aService.questionListPage(cri);
@@ -573,7 +592,7 @@ public class AdminController {
 // gpt 코드
 	// 관리자 - 문의 게시판 본문 확인하기
 	@GetMapping(value="/adminbulletinContent")
-	public String adminbulletinContent_GET(@RequestParam("quest_id") int quest_id, Model model) throws Exception{
+	public String adminbulletinContent_GET(@RequestParam("quest_id") int quest_id, Model model,HttpSession session) throws Exception{
 	    logger.debug("관리자 - 문의게시판 본문 내용 호출");
 	    logger.debug("quest_id : " + quest_id);
 
@@ -582,10 +601,22 @@ public class AdminController {
 	    
 	    // 답변 호출
 	    List<Question_commendDTO> CommentList = aService.getComments(quest_id);
-
-	    // 조회수 증가 로직
-	    aService.updateQuestCount(quest_id);
-	    
+		 // 세션에서 'viewed_post_id' 속성 확인
+        @SuppressWarnings("unchecked")
+        List<Integer> viewedPostIds = (List<Integer>) session.getAttribute("viewed_post_ids");
+        
+        // 세션에 'viewed_post_id' 속성이 없으면 초기화
+        if (viewedPostIds == null) {
+            viewedPostIds = new ArrayList<>();
+            session.setAttribute("viewed_post_ids", viewedPostIds);
+        }
+        
+        // 현재 포스트 ID가 'viewed_post_id' 리스트에 없는 경우 조회수 증가
+        if (!viewedPostIds.contains(quest_id)) {
+        	// 조회수 증가 로직
+        	aService.updateQuestCount(quest_id);
+            viewedPostIds.add(quest_id);
+        }
 	    logger.debug("QuestionOneList size : "+ QuestionOneList.size());
 	    logger.debug("QuestionOneList : "+ QuestionOneList);
 	    logger.debug("CommentList size : "+ CommentList.size());

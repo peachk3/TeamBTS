@@ -28,21 +28,21 @@ public class MainController {
 	
 	//http://localhost:8088/main/main
 	@RequestMapping(value="/main",method=RequestMethod.GET)
-	public void openMain() {
+	public void openMain() throws Exception{
 		logger.debug("홈페이지 호출");
 
 	}
 	
 	// http://localhost:8088/main/team
 	@RequestMapping(value="/team",method = RequestMethod.GET)
-	public void openTeam_GET() {
+	public void openTeam_GET() throws Exception{
 		logger.debug("팀페이지 호출");
 
 	}
 
 	// http://localhost:8088/main/teamPage
 	@RequestMapping(value="/teamPage",method = RequestMethod.GET)
-	public String openTeam2(@RequestParam("team_id") String team_id,Model model) {
+	public String openTeam2(@RequestParam("team_id") String team_id,Model model) throws Exception{
 		logger.debug(team_id+" 페이지 호출");
 		
 		// list 호출

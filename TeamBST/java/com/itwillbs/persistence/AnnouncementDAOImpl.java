@@ -26,7 +26,7 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 	public SqlSession sqlSession;
 
 	@Override
-	public void insertQuestion(Question_boardDTO dto) {
+	public void insertQuestion(Question_boardDTO dto) throws Exception{
 		logger.debug("DAO : insertQuestion(dto) 호출");
 		
 		logger.debug("dto : "+ dto);
@@ -51,7 +51,7 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 	}
 
 	@Override
-	public List<Post_boardDTO> noticeOneList(String notice_id) throws Exception {
+	public List<Post_boardDTO> noticeOneList(int notice_id) throws Exception {
 		logger.debug(" DAO : noticeOneList(String notice_id) 호출");
 		
 		return sqlSession.selectList(NAMESPACE+"noticeOneList",notice_id);
@@ -79,7 +79,7 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 	}
 
 	@Override
-	public void updateNoticeCount(String notice_id) throws Exception {
+	public void updateNoticeCount(int notice_id) throws Exception {
 		logger.debug(" DAO : updateNoticeCount(String notice_id) 호출 ");
 		
 		sqlSession.update(NAMESPACE+"updateNoticeCount",notice_id);

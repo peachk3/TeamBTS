@@ -330,7 +330,9 @@ public class AdminDAOImpl implements AdminDAO{
 		return sqlSession.selectList(NAMESPACE+"selectCommentsByQuestId", quest_id);
 	}
 	
-	 public int countAnswersByQuestId(int quest_id) {
+	
+	@Override
+	 public int countAnswersByQuestId(int quest_id) throws Exception{
 	        return sqlSession.selectOne(NAMESPACE + "countAnswersByQuestId", quest_id);
 	    }	
 	

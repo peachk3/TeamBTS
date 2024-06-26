@@ -21,7 +21,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 	private Game_scheduleDAO gsdao;
 	
 	@Override
-	public List<Game_scheduleDTO> gameScheduleList(String team) {
+	public List<Game_scheduleDTO> gameScheduleList(String team) throws Exception{
 	
 		logger.debug(" gameScheduleList(String team_id) 실행 ");
 		
@@ -31,7 +31,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 	
 	@Override
-	public List<Team_n_stadiumDTO> teamInfo(String team_id) {
+	public List<Team_n_stadiumDTO> teamInfo(String team_id) throws Exception{
 
 			 
 		return gsdao.teamInfo(team_id);
@@ -39,7 +39,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 	
 
 	@Override
-	public List<Game_scheduleDTO> stadScheduleList(String stad_id) {
+	public List<Game_scheduleDTO> stadScheduleList(String stad_id) throws Exception{
 
 		logger.debug(" stadScheduleList(String stad_id) 실행 ");
 		
@@ -49,14 +49,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 
 	@Override
-	public List<Game_scheduleDTO> homeTeamInfoList(String game_id) {
+	public List<Game_scheduleDTO> homeTeamInfoList(String game_id) throws Exception{
 
 		return gsdao.homeTeamInfo(game_id);
 		
 	}
 	
 	@Override
-	public List<Game_scheduleDTO> awayTeamInfoList(String game_id) {
+	public List<Game_scheduleDTO> awayTeamInfoList(String game_id) throws Exception{
 
 		
 		return gsdao.awayTeamInfo(game_id);

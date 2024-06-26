@@ -1,9 +1,12 @@
 package com.itwillbs.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -42,11 +45,14 @@ public class TicketingController {
 	
 	
     @RequestMapping(value="/ticketing", method=RequestMethod.GET)
-    public String MainTicketing(@RequestParam("stad_id") String stad_id, Model model) {
-        logger.debug("티켓팅 홈 페이지");
+    public String MainTicketing(@RequestParam("stad_id") String stad_id, Model model) throws Exception{
+        logger.debug("티켓팅 홈 페이지 - GET");
         logger.debug("stad_id : " + stad_id);
 
         List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
+        
+		model.addAttribute("TeamScheduleList", TeamScheduleList);
+	    model.addAttribute("selectedStadId", stad_id); // 선택된 stad_id를 모델에 추가
 
         return "ticketing/ticketing"; // 실제 JSP 페이지 이름으로 변경하세요
     }
@@ -56,7 +62,7 @@ public class TicketingController {
 	@RequestMapping(value="/ticketing",method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	 public String TeamTicketing(@RequestParam("stad_id") String stad_id, Model model) throws Exception{
-        logger.debug("티켓팅 홈 페이지");
+        logger.debug("티켓팅 홈 페이지- POST");
         logger.debug("stad_id : " + stad_id);
 
         // 경기 정보 호출
@@ -64,8 +70,6 @@ public class TicketingController {
         List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
         
         // 페이징 처리된 경기 정보 호출
-        
-        
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule()); // Java 8 날짜 타입 지원
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false); // 타임스탬프로 변환하지 않음
@@ -84,7 +88,7 @@ public class TicketingController {
 	
 	// 경기 정보 페이지
 	@RequestMapping(value="/gameInfo",method=RequestMethod.GET)
-	public String gameInfo(@RequestParam("game_id") String game_id, Model model) {
+	public String gameInfo(@RequestParam("game_id") String game_id, Model model) throws Exception{
 		// gameId를 사용하여 필요한 로직을 수행합니다.
         // 예: 게임 정보를 조회하고 모델에 추가
 		
@@ -110,7 +114,8 @@ public class TicketingController {
  	@RequestMapping(value="/stadium", method = RequestMethod.GET)
 	public String goStadiumGET(HttpSession session, 
 			@RequestParam("game_id") String game_id, 
-			@RequestParam("stad_id") String stad_id, Model model) {
+			@RequestParam("stad_id") String stad_id,
+			HttpServletRequest request,Model model) throws Exception {
  		
  		
         String user_id = (String) session.getAttribute("user_id");
@@ -127,14 +132,21 @@ public class TicketingController {
         	model.addAttribute("game_id", game_id);
         	
         	logger.debug("zones : " + zones);
-        	return "/ticketing/stadium";
-        } else {
-
-        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
-        	session.setAttribute("alertMessage", "로그인을 해야 예매하기를 할 수 있습니다");
-        	
-        	return "/login/loginPage";
+        } if (session.getAttribute("user_id") == null) {
+            String redirectUrl = request.getRequestURL().toString();
+            String queryString = request.getQueryString();
+            if (queryString != null) {
+                redirectUrl += "?" + queryString;
+            }
+            session.setAttribute("alertMessage", "로그인을 해야 예매할수있습니다");
+            return "redirect:/login/loginPage?redirect=" + URLEncoder.encode(redirectUrl, "UTF-8");
         }
+        
+        
+        
+        return "/ticketing/stadium";
+        
+        
         
 	}
 
@@ -145,7 +157,7 @@ public class TicketingController {
 			@RequestParam("game_id") String game_id, 
 			@RequestParam("zone_ty") String zone_ty, 
 			@RequestParam("zone_id") String zone_id,
-			@RequestParam("stad_id") String stad_id, Model model) {
+			@RequestParam("stad_id") String stad_id, Model model) throws Exception{
        
 		String user_id = (String) session.getAttribute("user_id");
         logger.debug("@user_id : "+ user_id);
@@ -154,7 +166,7 @@ public class TicketingController {
         List<SeatDTO> seats = stadService.getSeatsId(game_id, zone_id);
         
         // 예매 가능 좌석 및 여부 출력
-        List<Seat_bookDTO> seatBook = stadService.getSeatBooked(zone_id);
+        List<Seat_bookDTO> seatBook = stadService.getSeatBooked(zone_id, game_id);
 		
 		model.addAttribute("game_id", game_id);
 		model.addAttribute("stad_id", stad_id);
@@ -181,7 +193,7 @@ public class TicketingController {
 			@RequestParam("seat_num") String seat_num, 
 			@RequestParam("zone_ty") String zone_ty, 
 			@RequestParam("seat_id") String seat_id, 
-			@RequestParam("zone_id")String zone_id,  Model model) {
+			@RequestParam("zone_id")String zone_id,  Model model) throws Exception{
         
 		// user_id 전달
 		String user_id = (String) session.getAttribute("user_id");
@@ -218,7 +230,7 @@ public class TicketingController {
 	
 	// **** 좌석 선택 후 이동시 booked_at 1로 변경 
 	@PostMapping("/reservation")
-	public String bookTicket_POST(
+	public String bookTicket_POST (
 			@RequestParam("game_id") String game_id, 
 			@RequestParam("seat_id") String seat_id, 
 			@RequestParam("stad_id") String stad_id, 
@@ -229,7 +241,7 @@ public class TicketingController {
 			@RequestParam("seat_row") List<String> seatRows,
 	        @RequestParam("seat_num") List<String> seatNums,
 	        @RequestParam("seat_id") List<String> seatIds,
-			Model model) {
+			Model model) throws Exception{
 		
 		// game_id 출력
 		Integer gameIdInteger = Integer.parseInt(game_id);
@@ -265,7 +277,7 @@ public class TicketingController {
 		@RequestParam("seat_num") String seat_num, 
 		@RequestParam("zone_ty") String zone_ty, 
 		@RequestParam("seat_id") String seat_id, 
-		@RequestParam("zone_id")String zone_id,   Model model) {
+		@RequestParam("zone_id")String zone_id,   Model model) throws Exception{
 	// user_id 전달
 	String user_id = (String) session.getAttribute("user_id");
     logger.debug("user_id : "+ user_id);
@@ -305,7 +317,7 @@ public class TicketingController {
 		@RequestParam("seat_num") String seat_num, 
 		@RequestParam("zone_ty") String zone_ty, 
 		@RequestParam("seat_id") String seat_id, 
-		@RequestParam("zone_id")String zone_id,  Model model) {
+		@RequestParam("zone_id")String zone_id,  Model model) throws Exception{
 			
 	// user_id 전달
 	String user_id = (String) session.getAttribute("user_id");

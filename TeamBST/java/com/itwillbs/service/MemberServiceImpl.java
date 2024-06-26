@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService{
 
 	//회원가입
 	@Override
-	public void memberJoin(UserDTO udto) {
+	public void memberJoin(UserDTO udto) throws Exception{
 		logger.debug("memberJoin(MemberDTO mdto) 실행");
 		
 		mdao.memberJoin(udto); // 오류!!!!!!!!--> mdao.memberJoin(mdto)를 입력하지 않아서 회원가입에 필요한 데이터가 mdto에 불러오지 못함
@@ -45,7 +45,7 @@ public class MemberServiceImpl implements MemberService{
 	//로그인 
 
 	@Override
-	public UserDTO memberLogin(UserDTO loginDto) {
+	public UserDTO memberLogin(UserDTO loginDto) throws Exception{
 		logger.debug("memberLogin(loginDto) 호출");
 		
 		UserDTO resultDTO = mdao.memberLogin(loginDto);
@@ -103,7 +103,7 @@ public class MemberServiceImpl implements MemberService{
 	//아이디 찾기
 
 	@Override
-	public UserDTO findId(UserDTO udto) {
+	public UserDTO findId(UserDTO udto) throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}

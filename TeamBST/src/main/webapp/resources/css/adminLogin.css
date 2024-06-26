@@ -1,1 +1,150 @@
 @charset "UTF-8";
+
+/* 구글 폰트 사용 */
+.hi-melody-regular {
+	font-family: "Hi Melody", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 40px;
+}
+
+/* 로고 이미지 스타일 */
+.logo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 60px;
+	margin-bottom: 10px;
+}
+
+.logo img {
+	width: 150px;
+	height: auto;
+}
+
+.logo a {
+	text-decoration: none; 
+}
+
+.login-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	height: 55%;
+	padding: 70px;
+	transform: translate(-50%, -50%);
+	background:#007bff;
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+}
+
+.login-box>h2 {
+	margin: 0 0 50px;
+	padding: 0;
+	color: #fff;
+	text-align: center;
+}
+
+.login-box input::placeholder {
+	color: #ddd;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 16px;
+}
+
+.login-box input[type="text"], .login-box input[type="password"] {
+	width: 100%;
+	padding: 30px 0px;
+	font-size: 16px;
+	color: #fff;
+	margin-bottom: 20px;
+	border: none;
+	border-bottom: 1px solid #ddd;
+	outline: none;
+	background: transparent;
+}
+
+#login-box>input[type="checkbox"] {
+	display: none;
+}
+
+#login-form>label {
+	color: #fff;
+}
+
+ .save-id {
+            margin-top: 20px; 
+       }
+
+label[for=rememberId] {
+	color: #dee;
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+	vertical-align: top;
+	padding: 0 0 5 5px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 13px;
+	
+}
+
+.login-box input[type="submit"] {
+	width: 100%;
+	padding: 13px;
+	background-color: #ddd;
+	color: slategrey;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-top: 25px;
+}
+
+.login-box .options {
+	margin-top: 30px;
+	margin-bottom: 10px;
+	font-size: 11px;
+	color: slategray;
+	display: flex;
+	justify-content: center;
+}
+
+.login-box .options a {
+	text-decoration: none;
+	color: #fff;
+	margin: 0 5px;
+	font-size: 12px;
+}
+
+/* 로그인 버튼 활성화 스타일 */
+.login-box input[type="submit"].active {
+	background-color: #ffffff;
+	color: black;
+}
+
+/* 개선사항 - 카카오톡 로그인 API 사용   */
+
+/* hr.hr-5 {
+	border: 0;
+	border-top: 3px double #D6D6D6;
+} */
+
+/* .login-box .kakao-login-button {
+	color: #3C1E1E;
+	border: none;
+	border-radius: 4px;
+	width: 100%;
+	padding: 0px;
+	cursor: pointer;
+	font-size: 13px;
+	margin-top: 15px;
+}
+ */
+/* .login-box .kakao-login-button img {
+	vertical-align: middle;
+	margin-right: 4px;
+}
+
+.login-box .kakao-login-button:hover {
+	background-color: #E6D300;
+} */

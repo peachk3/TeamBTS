@@ -10,14 +10,13 @@
 <body>
 	<div class="result-box">
 		<c:choose>
-			<c:when test="${empty findId }">
-				<p class="inquiry">조회 결과가 없습니다.</p>
+			<c:when test="${user_name != null }">
+				<p> 아이디 : ${user_id }</p>
 			</c:when>		
 			<c:otherwise>
-				<p>${findId.fid}</p>
+				<p>해당 이름과 전화번호가 일치하는 회원 아이디를 찾지 못하였습니다.</p>
 			</c:otherwise>
 		</c:choose>
 	</div>
-
 </body>
 </html>

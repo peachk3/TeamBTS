@@ -18,7 +18,7 @@ public class AdminLoginServiceImpl implements AdminLoginService{
 	private AdminLoginDAO aldao;
 
 	@Override
-	public void adminJoin(AdminDTO adto) {
+	public void adminJoin(AdminDTO adto) throws Exception{
 		logger.debug("adminJoin(AdminLoginDTO adto)실행");
 		
 		aldao.adminJoin(adto);
@@ -27,7 +27,7 @@ public class AdminLoginServiceImpl implements AdminLoginService{
 	}
 
 	@Override
-	public AdminDTO adminLogin(AdminDTO adminLoginOk) {
+	public AdminDTO adminLogin(AdminDTO adminLoginOk) throws Exception{
 		logger.debug("adminLogin(adminLoginDTO)호출");
 		
 		AdminDTO resultDTO = aldao.adminLogin(adminLoginOk);
@@ -38,7 +38,50 @@ public class AdminLoginServiceImpl implements AdminLoginService{
 		return resultDTO;
 	}
 	
-	
+	//아이디 중복체크
+		@Override
+		public int aidCheck(String admin_id) throws Exception {
+			int result = aldao.aidCheck(admin_id);
+			
+			logger.debug("result :" + result);
+			
+			return result;
+			
+		}
+		//닉네임 중복체크
+
+		@Override
+		public int anickCheck(String admin_nick) throws Exception {
+
+			int result = aldao.anickCheck(admin_nick);
+			
+			logger.debug("result" + result);
+			
+			return result;
+		}
+		
+		//핸드폰 중복체크
+		@Override
+		public int aphoneCheck(String admin_phone) throws Exception {
+			
+			int result  = aldao.aphoneCheck(admin_phone);
+			
+			logger.debug("result :" + result);
+			
+			return result;
+		}
+		
+		//이메일 중복체크
+		@Override
+		public int aemailCheck(String admin_email) throws Exception {
+			
+			int result  = aldao.aemailCheck(admin_email);
+			
+			logger.debug("result :" + result);
+			
+			return result;
+		}
+
 	
 	
 	

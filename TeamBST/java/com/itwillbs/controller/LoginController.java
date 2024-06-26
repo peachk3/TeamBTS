@@ -1,6 +1,8 @@
 package com.itwillbs.controller;
 
 
+import java.net.URLDecoder;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,9 +36,9 @@ public class LoginController{
 @Inject
 private MemberService mService;
 
-
+//회원가입 - 입력 받은 정보 처리(GET)
 @RequestMapping(value = "/signupPage", method = RequestMethod.GET)
-	public void signupGET() {
+	public void signupGET() throws Exception{
     logger.debug("/views/login/signupPage.jsp");
     
     
@@ -44,7 +46,7 @@ private MemberService mService;
 
 // 회원가입 - 입력 받은 정보 처리(POST)
 @RequestMapping(value = "/signupPage", method = RequestMethod.POST)
-public String signupPOST(UserDTO udto) {
+public String signupPOST(UserDTO udto) throws Exception{
     logger.debug("/signupPage -> signupPOST() 호출");
     logger.debug("UserDTO : " + udto);
 
@@ -59,7 +61,7 @@ public String signupPOST(UserDTO udto) {
 //-----------------------------------------------------------------------
 // 회원로그인 
 @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
-public void loginGET() {
+public void loginGET() throws Exception{
 	logger.debug("/login -> loginGET() 호출");
 	
 }
@@ -67,7 +69,10 @@ public void loginGET() {
 //로그인 - 입력받은 아이디, 비밀번호를 사용해서 확인
 
 @RequestMapping(value = "/loginPage", method = RequestMethod.POST)										
-public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 ->전달한 정보 저장(아이디, 비밀번호)
+public String loginPOST(HttpSession session, 
+						UserDTO udto,
+						@RequestParam(required = false) String redirect)
+						throws Exception{ // 파라미터에 ->전달한 정보 저장(아이디, 비밀번호)
 	
 	logger.debug("/loginPage -> loginPOST() 호출");
 	logger.debug("로그인 정보"+ udto );
@@ -86,7 +91,14 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 	//로그인 성공!
 	session.setAttribute("user_id", resultDTO.getUser_id());
 	
-	return "redirect:/main/main";
+    if (redirect != null && !redirect.isEmpty()) {
+        String decodedRedirect = URLDecoder.decode(redirect, "UTF-8");
+        logger.debug("로그인 후 리다이렉트할 URL: " + decodedRedirect);
+        return "redirect:" + decodedRedirect;
+    }
+	 
+	 
+	 	return "redirect:/main/main";
 	
 	}
 
@@ -94,7 +106,7 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 //-----------------------------------------------------
 // 회원 로그아웃 
 @RequestMapping(value = "/generalLogout",method = RequestMethod.POST)
-public String generalLogoutPOST(HttpSession session) {
+public String generalLogoutPOST(HttpSession session) throws Exception{
 	logger.debug("/logout -> logoutPOST() 호출");
 	session.invalidate(); // 세션 무효화
 	return "redirect:/login/loginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
@@ -169,7 +181,7 @@ public int phoneCheck(@RequestParam("user_phone")String user_phone) throws Excep
 //---------------------------------------------------------
 //아이디 찾기
 @GetMapping(value = "/findId")
-public void findIdGET() {
+public void findIdGET() throws Exception{
 	logger.debug("/findId -> loginGET() 호출");
 	
 }
@@ -194,7 +206,7 @@ public String findIdPOST(HttpServletRequest request,Model model, UserDTO udto,
 
 //비밀번호 찾기 페이지로 이동 
 @RequestMapping(value = "findPwd")
-public void findPwdGET() {
+public void findPwdGET() throws Exception {
 	
 }
 
