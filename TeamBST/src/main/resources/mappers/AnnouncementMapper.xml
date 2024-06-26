@@ -42,14 +42,15 @@
 
 	<!-- 공지사항 리스트 조회 -->
 	<select id="noticeList" resultType="Notice_boardDTO">
-		select * from notice_board
+		select * from notice_board 
+		where notice_del_at = 'N'
 	</select>
 	
 	<!-- 공지사항 리스트 조회( 페이징 처리 2 ) -->
 	<select id="noticeListPage" resultType="Notice_boardDTO">
 		<![CDATA[
 		select * from notice_board
-		where notice_id > 0 
+		where notice_id > 0 and notice_del_at = 'N'
 		order by notice_id desc, notice_cre_date desc
 		limit #{pageStart},#{pageSize}
 		]]>
@@ -61,6 +62,8 @@
 	<!-- 공지 게시판 총 글의 개수(페이징처리) -->
 	<select id="countNoticePage" resultType="int">
 		select count(notice_id) from notice_board
+		where notice_del_at = 'N'
+		
 	</select>
 	
 	
@@ -113,6 +116,7 @@
 	<!-- 문의 게시판 총 글의 개수(페이징처리) -->
 	<select id="countQuestionPage" resultType="int">
 		select count(quest_id) from question_board
+		where qb.quest_del_at = 'N'
 	</select>	
 	
 	
