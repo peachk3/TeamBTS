@@ -46,7 +46,7 @@
 	<div class="reserve_content">
 		<div class="reserve_left">
 
-			<div class="paymethod" onclick="kakaoPay()">
+			<div id="paymethod" class="paymethod" onclick="kakaoPay()">
 				<p>카카오페이</p>
 				<img class="kakaoPay" src="../resources/img/kakaoPay.jpg" alt="kakaoPay">
 			</div>
@@ -55,7 +55,6 @@
 		<div class="reserve_right">
 			<div class="info-panel">
 				<c:forEach var="gs" items="${gameSchedule}">
-					
 					<table class="table1">
 						<tr class="tr1">
 							<td><span id="team-name"> <%-- ${gs.away_team_id} --%><br> 
@@ -130,7 +129,7 @@
 						<tr>
 							<th>일시</th>
 							<td><span id="match-date">${gs.game_date} ${gs.game_time} </span></td>
-							<td> </td>
+							<td></td>
 						</tr>
 						
 						<tr>
@@ -169,12 +168,12 @@
 						</tr>
 						<tr>
 							<th>티켓 금액</th>
-							<td><span id="total-price">0</span></td>
+							<td><span id="total-price">0</span>원</td>
 							<td></td>
 						</tr>
 						<tr>
-							<th>예매 수수료</th>
-							<td><span id="booking-fee">0</span></td>
+							<th>예매 수수료 </th>
+							<td>장당 1000원<!-- <span id="booking-fee">0</span> --></td>
 							<td></td>
 						</tr>
 						<tr>
@@ -199,74 +198,11 @@
 
 						<tr>
 							<th>결제 금액</th>
-							<td><span id="total-amount">0</span></td>
+							<td><span id="total-amount">0</span>원</td>
 						</tr>
 
 					</table>
 				</c:forEach>
-					<%-- <p>
-						일시: <span id="match-date">${gs.game_date} ${gs.game_time}</span>
-					</p>
-					<p>
-						경기장 : <span id="match-stadium"> 
-						<c:if test="${gs.stad_id == 'CW'}">창원 NC 파크</c:if> 
-						<c:if test="${gs.stad_id == 'DG'}">대구 라이온즈파크</c:if> 
-						<c:if test="${gs.stad_id == 'DJ'}">대전 이글스파크</c:if> 
-						<c:if test="${gs.stad_id == 'GC'}">고척 스카이돔</c:if> 
-						<c:if test="${gs.stad_id == 'GJ'}">광주 챔피언스필드</c:if> 
-						<c:if test="${gs.stad_id == 'IC'}">인천 랜더스필드</c:if> 
-						<c:if test="${gs.stad_id == 'JS'}">서울 잠실야구장</c:if> 
-						<c:if test="${gs.stad_id == 'SJ'}">부산 사직야구장</c:if> 
-						<c:if test="${gs.stad_id == 'SW'}">수원 KT위즈파크</c:if>
-						</span>
-					</p>
-				</c:forEach>
-				<c:forEach var="use" items="${user }">
-					<p>예매자명 : ${use.user_name}</p>
-				</c:forEach>
-
-				<!-- 선택된 좌석 리스트로 출력해야 함! -->
-				<div>
-					선택 좌석 : <p id="seatInfo"></p>
-				</div>
-				<c:forEach var="seat" items="${selectedSeat}" varStatus="status">
-					<c:choose>
-						<c:when test="${status.index == 0}">
-								${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번
-            				</c:when>
-						<c:otherwise>
-                				, ${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번
-            				</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<div>
-					티켓 금액: <span id="total-price">0</span>
-				</div>
-				<p>
-					예매 수수료: 장당 1000원 <!-- <span id="booking-fee">0</span> -->
-				</p>
-				<p>
-					취소 기한: 
-				</p>
-				<p>	
-					취소 수수료: 티켓 금액의 0 ~ 10 % <button id="myBtn">상세보기</button>
-				</p>
-				<div id="myModal" class="modal">
-					<div class="modal-content">
-						<span class="close">&times;</span>
-						<p> 취소 수수료 상세 보기 <hr>
-						예매취소 안내(경기 당일 3시간 전까지 취소 가능)
-						<br>
-						예매 당일 취소 = 수수료 부과 없음
-						본인이 예매한 다음 날(0시 기준)부터 경기 당일 3시간 전 취소 = 예매 수수료 + 취소 수수료 제외한 나머지 환불 이후 취소 불가
-						예매한 내역의 부분 취소 및 날짜, 좌석변경, 권종변경은 불가합니다.
-						</p>
-					</div>
-				</div>
-				<p>
-					결제 금액: <span id="total-amount">0</span>
-				</p> --%>
-
 			</div>
 		</div>
 
@@ -402,11 +338,8 @@ const bookFee = seatCount * 1000;
     	// 좌석 정보(좌석)
     	// 결제 정보 (가격(수수료를 포함한 총액))
     	// 취소 가능 일자
-    	
-    	
-    	window.open("https://example.com/payment", "PaymentWindow", "width=600,height=400");
-    
-    	
+    	const targetDiv = document.getElementById('paymethod');
+        targetDiv.classList.toggle('red-border');
     
     }
 //     document.getElementById("paymethod").addEventListener("click", function() {

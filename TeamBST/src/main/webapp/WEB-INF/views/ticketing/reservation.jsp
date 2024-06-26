@@ -84,95 +84,95 @@
 				<c:forEach var="gs" items="${gameSchedule}">
 					<table class="table1">
 						<tr class="tr1">
-							<td><span id="team-name"> <%-- ${gs.away_team_id} --%>
-									<br> <c:if test="${gs.away_team_id == 'KIWOOM'}">
-										<img id="teamsymbol" src="../resources/team/kiwoom.png"
-											alt="KIWOOM 로고">
-									</c:if> <c:if test="${gs.away_team_id == 'LOTTE'}">
-										<img id="teamsymbol" src="../resources/team/lotte.png"
-											alt="LOTTE 로고">
-									</c:if> <c:if test="${gs.away_team_id == 'DOSAN'}">
-										<img id="teamsymbol" src="../resources/team/dosan.png"
-											alt="DOSAN 로고">
-									</c:if> <c:if test="${gs.away_team_id == 'HANHWA'}">
-										<img id="teamsymbol" src="../resources/team/hanhwa.png"
-											alt="HANHWA 로고">
-									</c:if> <c:if test="${gs.away_team_id == 'KIA'}">
-										<img id="teamsymbol" src="../resources/team/kiwoom.png"
-											alt="KIA 로고">
-									</c:if> <c:if test="${gs.away_team_id == 'KT'}">
-										<img id="teamsymbol" src="../resources/team/kt.png"
-											alt="KT 로고">
-									</c:if> <c:if test="${gs.away_team_id == 'NC'}">
-										<img id="teamsymbol" src="../resources/team/nc.png" alt="NC로고">
-									</c:if> <c:if test="${gs.away_team_id == 'SAMSUNG'}">
-										<img id="teamsymbol" src="../resources/team/samsung.png"
-											alt="SAMSUNG 로고">
-									</c:if> <c:if test="${gs.away_team_id == 'SSG'}">
-										<img id="teamsymbol" src="../resources/team/ssg.png"
-											alt="SSG 로고">
-									</c:if> <c:if test="${gs.away_team_id == 'LG'}">
-										<img id="teamsymbol" src="../resources/team/lg.png"
-											alt="LG 로고">
-									</c:if></span></td>
-							<td>
-								<h6 class="vs">VS</h6>
+							<td><span id="team-name"> <%-- ${gs.away_team_id} --%><br> 
+								<c:if test="${gs.away_team_id == 'KIWOOM'}">
+									<img id="teamsymbol" src="../resources/team/kiwoom.png" alt="KIWOOM 로고"> 
+								</c:if>
+								<c:if test="${gs.away_team_id == 'LOTTE'}">
+									<img id="teamsymbol" src="../resources/team/lotte.png" alt="LOTTE 로고"> 
+								</c:if>
+								<c:if test="${gs.away_team_id == 'DOSAN'}">
+									<img id="teamsymbol" src="../resources/team/dosan.png" alt="DOSAN 로고"> 
+								</c:if>
+								<c:if test="${gs.away_team_id == 'HANHWA'}">
+									<img id="teamsymbol" src="../resources/team/hanhwa.png" alt="HANHWA 로고"> 
+								</c:if>
+								<c:if test="${gs.away_team_id == 'KIA'}">
+									<img id="teamsymbol" src="../resources/team/kiwoom.png" alt="KIA 로고">
+								</c:if> 
+								<c:if test="${gs.away_team_id == 'KT'}">
+									<img id="teamsymbol" src="../resources/team/kt.png" alt="KT 로고">
+								</c:if> 
+								<c:if test="${gs.away_team_id == 'NC'}">
+									<img id="teamsymbol" src="../resources/team/nc.png" alt="NC로고">
+								</c:if> 
+								<c:if test="${gs.away_team_id == 'SAMSUNG'}">
+									<img id="teamsymbol" src="../resources/team/samsung.png" alt="SAMSUNG 로고">
+								</c:if> 
+								<c:if test="${gs.away_team_id == 'SSG'}">
+									<img id="teamsymbol" src="../resources/team/ssg.png" alt="SSG 로고">
+								</c:if> 
+								<c:if test="${gs.away_team_id == 'LG'}">
+									<img id="teamsymbol" src="../resources/team/lg.png" alt="LG 로고">
+								</c:if></span>
 							</td>
-							<td><span id="team-name"><br> <c:if
-										test="${gs.home_team_id == 'KIWOOM'}">
-										<img id="teamsymbol" src="../resources/team/kiwoom.png"
-											alt="KIWOOM 로고">
-									</c:if> <c:if test="${gs.home_team_id == 'LOTTE'}">
-										<img id="teamsymbol" src="../resources/team/lotte.png"
-											alt="LOTTE 로고">
-									</c:if> <c:if test="${gs.home_team_id == 'DOSAN'}">
-										<img id="teamsymbol" src="../resources/team/dosan.png"
-											alt="DOSAN 로고">
-									</c:if> <c:if test="${gs.home_team_id == 'HANHWA'}">
-										<img id="teamsymbol" src="../resources/team/hanhwa.png"
-											alt="HANHWA 로고">
-									</c:if> <c:if test="${gs.home_team_id == 'KIA'}">
-										<img id="teamsymbol" src="../resources/team/kiwoom.png"
-											alt="KIA 로고">
-									</c:if> <c:if test="${gs.home_team_id == 'KT'}">
-										<img id="teamsymbol" src="../resources/team/kt.png"
-											alt="KT 로고">
-									</c:if> <c:if test="${gs.home_team_id == 'NC'}">
-										<img id="teamsymbol" src="../resources/team/nc.png" alt="NC로고">
-									</c:if> <c:if test="${gs.home_team_id == 'SAMSUNG'}">
-										<img id="teamsymbol" src="../resources/team/samsung.png"
-											alt="SAMSUNG 로고">
-									</c:if> <c:if test="${gs.home_team_id == 'SSG'}">
-										<img id="teamsymbol" src="../resources/team/ssg.png"
-											alt="SSG 로고">
-									</c:if> <c:if test="${gs.home_team_id == 'LG'}">
-										<img id="teamsymbol" src="../resources/team/lg.png"
-											alt="LG 로고">
-									</c:if></span></td>
+							<td>
+								<h6 class="vs"> VS </h6>
+							</td>
+							<td>
+								<span id="team-name"><br> 
+								<c:if test="${gs.home_team_id == 'KIWOOM'}">
+									<img id="teamsymbol" src="../resources/team/kiwoom.png" alt="KIWOOM 로고"> 
+								</c:if>
+								<c:if test="${gs.home_team_id == 'LOTTE'}">
+									<img id="teamsymbol" src="../resources/team/lotte.png" alt="LOTTE 로고"> 
+								</c:if>
+								<c:if test="${gs.home_team_id == 'DOSAN'}">
+									<img id="teamsymbol" src="../resources/team/dosan.png" alt="DOSAN 로고"> 
+								</c:if>
+								<c:if test="${gs.home_team_id == 'HANHWA'}">
+									<img id="teamsymbol" src="../resources/team/hanhwa.png" alt="HANHWA 로고"> 
+								</c:if>
+								<c:if test="${gs.home_team_id == 'KIA'}">
+									<img id="teamsymbol" src="../resources/team/kiwoom.png" alt="KIA 로고">
+								</c:if> 
+								<c:if test="${gs.home_team_id == 'KT'}">
+									<img id="teamsymbol" src="../resources/team/kt.png" alt="KT 로고">
+								</c:if> 
+								<c:if test="${gs.home_team_id == 'NC'}">
+									<img id="teamsymbol" src="../resources/team/nc.png" alt="NC로고">
+								</c:if> 
+								<c:if test="${gs.home_team_id == 'SAMSUNG'}">
+									<img id="teamsymbol" src="../resources/team/samsung.png" alt="SAMSUNG 로고">
+								</c:if> 
+								<c:if test="${gs.home_team_id == 'SSG'}">
+									<img id="teamsymbol" src="../resources/team/ssg.png" alt="SSG 로고">
+								</c:if> 
+								<c:if test="${gs.home_team_id == 'LG'}">
+									<img id="teamsymbol" src="../resources/team/lg.png" alt="LG 로고">
+								</c:if></span>
+							</td>
 						</tr>
-					</table>
-					<table class="table2">
 						<tr>
 							<th>일시</th>
-							<td><span id="match-date">${gs.game_date}
-									${gs.game_time} </span></td>
+							<td><span id="match-date">${gs.game_date} ${gs.game_time} </span></td>
 							<td></td>
 						</tr>
-
+						
 						<tr>
 							<th>경기장</th>
-							<td><span id="match-stadium"> <c:if
-										test="${gs.stad_id == 'CW'}">창원 NC 파크</c:if> <c:if
-										test="${gs.stad_id == 'DG'}">대구 라이온즈파크</c:if> <c:if
-										test="${gs.stad_id == 'DJ'}">대전 이글스파크</c:if> <c:if
-										test="${gs.stad_id == 'GC'}">고척 스카이돔</c:if> <c:if
-										test="${gs.stad_id == 'GJ'}">광주 챔피언스필드</c:if> <c:if
-										test="${gs.stad_id == 'IC'}">인천 랜더스필드</c:if> <c:if
-										test="${gs.stad_id == 'JS'}">서울 잠실야구장</c:if> <c:if
-										test="${gs.stad_id == 'SJ'}">부산 사직야구장</c:if> <c:if
-										test="${gs.stad_id == 'SW'}">수원 KT위즈파크</c:if> <c:if
-										test="${gs.stad_id == 'LG'}">서울 잠실야구장</c:if>
-							</span></td>
+							<td><span id="match-stadium"> 
+								<c:if test="${gs.stad_id == 'CW'}">창원 NC 파크</c:if> 
+								<c:if test="${gs.stad_id == 'DG'}">대구 라이온즈파크</c:if> 
+								<c:if test="${gs.stad_id == 'DJ'}">대전 이글스파크</c:if> 
+								<c:if test="${gs.stad_id == 'GC'}">고척 스카이돔</c:if> 
+								<c:if test="${gs.stad_id == 'GJ'}">광주 챔피언스필드</c:if> 
+								<c:if test="${gs.stad_id == 'IC'}">인천 랜더스필드</c:if> 
+								<c:if test="${gs.stad_id == 'JS'}">서울 잠실야구장</c:if> 
+								<c:if test="${gs.stad_id == 'SJ'}">부산 사직야구장</c:if> 
+								<c:if test="${gs.stad_id == 'SW'}">수원 KT위즈파크</c:if>
+								<c:if test="${gs.stad_id == 'LG'}">서울 잠실야구장</c:if> </span>
+							</td>
 							<td></td>
 						</tr>
 						<tr>
@@ -195,12 +195,12 @@
 						</tr>
 						<tr>
 							<th>티켓 금액</th>
-							<td><span id="total-price">0</span></td>
+							<td><span id="total-price">0</span>원</td>
 							<td></td>
 						</tr>
 						<tr>
 							<th>예매 수수료</th>
-							<td><span id="booking-fee">0</span></td>
+							<td><span id="booking-fee">0</span>원</td>
 							<td></td>
 						</tr>
 						<tr>
@@ -210,20 +210,22 @@
 								<div id="myModal" class="modal">
 									<div class="modal-content">
 										<span class="close"> &times;</span>
-										<h5>취소 수수료 상세 보기</h5>
+										 <h5> 취소 수수료 상세 보기 </h5>
 										<p>
-											* 예매취소 안내(경기 당일 3시간 전까지 취소 가능) <br> * 예매 당일 취소 = 수수료 부과
-											없음 * 본인이 예매한 다음 날(0시 기준)부터 경기 당일 3시간 전 취소 = 예매 수수료 + 취소 수수료
-											제외한 나머지 환불 이후 취소 불가 <br> * 예매한 내역의 부분 취소 및 날짜, 좌석변경,
-											권종변경은 불가합니다.
+										* 예매취소 안내(경기 당일 3시간 전까지 취소 가능)
+										<br>
+										* 예매 당일 취소 = 수수료 부과 없음
+										* 본인이 예매한 다음 날(0시 기준)부터 경기 당일 3시간 전 취소 = 예매 수수료 + 취소 수수료 제외한 나머지 환불 이후 취소 불가 <br>
+										* 예매한 내역의 부분 취소 및 날짜, 좌석변경, 권종변경은 불가합니다.
 										</p>
 									</div>
-								</div></td>
+								</div>
+							</td>
 						</tr>
 
 						<tr>
 							<th>결제 금액</th>
-							<td><span id="total-amount">0</span></td>
+							<td><span id="total-amount">0</span>원</td>
 						</tr>
 
 					</table>

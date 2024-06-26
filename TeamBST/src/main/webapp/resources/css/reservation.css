@@ -90,15 +90,7 @@ select {
 .table1 {
 	margin-left: 20px;
 	margin-bottom: 20px;
-}
-
-.table2 {
-	margin-left: 20px;
-	margin-bottom: 20px;
-}
-.vs {
-	text-align: center;
-	font-size: 30px;
+	font-size: 20px;
 }
 
 .tr1 {
@@ -110,25 +102,29 @@ select {
 }
 
 .tr1>td {
-	text-align: center;
-	width: 30%; /* 각 셀의 너비를 동일하게 설정 */
-/*     border: 1px solid #ccc; 테두리 추가 (선택적) */
-    padding: 10px; /* 셀 안의 여백 추가 (선택적) */
-}
-
-.table2>th
- {
 	padding-bottom: 15px;
 	padding-left: 10px;
 	padding-right: 10px;
+	
 }
 
+.vs {
+	text-align: center;
+	font-size: 30px;
+}
+
+.table2 {
+	margin-left: 20px;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
 
 /* 선택 좌석 */
 .selectSeatInfo>th {
 	 vertical-align: top;
 	 padding-top: 5px;
 }
+
 
 /* #payment { */
 /* 	text-align: center; */
@@ -144,8 +140,6 @@ select {
 	width: 100px;
 	height: 100px;
 }
-
-
 
 
 /* 모달 배경 */
