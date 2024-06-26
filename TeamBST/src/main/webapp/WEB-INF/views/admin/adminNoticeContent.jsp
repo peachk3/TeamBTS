@@ -64,13 +64,26 @@
 
               <button type="submit" onclick="location.href='/admin/adminNoticeModify?notice_id=${notice.notice_id }&admin_id=${notice.admin_id }'">수정</button>
 
-		<form action="/admin/adminNoticeDelete?notice_id=${notice.notice_id }&admin_id=${notice.admin_id }" method="post">
-			<input type="hidden" name="notice_id" >
-			<input type="submit" value="삭제">
-		</form>	
+	    <form action="/admin/adminNoticeDelete?notice_id=${notice.notice_id}&admin_id=${notice.admin_id}" method="post" onsubmit="return confirmDelete()">
+	        <input type="hidden" name="notice_id">
+	        <input type="submit" value="삭제">
+	    </form>   
 				
                 <button type="button" onclick="location.href='/admin/adminNotice'">취소</button>
-   
+   <script>
+function confirmDelete() {
+    return confirm("정말로 삭제하시겠습니까?");
+}
+
+<%-- alertMessage가 존재할 경우에만 alert 창을 띄움 --%>
+<% if (session.getAttribute("alertMessage") != null) { %>
+    alert("<%= session.getAttribute("alertMessage") %>");
+<% 
+    // alert를 한 번 띄운 후 session에서 해당 메시지를 삭제
+    session.removeAttribute("alertMessage");
+   %>
+<% } %>
+</script>
 </c:forEach>
 <%@ include file="../include/footer.jsp"%>
 </body>
