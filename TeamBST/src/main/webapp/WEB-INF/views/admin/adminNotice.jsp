@@ -4,6 +4,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>NOTICE</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">공지사항</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section schedule">
+	<div class="container">
 	<button type="button" class="community"
 		onclick="location.href='/admin/adminNotice'">공지사항</button>
 	<br>
@@ -35,19 +53,13 @@
 
 			</tbody>
 		</table>
+	<button class="float-right" onclick="location.href='/admin/adminNoticeWrite'">글쓰기</button>
 	</div>
+</div>
+</section>
 
 
 
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<button onclick="location.href='/admin/adminNoticeWrite'">글쓰기</button>
 
 
 

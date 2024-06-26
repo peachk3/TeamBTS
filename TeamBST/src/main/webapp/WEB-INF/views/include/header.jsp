@@ -16,8 +16,6 @@
   <!-- PLUGINS CSS STYLE -->
   <!-- Bootstrap -->
   <link href="${pageContext.request.contextPath }/resources/plugins/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-  <!-- Themefisher Font -->  
-  <link href="${pageContext.request.contextPath }/resources/plugins/themefisher-font/style.css" type="text/css" rel="stylesheet">
   <!-- Font Awesome -->
   <link href="${pageContext.request.contextPath }/resources/plugins/font-awsome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
   <!-- Magnific Popup -->

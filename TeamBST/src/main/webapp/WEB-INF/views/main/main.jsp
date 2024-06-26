@@ -3,6 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../include/header.jsp"%>
 
+<style>
+.h3 {
+	color: #00000;
+}
+
+</style>
 <!--============================
 =            Banner            =
 =============================-->
@@ -28,7 +34,7 @@
 			<div class="col-12">
 				<!-- Section Title -->
 				<div class="section-title white">
-					<h3>구장</h3>
+					<h2>구장</h2>
 				</div>
 			</div>
 		</div>
@@ -157,7 +163,7 @@
 			<div class="col-12">
 				<!-- Section Title -->
 				<div class="section-title white">
-					<h3>구단</h3>
+					<h2>구단</h2>
 				</div>
 			</div>
 		</div>

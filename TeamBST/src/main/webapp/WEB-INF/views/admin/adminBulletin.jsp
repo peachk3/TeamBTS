@@ -5,8 +5,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-      <button type="button" class="community" onclick="location.href='/admin/adminNotice'">공지사항</button> <br>
-      <button type="button" class="community" onclick="location.href='/admin/adminBulletin'">문의 게시판</button> <br>
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>BULLETIN</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">문의글</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
     
 
         
@@ -14,18 +26,15 @@
 	
 
 
-
-	<div>
-		<input type="text" placeholder="검색어 입력">
-		<button>검색</button>
-	</div>
-
-	
+<section class="section schedule">
+	<div class="container">
+      <button type="button" class="community" onclick="location.href='/admin/adminNotice'">공지사항</button> <br>
+      <button type="button" class="community" onclick="location.href='/admin/adminBulletin'">문의 게시판</button> <br>
 	<div class="box-body">
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<th style="width: 10px">BNO</th>
+					<th style="width: 20px">BNO</th>
 					<th>게시글</th>
 					<th>닉네임</th>
 					<th>등록일</th>
@@ -57,8 +66,8 @@
 			</tbody>
 		</table>
 	</div>
-
-	<br>
+</div>
+</section>
 
 
 

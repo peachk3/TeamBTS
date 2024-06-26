@@ -2,6 +2,29 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/adminheader.jsp"%>
 
+<style>
+	.btn {
+		border: 1px solid #ccc;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+</style>
+
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>SCHEDULE UPLOAD</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">경기일정 등록</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section> 
+
 	<!--begin::Form-->
 	<form class="form" action="/admin/adminScheduleUpload" method="post">
 		<div class="card-body">
@@ -52,8 +75,8 @@
 
 		</div>
 		<div class="card-footer">
-			<button type="submit" class="btn btn-primary mr-2">Submit</button>
-			<button type="button" class="btn btn-secondary" onclick="location.href = '/admin/adminSchedule'">Cancel</button>
+			<button type="submit" class="btn">등록하기</button>
+			<button type="button" class="btn" onclick="location.href = '/admin/adminSchedule'">취소하기</button>
 		</div>
 	</form>
 	<!--end::Form-->

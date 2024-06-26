@@ -35,7 +35,7 @@
   <!-- Bootstrap 4 -->
   <script src="<c:url value="/resources/plugins/bootstrap/js/bootstrap.min.js"/>"></script>
   <!-- Smooth Scroll -->
-  <script src="<c:url value="/resources/plugins/smoothscroll/SmoothScroll.min.js"/>"></script>  
+<%--   <script src="<c:url value="/resources/plugins/smoothscroll/SmoothScroll.min.js"/>"></script>   --%>
   <!-- Isotope -->
   <script src="<c:url value="/resources/plugins/isotope/mixitup.min.js"/>"></script>  
   <!-- Magnific Popup -->

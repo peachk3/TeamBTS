@@ -2,54 +2,150 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/adminheader.jsp"%>
 
-      
-      
-      
-      <button type="button" class="community" onclick="location.href='/admin/adminMember'">회원현황</button> <br>
-      <button type="button" class="community" onclick="location.href='/admin/adminGeneralMember'">일반회원</button> <br>
-      <button type="button" class="community" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
 
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>ADMIN PAGE</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">관리자페이지</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>   
 
-		
-      <br><br><br>
-      <table border="1">
-
-	<tr>
-		<td>아이디</td>
-		<td>${resultDTO.admin_id }</td>
-	</tr>
-	<tr>
-		<td>비밀번호</td>
-		<td class="masked-password">********</td> <!-- 비밀번호 마스킹 -->
-	</tr>
-	<tr>
-		<td>이름</td>
-		<td>${resultDTO.admin_name }</td>
-	</tr>
-	<tr>
-		<td>닉네임</td>
-		<td>${resultDTO.admin_nick }</td>
-	</tr>
-	<tr>
-		<td>휴대번호</td>
-		<td>${resultDTO.admin_phone }</td>
-	</tr>
-	<tr>
-		<td>이메일</td>
-		<td>${resultDTO.admin_email }</td>
-	</tr>
-	<tr>
-		<td>생년월일</td>
-		<td>${resultDTO.admin_birth }</td>
-	</tr>
-</table>
-
-
-
-
+<section class="section schedule">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="schedule-contents bg-schedule">
+      <button type="button" class="btn" onclick="location.href='/admin/adminMember'">회원현황</button>
+      <button type="button" class="btn" onclick="location.href='/admin/adminGeneralMember'">일반회원</button>
+      <button type="button" class="btn" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
+					<div class="tab-content" id="pills-tabContent">
+					  <div class="tab-pane fade show active schedule-item" id="nov20">
+					  	<!-- Headings -->
+					  	<ul class="m-0 p-0">
+					  		<li class="headings">
+					  			<div class="time" style="margin-left:30px">내 정보</div>
+					  		</li>
+					  		<!-- Schedule Details -->
+					  		<li class="schedule-details">
+					  			<div class="block">
+					  				<!-- time -->
+							  		<div class="time">
+							  			<i class="fa fa">□</i>
+							  			<span class="time">아이디</span>
+							  		</div>
+							  		<!-- Speaker -->
+							  		<div class="speaker">
+										<span class="name">${resultDTO.admin_id }</span>
+							  		</div>
+					  			</div>
+					  		</li>
+					  		<!-- Schedule Details -->
+					  		<li class="schedule-details">
+					  			<div class="block">
+						  			<!-- time -->
+							  		<div class="time">
+							  			<i class="fa fa">□</i>
+							  			<span class="time">비밀번호</span>
+							  		</div>
+							  		<!-- Speaker -->
+							  		<div class="speaker">
+										<span class="masked-password">********</span>
+							  		</div>
+					  			</div>
+					  		</li>
+					  		<!-- Schedule Details -->
+					  		<li class="schedule-details">
+					  			<div class="block">
+						  			<!-- name -->
+							  		<div class="time">
+							  			<i class="fa fa">□</i>
+							  			<span class="time">이름</span>
+							  		</div>
+							  		<!-- Speaker -->
+							  		<div class="speaker">
+										<span class="name">${resultDTO.admin_name }</span>
+							  		</div>
+					  			</div>
+					  		</li>
+					  		<!-- Schedule Details -->
+					  		<li class="schedule-details">
+					  			<div class="block">
+						  			<!-- time -->
+							  		<div class="time">
+							  			<i class="fa fa">□</i>
+							  			<span class="time">닉네임</span>
+							  		</div>
+							  		<!-- Speaker -->
+							  		<div class="speaker">
+										<span class="name">${resultDTO.admin_nick }</span>
+							  		</div>
+					  			</div>
+					  		</li>
+					  		<!-- Schedule Details -->
+					  		<li class="schedule-details">
+					  			<div class="block">
+						  			<!-- time -->
+							  		<div class="time">
+							  			<i class="fa fa">□</i>
+							  			<span class="time">휴대번호</span>
+							  		</div>
+							  		<!-- Speaker -->
+							  		<div class="speaker">
+										<span class="name">${resultDTO.admin_phone }</span>
+							  		</div>
+					  			</div>
+					  		</li>
+					  		<!-- Schedule Details -->
+					  		<li class="schedule-details">
+					  			<div class="block">
+						  			<!-- time -->
+							  		<div class="time">
+							  			<i class="fa fa">□</i>
+							  			<span class="time">이메일</span>
+							  		</div>
+							  		<!-- Speaker -->
+							  		<div class="speaker">
+										<span class="name">${resultDTO.admin_email }</span>
+							  		</div>
+					  			</div>
+					  		</li>
+					  		<!-- Schedule Details -->
+					  		<li class="schedule-details">
+					  			<div class="block">
+						  			<!-- time -->
+							  		<div class="time">
+							  			<i class="fa fa">□</i>
+							  			<span class="time">생년월일</span>
+							  		</div>
+							  		<!-- Speaker -->
+							  		<div class="speaker">
+										<span class="name">${resultDTO.admin_birth }</span>
+							  		</div>
+					  			</div>
+					  		</li>
+					  	</ul>
+					  </div>  
+					  </div>  
 <input type="button" value="메인으로" class="btn" onclick="location.href='/admin/admin'">
 <input type="button" value="정보수정" class="btn" onclick="location.href='/admin/adminUpdateForm'">
 <input type="button" value="회원탈퇴" class="btn" onclick="location.href='/admin/adminDeleteMember'">
+					  </div>  
+					  </div>  
+					  </div>  
+					  </div>
+					  </section>  
+      
+
+
+
 
 
 

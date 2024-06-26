@@ -70,7 +70,6 @@ public class MypageController {
     
     
     //http://localhost:8088/mypage/updateForm
-    //http://localhost:8088/mypage/updateForm
     // 회원정보 수정 - 기존 회원정보
     @GetMapping(value = "/updateForm")
     public void updateGET(HttpSession session, Model model) throws Exception{
