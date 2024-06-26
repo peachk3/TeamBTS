@@ -61,7 +61,7 @@
 </c:forEach>
    
    			<div class="card-footer">
-				<button type="reset" class="btn btn-secondary" onclick="window.history.back();">뒤로가기</button>
+				<button type="reset" class="btn btn-secondary" onclick="location.href='/announcement/announcement'">뒤로가기</button>
 			</div>
    
    

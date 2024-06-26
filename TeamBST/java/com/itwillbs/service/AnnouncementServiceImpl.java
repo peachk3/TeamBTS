@@ -59,7 +59,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	
 	
 	@Override
-	public List<Post_boardDTO> noticeOneList(String notice_id) throws Exception {
+	public List<Post_boardDTO> noticeOneList(int notice_id) throws Exception {
 		logger.debug("공지 게시글 내용 조회");
 		
 		
@@ -87,7 +87,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	}
 
 	@Override
-	public void updateNoticeCount(String notice_id) throws Exception {
+	public void updateNoticeCount(int notice_id) throws Exception {
 
 		adao.updateNoticeCount(notice_id);
 	}
