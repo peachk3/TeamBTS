@@ -106,7 +106,7 @@
 		select qb.quest_id, qb.quest_sub, qb.quest_cre_date, u.user_nick, qb.quest_public, qb.quest_view
 		from question_board qb
 		join user u on qb.quest_writer_id = u.user_id
-		where (qb.quest_del_at = 'N' and qb.quest_id > 0)
+		where (qb.quest_del_at ='N' and qb.quest_id > 0)
 		order by qb.quest_id desc, qb.quest_cre_date desc
 		limit #{pageStart}, #{pageSize}
 		]]>
@@ -116,7 +116,7 @@
 	<!-- 문의 게시판 총 글의 개수(페이징처리) -->
 	<select id="countQuestionPage" resultType="int">
 		select count(quest_id) from question_board
-		where qb.quest_del_at = 'N'
+		where quest_del_at = 'N'
 	</select>	
 	
 	
