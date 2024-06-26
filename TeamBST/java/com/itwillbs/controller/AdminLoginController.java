@@ -6,8 +6,11 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.service.AdminLoginService;
@@ -87,7 +90,63 @@ public class AdminLoginController {
 		return "redirect:/login/AdminLoginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트
 	}
 	
-	
+	//-----------------------------------------------------------------
+		//아이디 중복 체크 
+		@GetMapping("/aidCheck")
+		@ResponseBody
+		public int aidCheck(@RequestParam("admin_id")String admin_id)throws Exception{
+			logger.debug("admin_id" + admin_id);
+			
+			int result = aLoginService.aidCheck(admin_id);
+			
+			logger.debug("결과값" + result);
+			
+			return result;
+		}
+		
+		//----------------------------------------------------------------
+		//닉네임 중복체크 
+		@GetMapping("/anickCheck")
+		@ResponseBody
+		public int anickCheck(@RequestParam("admin_nick")String admin_nick) throws Exception{
+			logger.debug("admin_nick" + admin_nick);
+
+			int result = aLoginService.anickCheck(admin_nick);
+			
+			logger.debug("결과 값 : " + result);
+			
+			return result;
+			
+		}
+		//--------------------------------------------------------------
+		// 핸드폰 중복확인
+		@GetMapping("/aphoneCheck")
+		@ResponseBody 
+		public int aphoneCheck(@RequestParam("admin_phone")String admin_phone) throws Exception{
+			logger.debug("admin_phone" + admin_phone);
+			
+			int result = aLoginService.aphoneCheck(admin_phone);
+			
+			logger.debug("결과값 : " + result);
+			
+			return result;
+		}
+		//------------------------------------------------------
+		//이메일 중복 체크
+		@GetMapping("/aemailCheck")
+		@ResponseBody
+		public int aemailCheck(@RequestParam("admin_email")String admin_email) throws Exception{
+			logger.debug("admin_email" + admin_email);
+
+			int result = aLoginService.aemailCheck(admin_email);
+			
+			logger.debug( "결과값 : " + result);
+			
+			return result;
+		}
+		//----------------------------------------------------------------
+		// 아이디 찾기	
+		
 	
 	
 }

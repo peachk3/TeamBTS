@@ -17,5 +17,50 @@
 			where admin_id=#{admin_id} and admin_pwd=#{admin_pwd}
 		</select>
 		
+		<!-- 아이디 중복체크 -->
+		<select id="aidCheck" parameterType="String" resultType="int">
+			select count(*) from admin where admin_id=#{admin_id}
+		</select>
+
+		<!-- 닉네임 중복체크 -->
+		<select id="anickCheck" parameterType="String" resultType="int">
+			select count(*) from admin where admin_nick=#{admin_nick}
+		</select>
+
+		<!-- 이메일 중복체크 -->
+		<select id="aemailCheck" parameterType="String" resultType="int">
+			select count(*)from admin where admin_email=#{admin_email}
+		</select>
+
+		<!-- 이메일 본인인증 -->
+
+
+
+	
+		<!-- 핸드폰 중복체크 -->
+		<select id="aphoneCheck" parameterType="String" resultType="int">
+			select count(*) from admin where admin_phone=#{admin_phone}
+		</select>
+	
+	
+		<!-- ID 찾기(핸드폰 번호로) -->
+		<select id="afindId" resultType="string">
+			select admin_id from admin where admin_name=#{admin_name} and admin_phone=#{admin_phone}
+		</select>
+	
+		<!-- ID 찾기(이메일) -->
+		<select id="afindIdEmail" resultType="int">
+			select * from admin where admin_name=#{admin_name} and admin_email=#{admin_email}
+		</select>
+
+		<!-- 비번 찾기(예전비번) -->
+		<select id="afindPwd" resultType="Integer">
+			select count(*) from admin where admin_pwd=#{admin_pwd} 
+		</select>
+	
+		<!-- 새로운 비밀번호  -->
+		<update id="afindPwdUpdate">
+			update admin set admin_pwd=#{admin_pwd} where admin_id=#{admin_id}
+		</update>
 	</mapper>
 		

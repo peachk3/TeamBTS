@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link href="../resources/css/signup.css" rel="stylesheet"> <!--signup.css 파일 연결 -->
+    
   <!--  <script src="../resources/js/kakao_login.js"></script>  -->
+   <!--  <script src="https://developers.kakao.com/sdk/kakao.min.js"></script>카카오 SDK 파일 -->
+   
+	<script src="../resources/js/signup_script.js"></script>  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../resources/js/signup_script.js"></script>
-    <script src="https://developers.kakao.com/sdk/kakao.min.js"></script><!-- 카카오 SDK 파일-->
 </head>
 <body>
 	<h1><a href="/main/main">개바리조</a></h1>
