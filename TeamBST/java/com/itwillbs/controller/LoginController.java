@@ -1,6 +1,8 @@
 package com.itwillbs.controller;
 
 
+import java.net.URLDecoder;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -67,7 +69,10 @@ public void loginGET() {
 //로그인 - 입력받은 아이디, 비밀번호를 사용해서 확인
 
 @RequestMapping(value = "/loginPage", method = RequestMethod.POST)										
-public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 ->전달한 정보 저장(아이디, 비밀번호)
+public String loginPOST(HttpSession session, 
+						UserDTO udto,
+						@RequestParam(required = false) String redirect)
+						throws Exception{ // 파라미터에 ->전달한 정보 저장(아이디, 비밀번호)
 	
 	logger.debug("/loginPage -> loginPOST() 호출");
 	logger.debug("로그인 정보"+ udto );
@@ -86,7 +91,14 @@ public String loginPOST(HttpSession session, UserDTO udto){ // 파라미터에 -
 	//로그인 성공!
 	session.setAttribute("user_id", resultDTO.getUser_id());
 	
-	return "redirect:/main/main";
+    if (redirect != null && !redirect.isEmpty()) {
+        String decodedRedirect = URLDecoder.decode(redirect, "UTF-8");
+        logger.debug("로그인 후 리다이렉트할 URL: " + decodedRedirect);
+        return "redirect:" + decodedRedirect;
+    }
+	 
+	 
+	 	return "redirect:/main/main";
 	
 	}
 

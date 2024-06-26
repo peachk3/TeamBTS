@@ -1,6 +1,8 @@
 package com.itwillbs.controller;
 
 import java.beans.Encoder;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -196,7 +198,7 @@ public class CommunityController {
 	
 	
 	@RequestMapping(value="/communityWrite",method=RequestMethod.GET)
-	public String coummnityWrite_GET(HttpSession session) {
+	public String coummnityWrite_GET(HttpSession session,HttpServletRequest request) throws Exception {
 		
         String user_id = (String) session.getAttribute("user_id");
         logger.debug("user_id : "+ user_id);
@@ -205,16 +207,18 @@ public class CommunityController {
 			  logger.debug("거래 게시판 글쓰기 호출");
 			  logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
 	        
-	        	return "/community/communityWrite";
-	        } else {
-	        	
-	        	logger.debug("로그인을 해야 예매하기를 할 수 있습니다");
+	        } if (session.getAttribute("user_id") == null) {
+	            String redirectUrl = request.getRequestURL().toString();
+	            String queryString = request.getQueryString();
+	            if (queryString != null) {
+	                redirectUrl += "?" + queryString;
+	            }
 	            session.setAttribute("alertMessage", "로그인을 해야 글을 작성할 수 있습니다");
-
-	        	return "redirect:/login/loginPage";
+	            return "redirect:/login/loginPage?redirect=" + URLEncoder.encode(redirectUrl, "UTF-8");
 	        }
 		
 
+		  return "/community/communityWrite";
 	}
 	
 	@RequestMapping(value="/communityWrite",method=RequestMethod.POST)
@@ -264,10 +268,13 @@ public class CommunityController {
     	
 	}
 	
+	// 댓글 스기
 	@PostMapping(value="/communityContent")
-	public String adminbulletinContent_POST(Post_commendDTO pcdto,HttpSession session,@RequestParam("post_id") int post_id) throws Exception{
-		logger.debug("관리자 문의게시판 답변 쓰기 호출");
-		logger.debug(" /adminbulletinContent -> adminbulletinContent_POST() 호출");
+	public String communityContent_POST(Post_commendDTO pcdto,HttpSession session,
+			@RequestParam("post_id") int post_id,
+			HttpServletRequest request) throws Exception{
+		logger.debug("거래 게시판 댓글 쓰기 호출");
+		logger.debug(" /communityContent -> communityContent_POST() 호출");
 		 // 세션에서 user_id 가져오기
 	    String userId = (String) session.getAttribute("user_id");
 	    logger.debug("세션에서 가져온 user_id: " + userId);
@@ -280,12 +287,15 @@ public class CommunityController {
         	logger.debug("pcdto : " + pcdto);
         	return "redirect:/community/communityContent?post_id=" + post_id;
 	        
-	        } else {
-	        	
-	        	logger.debug("로그인을 해야 댓글을 작성 할 수 있습니다");
+	        }else {
+	            // 로그인 페이지로 리다이렉트할 때 현재 페이지의 URL을 쿼리 파라미터로 전달
+	            String redirectUrl = request.getRequestURL().toString() + "?post_id=" + post_id;
+	            redirectUrl = URLEncoder.encode(redirectUrl, "UTF-8");
+
+	            logger.debug("로그인을 해야 댓글을 작성 할 수 있습니다");
 	            session.setAttribute("alertMessage", "로그인을 해야 댓글을 작성 할 수 있습니다");
 
-	        	return "redirect:/login/loginPage";
+	            return "redirect:/login/loginPage?redirect=" + redirectUrl;
 	        }
 	    
 	}	
@@ -294,7 +304,7 @@ public class CommunityController {
 	
 //  게시판 글 수정하기(기존의 글정보 확인) - GET
 	@GetMapping(value="/communityModify")
-	public String communityModify_GET(Post_boardDTO pbdto,HttpSession session,Model model,@RequestParam("post_id") int post_id,@RequestParam("post_writer_id") String post_writer_id) throws Exception{
+	public String communityModify_GET(Post_boardDTO pbdto,HttpSession session,	HttpServletRequest request,Model model,@RequestParam("post_id") int post_id,@RequestParam("post_writer_id") String post_writer_id) throws Exception{
 		logger.debug("거래 게시판 본문 수정 호출");
 		logger.debug(" /communityModify -> communityModify_GET() 호출");
 			// 전달정보 bno 저장
@@ -304,9 +314,14 @@ public class CommunityController {
 	        logger.debug("post_writer_id : "+ post_writer_id);
 	        
 	        if (user_id == null) {
-	            logger.debug("로그인을 해야 수정을 할 수 있습니다");
-	            session.setAttribute("alertMessage", "로그인을 해야 수정을 할 수 있습니다");
-	            return "redirect:/login/loginPage";
+	        	 // 로그인 페이지로 리다이렉트할 때 현재 페이지의 URL을 쿼리 파라미터로 전달
+	            String redirectUrl = request.getRequestURL().toString() + "?post_id=" + post_id+"&post_writer_id="+post_writer_id;
+	            redirectUrl = URLEncoder.encode(redirectUrl, "UTF-8");
+
+	            logger.debug("로그인을 해야 댓글을 작성 할 수 있습니다");
+	            session.setAttribute("alertMessage", "로그인을 해야 댓글을 작성 할 수 있습니다");
+
+	            return "redirect:/login/loginPage?redirect=" + redirectUrl;
 	        }
 	        
 	        if (user_id.equals(pbdto.getPost_writer_id())) {

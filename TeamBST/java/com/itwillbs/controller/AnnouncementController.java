@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,7 +90,8 @@ public class AnnouncementController {
 	}
 	
 	@RequestMapping(value="/bulletinWrite",method=RequestMethod.GET)
-	public String announcementBulletinWrite_GET(HttpSession session) {
+	public String announcementBulletinWrite_GET(HttpServletRequest request,
+								HttpSession session) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
         
         logger.debug("user_id : "+ user_id);
@@ -97,18 +99,21 @@ public class AnnouncementController {
         	logger.debug("문의 게시판 글쓰기 호출");
         	logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
         
-        	return "/announcement/bulletinWrite";
-        } else {
-        	
-        	logger.debug("로그인을 해야 글쓰기를 할 수 있습니다");
-        	session.setAttribute("alertMessage", "로그인을 해야 글쓰기를 할 수 있습니다");
-        	
-        	return "redirect:/login/loginPage";
+        } if (session.getAttribute("user_id") == null) {
+            String redirectUrl = request.getRequestURL().toString();
+            String queryString = request.getQueryString();
+            if (queryString != null) {
+                redirectUrl += "?" + queryString;
+            }
+            session.setAttribute("alertMessage", "로그인을 해야 글쓰기를 할 수 있습니다");
+            return "redirect:/login/loginPage?redirect=" + URLEncoder.encode(redirectUrl, "UTF-8");
         }
-        
+        	
+        return "/announcement/bulletinWrite";
+	}        
         
 
-	}
+	
 	
 	@RequestMapping(value="/bulletinWrite",method=RequestMethod.POST)
 	public String announcementBulletinWrite_POST(Question_boardDTO dto,HttpSession session) {
@@ -250,21 +255,24 @@ public String bulletinContent_GET(@RequestParam("quest_id") int quest_id, HttpSe
 	
 //  게시판 글 수정하기(기존의 글정보 확인) - GET
 	@GetMapping(value="/bulletinModify")
-	public String bulletinModify_GET(Question_boardDTO qbdto,HttpSession session,Model model,@RequestParam("quest_id") int quest_id,@RequestParam("quest_writer_id") String quest_writer_id) throws Exception{
+	public String bulletinModify_GET(Question_boardDTO qbdto,HttpSession session,HttpServletRequest request,Model model,@RequestParam("quest_id") int quest_id,@RequestParam("quest_writer_id") String quest_writer_id) throws Exception{
 		logger.debug(" bulletinModify() 실행");
 			// 전달정보 bno 저장
 			logger.debug(" quest_id : "+ quest_id);
 			String user_id = (String) session.getAttribute("user_id");
 	        logger.debug("user_id : "+ user_id);
 	        logger.debug("quest_writer_id : "+ quest_writer_id);
-	        
 	        if (user_id == null) {
-	            logger.debug("로그인을 해야 수정을 할 수 있습니다");
-	        	session.setAttribute("alertMessage", "로그인을 해야 수정을 할 수 있습니다");
+	        	 // 로그인 페이지로 리다이렉트할 때 현재 페이지의 URL을 쿼리 파라미터로 전달
+	            String redirectUrl = request.getRequestURL().toString() + "?quest_id=" + quest_id+"&quest_writer_id="+quest_writer_id;
+	            redirectUrl = URLEncoder.encode(redirectUrl, "UTF-8");
 
-	            return "redirect:/login/loginPage";
+	            logger.debug("로그인을 해야 수정을 할 수 있습니다");
+	            session.setAttribute("alertMessage", "로그인을 해야 수정을 할 수 있습니다");
+
+	            return "redirect:/login/loginPage?redirect=" + redirectUrl;
 	        }
-	        
+
 	        else if (user_id.equals(quest_writer_id)) {
 	            List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
 	            logger.debug("size : " + QuestionOneList.size());
