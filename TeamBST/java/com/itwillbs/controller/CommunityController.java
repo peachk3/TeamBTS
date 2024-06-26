@@ -3,6 +3,7 @@ package com.itwillbs.controller;
 import java.beans.Encoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -138,10 +139,12 @@ public class CommunityController {
 	// gpt 코드
 	@ResponseBody
 	@RequestMapping(value="/community", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public String coummnityMain_POST(@RequestBody Category cate, HttpServletRequest request, Model model) throws Exception {
+	public String coummnityMain_POST(@RequestBody Category cate, HttpServletRequest request, Model model,HttpSession session) throws Exception {
 	    logger.debug("거래 게시판 메인 호출");
 	    logger.debug(" /community -> coummnityMain_POST() 호출");
-
+	    
+	    session.setAttribute("viewed_post_ids", new ArrayList<Integer>());	     
+	   
 	    int page = Integer.parseInt(request.getHeader("page"));
 	    int pageSize = Integer.parseInt(request.getHeader("pageSize"));
 	    
@@ -229,23 +232,35 @@ public class CommunityController {
 	
 	//  거래 게시판 본문 확인하기
 	@GetMapping(value="/communityContent")
-	public void communityContent_GET(@RequestParam("post_id") int post_id,HttpSession session, Model model) throws Exception{
+	public void communityContent_GET(@RequestParam("post_id") int post_id,HttpSession session, Model model,HttpServletRequest request) throws Exception{
 		logger.debug("거래 게시판 본문 내용 호출");
 		logger.debug(" /communityContent -> communityContent_GET() 호출");
 
-    	// 본문 내용 호출
-    	List<Post_boardDTO> PostOneList = cService.PostOneList(post_id);
-
-    	// 조회수 증가
-    	cService.updateCount(post_id);
-    	
-    	
-		logger.debug("size : "+ PostOneList.size());
-		logger.debug("size : "+ PostOneList);
-		List<Post_commendDTO> commentList = cService.getComments(post_id);
+		 // 세션에서 'viewed_post_id' 속성 확인
+        @SuppressWarnings("unchecked")
+        List<Integer> viewedPostIds = (List<Integer>) session.getAttribute("viewed_post_ids");
+        
+        // 세션에 'viewed_post_id' 속성이 없으면 초기화
+        if (viewedPostIds == null) {
+            viewedPostIds = new ArrayList<>();
+            session.setAttribute("viewed_post_ids", viewedPostIds);
+        }
+        
+        // 현재 포스트 ID가 'viewed_post_id' 리스트에 없는 경우 조회수 증가
+        if (!viewedPostIds.contains(post_id)) {
+            cService.updateCount(post_id);
+            viewedPostIds.add(post_id);
+        }
+        
+        // 본문 내용 호출
+        List<Post_boardDTO> PostOneList = cService.PostOneList(post_id);
+        
+        // 댓글 목록 호출
+        List<Post_commendDTO> commentList = cService.getComments(post_id);
+        
+        // 모델에 데이터 추가
         model.addAttribute("CommentList", commentList);
-		// 연결된 뷰페이지로 정보 전달
-		model.addAttribute("PostOneList", PostOneList);
+        model.addAttribute("PostOneList", PostOneList);
     	
 	}
 	

@@ -69,7 +69,7 @@
 			<input type="submit" value="삭제">
 		</form>	
 				
-                <button type="button" onclick="window.history.back();">취소</button>
+                <button type="button" onclick="location.href='/admin/adminNotice'">취소</button>
    
 </c:forEach>
 <%@ include file="../include/footer.jsp"%>

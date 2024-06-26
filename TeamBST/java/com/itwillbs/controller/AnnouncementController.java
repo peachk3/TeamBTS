@@ -1,9 +1,11 @@
 package com.itwillbs.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -35,8 +37,9 @@ public class AnnouncementController {
 	private AnnouncementService aService;
 
 	@RequestMapping(value="/announcement",method=RequestMethod.GET)
-	public String AnnouncementMain_GET(Criteria cri,Model model) throws Exception {
+	public String AnnouncementMain_GET(Criteria cri,Model model,HttpSession session) throws Exception {
 		logger.debug("공지 게시판 호출");
+	    session.setAttribute("viewed_post_ids", new ArrayList<Integer>());	     
 
 		// 서비스 -> DB의 정보를 가져오기
 		List<Notice_boardDTO> nBoardList = aService.NoticeList(cri);
@@ -60,8 +63,9 @@ public class AnnouncementController {
 	
 	
 	@RequestMapping(value="/bulletin",method=RequestMethod.GET)
-	public String announcementBulletin_GET(Criteria cri,Model model) throws Exception {
+	public String announcementBulletin_GET(Criteria cri,Model model,HttpSession session) throws Exception {
 		logger.debug("문의 게시판 호출");
+	    session.setAttribute("viewed_post_ids", new ArrayList<Integer>());	     
 
 		// 서비스 -> DB의 정보를 가져오기
 //		List<Question_boardDTO> qBoardList = aService.QuestionList();
@@ -124,12 +128,26 @@ public class AnnouncementController {
 	
 //  공지사항 게시판 본문 확인하기
 	@GetMapping(value="/announcementContent")
-	public void communityContent_GET(@RequestParam("notice_id") String notice_id,Model model) throws Exception{
+	public void communityContent_GET(@RequestParam("notice_id") int notice_id,Model model,HttpSession session) throws Exception{
 		logger.debug("본문 내용 호출");
     	logger.debug(" notice_id : " + notice_id);
+		 // 세션에서 'viewed_post_id' 속성 확인
+        @SuppressWarnings("unchecked")
+        List<Integer> viewedPostIds = (List<Integer>) session.getAttribute("viewed_post_ids");
+        
+        // 세션에 'viewed_post_id' 속성이 없으면 초기화
+        if (viewedPostIds == null) {
+            viewedPostIds = new ArrayList<>();
+            session.setAttribute("viewed_post_ids", viewedPostIds);
+        }
+        
+        // 현재 포스트 ID가 'viewed_post_id' 리스트에 없는 경우 조회수 증가
+        if (!viewedPostIds.contains(notice_id)) {
+        	aService.updateNoticeCount(notice_id);
+            viewedPostIds.add(notice_id);
+        }
         
     	// 조회수 1 증가
-    	aService.updateNoticeCount(notice_id);
 
     	
     	List<Post_boardDTO> noticeOneList = aService.noticeOneList(notice_id);
@@ -177,8 +195,23 @@ public String bulletinContent_GET(@RequestParam("quest_id") int quest_id, HttpSe
     logger.debug(" quest_id : " + quest_id);
     String user_id = (String) session.getAttribute("user_id");
 
+    // 세션에서 'viewed_post_id' 속성 확인
+    @SuppressWarnings("unchecked")
+    List<Integer> viewedPostIds = (List<Integer>) session.getAttribute("viewed_post_ids");
+    
+    // 세션에 'viewed_post_id' 속성이 없으면 초기화
+    if (viewedPostIds == null) {
+        viewedPostIds = new ArrayList<>();
+        session.setAttribute("viewed_post_ids", viewedPostIds);
+    }
+    
+    // 현재 포스트 ID가 'viewed_post_id' 리스트에 없는 경우 조회수 증가
+    if (!viewedPostIds.contains(quest_id)) {
+    	aService.updateQuestCount(quest_id);
+        viewedPostIds.add(quest_id);
+    }
+    
     // 조회수 1 증가
-    aService.updateQuestCount(quest_id);
 
     List<Question_boardDTO> QuestionOneList = aService.QuestionOneList(quest_id);
 
