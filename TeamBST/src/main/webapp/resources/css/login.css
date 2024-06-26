@@ -74,7 +74,7 @@
 }
 
  .save-id {
-            margin-top: 20px; /* "아이디 저장하기" 간격 조정 */
+            margin-top: 20px; 
        }
 
 label[for=rememberId] {
@@ -113,6 +113,7 @@ label[for=rememberId] {
 	text-decoration: none;
 	color: #fff;
 	margin: 0 5px;
+	font-size: 12px;
 }
 
 /* 로그인 버튼 활성화 스타일 */

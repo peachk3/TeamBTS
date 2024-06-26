@@ -1,149 +1,174 @@
 @charset "UTF-8";
 
-/* 구글 폰트 사용 */
-.hi-melody-regular {
-	font-family: "Hi Melody", sans-serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 40px;
-}
-
-/* 로고 이미지 스타일 */
-.logo {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 60px;
-	margin-bottom: 10px;
-}
-
-.logo img {
-	width: 150px;
-	height: auto;
-}
-
-.logo a {
-	text-decoration: none; 
-}
-
-.login-box {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 400px;
-	height: 55%;
-	padding: 70px;
-	transform: translate(-50%, -50%);
-	background:#007bff;
-	box-sizing: border-box;
-	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-	border-radius: 10px;
-}
-
-.login-box>h2 {
-	margin: 0 0 50px;
-	padding: 0;
-	color: #fff;
-	text-align: center;
-}
-
-.login-box input::placeholder {
-	color: #ddd;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	font-size: 16px;
-}
-
-.login-box input[type="text"], .login-box input[type="password"] {
-	width: 100%;
-	padding: 30px 0px;
-	font-size: 16px;
-	color: #fff;
-	margin-bottom: 20px;
-	border: none;
-	border-bottom: 1px solid #ddd;
-	outline: none;
-	background: transparent;
-}
-
-#login-box>input[type="checkbox"] {
-	display: none;
-}
-
-#login-form>label {
-	color: #fff;
-}
-
- .save-id {
-            margin-top: 20px; /* "아이디 저장하기" 간격 조정 */
-       }
-
-label[for=rememberId] {
-	color: #dee;
-	display: inline-block;
-	height: 20px;
-	line-height: 20px;
-	vertical-align: top;
-	padding: 0 0 5 5px;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	font-size: 13px;
+	/* 구글 폰트 사용 */
+	.hi-melody-regular {
+		font-family: "Hi Melody", sans-serif;
+		font-weight: 400;
+		font-style: normal;
+		font-size: 40px;
+	}
 	
+	/* 로고 이미지 스타일 */
+	.logo {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 5px;
+		margin-bottom: 10px;
+	}
+	
+	.logo img {
+		width: 150px;
+		height: auto;
+	}
+	
+	.logo a {
+		text-decoration: none;
+	}
+	
+	body, html {
+		margin: 0;
+		padding: 0;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #f9f9f9;
+		font-family: Arial, sans-serif;
+	}
+	
+.signup-box {
+    position: relative;
+    width: 500px; /* 폼의 너비 넓힘*/
+    padding: 80px; /* 패딩 늘려서 내부 여백 확보*/
+    height: 90%;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background: #fff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+
+    }
+
+    hr.hr-5 {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 10px 5;
+    }
+
+    h2 {
+    text-align: center;
+    color: #fff;
+    background-color: #007bff;
+    padding: 8px; /* 패딩을 늘려서 제목의 크기를 키움 */
+    border-radius: 5px;
+    margin-bottom: 20px;
+    }
+
+
+    .form-group label {
+    display: block;
+    margin-bottom: 8px; /* 레이블 하단 여백을 늘려서 간격 확대 */
+    font-weight: bold;
+    border: 1px;
+    
+    }
+ 
+
+    .in-b,
+    .btn-group input[type="text"],
+    .btn-group input[type="email"],
+    .btn-group input[type="tel"]
+    input[type="date"] {
+    width: 80%; /* 입력 필드 너비 확대 */
+    padding: 15px; /* 패딩을 늘려서 입력 필드 높이 확대 */
+    margin-bottom: 1px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #000; /* 입력 필드 텍스트 색상 */
+    }
+
+    .btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1px; /* 하단 여백 확대 */
+    
+    }
+
+    .btn-group button{
+    width: 66px;
+    height: 50px;
+    border: none;
+    background-color: #4d647c;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 8px;
+    margin-left: 2px; /* 입력 필드와 버튼 사이 간격 */
+    cursor: pointer; /* 버튼 눌릴 때 손가락 모양 해주는 센스*/
+    }
+
+    .check-button:hover,
+    .verifyCode:hover,
+    .button-primary:hover {
+    background-color: #0056b3; /* 버튼 위에 올렸을 때 색깔 변하게*/
+    }
+    
+    .button-primary.clicked, 
+	.check-button.clicked, 
+	.signup-btn.clicked,
+	.login-btn.clicked {
+	background-color: #0056b3; /* 버튼을 클릭했을 때 색깔 변하게 */
+	}
+    
+    
+    .terms, .privacy { /*개인정보 수집 & 이용약관 수집 */
+    margin: 15px 0;
+    font-size: 14px;
+    }  
+    
+    #signup_n_login .signup-btn,
+    #signup_n_login .login-btn{
+    display: inline;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px; /* 상단 여백 확대 */
+    margin-bottom: 20px;
+    padding: 15px 60px;/* 패딩을 늘려서 제목의 크기를 키움 */
+    border-radius: 8px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    cursor: pointer;
+
+    }
+
+   #signup_n_login .signup-btn:hover,
+  #signup_n_login .login-btn:hover {
+    background-color: #0056b3;
 }
+	
+	
+	fieldset {
+    border: 1px solid #ccc; /* 필드셋 테두리 */
+    padding: 10px; /* 내부 여백 */
+    margin-bottom: 20px; /* 하단 여백 */
+    border-radius: 5px; /* 테두리 둥글게 */
+    width: 80%; /* 필드셋 너비 조정 */
+    box-sizing: border-box; /* 박스 크기 계산 방식 */
+	}
 
-.login-box input[type="submit"] {
-	width: 100%;
-	padding: 13px;
-	background-color: #ddd;
-	color: slategrey;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	margin-top: 25px;
-}
-
-.login-box .options {
-	margin-top: 30px;
-	margin-bottom: 10px;
-	font-size: 11px;
-	color: slategray;
-	display: flex;
-	justify-content: center;
-}
-
-.login-box .options a {
-	text-decoration: none;
-	color: #fff;
-	margin: 0 5px;
-}
-
-/* 로그인 버튼 활성화 스타일 */
-.login-box input[type="submit"].active {
-	background-color: #ffffff;
-	color: black;
-}
-
-/* 개선사항 - 카카오톡 로그인 API 사용   */
-
-/* hr.hr-5 {
-	border: 0;
-	border-top: 3px double #D6D6D6;
-} */
-
-/* .login-box .kakao-login-button {
-	color: #3C1E1E;
-	border: none;
-	border-radius: 4px;
-	width: 100%;
-	padding: 0px;
-	cursor: pointer;
-	font-size: 13px;
-	margin-top: 15px;
-}
- */
-/* .login-box .kakao-login-button img {
-	vertical-align: middle;
-	margin-right: 4px;
-}
-
-.login-box .kakao-login-button:hover {
-	background-color: #E6D300;
-} */
+	legend {
+    font-weight: bold; /* 레전드 텍스트 굵게 */
+    padding: 0 10px; /* 레전드 텍스트 좌우 패딩 */
+    color: #007bff; /* 레전드 텍스트 색상 */
+	}
+	
+	fieldset label,
+	fieldset input[type="date"] {
+    width: 100%; /* 필드셋 내부 요소 너비 조정 */
+    box-sizing: border-box; /* 박스 크기 계산 방식 */
+	}
+  

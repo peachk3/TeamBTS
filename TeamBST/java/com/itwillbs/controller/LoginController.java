@@ -34,7 +34,7 @@ public class LoginController{
 @Inject
 private MemberService mService;
 
-
+//회원가입 - 입력 받은 정보 처리(GET)
 @RequestMapping(value = "/signupPage", method = RequestMethod.GET)
 	public void signupGET() {
     logger.debug("/views/login/signupPage.jsp");

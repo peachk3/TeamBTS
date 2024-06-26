@@ -1,4 +1,5 @@
 //이름
+
 function regMemberName(admin_name) {
 	var regExp = /^[가-힣]{1,10}$/;
 	return regExp.test(admin_name);
@@ -61,36 +62,6 @@ function regMemberNick(admin_nick) { //닉네임 // 공백,특수문자,숫자 �
 	return regExp.test(admin_nick);
 }
 
-//닉네임 중복체크
-
-$('#anickCheck').click(function(event) {
-	var nick = document.getElementById("admin_nick").value;
-	regMemberNick(nick);
-
-	if (!regMemberNick(nick)) {
-		document.getElementById("admin_nick").value = '';
-		alert('4~12자리 영어 또는 한글로 입력해주세요 ');
-		return;
-
-	} else {
-		$.ajax({
-			url : '/login/anickCheck?admin_nick=' + nick, //Controller에서 요청 받을 주소
-			type : 'get', //get 방식으로 전달
-			success : function(res) { //컨트롤러에서 넘어온 cnt값을 받는다 
-				if (res == 0) {
-					alert('사용 가능한 닉네임입니다. ');
-				} else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-					alert("이미 존재하는 닉네임입니다. ");
-					$('#admin_nick').val(''); //입력란 초기화
-				}
-			},
-			error : function() {
-				alert("시스템 에러입니다");
-			}
-		});
-	}
-	;
-});
 
 //비밀번호		
 //패스워드 유효성
@@ -194,36 +165,5 @@ $(document).ready(function() {
 				alert("시스템 에러입니다");
 			}
 		});
-	});
-});
-$('#signup-btn').click(function(event) {
-	event.preventDefault(); // 기본 동작 방지
-
-	// 폼 데이터 수집
-	var formData = {
-		admin_name : $('#admin_name').val(),
-		admin_id : $('#admin_id').val(),
-		admin_pwd : $('#admin_pwd').val(),
-		apwdCheck : $('#apwdCheck').val(),
-		admin_birth : $('#date').val(),
-		admin_nick : $('#admin_nick').val(),
-		admin_email : $('#admin_email').val(),
-		admin_phone : $('#admin_phone').val(),
-		aemailCode : $('#aemailCode').val(),
-		admin_info_agree : $('#terms').is(':checked') ? 'Y' : 'N',
-	};
-
-	// AJAX 요청 보내기
-	$.ajax({
-		type : 'POST',
-		url : '/login/AdminSignupPage',
-		data : JSON.stringify(formData),
-		contentType : 'application/json',
-		success : function(response) {
-
-		},
-		error : function() {
-			alert('시스템 오류가 발생했습니다.');
-		}
 	});
 });
