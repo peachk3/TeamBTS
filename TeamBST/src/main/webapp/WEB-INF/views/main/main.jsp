@@ -52,7 +52,7 @@
 						<img src="/resources/stadium/daegu.webp" alt="speaker" class="img-fluid">
 					</div>
 					<div class="content text-center">
-						<h5><a href="ticketing/ticketing?stad_id=DG&selectedStadium=DG">대구 라이온즈파크</a></h5>
+						<h5><a href="/ticketing/ticketing?stad_id=DG&selectedStadium=DG">대구 라이온즈파크</a></h5>
 						<p>삼성라이온즈 홈구장</p>
 					</div>
 				</div>
@@ -64,7 +64,7 @@
 						<img src="/resources/stadium/daejun.webp" alt="speaker" class="img-fluid">
 					</div>
 					<div class="content text-center">
-						<h5><a href="ticketing/ticketing?stad_id=DJ&selectedStadium=DJ">대전 이글스파크</a></h5>
+						<h5><a href="/ticketing/ticketing?stad_id=DJ&selectedStadium=DJ">대전 이글스파크</a></h5>
 						<p>한화이글스 홈구장</p>
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 						<img src="/resources/stadium/sajic.webp" alt="speaker" class="img-fluid">
 					</div>
 					<div class="content text-center">
-						<h5><a href="ticketing/ticketing?stad_id=SJ&selectedStadium=SJ">부산 사직야구장</a></h5>
+						<h5><a href="/ticketing/ticketing?stad_id=SJ&selectedStadium=SJ">부산 사직야구장</a></h5>
 						<p>롯데자이언츠 홈구장</p>
 					</div>
 				</div>
@@ -88,7 +88,7 @@
 						<img src="/resources/stadium/jamsil.webp" alt="speaker" class="img-fluid">
 					</div>
 					<div class="content text-center">
-						<h5><a href="ticketing/ticketing?stad_id=JS&selectedStadium=JS">서울 잠실야구장</a></h5>
+						<h5><a href="/ticketing/ticketing?stad_id=JS&selectedStadium=JS">서울 잠실야구장</a></h5>
 						<p>LG트윈스 / 두산베어스 홈구장</p>
 					</div>
 				</div>
@@ -100,7 +100,7 @@
 						<img src="/resources/stadium/gochuck.webp" alt="speaker" class="img-fluid">
 					</div>
 					<div class="content text-center">
-						<h5><a href="ticketing/ticketing?stad_id=GC&selectedStadium=GC">서울 고척스카이돔</a></h5>
+						<h5><a href="/ticketing/ticketing?stad_id=GC&selectedStadium=GC">서울 고척스카이돔</a></h5>
 						<p>키움히어로즈 홈구장</p>
 					</div>
 				</div>
@@ -112,7 +112,7 @@
 						<img src="/resources/stadium/suwon.webp" alt="speaker" class="img-fluid">
 					</div>
 					<div class="content text-center">
-						<h5><a href="ticketing/ticketing?stad_id=SW&selectedStadium=SW">수원 KT위즈파크</a></h5>
+						<h5><a href="/ticketing/ticketing?stad_id=SW&selectedStadium=SW">수원 KT위즈파크</a></h5>
 						<p>KT위즈 홈구장</p>
 					</div>
 				</div>
@@ -124,7 +124,7 @@
 						<img src="/resources/stadium/incheon.webp" alt="speaker" class="img-fluid">
 					</div>
 					<div class="content text-center">
-						<h5><a href="ticketing/ticketing?stad_id=IC&selectedStadium=IC">인천 랜더스필드</a></h5>
+						<h5><a href="/ticketing/ticketing?stad_id=IC&selectedStadium=IC">인천 랜더스필드</a></h5>
 						<p>SSG랜더스 홈구장</p>
 					</div>
 				</div>
@@ -136,7 +136,7 @@
 						<img src="/resources/stadium/changwon.webp" alt="speaker" class="img-fluid">
 					</div>
 					<div class="content text-center">
-						<h5><a href="ticketing/ticketing?stad_id=CW&selectedStadium=CW">창원 NC파크</a></h5>
+						<h5><a href="/ticketing/ticketing?stad_id=CW&selectedStadium=CW">창원 NC파크</a></h5>
 						<p>NC다이노스 홈구장</p>
 					</div>
 				</div>
