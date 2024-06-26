@@ -1,109 +1,210 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<link
+<%@ include file="../include/header.jsp"%>
+
+<!-- <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
-<link href="/../../resources/css/index.css" rel="stylesheet">
+	crossorigin="anonymous"> -->
+<link href="../resources/css/index.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link href="../resources/css/payment.css" rel="stylesheet">
 
-<!-- 포트원 결제 -->
-    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-    <!-- iamport.payment.js -->
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-<!-- 포트원 결제 -->
-    <title>Payment Page</title>
-</head>
-<%@ include file="../include/header.jsp"%>
+
 <body>
-<nav>
-		<a href="/main/main"><h1>개바리조</h1></a>
 
-		<h6>
-			<a href="/login/login">로그인/</a> <a href="/mypage/mypage">마이페이지/</a> <a
-				href="/admin/admin">관리자페이지/</a> 로그인시간 ( 58: 00 )
-		</h6>
-	</nav>
+	<div>여기저기</div>
+	<div>야모해</div>
+	<div>여기저기 야모해</div>
 
 
-	<ul class="nav">
-		<li class="nav-item"><a class="nav-link active"
-			aria-current="page" href="/ticketing/ticketing">예매</a></li>
-		<li class="nav-item"><a class="nav-link"
-			href="/community/community">거래</a></li>
-		<li class="nav-item"><a class="nav-link"
-			href="/announcement/announcement">고객센터</a></li>
-	</ul>
+	<div class="modal1" id="termsModal">
+		<div class="modal1-content">
+			<span class="close1" onclick="closeModal1()">&times;</span>
+			<h5>결제 약관 동의</h5>
+			<table>
+				<tr>
+					<td><p>전자금융거래 이용약관</p></td>
+					<td></td>
+					<td><p>개인정보 수집 및 이용 안내</p></td>
+				</tr>
+				<tr>
+					<td><p>고유식별정보 수집 및 이용안내</p></td>
+					<td></td>
+					<td><p>개인정보 제공 및 위탁안내</p></td>
+				</tr>
+			</table>
 
-
-<div class="modal1" id="termsModal">
-  <div class="modal1-content">
-    <span class="close1" onclick="closeModal1()">&times;</span>
-    <h2>결제 약관 동의</h2>
-    <p> 전자금융거래 이용약관 </p>
-    <p> 개인정보 수집 및 이용 안내 </p>
-    <p> 고유식별정보 수집 및 이용안내 </p>
-    <p> 개인정보 제공 및 위탁안내 </p> 
-    <p>	위의 약관에 동의하시겠습니까? </p>
-    <button onclick="agreeTerms()">동의하기</button>
-  </div>
-</div>
+			<label><input type="checkbox" id="termsCheckbox" value="Y"> 위의 약관에 동의하시겠습니까? </label>
+			<div>
+				<button type="button" id="modalButton" onclick="agreeTerms()">동의하기</button>
+			</div>
+		</div>
+	</div>
 
 	<div class="reserve_content">
 		<div class="reserve_left">
 
 			<div class="paymethod" onclick="kakaoPay()">
 				<p>카카오페이</p>
-				<img id="kakaoPay" src="../resources/img/kakaoPay.jpg" alt="kakaoPay">
+				<img class="kakaoPay" src="../resources/img/kakaoPay.jpg" alt="kakaoPay">
 			</div>
-
 
 		</div>
 		<div class="reserve_right">
 			<div class="info-panel">
 				<c:forEach var="gs" items="${gameSchedule}">
-					<h2>경기 정보</h2>
-					<p>
-						팀: <span id="team-name">
-						${gs.away_team_id} VS ${gs.home_team_id} <br>
-						<c:if test="${gs.away_team_id == 'KIWOOM' or gs.home_team_id == 'KIWOOM'}">
-						<img id="teamsymbol"src="../resources/team/kiwoom.png" alt="KIWOOM 로고">
-						</c:if>
-						<c:if test="${gs.away_team_id == 'LOTTE' or gs.home_team_id == 'LOTTE'}">
-						<img id="teamsymbol"src="../resources/team/lotte.png" alt="LOTTE 로고">
-						</c:if>
-						<c:if test="${gs.away_team_id == 'DOSAN' or gs.home_team_id == 'DOSAN'}">
-						<img id="teamsymbol"src="../resources/team/dosan.png" alt="DOSAN 로고">
-						</c:if>
-						<c:if test="${gs.away_team_id == 'HANHWA' or gs.home_team_id == 'HANHWA'}">
-						<img id="teamsymbol"src="../resources/team/hanhwa.png" alt="HANHWA 로고">
-						</c:if>
-						<c:if test="${gs.away_team_id == 'KIA' or gs.home_team_id == 'KIA'}">
-						<img id="teamsymbol"src="../resources/team/kiwoom.png" alt="KIA 로고">
-						</c:if>
-						<c:if test="${gs.away_team_id == 'KT' or gs.home_team_id == 'KT'}">
-						<img id="teamsymbol"src="../resources/team/kt.png" alt="KT 로고">
-						</c:if>
-						<c:if test="${gs.away_team_id == 'NC' or gs.home_team_id == 'NC'}">
-						<img id="teamsymbol"src="../resources/team/nc.png" alt="NC로고">
-						</c:if>
-						<c:if test="${gs.away_team_id == 'SAMSUNG' or gs.home_team_id == 'SAMSUNG'}">
-						<img id="teamsymbol"src="../resources/team/samsung.png" alt="SAMSUNG 로고">
-						</c:if>
-						<c:if test="${gs.away_team_id == 'SSG' or gs.home_team_id == 'SSG'}">
-						<img id="teamsymbol"src="../resources/team/ssg.png" alt="SSG 로고">
-						</c:if>
-						<c:if test="${gs.away_team_id == 'LG' or gs.home_team_id == 'LG'}">
-						<img id="teamsymbol"src="../resources/team/lg.png" alt="LG 로고">
-						</c:if>
+					
+					<table class="table1">
+						<tr class="tr1">
+							<td><span id="team-name"> <%-- ${gs.away_team_id} --%><br> 
+								<c:if test="${gs.away_team_id == 'KIWOOM'}">
+									<img id="teamsymbol" src="../resources/team/kiwoom.png" alt="KIWOOM 로고"> 
+								</c:if>
+								<c:if test="${gs.away_team_id == 'LOTTE'}">
+									<img id="teamsymbol" src="../resources/team/lotte.png" alt="LOTTE 로고"> 
+								</c:if>
+								<c:if test="${gs.away_team_id == 'DOSAN'}">
+									<img id="teamsymbol" src="../resources/team/dosan.png" alt="DOSAN 로고"> 
+								</c:if>
+								<c:if test="${gs.away_team_id == 'HANHWA'}">
+									<img id="teamsymbol" src="../resources/team/hanhwa.png" alt="HANHWA 로고"> 
+								</c:if>
+								<c:if test="${gs.away_team_id == 'KIA'}">
+									<img id="teamsymbol" src="../resources/team/kiwoom.png" alt="KIA 로고">
+								</c:if> 
+								<c:if test="${gs.away_team_id == 'KT'}">
+									<img id="teamsymbol" src="../resources/team/kt.png" alt="KT 로고">
+								</c:if> 
+								<c:if test="${gs.away_team_id == 'NC'}">
+									<img id="teamsymbol" src="../resources/team/nc.png" alt="NC로고">
+								</c:if> 
+								<c:if test="${gs.away_team_id == 'SAMSUNG'}">
+									<img id="teamsymbol" src="../resources/team/samsung.png" alt="SAMSUNG 로고">
+								</c:if> 
+								<c:if test="${gs.away_team_id == 'SSG'}">
+									<img id="teamsymbol" src="../resources/team/ssg.png" alt="SSG 로고">
+								</c:if> 
+								<c:if test="${gs.away_team_id == 'LG'}">
+									<img id="teamsymbol" src="../resources/team/lg.png" alt="LG 로고">
+								</c:if></span>
+							</td>
+							<td>
+								<h6 class="vs"> VS </h6>
+							</td>
+							<td>
+								<span id="team-name"><br> 
+								<c:if test="${gs.home_team_id == 'KIWOOM'}">
+									<img id="teamsymbol" src="../resources/team/kiwoom.png" alt="KIWOOM 로고"> 
+								</c:if>
+								<c:if test="${gs.home_team_id == 'LOTTE'}">
+									<img id="teamsymbol" src="../resources/team/lotte.png" alt="LOTTE 로고"> 
+								</c:if>
+								<c:if test="${gs.home_team_id == 'DOSAN'}">
+									<img id="teamsymbol" src="../resources/team/dosan.png" alt="DOSAN 로고"> 
+								</c:if>
+								<c:if test="${gs.home_team_id == 'HANHWA'}">
+									<img id="teamsymbol" src="../resources/team/hanhwa.png" alt="HANHWA 로고"> 
+								</c:if>
+								<c:if test="${gs.home_team_id == 'KIA'}">
+									<img id="teamsymbol" src="../resources/team/kiwoom.png" alt="KIA 로고">
+								</c:if> 
+								<c:if test="${gs.home_team_id == 'KT'}">
+									<img id="teamsymbol" src="../resources/team/kt.png" alt="KT 로고">
+								</c:if> 
+								<c:if test="${gs.home_team_id == 'NC'}">
+									<img id="teamsymbol" src="../resources/team/nc.png" alt="NC로고">
+								</c:if> 
+								<c:if test="${gs.home_team_id == 'SAMSUNG'}">
+									<img id="teamsymbol" src="../resources/team/samsung.png" alt="SAMSUNG 로고">
+								</c:if> 
+								<c:if test="${gs.home_team_id == 'SSG'}">
+									<img id="teamsymbol" src="../resources/team/ssg.png" alt="SSG 로고">
+								</c:if> 
+								<c:if test="${gs.home_team_id == 'LG'}">
+									<img id="teamsymbol" src="../resources/team/lg.png" alt="LG 로고">
+								</c:if></span>
+							</td>
+						</tr>
+						<tr>
+							<th>일시</th>
+							<td><span id="match-date">${gs.game_date} ${gs.game_time} </span></td>
+							<td> </td>
+						</tr>
+						
+						<tr>
+							<th>경기장</th>
+							<td><span id="match-stadium"> 
+								<c:if test="${gs.stad_id == 'CW'}">창원 NC 파크</c:if> 
+								<c:if test="${gs.stad_id == 'DG'}">대구 라이온즈파크</c:if> 
+								<c:if test="${gs.stad_id == 'DJ'}">대전 이글스파크</c:if> 
+								<c:if test="${gs.stad_id == 'GC'}">고척 스카이돔</c:if> 
+								<c:if test="${gs.stad_id == 'GJ'}">광주 챔피언스필드</c:if> 
+								<c:if test="${gs.stad_id == 'IC'}">인천 랜더스필드</c:if> 
+								<c:if test="${gs.stad_id == 'JS'}">서울 잠실야구장</c:if> 
+								<c:if test="${gs.stad_id == 'SJ'}">부산 사직야구장</c:if> 
+								<c:if test="${gs.stad_id == 'SW'}">수원 KT위즈파크</c:if>
+								<c:if test="${gs.stad_id == 'LG'}">서울 잠실야구장</c:if> </span>
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<th>예매자명</th>
+							<td><c:forEach var="use" items="${user }">${use.user_name}</c:forEach></td>
+							<td></td>
+						</tr>
 
-						</span>
-					</p>
-					<p>
+						<tr class="selectSeatInfo">
+							<th>선택좌석</th>
+							<td>
+								<%
+								String[] seat_rows = request.getParameterValues("seat_row");
+								String[] seat_nums = request.getParameterValues("seat_num");
+								String[] seat_ids = request.getParameterValues("seat_id");
+								%>
+								<p id="seatInfo"></p>
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<th>티켓 금액</th>
+							<td><span id="total-price">0</span></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th>예매 수수료</th>
+							<td><span id="booking-fee">0</span></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th>취소 수수료</th>
+							<td>티켓 금액의 0 ~ 10%</td>
+							<td><button id="myBtn">상세보기</button>
+								<div id="myModal" class="modal">
+									<div class="modal-content">
+										<span class="close"> &times;</span>
+										 <h5> 취소 수수료 상세 보기 </h5>
+										<p>
+										* 예매취소 안내(경기 당일 3시간 전까지 취소 가능)
+										<br>
+										* 예매 당일 취소 = 수수료 부과 없음
+										* 본인이 예매한 다음 날(0시 기준)부터 경기 당일 3시간 전 취소 = 예매 수수료 + 취소 수수료 제외한 나머지 환불 이후 취소 불가 <br>
+										* 예매한 내역의 부분 취소 및 날짜, 좌석변경, 권종변경은 불가합니다.
+										</p>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<th>결제 금액</th>
+							<td><span id="total-amount">0</span></td>
+						</tr>
+
+					</table>
+				</c:forEach>
+					<%-- <p>
 						일시: <span id="match-date">${gs.game_date} ${gs.game_time}</span>
 					</p>
 					<p>
@@ -128,16 +229,16 @@
 				<div>
 					선택 좌석 : <p id="seatInfo"></p>
 				</div>
-<%-- 				<c:forEach var="seat" items="${selectedSeat}" varStatus="status"> --%>
-<%-- 					<c:choose> --%>
-<%-- 						<c:when test="${status.index == 0}"> --%>
-<%-- 								${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번 --%>
-<%--             				</c:when> --%>
-<%-- 						<c:otherwise> --%>
-<%--                 				, ${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번 --%>
-<%--             				</c:otherwise> --%>
-<%-- 					</c:choose> --%>
-<%-- 				</c:forEach> --%>
+				<c:forEach var="seat" items="${selectedSeat}" varStatus="status">
+					<c:choose>
+						<c:when test="${status.index == 0}">
+								${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번
+            				</c:when>
+						<c:otherwise>
+                				, ${seat.zone_ty}구역 ${seat.seat_row}열 ${seat.seat_num}번
+            				</c:otherwise>
+					</c:choose>
+				</c:forEach>
 				<div>
 					티켓 금액: <span id="total-price">0</span>
 				</div>
@@ -164,16 +265,16 @@
 				</div>
 				<p>
 					결제 금액: <span id="total-amount">0</span>
-				</p>
+				</p> --%>
 
 			</div>
 		</div>
 
 	</div>
-	<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>		
-	<button id="payment">구매하기</button> <!-- 결제하기 버튼 생성 -->
-    <script src="payment.js"></script>
-
+	<div class="reserve_btn">
+		<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>		
+		<button type="button" class="btn_payment">결제하기</button> <!-- 결제하기 버튼 생성 -->
+	</div>
 
 
 
@@ -200,6 +301,13 @@ function openModal1() {
 function closeModal1() {
   modal1.style.display = 'none';
 }
+
+const checkbox = document.getElementById('termsCheckbox');
+const submitButton = document.getElementById('modalButton');
+
+checkbox.addEventListener('change', function() {
+    submitButton.disabled = !this.checked;
+});
 
 // 약관 동의 처리
 function agreeTerms() {
@@ -286,9 +394,7 @@ const bookFee = seatCount * 1000;
     function goBack() {
         history.back();
     }
-    
-    
-    
+
     function kakaoPay() {
     	//전달할 데이터
     	// 구매자명

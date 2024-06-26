@@ -11,7 +11,8 @@
     .zone {
     	text-align: center;
     	font-weight: bold;
-    	font-size: 30px;
+    	font-size: 50px;
+    	font-family: "Noto Sans KR", sans-serif;
     }
     </style>
 <!--     <p class="current_time" value="1718341239704"><em></em>현재시간<span>14:00</span></p> -->
