@@ -1,158 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 	<title>Display Seats</title>
 	
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="/../../resources/css/index.css" rel="stylesheet">
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+    <link href="../resources/css/index.css" rel="stylesheet">
+    <link href="../resources/css/displaySeats.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
-<%@ include file="../include/header.jsp"%>
+
 <body>
-<style>
-/* css */
-body {
-	font-family: Arial, sans-serif;
-}
+	<div>
+		여기저기
+	</div>
+	<div>
+	 	야모해
+	</div>
+	<div>
+		여기저기 야모해
+	</div>
 
-.h {
-	text-align: center;
-	margin-top: 20px;
-}
-
-.h6 {
-	text-align: center;
-	margin: 5px;
-}
-
-.container {
-	display: flex;
-	justify-content: space-between;
-	padding: 20px;
-}
-
-.seating-chart {
-	width: 50%;
-	height: 250px;
-	border: 1px solid black;
-}
-
-.field {
-	text-align: center;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	font-weight: bold;
-}
-
-.seats-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 10px;
-	justify-items: center;
-}
-
-.seat {
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	margin: 3px;
-	background-color: #eee;
-	text-align: center;
-	line-height: 30px;
-	cursor: pointer;
-}
-
-.seat.booked {
-	background-color: #ffcccc; /* 예약된 좌석의 색상 */
-	cursor: not-allowed;
-}
-
-.booked-seat {
-    background-color: lightgray; /* 예시로 색상 변경 */
-    pointer-events: none; /* 선택 불가능하도록 설정 */
-}
-
-.seat.occupied {
-	background-color: #ff4c4c;
-}
-
-.seat.selected {
-	background-color: #007bff;
-	color: blue;
-}
-
-.selected-seats {
-	width: 40%;
-	height: 250px;
-	border: 1px solid black;
-}
-
-.selected-seats>li {
-	text-align: center;
-}
-
-.selected-seats>p {
-	text-align: center;
-}
-
-.reserve_btn {
-	text-align: center;
-	margin-top: 20px;
-}
-
-.reserve_btn .btn_goback {
-	margin: 10px;
-	padding: 10px 20px;
-	background-color: white;
-	color: black;
-	border: none;
-	cursor: pointer;
-	border: 1px solid black;
-}
-
-.reserve_btn .btn_reservation {
-	margin: 10px;
-	padding: 10px 20px;
-	background-color: #007bff;
-	color: white;
-	border: none;
-	cursor: pointer;
-}
-
-.reserve_btn .btn_goback:hover {
-	background-color: gray;
-}
-
-.reserve_btn .btn_reservation:hover {
-	background-color: #0056b3;
-}
-</style>
-	
-	<nav>
-      <a href="/main/main"><h1>개바리조</h1></a>
-      
-      <h6>
-        <a href="/login/login">로그인/</a> <a href="/mypage/mypage">마이페이지/</a> <a href="/admin/admin">관리자페이지/</a> 로그인시간 ( 58: 00 ) 
-      </h6>
-    </nav>
-    
-    
-	<ul class="nav">
-		<li class="nav-item"><a class="nav-link active" aria-current="page" href="/ticketing/ticketing">예매</a></li>
-		<li class="nav-item"><a class="nav-link" href="/community/community">거래</a></li>
-		<li class="nav-item"><a class="nav-link" href="/announcement/announcement">고객센터</a></li>
-	</ul>	
-
-		<h1 class="h">Selected Seat: ${zone_ty}구역</h1>
+	<div class="zoneh">
+		${zone_ty}구역
+	</div>
 	
 	<div class="container">
 		<div class="seating-chart">
 			<div class="field">필드</div>
-			<!-- 좌석 배치 예제 -->
+			<!-- 좌석 배치 -->
 			<div class="seats-grid">
 				<c:forEach var="seatB" items="${seatBook }">
 						<div class="seat" data-row="${seatB.seatList[0].seat_row}" data-num="${seatB.seatList[0].seat_num }" data-id="${seatB.seatList[0].seat_id }" data-booked="${seatB.booked_at }">
@@ -164,17 +44,17 @@ body {
 				</c:forEach>
 			</div>
 		</div>
-
 		<div class="selected-seats">
-			<p>
-				<b>선택한 좌석</b>
-			</p>
-			<ul id="selected-seats-list" style="list-style-type: none">
-				<li id="no-seats">선택한 좌석이 없습니다</li>
-			</ul>
+			<div class="selectedseattitle">선택한 좌석</div>
+	
+			<div class="selected-list">
+				<ul id="selected-seats-list" style="list-style-type: none">
+					<li id="no-seats">선택한 좌석이 없습니다</li> 
+				</ul>
+			</div>
 		</div>
 	</div>
-	
+<!-- 	정보 전달 확인 -->
 <%-- 	<c:forEach var="seatID" items="${seats }"> --%>
 <%-- 		<input type="hidden" id="seat_id" value="${seatID.seat_id }"> --%>
  <%-- 		${seats } --%> 
@@ -192,16 +72,13 @@ body {
 	    <input type="hidden" name="zone_ty" value="${zone_ty}">
 	    <input type="hidden" name="zone_id" value="${zone_id}">
 </form>
-<%-- 	    <input type="hidden" name="seat_row" value="${seat.seat_row}"> --%>
-<%-- 	    <input type="hidden" name="seat_num" value="${seat.seat_num}"> --%>
-<%-- 	    <input type="hidden" name="seat_id" value="${seat.seat_id}"> --%>
 	
-		<!-- 정보 전달 확인창 -->
-		<h6 class="h">구장: ${stad_id}</h6>
+<!-- 정보 전달 확인창 -->
+<%--	<h6 class="h">구장: ${stad_id}</h6>
 		<h6 class="h">게임ID: ${game_id}</h6>		
 		<h6 class="h">zone_id : ${zone_id}</h6>
 		<h6 class="h">사용자 아이디 : ${user_id}</h6>
-		<h6 class="h">zone_ty : ${zone_ty}</h6>
+		<h6 class="h">zone_ty : ${zone_ty}</h6>  --%>
 			
 
 <script>

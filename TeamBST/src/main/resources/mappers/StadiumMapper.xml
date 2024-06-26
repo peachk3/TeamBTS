@@ -54,7 +54,7 @@
 		from seat s
 		join seat_book sb
 		on s.seat_id = sb.seat_id
-		where s.zone_id=#{zone_id}
+		where s.zone_id=#{zone_id} and sb.game_id=#{game_id}
 	</select>
 			
 <!-- 	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO"> -->

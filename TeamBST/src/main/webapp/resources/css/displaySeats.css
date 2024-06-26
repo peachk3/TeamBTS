@@ -1,0 +1,132 @@
+@charset "UTF-8";
+body {
+	font-family: Arial, sans-serif;
+}
+.container {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+}
+
+.seating-chart, .selected-seats {
+	width: 48%;
+	height: 330px;
+	text-align: center;
+	border: 1px solid black;
+}
+
+.zoneh {
+	text-align: center;
+	margin-top: 30px;
+	font-size: 70px;
+}
+
+.field {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.seats-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 5px;
+	row-gap: 30px;
+	justify-items: center;
+}
+
+.seat {
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	margin: 3px;
+	background-color: #D5D5D5;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	border: 1px solid gray;
+	padding-top: 10px;
+	padding-bottom: 1px;
+}
+
+.booked-seat {
+    background-color: #5D5D5D; /* 예시로 색상 변경 */
+    pointer-events: none; /* 선택 불가능하도록 설정 */
+}
+
+.seat.occupied {
+	background-color: #ff4c4c;
+}
+
+/* 해제 */
+@keyframes blink-effect {
+  50% {
+    opacity: 0;
+  }
+}
+
+.seat.selected {
+	background-color: #007bff;
+	color: blue;
+/* 	animation: blink-effect 1s step-end infinite; */
+	/* 해제 */
+}
+
+.selectedseattitle{
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.selected-list{
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: 40px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+selected-list>#no-seats{
+	font-color:black;
+	font-size: 15px;
+}
+
+.selected-seats>p {
+	text-align: center;
+}
+
+.reserve_btn {
+	text-align: center;
+}
+
+.reserve_btn .btn_goback {
+	margin: 10px;
+	padding: 10px 20px;
+	background-color: white;
+	color: black;
+	border: none;
+	cursor: pointer;
+	border: 1px solid black;
+}
+
+.reserve_btn .btn_reservation {
+	margin: 10px;
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.reserve_btn .btn_goback:hover {
+	background-color: gray;
+}
+
+.reserve_btn .btn_reservation:hover {
+	background-color: #0056b3;
+}

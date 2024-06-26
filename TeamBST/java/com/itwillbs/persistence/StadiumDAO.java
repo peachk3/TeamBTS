@@ -39,7 +39,7 @@ public interface StadiumDAO {
 	public List<SeatDTO> getSeatsId(@RequestParam("game_id") String game_id, @RequestParam("zone_id") String zone_id);
 
 	// 예매 가능 좌석 및 여부 출력 
-	public List<Seat_bookDTO> getSeatBooked(@RequestParam("zone_id") String zone_id);
+	public List<Seat_bookDTO> getSeatBooked(@RequestParam("zone_id") String zone_id, @RequestParam("game_id") String game_id);
 
 
     
