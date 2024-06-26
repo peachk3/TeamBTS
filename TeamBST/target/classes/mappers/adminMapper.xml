@@ -69,6 +69,7 @@
 	<!-- 공지 게시판 총 글의 개수(페이징처리) -->
 	<select id="countNoticePage" resultType="int">
 		select count(notice_id) from notice_board
+		where notice_del_at = 'N'
 	</select>
 	
 	
@@ -135,6 +136,7 @@
 		<!-- 문의 게시판 총 글의 개수(페이징처리) -->
 	<select id="countQuestionPage" resultType="int">
 		select count(quest_id) from question_board
+		where quest_del_at = 'N'
 	</select>	
 	
 	
