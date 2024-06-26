@@ -58,7 +58,46 @@ public class AdminLoginDAOImpl implements AdminLoginDAO {
 		
 	}
 	
-	
+	//아이디 중복체크
+		@Override
+		public int aidCheck(String admin_id) throws Exception {
+			int result = sqlSession.selectOne(NAMESPACE+"aidCheck",admin_id);
+			
+			logger.debug("result :" + result);
+			
+			return result;
+		}
+		
+		//닉네임 중복체크
+		@Override
+		public int anickCheck(String admin_nick) throws Exception {
+			int result = sqlSession.selectOne(NAMESPACE+"anickCheck", admin_nick);
+			
+			logger.debug("result : " + result);
+			
+			return result;
+		}
+		
+		//전화번호 중복체크
+		
+		@Override
+		public int aphoneCheck(String admin_phone) throws Exception {
+			int result = sqlSession.selectOne(NAMESPACE+"aphoneCheck",admin_phone);
+			
+			logger.debug("result : " + result);
+			
+			return result;
+		}
+		
+		//이메일 중복체크
+		@Override
+		public int aemailCheck(String admin_email) throws Exception {
+			int result = sqlSession.selectOne(NAMESPACE+"aemailCheck",admin_email);
+			
+			logger.debug("result : " + result);
+			
+			return result;	
+		}
 	
 	
 	

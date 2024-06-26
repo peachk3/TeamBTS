@@ -178,41 +178,12 @@
 	                });
 	            }
 
-	          /*  function verifyCheck() {
-	                if (!isPhoneVerified) { // 중복 확인이 되지 않은 경우
-	                    alert('먼저 휴대폰 번호 중복 체크를 해주세요.');
-	                    return;
-	                }
-
-	                var phone = $('#user_phone').val();
-
-	                $.ajax({
-	                    url: '/sendCode?phone='+phone,
-	                    type: 'GET',
-	                    success: function(response) {
-	                      if(response.status === "success"){
-	                    	  alert(response); // 인증번호 전송 성공 메시지
-	                    	  $('.sendCodeMessage').show(); // 성공 메시지 표시
-	                      }else{
-	                    	  alert(response.message);//인증번호 전송 실패 메시지
-	                      }
-	                    },
-	                    error: function() {
-	                        alert('인증번호 전송에 실패했습니다.');
-	                    }
-	                });
-	            }
-*/
+	     
 	           $('#phoneCheck').click(function(event) {
 	                event.preventDefault();
 	                checkPhone();
 	            });
-	           /* 
-	            $('#verifyCheck').click(function(event) {
-	                event.preventDefault();
-	                verifyCheck();
-	            });*/
-
+	       
 	            // 초기 상태에서 인증번호 전송 버튼 비활성화
 	            $('#verifyCheck').attr('disabled', true);
 	        });
@@ -220,72 +191,41 @@
 	 
 	 
 	//이메일 중복체크 검사
+		function regMemberEmail(admin_email) { //이메일 //공백, 특수문자,한글 제외 
+			var regExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+			return regExp.test(admin_email);
+		}
 
-     $('#emailCheck').click(function(event) {
+		// 이메일 중복 체크
+		$('#emailCheck').click(function(event) {
+			event.preventDefault();
 			var email = document.getElementById("user_email").value;
-			regMemberEmail(email);
-			
-			if(!regMemberEmail(email)) {
-             document.getElementById("user_email").value = ''; 
-             alert('이메일을 입력해주세요 ');
-             return;
-			} else{
-				  $.ajax({
-		                url:'/login/emailCheck?user_email='+email, 
-		                type:'get', //get 방식으로 전달
-		                success:function(res) { 
-		                    if(res == 0) { 
-		                    	alert('사용 가능한 이메일입니다. ');
-		                    } else if(res == 1) { // cnt가 1일 경우 -> 이미 존재하는 아이디
-		                        alert("이미 사용하고 있는 이메일입니다. ");
-		                        $('#user_email').val('');
-		                        
-		                    } else{
-		                    	alert("유효하지 않은 이메일 형식입니다.")
-		                    }
-		                },
-		                error:function()
-		                {
-		                    alert("시스템 에러입니다");
-		                }
-		            });
-				};	
-  });
+
+			if (!regMemberEmail(email)) {
+				$('#user_email').val('');
+				alert('유효한 이메일을 입력해주세요.');
+				return;
+			}
+
+			$.ajax({
+				url : '/login/emailCheck?user_email=' + email,
+				type : 'get', //get 방식으로 전달
+				success : function(res) {
+					if (res == 0) {
+						alert('사용 가능한 이메일입니다.');
+					} else if (res == 1) { // cnt가 1일 경우 -> 이미 존재하는 이메일
+						alert("이미 사용하고 있는 이메일입니다.");
+						$('#admin_email').val('');
+					} else {
+						alert("유효하지 않은 이메일 형식입니다.");
+					}
+				},
+				error : function() {
+					alert("시스템 에러입니다");
+				}
+				
+			});
+     	});
+    
 		
-		
-//회원가입
-// 회원가입 버튼 클릭 시 체크박스 검사
-			    $('#signup-btn').click(function(event) {
-			        event.preventDefault(); // 기본 동작 방지
-
-			        // 폼 데이터 수집
-			        var formData = {
-			            user_name: $('#user_name').val(),
-			            user_id: $('#user_id').val(),
-			            user_pwd: $('#user_pwd').val(),
-			            pwdCheck: $('#pwdCheck').val(),
-			            user_birth: $('#date').val(),
-			            user_nick: $('#user_nick').val(),
-			            user_email: $('#user_email').val(),
-			            user_phone: $('#user_phone').val(),
-			            phoneCode: $('#phoneCode').val(),
-			            user_info_agree: $('#terms').is(':checked') ? 'Y' : 'N',
-			            user_serv_agree: $('input[name="user_serv_agree"]:checked').val()
-			        };
-
-			        // AJAX 요청 보내기
-			        $.ajax({
-			            type: 'POST',
-			            url: '/login/signupPage',
-			            data: JSON.stringify(formData),
-			            contentType: 'application/json',
-			            success: function(response) {
-			             
-			            },
-			            error: function() {
-			                alert('시스템 오류가 발생했습니다.');
-			            }
-			        });
-			    });
-
 			
