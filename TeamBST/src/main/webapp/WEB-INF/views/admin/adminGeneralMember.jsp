@@ -4,21 +4,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>SCHEDULE</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">경기일정</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
 
-      <button type="button" class="community" onclick="location.href='/admin/adminMember'">회원현황</button> <br>
-      <button type="button" class="community" onclick="location.href='/admin/adminGeneralMember'">일반회원</button> <br>
-      <button type="button" class="community" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
+<section class="section schedule">
+	<div class="container">
+      <button type="button" class="btn" onclick="location.href='/admin/adminMember'">회원현황</button>
+      <button type="button" class="btn" onclick="location.href='/admin/adminGeneralMember'">일반회원</button>
+      <button type="button" class="btn" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
 
 
-<table border="1">
+ <div class="box-body">
+		<table class="table table-bordered">
 	<tr>
-		<td>no</td>
-		<td>아이디</td>
-		<td>이름</td>
-		<td>닉네임</td>
-		<td>이메일</td>
-		<td>전화번호</td>
-		<td>가입일자</td>
+		<th>no</th>
+		<th>아이디</th>
+		<th>이름</th>
+		<th>닉네임</th>
+		<th>이메일</th>
+		<th>전화번호</th>
+		<th>가입일자</th>
 	</tr>
 	<c:forEach var="vo" items="${generalMemberList}">
 		<tr>
@@ -50,7 +67,10 @@
 			<li><a href="/admin/adminGeneralMember?page=${pageDTO.endPage+1 }">»</a></li>
 			</c:if>
 		</ul>
+	</div>
 	</div> 
+</div>
+</section>
 
 
 <%@ include file="../include/footer.jsp"%>

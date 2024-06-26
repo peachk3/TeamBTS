@@ -136,6 +136,7 @@
 													</c:otherwise>
 												</c:choose>
 											</div>
+											<div class="nick"></div>
 											<div class="regdate">
 												<fmt:formatDate value="${dto.quest_cre_date}"
 													pattern="yyyy-MM-dd" />

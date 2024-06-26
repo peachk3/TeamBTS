@@ -3,7 +3,95 @@
 <%@ include file="../include/header.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<style>
+.headings, .schedule-details {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+}
 
+.headings {
+	font-weight: bold;
+	background-color: #f0f0f0;
+}
+
+.schedule-details {
+	background-color: #fff;
+}
+
+.headings div, .schedule-details>div {
+	flex: 1;
+	text-align: center;
+}
+
+.schedule-details>div a {
+	color: #007bff;
+	text-decoration: none;
+}
+
+.schedule-details>div a:hover {
+	text-decoration: underline;
+}
+
+.pagination {
+	display: flex;
+	padding-left: 0;
+	list-style: none;
+	border-radius: 0.25rem;
+}
+
+.pagination-sm .page-item {
+	margin: 0 2px;
+}
+
+.pagination-sm .page-item .page-link {
+	padding: 0.25rem 0.75rem;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	border-radius: 0.2rem;
+	border: 1px solid #dee2e6;
+	color: #007bff;
+	text-decoration: none;
+}
+
+.pagination-sm .page-item .page-link:hover {
+	background-color: #e9ecef;
+	border-color: #dee2e6;
+}
+
+.pagination-sm .page-item.active .page-link {
+	z-index: 1;
+	color: #fff;
+	background-color: #007bff;
+	border-color: #007bff;
+}
+
+.pagination-sm .page-item.disabled .page-link {
+	color: #6c757d;
+	pointer-events: none;
+	background-color: #fff;
+	border-color: #dee2e6;
+}
+</style>
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>COMMUNICATION</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">거래게시판</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section schedule">
+	<div class="container">
+	
 	<select name="state" id="sale_status">
 		<option value="ALL">전체 게시글</option>
 		<option value="SALE">판매중</option>
@@ -67,18 +155,11 @@
 	
 			</tbody>
 		</table>
-	</div>
-	<br>
-
-
-
-
-
-
-
-
-
 	<button onclick="location.href='/community/communityWrite'">글쓰기</button>
+	</div>
+	</div>
+	</section>
+
 	
 <!-- 	<script>
 	

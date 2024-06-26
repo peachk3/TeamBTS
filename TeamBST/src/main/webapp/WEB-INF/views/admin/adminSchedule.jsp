@@ -3,15 +3,35 @@
 <%@ include file="../include/adminheader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+.btn {
+	width: 150px;
+	margin-right: -72px;
+}
+</style>
 
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>SCHEDULE</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">경기일정</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
 
-      <button type="button" class="community" onclick="location.href='/admin/adminSchedule'">경기일정</button> <br>
-      
-      <div class="box-body">
+<section class="section schedule">
+	<div class="container">
+       <div class="box-body">
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<th style="width: 10px">번호</th>
+					<th>번호</th>
 					<th>경기장</th>
 					<th>팀</th>
 					<th>날짜</th>
@@ -29,7 +49,7 @@
 						<td><fmt:formatDate value="${dto.game_time}"
 								pattern="HH:mm" /></td>
 						<td><a href="/admin/adminScheduleUpdate?game_id=${dto.game_id}">
-	                        <button type="button">수정</button>
+	                        <button type="button" class="btn">수정</button>
 	                    </a></td>
 					</tr>
 					
@@ -37,10 +57,13 @@
 
 			</tbody>
 		</table>
+      <button type="button" class="float-right btn" onclick="location.href='/admin/adminScheduleUpload'" style="margin-right:0px; ">등록</button>
+      
 	</div>
+	</div>
+	</section>
 
 
-      <button onclick="location.href='/admin/adminScheduleUpload'">등록</button>
 
  <div class="box-footer clearfix">
 		<ul class="pagination pagination-sm no-margin pull-right">
