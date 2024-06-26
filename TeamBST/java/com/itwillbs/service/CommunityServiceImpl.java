@@ -23,7 +23,7 @@ public class CommunityServiceImpl implements CommunityService{
 	private CommunityDAO cdao;
 
 	@Override
-	public void PostJoin(Post_boardDTO dto) {
+	public void PostJoin(Post_boardDTO dto) throws Exception{
 		logger.debug("NoticeJoin(dto) 실행");
 		
 		// DAO 메서드 호출

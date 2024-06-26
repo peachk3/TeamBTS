@@ -10,7 +10,7 @@ import com.itwillbs.domain.Post_commendDTO;
 public interface CommunityDAO {
 	
 	// 거래 게시글 작성
-	public void insertPost(Post_boardDTO dto);
+	public void insertPost(Post_boardDTO dto) throws Exception;
 	
 	// 거래 게시글 목록 전체 조회
 	public List<Post_boardDTO> PostListAll() throws Exception;

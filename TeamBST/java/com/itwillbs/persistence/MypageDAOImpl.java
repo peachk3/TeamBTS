@@ -28,22 +28,22 @@ public class MypageDAOImpl implements MypageDAO {
 	private static final String NAMESPACE = "com.itwillbs.mapper.MypageMapper.";
 
 	@Override
-	public UserDTO getMember(String user_id) {
+	public UserDTO getMember(String user_id) throws Exception{
 		return sqlSession.selectOne(NAMESPACE + "getMember", user_id);
 	}
 	
 	@Override
-	public UserDTO getMember(UserDTO vo) {
+	public UserDTO getMember(UserDTO vo) throws Exception{
 		return null;
 	}
 	
 	@Override
-	public void updateMember(UserDTO udto) {
+	public void updateMember(UserDTO udto) throws Exception{
 		sqlSession.update(NAMESPACE + "updateMember", udto);
 	}
 
 	@Override
-	public int deleteMember(UserDTO ddto) {
+	public int deleteMember(UserDTO ddto) throws Exception{
 		return sqlSession.delete(NAMESPACE + "deleteMember", ddto);
 	}
 	
@@ -61,7 +61,7 @@ public class MypageDAOImpl implements MypageDAO {
 	*/
 	
 	@Override
-	public List<MyBoardDTO> MyBoardList(Category cate) {
+	public List<MyBoardDTO> MyBoardList(Category cate) throws Exception{
 		return sqlSession.selectList(NAMESPACE + "myBoardList",cate);
 	}
 	

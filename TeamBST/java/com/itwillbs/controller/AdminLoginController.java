@@ -32,13 +32,13 @@ public class AdminLoginController {
 	
 	//회원가입
 	@RequestMapping(value = "/AdminSignupPage", method = RequestMethod.GET)
-	public void adminSignupGET() {
+	public void adminSignupGET() throws Exception{
 		logger.debug("adminSignupGET() --> GET호출");
 		logger.debug("/views/login/AdminSignupPage.jsp");
 		
 	}
 	@RequestMapping(value = "/AdminSignupPage", method =RequestMethod.POST)
-	public String  adminSignupPOST(AdminDTO adto) {
+	public String  adminSignupPOST(AdminDTO adto) throws Exception{
 		logger.debug("/AdminSignupPage--> POST()호출");
 		logger.debug("AdminDTO" + adto);
 		
@@ -50,14 +50,14 @@ public class AdminLoginController {
 	
 	//관리자 로그인 페이지 매핑 
 	@RequestMapping(value = "/AdminLoginPage", method = RequestMethod.GET)
-	public void adminLoginGET() {
+	public void adminLoginGET() throws Exception{
 		logger.debug("관리자 adminLoginGET() 호출");
 		
 		
 	}
 	//관리자 로그인-입력받은 아이디, 비밀번호 사용해서 확인
 	@RequestMapping(value = "/AdminLoginPage", method =  RequestMethod.POST )
-	public String adminLoginPost(HttpSession session, AdminDTO adto) {
+	public String adminLoginPost(HttpSession session, AdminDTO adto) throws Exception{
 		
 		logger.debug("/AdminLoginPage -> adminLoginCheck");
 		logger.debug("로그인 정보" + adto);
@@ -84,7 +84,7 @@ public class AdminLoginController {
 	
 	// 관리자 로그아웃
 	@RequestMapping(value = "/adminLogout",method = RequestMethod.POST)
-	public String adminLogoutPOST(HttpSession session) {
+	public String adminLogoutPOST(HttpSession session) throws Exception{
 		logger.debug("/logout -> logoutPOST() 호출");
 		session.invalidate(); // 세션 무효화
 		return "redirect:/login/AdminLoginPage"; // 로그아웃 후 로그인 페이지로 리다이렉트

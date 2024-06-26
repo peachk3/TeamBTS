@@ -26,7 +26,7 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 	public SqlSession sqlSession;
 
 	@Override
-	public void insertQuestion(Question_boardDTO dto) {
+	public void insertQuestion(Question_boardDTO dto) throws Exception{
 		logger.debug("DAO : insertQuestion(dto) 호출");
 		
 		logger.debug("dto : "+ dto);

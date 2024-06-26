@@ -18,7 +18,7 @@ public class AdminLoginServiceImpl implements AdminLoginService{
 	private AdminLoginDAO aldao;
 
 	@Override
-	public void adminJoin(AdminDTO adto) {
+	public void adminJoin(AdminDTO adto) throws Exception{
 		logger.debug("adminJoin(AdminLoginDTO adto)실행");
 		
 		aldao.adminJoin(adto);
@@ -27,7 +27,7 @@ public class AdminLoginServiceImpl implements AdminLoginService{
 	}
 
 	@Override
-	public AdminDTO adminLogin(AdminDTO adminLoginOk) {
+	public AdminDTO adminLogin(AdminDTO adminLoginOk) throws Exception{
 		logger.debug("adminLogin(adminLoginDTO)호출");
 		
 		AdminDTO resultDTO = aldao.adminLogin(adminLoginOk);
