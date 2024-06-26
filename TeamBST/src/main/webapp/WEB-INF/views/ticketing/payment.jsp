@@ -20,164 +20,6 @@
 </head>
 <%@ include file="../include/header.jsp"%>
 <body>
-<style>
-
-.paymethod {
-	width: 250px;
-	height: 150px;
-	border: 1px solid black;
-	text-align: center;
-}
-
-#kakaoPay {
-	width: 150px;
-	height: 80px;
-	text-align: center;
-}
-.modal1 {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.modal1-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 600px;
-}
-
-.close1 {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close1:hover,
-.close1:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.reserve_content {
-	display: flex;
-	justify-content: space-between;
-}
-
-.reserve_left, .reserve_right {
-	width: 48%;
-}
-
-.pointb_box {
-	/* margin-bottom: 2px; */
-	border: 1px solid black;
-}
-
-.pointb_box2 {
-	margin-botton: 20px;
-	border: 1px solid black;
-}
-
-.inner_txt {
-	margin: 3px;
-	text-align: center;
-}
-
-.inner_txt2 {
-	margin: 3px;
-	text-align: center;
-}
-
-.title_box {
-	margin-bottom: 10px;
-}
-
-label {
-	display: block;
-	margin: 10px 0 5px;
-}
-
-select {
-	width: 100%;
-	padding: 5px;
-	margin-bottom: 10px;
-}
-
-.info-panel p {
-	margin: 10px 0;
-}
-
-.reserve_left, .reserve_right {
-	border: 1px solid black;
-	margin: 10px 10px;
-	padding: 10px 10px;
-}
-
-#payment {
-	text-align: center;
-	float: right;
-	width: 100px;
-	height: 40px;
-	background-color: skyblue;
-	color: white;
-	border: 1px solid black;
-}
-
-#teamsymbol {
-	width: 100px;
-	height: 100px;
-}
-
- .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-        }
-
-        /* 모달 내용 */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
-        /* 닫기 버튼 */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-
-</style>
-
 <nav>
 		<a href="/main/main"><h1>개바리조</h1></a>
 
@@ -202,9 +44,12 @@ select {
   <div class="modal1-content">
     <span class="close1" onclick="closeModal1()">&times;</span>
     <h2>결제 약관 동의</h2>
-    <p>여기에 결제와 관련된 약관 내용.</p>
-    <p>이러쿵저렁쿵 어쩌구 저쩌구</p>
-    <button onclick="agreeTerms()">동의합니다</button>
+    <p> 전자금융거래 이용약관 </p>
+    <p> 개인정보 수집 및 이용 안내 </p>
+    <p> 고유식별정보 수집 및 이용안내 </p>
+    <p> 개인정보 제공 및 위탁안내 </p> 
+    <p>	위의 약관에 동의하시겠습니까? </p>
+    <button onclick="agreeTerms()">동의하기</button>
   </div>
 </div>
 
@@ -251,6 +96,9 @@ select {
 						</c:if>
 						<c:if test="${gs.away_team_id == 'SSG' or gs.home_team_id == 'SSG'}">
 						<img id="teamsymbol"src="../resources/team/ssg.png" alt="SSG 로고">
+						</c:if>
+						<c:if test="${gs.away_team_id == 'LG' or gs.home_team_id == 'LG'}">
+						<img id="teamsymbol"src="../resources/team/lg.png" alt="LG 로고">
 						</c:if>
 
 						</span>
@@ -305,7 +153,13 @@ select {
 				<div id="myModal" class="modal">
 					<div class="modal-content">
 						<span class="close">&times;</span>
-						<p> 취소 수수료는 1000만원입니다. 참고하시길.</p>
+						<p> 취소 수수료 상세 보기 <hr>
+						예매취소 안내(경기 당일 3시간 전까지 취소 가능)
+						<br>
+						예매 당일 취소 = 수수료 부과 없음
+						본인이 예매한 다음 날(0시 기준)부터 경기 당일 3시간 전 취소 = 예매 수수료 + 취소 수수료 제외한 나머지 환불 이후 취소 불가
+						예매한 내역의 부분 취소 및 날짜, 좌석변경, 권종변경은 불가합니다.
+						</p>
 					</div>
 				</div>
 				<p>

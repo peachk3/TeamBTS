@@ -154,7 +154,7 @@ public class TicketingController {
         List<SeatDTO> seats = stadService.getSeatsId(game_id, zone_id);
         
         // 예매 가능 좌석 및 여부 출력
-        List<Seat_bookDTO> seatBook = stadService.getSeatBooked(zone_id);
+        List<Seat_bookDTO> seatBook = stadService.getSeatBooked(zone_id, game_id);
 		
 		model.addAttribute("game_id", game_id);
 		model.addAttribute("stad_id", stad_id);

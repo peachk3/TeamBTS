@@ -36,6 +36,6 @@ public interface StadiumService {
 	public void postSelectedSeat(Integer game_id, String seat_id);
 
 	// 예매 가능 좌석 및 여부 출력 
-	public List<Seat_bookDTO> getSeatBooked(String zone_id);
+	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id);
 	
 }

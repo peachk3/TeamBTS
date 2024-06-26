@@ -84,10 +84,10 @@ public class StadiumServiceImpl implements StadiumService {
 
 	// 예매 가능 좌석 및 여부 출력 
 	@Override
-	public List<Seat_bookDTO> getSeatBooked(String zone_id) {
+	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id) {
 		logger.debug(" getSeatBooked(String zone_id) 호출 ");
 		
-		return staddao.getSeatBooked(zone_id);
+		return staddao.getSeatBooked(zone_id, game_id);
 	}
 	
 }
