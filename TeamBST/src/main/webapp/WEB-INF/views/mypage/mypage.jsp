@@ -47,17 +47,17 @@
 			<div class="col-12">
 				<div class="schedule-tab">
 					<ul class="nav nav-pills text-center">
-					  <li class="nav-item">
+					  <li class="nav-item" id="info">
 					    <a class="nav-link active" href="#nov20" data-toggle="pill">
 					    	정보조회
 					    </a>
 					  </li>
-					  <li class="nav-item">
+					  <li class="nav-item" id="ticket">
 					    <a class="nav-link" href="#nov21" data-toggle="pill">
 							MY 티켓
 					    </a>
 					  </li>
-					  <li class="nav-item">
+					  <li class="nav-item" id="write">
 					    <a class="nav-link" href="#nov22" data-toggle="pill">
 							MY 게시글
 					    </a>
@@ -171,272 +171,47 @@
 					  			</div>
 					  		</li>
 					  	</ul>
+					  	
+					  	<div class="download-button text-center">
+							<a href="/main/main" class="btn btn-main-md">메인으로</a>
+							<a href="/mypage/updateForm" class="btn btn-main-md">정보수정</a>
+							<a href="/mypage/deleteMember" class="btn btn-main-md">회원탈퇴</a>
+						</div>
 					  </div>
 					  <div class="tab-pane fade schedule-item" id="nov21">
 					  <button type="button" id="Upcoming" value="Upcoming">예정 경기</button>
       				  <button type="button" id="Past" value="Past">지난 경기</button>
 					  
 					  	<!-- Headings -->
-					  	<ul class="m-0 p-0">
+					  	<ul class="m-0 p-0" id="ticket_table">
 					  		<li class="headings">
-					  			<div class="time">Time</div>
-					  			<div class="speaker">Speaker</div>
-					  			<div class="subject">Subject</div>
-					  			<div class="venue">Venue</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-					  				<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">9.00 AM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-one.jpg" alt="speaker-thumb-one">
-										<span class="name">Samanta Doe</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Introduction to Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium A</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">10.00 AM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-two.jpg" alt="speaker-thumb-two">
-										<span class="name">Zerad Pawel</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Principle of Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium B</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">12.00 AM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-three.jpg" alt="speaker-thumb-three">
-										<span class="name">Henry Mong</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Wp Requirements</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium C</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">2.00 PM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-four.jpg" alt="speaker-thumb-four">
-										<span class="name">Baily Leo</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Introduction to Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium D</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">3.00 PM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-five.jpg" alt="speaker-thumb-five">
-										<span class="name">Lee Mun</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Useful tips for Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium E</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">3.00 PM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-six.jpg" alt="speaker-thumb-six">
-										<span class="name">Lee Mun</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Useful tips for Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium E</div>
-					  			</div>
+					  			<div class="time" style="margin-left:40px">경기 일자</div>
+					  			<div class="time">시작 시간</div>
+					  			<div class="time">구장</div>
+					  			<div class="time">홈팀</div>
+					  			<div class="time">원정팀</div>
 					  		</li>
 					  	</ul>
 					  </div>
 					  <div class="tab-pane fade schedule-item" id="nov22">
-					  <select name="boardTable_id" id="boardTable_id">
-		<option value="All">전체 게시판</option>
-		<option value="Community">거래 게시판</option>
-		<option value="Bulletin">문의 게시판</option>
-	</select>
-					  	<!-- Headings -->
-					  	<ul class="m-0 p-0">
+						<select name="boardTable_id" id="boardTable_id">
+							<option value="All">전체 게시판</option>
+							<option value="Community">거래 게시판</option>
+							<option value="Bulletin">문의 게시판</option>
+						</select>
+						<!-- Headings -->
+					  	<ul class="m-0 p-0" id="write_table">
 					  		<li class="headings">
-					  			<div class="time">Time</div>
-					  			<div class="speaker">Speaker</div>
-					  			<div class="subject">Subject</div>
-					  			<div class="venue">Venue</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-					  				<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">9.00 AM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-one.jpg" alt="speaker-thumb-one">
-										<span class="name">Samanta Doe</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Introduction to Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium A</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">10.00 AM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-two.jpg" alt="speaker-thumb-two">
-										<span class="name">Zerad Pawel</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Principle of Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium B</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">12.00 AM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-three.jpg" alt="speaker-thumb-three">
-										<span class="name">Henry Mong</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Wp Requirements</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium C</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">2.00 PM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-four.jpg" alt="speaker-thumb-four">
-										<span class="name">Baily Leo</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Introduction to Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium D</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">3.00 PM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-five.jpg" alt="speaker-thumb-five">
-										<span class="name">Lee Mun</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Useful tips for Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium E</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa">□</i>
-							  			<span class="time">3.00 PM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-six.jpg" alt="speaker-thumb-six">
-										<span class="name">Lee Mun</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Useful tips for Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium E</div>
-					  			</div>
+					  			<div class="venue" style="margin-left:40px">No.</div>
+					  			<div class="speaker" style="margin-left:40px">제목</div>
+					  			<div class="time" style="margin-left:300px">작성일</div>
+					  			<div class="venue">조회수</div>
 					  		</li>
 					  	</ul>
 					  </div>
 					</div>
 				</div>
-					<div class="download-button text-center">
-						<a href="/main/main" class="btn btn-main-md">메인으로</a>
-						<a href="/mypage/updateForm" class="btn btn-main-md">정보수정</a>
-						<a href="/mypage/deleteMember" class="btn btn-main-md">회원탈퇴</a>
-					</div>
+					
 				
 			</div>
 		</div>
@@ -444,6 +219,102 @@
 </section>
 
 <!--====  End of Schedule  ====-->
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+	
+	$(document).ready(function(){
+		
+		$("#ticket").click(function(){
+			$('ul#ticket_table li.schedule-details').remove();
+			getTicketList();
+		});
+		
+		$("#Past").click(ticketPastStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
+		$("#Upcoming").click(ticketUpcomingStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
+		
+		$("#write").click(function(){
+			$('ul#write_table li.schedule-details').remove();
+			getBoardList();
+		});
+		
+		$("#boardTable_id").change(getBoardList);
+	});
+	
+	function ticketPastStatusSet(){
+		var ticket_status = $('#Past').val();
+		getTicketList(ticket_status);
+	}
+	
+	function ticketUpcomingStatusSet(){
+		var ticket_status = $('#Upcoming').val();
+		getTicketList(ticket_status);
+	}
+	
+	function getTicketList(ticket_status){
+		console.log(ticket_status);
+		
+		$('ul#ticket_table li.schedule-details').remove();
+			
+		$.ajax({
+        	url : "/mypage/myticket",
+        	type : "post",
+        	data : JSON.stringify({ ticket_status : ticket_status}),
+        	contentType: 'application/json; charset=utf-8',
+        	dataType : "json",
+        	success : function(data){
+//         		alert("JTBC 다녀옴");
+// 				console.log(data);
+        		
+        		// body 태그에 내용 추가
+        		$(data).each(function(idx, item){
+        			
+        			$('#ticket_table').append('<li class="schedule-details"><div class="block"><div class="time"><span class="time">'+ item.game_date +'</span></div><div class="time"><span class="time">'+ item.game_time +'</span></div><div class="venue"><span class="time">'+ item.stad_id +'</span></div><div class="venue" style="margin-left:180px"><span class="time">'+ item.home_team_id +'</span></div><div class="venue" style="margin-left:180px">'+ item.away_team_id +'</div></div></li>')
+        			
+        		});
+        	},
+        	error: function(jqXHR, textStatus, errorThrown) {
+                console.log("AJAX 요청 실패: " + jqXHR.status + ", " + jqXHR.statusText + ", " + textStatus + ", " + errorThrown);
+                alert("AJAX 요청 실패!");
+            }
+        });
+	}
+	
+	function getBoardList(){
+		var boardTable_id = $('#boardTable_id').val();
+		console.log(boardTable_id);
+		
+		$('ul#write_table li.schedule-details').remove();
+			
+		$.ajax({
+        	url : "/mypage/mywrite",
+        	type : "post",
+        	data : JSON.stringify({ boardTable_id: boardTable_id }),
+        	contentType : "application/json",
+        	dataType : "json",
+        	success : function(data){
+// 	       		alert("JTBC 다녀옴");
+// 				console.log(data);
+	       		
+	       		// body 태그에 내용 추가
+	       		$(data).each(function(idx, item){
+	       			
+	       			$('#write_table').append('<li class="schedule-details"><div class="block"><div class="venue"><span class="time">'+ (parseInt(idx)+1) +'</span></div><div class="speaker"><span class="name">'+ item.board_sub +'</span></div><div class="time">'+ item.board_cre_date +'</div><div class="venue">'+ item.board_view +'</div></div></li>')
+	       			
+	       		});
+	       	},
+	       	error: function(jqXHR, textStatus, errorThrown) {
+               console.log("AJAX 요청 실패: " + jqXHR.status + ", " + jqXHR.statusText + ", " + textStatus + ", " + errorThrown);
+               alert("AJAX 요청 실패!");
+	        }
+	    });
+	}
+	
+	</script>
+	
+
 
 
 <%@ include file="../include/footer.jsp"%>
