@@ -37,7 +37,8 @@
 				<!-- 구장 1 : 광주 -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/stadium/gwangju.webp" alt="speaker" class="img-fluid">
+<!-- 						<img src="/resources/stadium/gwangju.webp" alt="speaker" class="img-fluid"> -->
+						<div class="team_logo no_css" style="background-image:url(/data/team/ci/2024/2002.svg"></div>
 					</div>
 					<div class="content text-center">
 						<h5><a href="/ticketing/ticketing?stad_id=GJ&selectedStadium=GJ">광주 챔피언스필드</a></h5>
