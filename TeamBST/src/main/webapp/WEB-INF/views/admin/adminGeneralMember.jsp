@@ -9,10 +9,10 @@
 		<div class="row">
 			<div class="col-12 text-center">
 				<div class="title">
-					<h3>SCHEDULE</h3>
+					<h3>MEMBER</h3>
 				</div>
 				<ol class="breadcrumb p-0 m-0">
-					<li class="breadcrumb-item active">경기일정</li>
+					<li class="breadcrumb-item active">일반회원</li>
 				</ol>
 			</div>
 		</div>
