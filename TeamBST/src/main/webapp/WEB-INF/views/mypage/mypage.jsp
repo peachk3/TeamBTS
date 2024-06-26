@@ -77,7 +77,6 @@
 					  			<div class="block">
 					  				<!-- time -->
 							  		<div class="time">
-							  			<i class="fa fa">-</i>
 							  			<span class="time">아이디</span>
 							  		</div>
 							  		<!-- Speaker -->
@@ -91,12 +90,11 @@
 					  			<div class="block">
 						  			<!-- time -->
 							  		<div class="time">
-							  			<i class="fa fa">□</i>
 							  			<span class="time">비밀번호</span>
 							  		</div>
 							  		<!-- Speaker -->
 							  		<div class="speaker">
-										<span class="masked-password">********</span>
+										<span class="masked-password"  style="margin-left:20px">********</span>
 							  		</div>
 					  			</div>
 					  		</li>
@@ -105,7 +103,6 @@
 					  			<div class="block">
 						  			<!-- name -->
 							  		<div class="time">
-							  			<i class="fa fa">□</i>
 							  			<span class="time">이름</span>
 							  		</div>
 							  		<!-- Speaker -->
@@ -119,7 +116,6 @@
 					  			<div class="block">
 						  			<!-- time -->
 							  		<div class="time">
-							  			<i class="fa fa">□</i>
 							  			<span class="time">닉네임</span>
 							  		</div>
 							  		<!-- Speaker -->
@@ -133,7 +129,6 @@
 					  			<div class="block">
 						  			<!-- time -->
 							  		<div class="time">
-							  			<i class="fa fa">□</i>
 							  			<span class="time">휴대번호</span>
 							  		</div>
 							  		<!-- Speaker -->
@@ -147,7 +142,6 @@
 					  			<div class="block">
 						  			<!-- time -->
 							  		<div class="time">
-							  			<i class="fa fa">□</i>
 							  			<span class="time">이메일</span>
 							  		</div>
 							  		<!-- Speaker -->
@@ -161,7 +155,6 @@
 					  			<div class="block">
 						  			<!-- time -->
 							  		<div class="time">
-							  			<i class="fa fa">□</i>
 							  			<span class="time">생년월일</span>
 							  		</div>
 							  		<!-- Speaker -->
