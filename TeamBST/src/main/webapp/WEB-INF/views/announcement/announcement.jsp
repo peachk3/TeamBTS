@@ -63,11 +63,6 @@
 									onclick="location.href='/announcement/announcement'">공지사항</button>
 								<button type="button" class="community"
 									onclick="location.href='/announcement/bulletin'">문의게시판</button>
-
-								<div>
-									<input type="text" placeholder="검색어 입력">
-									<button>검색</button>
-								</div>
 								<!-- Headings -->
 								<ul class="m-0 p-0">
 									<li class="headings">

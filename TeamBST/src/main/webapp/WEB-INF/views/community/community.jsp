@@ -109,12 +109,6 @@
 		<option value="IC">인천 랜더스필드</option>
 		<option value="CW">창원 NC파크</option>
 	</select>
-
-
-	<div>
-		<input type="text" placeholder="검색어 입력">
-		<button>검색</button>
-	</div>
 	
 	<div class="box-body">
 		<table class="table table-bordered">
