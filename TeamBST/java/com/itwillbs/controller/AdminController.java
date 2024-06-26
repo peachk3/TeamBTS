@@ -323,6 +323,7 @@ public class AdminController {
 	        
 	        if (user_id == null) {
 	            logger.debug("로그인을 해야 삭제를 할 수 있습니다");
+	            session.setAttribute("alertMessage", "로그인을 해야 삭제를 할 수 있습니다");
 	            return "redirect:/login/loginPage";
 	        }
 	        
@@ -333,6 +334,7 @@ public class AdminController {
 	            return "redirect:/admin/adminNotice";
 	        } else {
 	        	logger.debug("본인이 작성한 글이 아닙니다");
+	            session.setAttribute("alertMessage", "본인이 작성한 글이 아닙니다");
 	            return "redirect:/admin/adminNoticeContent?notice_id="+notice_id;
 	        }
 	    }

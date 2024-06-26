@@ -158,12 +158,11 @@
     </div>
 
     <button type="submit" onclick="location.href='/announcement/bulletinModify?quest_id=${quest.quest_id}&quest_writer_id=${quest.quest_writer_id }'">수정</button>
-
-    <form action="/announcement/bulletinDelete?quest_id=${quest.quest_id}&quest_writer_id=${quest.quest_writer_id }" method="post">
-        <input type="hidden" name="quest_id" >
-        <input type="submit" value="삭제">
-    </form>
-
+    <form action="/announcement/bulletinDelete?quest_id=${quest.quest_id}&quest_writer_id=${quest.quest_writer_id }" method="post" onsubmit="return confirmDelete()">
+	        <input type="hidden" name="notice_id">
+	        <input type="submit" value="삭제">
+	    </form>   
+	    
     <button type="button" onclick="location.href='/announcement/bulletin'">목록</button>
 </c:forEach>
 
@@ -184,6 +183,11 @@
 </div>
 
 <script type="text/javascript">
+function confirmDelete() {
+    return confirm("정말로 삭제하시겠습니까?");
+}
+
+
     <%-- alertMessage가 존재할 경우에만 alert 창을 띄움 --%>
     <% if (session.getAttribute("alertMessage") != null) { %>
         alert("<%= session.getAttribute("alertMessage") %>");
