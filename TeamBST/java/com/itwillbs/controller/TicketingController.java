@@ -43,10 +43,13 @@ public class TicketingController {
 	
     @RequestMapping(value="/ticketing", method=RequestMethod.GET)
     public String MainTicketing(@RequestParam("stad_id") String stad_id, Model model) {
-        logger.debug("티켓팅 홈 페이지");
+        logger.debug("티켓팅 홈 페이지 - GET");
         logger.debug("stad_id : " + stad_id);
 
         List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
+        
+		model.addAttribute("TeamScheduleList", TeamScheduleList);
+	    model.addAttribute("selectedStadId", stad_id); // 선택된 stad_id를 모델에 추가
 
         return "ticketing/ticketing"; // 실제 JSP 페이지 이름으로 변경하세요
     }
@@ -56,7 +59,7 @@ public class TicketingController {
 	@RequestMapping(value="/ticketing",method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	 public String TeamTicketing(@RequestParam("stad_id") String stad_id, Model model) throws Exception{
-        logger.debug("티켓팅 홈 페이지");
+        logger.debug("티켓팅 홈 페이지- POST");
         logger.debug("stad_id : " + stad_id);
 
         // 경기 정보 호출
@@ -64,8 +67,6 @@ public class TicketingController {
         List<Game_scheduleDTO> TeamScheduleList = sService.stadScheduleList(stad_id);
         
         // 페이징 처리된 경기 정보 호출
-        
-        
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule()); // Java 8 날짜 타입 지원
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false); // 타임스탬프로 변환하지 않음
