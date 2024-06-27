@@ -161,7 +161,7 @@
 			on ri1.game_id = gs.game_id), 
 			(reservation_info ri2 join user u
 			on ri2.user_id = u.user_id)
-			where u.user_id = #{user_id}
+			where u.user_id = #{user_id} and ri1.game_id = ri2.game_id
 				and (
 					case 
 						when #{ticket_status} = 'Upcoming' then (gs.game_date > curdate()or(gs.game_date = curdate() and gs.game_time > curtime()))
