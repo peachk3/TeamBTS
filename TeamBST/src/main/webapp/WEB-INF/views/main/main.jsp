@@ -178,7 +178,7 @@
 				<!-- 구단 1 : LG -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/team/lg.png" alt="speaker" class="img-fluid">
+						<img src="/resources/team/lglg.png" alt="speaker" class="img-fluid">
 <!-- 						<div class="primary-overlay"></div> -->
 <!-- 						<div class="socials"> -->
 <!-- 							<ul class="list-inline"> -->
@@ -198,7 +198,7 @@
 				<!-- 구단 2 : KT -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/team/kt.png" alt="speaker" class="img-fluid">
+						<img src="/resources/team/ktkt.png" alt="speaker" class="img-fluid">
 <!-- 						<div class="primary-overlay"></div> -->
 <!-- 						<div class="socials"> -->
 <!-- 							<ul class="list-inline"> -->
@@ -218,7 +218,7 @@
 				<!-- 구단 3 : SSG -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/team/ssg.png" alt="speaker" class="img-fluid">
+						<img src="/resources/team/ssgssg.png" alt="speaker" class="img-fluid">
 <!-- 						<div class="primary-overlay"></div> -->
 <!-- 						<div class="socials"> -->
 <!-- 							<ul class="list-inline"> -->
@@ -238,7 +238,7 @@
 				<!-- 구단 4 : NC -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/team/nc.png" alt="speaker" class="img-fluid">
+						<img src="/resources/team/ncnc.png" alt="speaker" class="img-fluid">
 <!-- 						<div class="primary-overlay"></div> -->
 <!-- 						<div class="socials"> -->
 <!-- 							<ul class="list-inline"> -->
@@ -258,7 +258,7 @@
 				<!-- 구단 5 : 두산 -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/team/dosan.png" alt="speaker" class="img-fluid">
+						<img src="/resources/team/dosandosan.png" alt="speaker" class="img-fluid">
 <!-- 						<div class="primary-overlay"></div> -->
 <!-- 						<div class="socials"> -->
 <!-- 							<ul class="list-inline"> -->
@@ -278,7 +278,7 @@
 				<!-- 구단 6 : KIA -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/team/kia.png" alt="speaker" class="img-fluid">
+						<img src="/resources/team/kiakia.png" alt="speaker" class="img-fluid">
 <!-- 						<div class="primary-overlay"></div> -->
 <!-- 						<div class="socials"> -->
 <!-- 							<ul class="list-inline"> -->
@@ -298,7 +298,7 @@
 				<!-- 구단 7 : 롯데 -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/team/lotte.png" alt="speaker" class="img-fluid">
+						<img src="/resources/team/lottelotte.png" alt="speaker" class="img-fluid">
 <!-- 						<div class="primary-overlay"></div> -->
 <!-- 						<div class="socials"> -->
 <!-- 							<ul class="list-inline"> -->
@@ -318,7 +318,7 @@
 				<!-- 구단 8 : 삼성 -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/team/samsung.png" alt="speaker" class="img-fluid">
+						<img src="/resources/team/samsungsamsung.png" alt="speaker" class="img-fluid">
 <!-- 						<div class="primary-overlay"></div> -->
 <!-- 						<div class="socials"> -->
 <!-- 							<ul class="list-inline"> -->
@@ -338,7 +338,7 @@
 				<!-- 구단 9 : 한화 -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/team/hanhwa.png" alt="speaker" class="img-fluid">
+						<img src="/resources/team/hanhwahanhwa.png" alt="speaker" class="img-fluid">
 <!-- 						<div class="primary-overlay"></div> -->
 <!-- 						<div class="socials"> -->
 <!-- 							<ul class="list-inline"> -->
@@ -358,7 +358,7 @@
 				<!-- 구단 10 : 키움 -->
 				<div class="speaker-item">
 					<div class="image">
-						<img src="/resources/team/kiwoom.png" alt="speaker" class="img-fluid">
+						<img src="/resources/team/kiwoomkiwoom.png" alt="speaker" class="img-fluid">
 <!-- 						<div class="primary-overlay"></div> -->
 <!-- 						<div class="socials"> -->
 <!-- 							<ul class="list-inline"> -->
