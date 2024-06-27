@@ -25,11 +25,11 @@
       <button type="button" class="btn" onclick="location.href='/admin/adminGeneralMember'">일반회원</button>
       <button type="button" class="btn" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
 
-</div>
-</section>
  	<h1>일반 회원 : ${generalMemberNum }</h1>
 	<h1>탈퇴 회원 : ${withdrawMemberNum }</h1>
  
+</div>
+</section>
 
 
 <%@ include file="../include/footer.jsp"%>

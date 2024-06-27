@@ -9,22 +9,30 @@
     <link href="../resources/css/displaySeats.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-<body>
-	<div>
-		여기저기
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>RESERVATION</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">예약하기</li>
+				</ol>
+			</div>
+		</div>
 	</div>
-	<div>
-	 	야모해
-	</div>
-	<div>
-		여기저기 야모해
-	</div>
+</section>
 
+<body>
+
+<section class="section schedule">
+<div class="container">
 	<div class="zoneh">
 		${zone_ty}구역
 	</div>
 	
-	<div class="container">
+	<div class="container12">
 		<div class="seating-chart">
 			<div class="field">필드</div>
 			<!-- 좌석 배치 -->
@@ -58,7 +66,8 @@
 		<button type="button" class="btn_goback" onclick="goBack()">이전으로</button>
         <button type="submit" class="btn_reservation" onclick="handleReservation(event)">다음으로</button>
 		</div>	
-		
+</div>
+</section>		
 
 <form id="reservation-form" action="/ticketing/reservation" method="post">
  	   	<input type="hidden" id="selected-seats-count" name="selected_seats_count" value="0">

@@ -564,6 +564,7 @@ select.form-control:not([size]):not([multiple]) {
   font-family: "Noto Sans KR", sans-serif;
   transition: all .3s ease;
   padding: 10px 10px;
+  float: right !important;
 }
 
 .btn-main {
@@ -584,12 +585,14 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .btn-main-md {
-  padding: 15px 40px;
+  padding: 13px 30px;
   border-radius: 0;
   background: #aac1f9;
   color: #fff;
   outline: none;
   font-size: 0.9375rem;
+  border: 1px solid white;
+  
 }
 
 .btn-main-md:hover {
@@ -1421,7 +1424,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .speakers .speaker-item {
-  background: #eae9ec;
+  background: #eef0f2;
   padding: 7px;
   margin-bottom: 30px;
 }

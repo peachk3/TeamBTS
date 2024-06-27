@@ -107,12 +107,12 @@
 
                         <!-- 버튼 그룹 -->
                         <div class="buttons">
-                            <button type="button" onclick="location.href='/community/communityModify?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }'">수정</button>
+                            <button class="btn btn-main-md" onclick="location.href='/community/communityModify?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }'">수정</button>
                             <form action="/community/communityDelete?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }" method="post" style="display:inline;">
                                 <input type="hidden" name="post_id">
-                                <input type="submit" value="삭제">
+                                <button class="btn btn-main-md" type="submit">삭제</button>
                             </form>
-                            <button type="button" onclick="location.href='/community/community'">목록</button>
+                            <button class="btn btn-main-md" onclick="location.href='/community/community'">목록</button>
                         </div>
 
                         <!-- 댓글 목록 -->
@@ -133,8 +133,8 @@
                                 <p style="margin-bottom: 10px"><strong>답변</strong></p>
                                 <textarea name="comm_cont" placeholder="답변 내용을 입력하세요..."></textarea>
                                 <div class="buttons">
-                                    <button type="button" onclick="window.history.back();">취소</button>
-                                    <button type="submit">등록</button>
+                                    <button class="btn btn-main-md"  onclick="window.history.back();">취소</button>
+                                    <button class="btn btn-main-md"  type="submit">등록</button>
                                 </div>
                             </form>
                         </div>

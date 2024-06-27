@@ -68,9 +68,9 @@
 
 			</div>
 			<div class="card-footer">
-				<button type="submit" class="btn btn-primary mr-2">Submit</button>
-				<button type="reset" class="btn btn-secondary"
-					onclick="window.history.back();">Cancel</button>
+				<button type="submit" class="btn">수정하기</button>
+				<button type="reset" class="btn"
+					onclick="window.history.back();">뒤로가기</button>
 			</div>
 		</form>
 		<!--end::Form-->
