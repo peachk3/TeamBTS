@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="../include/header.jsp"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Reservation Page</title>
 <!-- <link -->
 <!-- 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" -->
 <!-- 	rel="stylesheet" -->
@@ -13,22 +10,28 @@
 <link href="../resources/css/index.css" rel="stylesheet">
 <link href="../resources/css/reservation.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-</head>
-<%@ include file="../include/header.jsp"%>
+
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>RESERVATION</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">예약하기</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
 
 
 <body>
 
-	<div>
-		여기저기
-	</div>
-	<div>
-	 	야모해
-	</div>
-	<div>
-		여기저기 야모해
-	</div>
-	
+<section class="section schedule">
+<div class="container">
 	<div class="reserve_content">
 		<div class="reserve_left">
 			<div class="pointb_box">
@@ -44,14 +47,13 @@
 
 			<div id="divPrice">
 				<div class="title_box">
-					<h5 class="title title_txt">
-						<b> 티켓 종류 및 매수 선택 </b>
-					</h5>
+					<div class="title_txt">
+						 티켓 종류 및 매수 선택 
+					</div>
 					<form>
 						<c:forEach var="sap" items="${seatAdultPrice}">
 							<legend class="adultPrice">
-								성인 : <label for="adultNum" data-price="${sap.price }">
-									${sap.price }원</label>
+								성인 : <label for="adultNum" data-price="${sap.price }"> ${sap.price }원</label>
 							</legend>
 							<select name="adultNum" id="adultNum" onclick="calculateTotal()">
 								<option value="0">매수 선택</option>
@@ -67,8 +69,7 @@
 
 						<c:forEach var="scp" items="${seatChildPrice}">
 							<legend class="childPrice">
-								초등학생 : <label for="childNum" data-price="${scp.price }">
-									${scp.price }원</label>
+								초등학생 : <label for="childNum" data-price="${scp.price }">${scp.price }원</label>
 							</legend>
 							<select name="childNum" id="childNum" onclick="calculateTotal()">
 								<option value="0">매수 선택</option>
@@ -90,7 +91,6 @@
 		<div class="reserve_right">
 			<div class="info-panel">
 				<c:forEach var="gs" items="${gameSchedule}">
-					
 					<table class="table1">
 						<tr class="tr1">
 							<td><span id="team-name"> <%-- ${gs.away_team_id} --%><br> 
@@ -162,16 +162,10 @@
 								</c:if></span>
 							</td>
 						</tr>
-						<%-- <tr>
-							<td></td>
-							<td>${gs.away_team_id}</td>
-							<td>VS</td>
-							<td>${gs.home_team_id}</td>
-						</tr> --%>
 						<tr>
 							<th>일시</th>
 							<td><span id="match-date">${gs.game_date} ${gs.game_time} </span></td>
-							<td> </td>
+							<td></td>
 						</tr>
 						
 						<tr>
@@ -210,12 +204,12 @@
 						</tr>
 						<tr>
 							<th>티켓 금액</th>
-							<td><span id="total-price">0</span></td>
+							<td><span id="total-price">0</span>원</td>
 							<td></td>
 						</tr>
 						<tr>
 							<th>예매 수수료</th>
-							<td><span id="booking-fee">0</span></td>
+							<td><span id="booking-fee">0</span>원</td>
 							<td></td>
 						</tr>
 						<tr>
@@ -240,14 +234,13 @@
 
 						<tr>
 							<th>결제 금액</th>
-							<td><span id="total-amount">0</span></td>
+							<td><span id="total-amount">0</span>원</td>
 						</tr>
 
 					</table>
 				</c:forEach>
 			</div>
 		</div>
-
 	</div>
 	<div class="reserve_btn">
 		<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>
@@ -257,6 +250,8 @@
 			<input type="hidden" name="totalPrice" id="hidden-total-price">
 		</form>
 	</div>
+</div>
+</section>
 
 	<%-- 
 //     String zone_ty = request.getParameter("zone_ty");

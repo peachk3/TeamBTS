@@ -1,11 +1,11 @@
 h1{text-align: center; }
 h6{text-align: right}
 
-.nav-item{border: 1px solid black;
-   padding: 10px 24px;   /* 박스 크기 조정 */
-    justify-content:space-around;
-    align-items: center;
-}
+/* .nav-item{border: 1px solid black; */
+/*    padding: 10px 24px;   박스 크기 조정 */
+/*     justify-content:space-around; */
+/*     align-items: center; */
+/* } */
 
 a{
     text-decoration: none; /* 링크의 밑줄 제거 */  

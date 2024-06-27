@@ -120,16 +120,19 @@ public class TicketingController {
  		
         String user_id = (String) session.getAttribute("user_id");
         logger.debug("user_id : "+ user_id);
- 		
+        
+        logger.debug("game_id : "+game_id);
+        
         
         if(user_id != null) {
-        	model.addAttribute("stad_id",stad_id);
+        	logger.debug("game_id : "+game_id);
         	logger.debug("goStadiumGET() 호출");
         
         	// stadium -> zoneList 출력
         	List<ZoneDTO> zones = stadService.getZonesByStadiumId(game_id);
         	model.addAttribute("zones", zones);
         	model.addAttribute("game_id", game_id);
+        	model.addAttribute("stad_id",stad_id);
         	
         	logger.debug("zones : " + zones);
         } if (session.getAttribute("user_id") == null) {
