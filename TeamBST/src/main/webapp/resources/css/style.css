@@ -1106,7 +1106,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .footer-main .block ul.social-links-footer .list-inline-item:not(:last-child) {
-  margin-right: 20px;
+  margin-center: 0px;
 }
 
 .footer-main .block ul.social-links-footer li a {
@@ -1430,12 +1430,12 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .about .content-block .list-inline-item:not(:last-child) {
-  margin-right: 20px;
+  margin-center: 0px;
 }
 
 @media (max-width: 991px) {
   .about .content-block .list-inline-item:not(:last-child) {
-    margin-bottom: 10px;
+    margin-center: 0px;
   }
 }
 
@@ -1511,8 +1511,8 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .speakers .speaker-item .image .socials ul li.list-inline-item:not(:last-child) {
-  margin-right: 7px;
-  margin-bottom: 10px;
+  margin-center: 0px;
+  margin-center: 0px;
 }
 
 .speakers .speaker-item .image .socials ul li a {
@@ -2368,7 +2368,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .sponsors .block .list-inline-item:not(:last-child) {
-  margin-right: 15px;
+  margin-center: 0px;
 }
 
 .sponsors .block .image-block {
@@ -2860,7 +2860,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .speakers-full-width .speaker-slider .speaker-image .primary-overlay ul .list-inline-item:not(:last-child) {
-  margin-right: 10px;
+  margin-center: 0px;
 }
 
 .speakers-full-width .speaker-slider .speaker-image:hover .primary-overlay {
@@ -3304,7 +3304,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .news .blog-post.single .post-details .share-block .share ul.social-links-share .list-inline-item:not(:last-child) {
-  margin-right: 7px;
+  margin-center: 0px;
 }
 
 .news .blog-post.single .post-details .share-block .share ul.social-links-share li a {
@@ -3774,6 +3774,32 @@ ul.pagination .active a {
 .contact-form button {
   margin-top: 30px;
   margin-bottom: 30px;
+}
+.socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.socials ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.socials ul li {
+  margin: 0 10px;
+}
+
+.socials ul li a {
+  text-decoration: none;
+}
+
+.socials ul li a i {
+  font-size: 24px;
 }
 
 /*# sourceMappingURL=maps/style.css.map */

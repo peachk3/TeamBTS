@@ -179,15 +179,13 @@
 				<div class="speaker-item">
 					<div class="image">
 						<img src="/resources/team/lglg.png" alt="speaker" class="img-fluid">
-<!-- 						<div class="primary-overlay"></div> -->
-<!-- 						<div class="socials"> -->
-<!-- 							<ul class="list-inline"> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
+						<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+								<li class="list-inline-item"><a href="https://www.instagram.com/lgtwinsbaseballclub/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+						
 					</div>
 					<div class="content text-center">
 						<h5><a href="/main/teamPage?team_id=lg">LG 트윈스</a></h5>
@@ -199,15 +197,12 @@
 				<div class="speaker-item">
 					<div class="image">
 						<img src="/resources/team/ktkt.png" alt="speaker" class="img-fluid">
-<!-- 						<div class="primary-overlay"></div> -->
-<!-- 						<div class="socials"> -->
-<!-- 							<ul class="list-inline"> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
+					<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+								<li class="list-inline-item"><a href="https://www.instagram.com/ktwiz.pr/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
 					</div>
 					<div class="content text-center">
 						<h5><a href="/main/teamPage?team_id=kt">KT 위즈</a></h5>
@@ -219,15 +214,12 @@
 				<div class="speaker-item">
 					<div class="image">
 						<img src="/resources/team/ssgssg.png" alt="speaker" class="img-fluid">
-<!-- 						<div class="primary-overlay"></div> -->
-<!-- 						<div class="socials"> -->
-<!-- 							<ul class="list-inline"> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
+					<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+								<li class="list-inline-item"><a href="https://www.instagram.com/ssglanders.incheon/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
 					</div>
 					<div class="content text-center">
 						<h5><a href="/main/teamPage?team_id=ssg">SSG 랜더스</a></h5>
@@ -239,15 +231,12 @@
 				<div class="speaker-item">
 					<div class="image">
 						<img src="/resources/team/ncnc.png" alt="speaker" class="img-fluid">
-<!-- 						<div class="primary-overlay"></div> -->
-<!-- 						<div class="socials"> -->
-<!-- 							<ul class="list-inline"> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
+					<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+								<li class="list-inline-item"><a href="https://www.instagram.com/ncdinos2011/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
 					</div>
 					<div class="content text-center">
 						<h5><a href="/main/teamPage?team_id=nc">NC 다이노스</a></h5>
@@ -259,15 +248,12 @@
 				<div class="speaker-item">
 					<div class="image">
 						<img src="/resources/team/dosandosan.png" alt="speaker" class="img-fluid">
-<!-- 						<div class="primary-overlay"></div> -->
-<!-- 						<div class="socials"> -->
-<!-- 							<ul class="list-inline"> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
+					<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+								<li class="list-inline-item"><a href="https://www.instagram.com/doosanbears.1982/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
 					</div>
 					<div class="content text-center">
 						<h5><a href="/main/teamPage?team_id=dosan">두산 베어스</a></h5>
@@ -279,15 +265,12 @@
 				<div class="speaker-item">
 					<div class="image">
 						<img src="/resources/team/kiakia.png" alt="speaker" class="img-fluid">
-<!-- 						<div class="primary-overlay"></div> -->
-<!-- 						<div class="socials"> -->
-<!-- 							<ul class="list-inline"> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
+					<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+								<li class="list-inline-item"><a href="https://www.instagram.com/always_kia_tigers/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
 					</div>
 					<div class="content text-center">
 						<h5><a href="/main/teamPage?team_id=kia">KIA 타이거즈</a></h5>
@@ -299,15 +282,12 @@
 				<div class="speaker-item">
 					<div class="image">
 						<img src="/resources/team/lottelotte.png" alt="speaker" class="img-fluid">
-<!-- 						<div class="primary-overlay"></div> -->
-<!-- 						<div class="socials"> -->
-<!-- 							<ul class="list-inline"> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
+					<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+								<li class="list-inline-item"><a href="https://www.instagram.com/busanlottegiants/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
 					</div>
 					<div class="content text-center">
 						<h5><a href="/main/teamPage?team_id=lotte">롯데 자이언츠</a></h5>
@@ -319,15 +299,12 @@
 				<div class="speaker-item">
 					<div class="image">
 						<img src="/resources/team/samsungsamsung.png" alt="speaker" class="img-fluid">
-<!-- 						<div class="primary-overlay"></div> -->
-<!-- 						<div class="socials"> -->
-<!-- 							<ul class="list-inline"> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
+					<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+								<li class="list-inline-item"><a href="https://www.instagram.com/samsunglions_baseballclub/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
 					</div>
 					<div class="content text-center">
 						<h5><a href="/main/teamPage?team_id=samsung">삼성 라이온즈</a></h5>
@@ -339,15 +316,12 @@
 				<div class="speaker-item">
 					<div class="image">
 						<img src="/resources/team/hanhwahanhwa.png" alt="speaker" class="img-fluid">
-<!-- 						<div class="primary-overlay"></div> -->
-<!-- 						<div class="socials"> -->
-<!-- 							<ul class="list-inline"> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
+					<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+								<li class="list-inline-item"><a href="https://www.instagram.com/hanwhaeagles_soori/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
 					</div>
 					<div class="content text-center">
 						<h5><a href="/main/teamPage?team_id=hanhwa">한화 이글스</a></h5>
@@ -359,15 +333,12 @@
 				<div class="speaker-item">
 					<div class="image">
 						<img src="/resources/team/kiwoomkiwoom.png" alt="speaker" class="img-fluid">
-<!-- 						<div class="primary-overlay"></div> -->
-<!-- 						<div class="socials"> -->
-<!-- 							<ul class="list-inline"> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-<!-- 								<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
+					<div class="primary-overlay"></div>
+						<div class="socials">
+							<ul class="list-inline">
+								<li class="list-inline-item"><a href="https://www.instagram.com/heroesbaseballclub/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
 					</div>
 					<div class="content text-center">
 						<h5><a href="/main/teamPage?team_id=kiwoom">키움 히어로즈</a></h5>

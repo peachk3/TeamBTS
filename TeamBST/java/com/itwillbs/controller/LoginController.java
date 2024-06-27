@@ -205,7 +205,7 @@ public String findIdPOST(HttpServletRequest request,Model model, UserDTO udto,
 }
 
 //비밀번호 찾기 페이지로 이동 
-@RequestMapping(value = "findPwd")
+@RequestMapping(value = "AdminFindpw")
 public void findPwdGET() throws Exception {
 	
 }
