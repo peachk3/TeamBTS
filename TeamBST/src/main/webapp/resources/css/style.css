@@ -68,34 +68,62 @@ p, a, li, blockquote, label {
  height: 100%;
  background-size: cover;
  background-position: center;
- animation: slider 15s infinite;
+ animation: slider 33s infinite;
  background-repeat: no-repeat;
 }
  
 .slider .slide:nth-child(1) {
    background-image: url('/resources/images/background/homepage-one-banner.jpeg');
-   animation-delay: 0s;
+   animation-delay: 0.5s;
 }
 
 .slider .slide:nth-child(2) {
    background-image: url('/resources/images/background/homepage-two-banner.jpeg');
-   animation-delay: -3s;
+   animation-delay: -2.5s;
 }
 
 .slider .slide:nth-child(3) {
    background-image: url('/resources/images/background/homepage-three-banner.jpeg');
-   animation-delay: -6s;
+   animation-delay: -5.5s;
 }
 
 .slider .slide:nth-child(4) {
    background-image: url('/resources/images/background/homepage-four-banner.jpeg');
-   animation-delay: -9s;
+   animation-delay: -8.5s;
 }
 
 .slider .slide:nth-child(5) {
    background-image: url('/resources/images/background/homepage-five-banner.jpeg');
-   animation-delay: -12s;
+   animation-delay: -11.5s;
 }
+
+.slider .slide:nth-child(6) {
+   background-image: url('/resources/images/background/homepage-six-banner.jpeg');
+   animation-delay: -14.5s;
+}
+
+.slider .slide:nth-child(7) {
+   background-image: url('/resources/images/background/homepage-seven-banner.jpeg');
+   animation-delay: -17.5s;
+}
+
+.slider .slide:nth-child(8) {
+   background-image: url('/resources/images/background/homepage-eight-banner.jpeg');
+   animation-delay: -20.5s;
+}
+
+.slider .slide:nth-child(9) {
+   background-image: url('/resources/images/background/homepage-nine-banner.jpeg');
+   animation-delay: -23.5s;
+}
+
+.slider .slide:nth-child(10) {
+   background-image: url('/resources/images/background/homepage-ten-banner.jpeg');
+   animation-delay: -26.5s;
+}
+
+
+
 
 @keyframes slider {
  0%, 16%, 100% {
@@ -1081,7 +1109,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .footer-main .block ul.social-links-footer .list-inline-item:not(:last-child) {
-  margin-right: 20px;
+  margin-center: 0px;
 }
 
 .footer-main .block ul.social-links-footer li a {
@@ -1405,12 +1433,12 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .about .content-block .list-inline-item:not(:last-child) {
-  margin-right: 20px;
+  margin-center: 0px;
 }
 
 @media (max-width: 991px) {
   .about .content-block .list-inline-item:not(:last-child) {
-    margin-bottom: 10px;
+    margin-center: 0px;
   }
 }
 
@@ -1486,8 +1514,8 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .speakers .speaker-item .image .socials ul li.list-inline-item:not(:last-child) {
-  margin-right: 7px;
-  margin-bottom: 10px;
+  margin-center: 0px;
+  margin-center: 0px;
 }
 
 .speakers .speaker-item .image .socials ul li a {
@@ -2343,7 +2371,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .sponsors .block .list-inline-item:not(:last-child) {
-  margin-right: 15px;
+  margin-center: 0px;
 }
 
 .sponsors .block .image-block {
@@ -2835,7 +2863,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .speakers-full-width .speaker-slider .speaker-image .primary-overlay ul .list-inline-item:not(:last-child) {
-  margin-right: 10px;
+  margin-center: 0px;
 }
 
 .speakers-full-width .speaker-slider .speaker-image:hover .primary-overlay {
@@ -3279,7 +3307,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .news .blog-post.single .post-details .share-block .share ul.social-links-share .list-inline-item:not(:last-child) {
-  margin-right: 7px;
+  margin-center: 0px;
 }
 
 .news .blog-post.single .post-details .share-block .share ul.social-links-share li a {
@@ -3749,6 +3777,32 @@ ul.pagination .active a {
 .contact-form button {
   margin-top: 30px;
   margin-bottom: 30px;
+}
+.socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.socials ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.socials ul li {
+  margin: 0 10px;
+}
+
+.socials ul li a {
+  text-decoration: none;
+}
+
+.socials ul li a i {
+  font-size: 24px;
 }
 
 /*# sourceMappingURL=maps/style.css.map */

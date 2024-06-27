@@ -48,8 +48,9 @@
 
 			<!-- 아이디찾기 비밀번호찾기 회원가입 화면 이동 버튼-->
 			<div class="options">
-				<a href="AdminFindid.html">아이디 찾기</a> <a href="AdminFindpw.html">비밀번호
-					찾기</a> <a href="AdminSignupPage">회원가입</a>
+				<a href="/login/AdminFindid">아이디 찾기</a> 
+				<a href="/login/AdminFindpw">비밀번호찾기</a> 
+				<a href="AdminSignupPage">회원가입</a>
 			</div>
 		</form>
 

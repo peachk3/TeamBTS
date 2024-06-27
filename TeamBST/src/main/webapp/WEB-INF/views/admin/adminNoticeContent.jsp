@@ -69,7 +69,7 @@
 	        <input type="submit" value="삭제">
 	    </form>   
 				
-                <button type="button" onclick="location.href='/admin/adminNotice'">취소</button>
+                <button type="button" onclick="location.href='/admin/adminNotice'">목록</button>
    <script>
 function confirmDelete() {
     return confirm("정말로 삭제하시겠습니까?");
