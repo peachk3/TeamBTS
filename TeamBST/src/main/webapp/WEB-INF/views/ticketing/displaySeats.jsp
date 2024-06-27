@@ -24,7 +24,7 @@
 		${zone_ty}구역
 	</div>
 	
-	<div class="container12">
+	<div class="container">
 		<div class="seating-chart">
 			<div class="field">필드</div>
 			<!-- 좌석 배치 -->

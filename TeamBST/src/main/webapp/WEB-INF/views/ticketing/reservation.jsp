@@ -11,18 +11,27 @@
 <link href="../resources/css/reservation.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>RESERVATION</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">예약하기</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
 <body>
 
-	<div>
-		여기저기
-	</div>
-	<div>
-	 	야모해
-	</div>
-	<div>
-		여기저기 야모해
-	</div>
-	
+<section class="section schedule">
+<div class="container">
 	<div class="reserve_content">
 		<div class="reserve_left">
 			<div class="pointb_box">
@@ -232,7 +241,6 @@
 				</c:forEach>
 			</div>
 		</div>
-
 	</div>
 	<div class="reserve_btn">
 		<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>
@@ -242,6 +250,8 @@
 			<input type="hidden" name="totalPrice" id="hidden-total-price">
 		</form>
 	</div>
+</div>
+</section>
 
 	<%-- 
 //     String zone_ty = request.getParameter("zone_ty");

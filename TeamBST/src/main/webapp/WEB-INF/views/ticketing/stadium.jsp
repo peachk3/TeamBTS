@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../include/header.jsp"%>
-
-<body>
    <style> 
    .image-map { 
 		text-align: center; 
@@ -15,26 +13,30 @@
     	font-family: "Noto Sans KR", sans-serif;
     }
     </style>
+    
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>STADIUM</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">구역선택</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
+<body>
 <!--     <p class="current_time" value="1718341239704"><em></em>현재시간<span>14:00</span></p> -->
-    
-    
-    
-    
     
     <hr>
 <!--     정보 전달 확인 -->
 <%--     <h3>Stadium ID: ${stad_id}</h3> --%>
 <%--     <h3>game ID: ${game_id }</h3> --%>
 
-	<div>
-		여기저기
-	</div>
-	<div>
-	 	야모해
-	</div>
-	<div>
-		여기저기 야모해
-	</div>
 
     <div class="zone">
     	구역 선택
@@ -86,7 +88,7 @@
 			</c:forEach>
 		</map>
 	</div>
-
+	 <hr>
 	<script type="text/javascript">
 		function selectZone(zone_ty, zone_id) {
 			console.log('Selected zone type:', zone_ty);
