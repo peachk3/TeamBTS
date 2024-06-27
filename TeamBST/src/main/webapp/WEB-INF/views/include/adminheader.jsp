@@ -150,7 +150,7 @@
         </li>
 		        <a href="/admin/admin"><li>Home</li></a>
 		        <a href="/main/about"><li>About</li></a>
-		        <a href="#"><li>Info</li></a>
+		        <a href="https://itwillbs.co.kr/" target="_blank"><li>Info</li></a>
 		      </ul>
 	    </div>
       </div>
