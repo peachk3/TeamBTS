@@ -11,14 +11,24 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="../resources/css/payment.css" rel="stylesheet">
 
+<style>
+	th {
+		background-color: transparent;
+		color: black;
+	}
+	
+	.btn {
+		background-color: #aac1f9;
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+</style>
 
 <body>
 
-	<div>여기저기</div>
-	<div>야모해</div>
-	<div>여기저기 야모해</div>
 
-
+<section class="section schedule">
+<div class="container">
 	<div class="modal1" id="termsModal">
 		<div class="modal1-content">
 			<span class="close1" onclick="closeModal1()">&times;</span>
@@ -205,12 +215,13 @@
 				</c:forEach>
 			</div>
 		</div>
-
 	</div>
 	<div class="reserve_btn">
-		<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>		
-		<button type="button" class="btn_payment">결제하기</button> <!-- 결제하기 버튼 생성 -->
+		<button type="submit" class="btn" onclick="goBack()" style="background-color:transparent; border: 1px solid black;">이전으로</button>		
+		<button type="button" class="btn">결제하기</button> <!-- 결제하기 버튼 생성 -->
 	</div>
+</div>
+</section>
 
 
 

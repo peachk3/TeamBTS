@@ -54,6 +54,21 @@
         height: 100px;
       }
 	</style>
+
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>ANNOUNCEMENT</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">공지사항</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
 	
 <body>
 	<section class="section schedule">
@@ -71,33 +86,10 @@
 							<div class="post-content">${notice.notice_cont }</div>
 						</div>
 					</c:forEach>
+						</div>
 
-				</div>
-   </style>
    
-   
-<c:forEach var="notice" items="${noticeOneList}">
-   <div class="notice">
-      <div class="post-info">
-         <div class="post-header">${notice.notice_sub }</div>
-         <div class="post-meta">
-            <span>작성자: ${notice.admin_id }</span> &nbsp; | &nbsp; 
-            <span>작성일: ${notice.notice_cre_date }</span>
-            &nbsp; | &nbsp; 
-            <span>조회수: ${notice.notice_view }</span>
-         </div>
-      </div>
-      <div class="post-content">
-         ${notice.notice_cont }
-      </div>
-   </div>
-</c:forEach>
-   
-   			<div class="card-footer">
-				<button type="reset" class="btn btn-secondary" onclick="location.href='/announcement/announcement'">뒤로가기</button>
-			</div>
-			<div class="buttons">
-				<button type="button" onclick="window.history.back();">뒤로가기</button>
+				<button type="reset" class="btn btn-main-md" onclick="location.href='/announcement/announcement'">뒤로가기</button>
 			</div>
 		</div>
 	</section>

@@ -11,6 +11,14 @@
 <link href="../resources/css/reservation.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+<style>
+	th {
+		background-color: transparent;
+		color: black;
+	}
+	
+</style>
+
 <section class="page-title bg-title overlay-dark">
 	<div class="container">
 		<div class="row">
@@ -218,7 +226,7 @@
 							<td><button id="myBtn">상세보기</button>
 								<div id="myModal" class="modal">
 									<div class="modal-content">
-										<span class="close"> &times;</span>
+										<span class="close" style="margin-bottom:10px;"> &times;</span>
 										 <h5> 취소 수수료 상세 보기 </h5>
 										<p>
 										* 예매취소 안내(경기 당일 3시간 전까지 취소 가능)
@@ -243,8 +251,8 @@
 		</div>
 	</div>
 	<div class="reserve_btn">
-		<button type="submit" class="btn_goback" onclick="goBack()">이전으로</button>
-		<button type="button" class="btn_payment" id="payment">결제하기</button>
+		<button type="submit" class="btn-main-md" onclick="goBack()">이전으로</button>
+		<button type="button" class="btn-main-md" id="payment">결제하기</button>
 		<form action="/payment" method="get" id="amountForm">
 			<input type="hidden" name="totalAmount" id="hidden-total-amount">
 			<input type="hidden" name="totalPrice" id="hidden-total-price">

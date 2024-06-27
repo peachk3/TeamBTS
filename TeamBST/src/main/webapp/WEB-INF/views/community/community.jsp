@@ -111,7 +111,7 @@
 	
 			</tbody>
 		</table>
-	<button onclick="location.href='/community/communityWrite'">글쓰기</button>
+	<button class="btn btn-main-md" onclick="location.href='/community/communityWrite'">글쓰기</button>
 	</div>
 	</div>
 	</section>
