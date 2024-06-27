@@ -10,7 +10,7 @@
 		resultType="com.itwillbs.domain.Game_scheduleDTO">
 		select * from game_schedule
 		where (home_team_id=#{team} or
-		away_team_id=#{team})
+		away_team_id=#{team}) AND game_date BETWEEN CURDATE() AND CURDATE() + INTERVAL 1 MONTH;
 	</select>
 
 	<!-- 구장별 경기 일정 목록 -->
