@@ -56,7 +56,7 @@
 
 	<!-- 홈팀 정보 불러오기 -->
 	<select id="homeTeamInfo" resultMap="gameMap">
-		select gs.game_date, gs.game_time, gs.stad_id, gs.home_team_id,
+		select gs.game_date, gs.game_time, gs.stad_id, gs.home_team_id,gs.game_id,
 		tns.stad_url, tns.stad_field_url, tns.team_logo_url
 		from game_schedule gs join team_n_stadium tns
 		on gs.home_team_id = tns.team_id

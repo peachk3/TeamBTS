@@ -17,6 +17,10 @@
     </style>
 <!--     <p class="current_time" value="1718341239704"><em></em>현재시간<span>14:00</span></p> -->
     
+    
+    
+    
+    
     <hr>
 <!--     정보 전달 확인 -->
 <%--     <h3>Stadium ID: ${stad_id}</h3> --%>

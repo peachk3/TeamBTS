@@ -65,8 +65,8 @@
                         </c:forEach>
                     </table>
                 </div>
-
                 <!-- 경기장, 홈팀, 어웨이 팀 사진 -->
+				
 
                 <div class="table-container">
                     <table>
