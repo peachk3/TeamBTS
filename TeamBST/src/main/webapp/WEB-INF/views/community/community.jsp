@@ -34,44 +34,6 @@
 	text-decoration: underline;
 }
 
-.pagination {
-	display: flex;
-	padding-left: 0;
-	list-style: none;
-	border-radius: 0.25rem;
-}
-
-.pagination-sm .page-item {
-	margin: 0 2px;
-}
-
-.pagination-sm .page-item .page-link {
-	padding: 0.25rem 0.75rem;
-	font-size: 0.875rem;
-	line-height: 1.5;
-	border-radius: 0.2rem;
-	border: 1px solid #dee2e6;
-	color: #007bff;
-	text-decoration: none;
-}
-
-.pagination-sm .page-item .page-link:hover {
-	background-color: #e9ecef;
-	border-color: #dee2e6;
-}
-
-.pagination-sm .page-item.active .page-link {
-	z-index: 1;
-	color: #fff;
-	background-color: #007bff;
-	border-color: #007bff;
-}
-
-.pagination-sm .page-item.disabled .page-link {
-	color: #6c757d;
-	pointer-events: none;
-	background-color: #fff;
-	border-color: #dee2e6;
 }
 </style>
 <section class="page-title bg-title overlay-dark">

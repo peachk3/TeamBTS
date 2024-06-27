@@ -68,34 +68,62 @@ p, a, li, blockquote, label {
  height: 100%;
  background-size: cover;
  background-position: center;
- animation: slider 15s infinite;
+ animation: slider 33s infinite;
  background-repeat: no-repeat;
 }
  
 .slider .slide:nth-child(1) {
    background-image: url('/resources/images/background/homepage-one-banner.jpeg');
-   animation-delay: 0s;
+   animation-delay: 0.5s;
 }
 
 .slider .slide:nth-child(2) {
    background-image: url('/resources/images/background/homepage-two-banner.jpeg');
-   animation-delay: -3s;
+   animation-delay: -2.5s;
 }
 
 .slider .slide:nth-child(3) {
    background-image: url('/resources/images/background/homepage-three-banner.jpeg');
-   animation-delay: -6s;
+   animation-delay: -5.5s;
 }
 
 .slider .slide:nth-child(4) {
    background-image: url('/resources/images/background/homepage-four-banner.jpeg');
-   animation-delay: -9s;
+   animation-delay: -8.5s;
 }
 
 .slider .slide:nth-child(5) {
    background-image: url('/resources/images/background/homepage-five-banner.jpeg');
-   animation-delay: -12s;
+   animation-delay: -11.5s;
 }
+
+.slider .slide:nth-child(6) {
+   background-image: url('/resources/images/background/homepage-six-banner.jpeg');
+   animation-delay: -14.5s;
+}
+
+.slider .slide:nth-child(7) {
+   background-image: url('/resources/images/background/homepage-seven-banner.jpeg');
+   animation-delay: -17.5s;
+}
+
+.slider .slide:nth-child(8) {
+   background-image: url('/resources/images/background/homepage-eight-banner.jpeg');
+   animation-delay: -20.5s;
+}
+
+.slider .slide:nth-child(9) {
+   background-image: url('/resources/images/background/homepage-nine-banner.jpeg');
+   animation-delay: -23.5s;
+}
+
+.slider .slide:nth-child(10) {
+   background-image: url('/resources/images/background/homepage-ten-banner.jpeg');
+   animation-delay: -26.5s;
+}
+
+
+
 
 @keyframes slider {
  0%, 16%, 100% {
