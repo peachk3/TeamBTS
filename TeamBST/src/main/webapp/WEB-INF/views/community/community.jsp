@@ -200,6 +200,12 @@
 
 
 <script>
+function confirmDelete() {
+    return confirm("정말로 삭제하시겠습니까?");
+}
+
+
+
 function getMemberList(page) {
     var sale_status = $('#sale_status').val();
     var stad_id = $('#stad_id').val();

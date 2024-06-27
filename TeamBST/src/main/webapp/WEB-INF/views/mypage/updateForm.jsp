@@ -54,6 +54,8 @@
                               <div class="time" style="margin-left: 30px">내 정보</div>
                            </li>
                            <!-- Schedule Details -->
+                           <fieldset>
+                           		<form action="/mypage/updateForm" method="post" name="fr">
                            <li class="schedule-details">
                               <div class="block">
                                  <!-- time -->
@@ -156,12 +158,15 @@
                         <div class="download-button text-center">
                            <input type="submit" class="btn btn-main-md" value="회원정보수정하기">
                            <input type="button" class="btn btn-main-md" value="마이페이지" onclick="location.href='/mypage/mypage'">
+                     </form>  
+                     </fieldset>    
                         </div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
+
       </div>
    </section>
 
