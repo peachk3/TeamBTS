@@ -130,10 +130,11 @@
 					  		</li>
 					  	</ul>
 					  </div>  
-					  </div>  
-<input type="button" value="메인으로" class="btn" onclick="location.href='/admin/admin'">
-<input type="button" value="정보수정" class="btn" onclick="location.href='/admin/adminUpdateForm'">
-<input type="button" value="회원탈퇴" class="btn" onclick="location.href='/admin/adminDeleteMember'">
+					  </div>
+					  <br>
+<input type="button" value="회원탈퇴" class="btn-main-md" onclick="location.href='/admin/adminDeleteMember'">
+<input type="button" value="정보수정" class="btn-main-md" onclick="location.href='/admin/adminUpdateForm'">
+<input type="button" value="메인으로" class="btn-main-md" onclick="location.href='/admin/admin'">
 					  </div>  
 					  </div>  
 					  </div>  

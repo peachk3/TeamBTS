@@ -35,6 +35,21 @@
     }
 </style>
 
+<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>TICKETING</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">경기정보</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
 <body>
 <section class="section schedule">
     <div class="container">

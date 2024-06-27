@@ -44,7 +44,7 @@
 					<h3>ANNOUNCEMENT</h3>
 				</div>
 				<ol class="breadcrumb p-0 m-0">
-					<li class="breadcrumb-item active">고객센터</li>
+					<li class="breadcrumb-item active">공지사항</li>
 				</ol>
 			</div>
 		</div>
@@ -59,14 +59,16 @@
 					<div class="schedule-contents bg-schedule">
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active schedule-item" id="nov20">
-								<button type="button" class="community"
+								<button type="button" class="btn btn-main-md"
 									onclick="location.href='/announcement/announcement'">공지사항</button>
-								<button type="button" class="community"
+								<button type="button" class="btn btn-main-md"
 									onclick="location.href='/announcement/bulletin'">문의게시판</button>
+									<br>
+									<br>
+									<br>
 								<!-- Headings -->
 								<ul class="m-0 p-0">
 									<li class="headings">
-										<div class="bno">Bno</div>
 										<div class="post">게시글</div>
 										<div class="regdate">등록일</div>
 										<div class="cnt">조회수</div>
@@ -74,7 +76,6 @@
 									<!-- Schedule Details -->
 									<c:forEach var="dto" items="${nBoardList}">
 										<li class="schedule-details">
-											<div class="bno">${dto.notice_sub}</div>
 											<div class="post">
 												<a href="/announcement/announcementContent?notice_id=${dto.notice_id }">[공지]${dto.notice_sub}</a>
 											</div>

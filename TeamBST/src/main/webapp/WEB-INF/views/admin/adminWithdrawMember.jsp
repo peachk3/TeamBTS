@@ -22,14 +22,12 @@
 
 <section class="section schedule">
 	<div class="container">
-      <button type="button" class="btn" onclick="location.href='/admin/adminMember'">회원현황</button>
-      <button type="button" class="btn" onclick="location.href='/admin/adminGeneralMember'">일반회원</button>
-      <button type="button" class="btn" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
-
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminGeneralMember'">일반회원</button>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminMember'">회원현황</button>
 <div class="box-body">
 		<table class="table table-bordered">
 	<tr>
-		<th>no</th>
 		<th>아이디</th>
 		<th>이름</th>
 		<th>닉네임</th>
@@ -39,7 +37,6 @@
 	</tr>
 	<c:forEach var="vo" items="${withdrawMemberList}">
 		<tr>
-			<td>넘버</td>
 			<td>${vo.user_id }</td>
 			<td>${vo.user_name }</td>
 			<td>${vo.user_nick }</td>

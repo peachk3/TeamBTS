@@ -99,16 +99,16 @@
 					<div class="schedule-contents bg-schedule">
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active schedule-item" id="nov20">
-								<button type="button" class="community"
+								<button type="button" class="btn btn-main-md"
 									onclick="location.href='/announcement/announcement'">공지사항</button>
-								<button type="button" class="community"
+								<button type="button" class="btn btn-main-md"
 									onclick="location.href='/announcement/bulletin'">문의게시판</button>
+									<br>
+									<br>
 								<!-- Headings -->
 								<ul class="m-0 p-0">
 									<li class="headings">
-										<div class="bno">Bno</div>
 										<div class="post">게시글</div>
-										<div class="nick">닉네임</div>
 										<div class="regdate">등록일</div>
 										<div class="cnt">조회수</div>
 									</li>
@@ -116,7 +116,6 @@
 									<c:forEach var="dto" items="${qBoardList}">
 										<li class="schedule-details">
 											<!-- 										<div class="block"> -->
-											<div class="bno">${dto.quest_sub}</div>
 											<div class="post">
 												<c:choose>
 													<c:when test="${dto.quest_public.equals('Y')}">
@@ -131,7 +130,6 @@
 													</c:otherwise>
 												</c:choose>
 											</div>
-											<div class="nick"></div>
 											<div class="regdate">
 												<fmt:formatDate value="${dto.quest_cre_date}"
 													pattern="yyyy-MM-dd" />

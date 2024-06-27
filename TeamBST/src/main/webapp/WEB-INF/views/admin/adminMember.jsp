@@ -50,7 +50,7 @@
                <h3>MEMBER</h3>
             </div>
             <ol class="breadcrumb p-0 m-0">
-               <li class="breadcrumb-item active">일반회원</li>
+               <li class="breadcrumb-item active">회원현황</li>
             </ol>
          </div>
       </div>
@@ -59,18 +59,11 @@
 
 <section class="section schedule">
    <div class="container">
-      <button type="button" class="btn" onclick="location.href='/admin/adminMember'">회원현황</button>
-
-	<br>
-	
-      <button type="button" class="member" onclick="location.href='/admin/adminGeneralMember'">
+      <button type="button" class="member" onclick="location.href='/admin/adminGeneralMember'" style="height:100px;">
       일반 회원 : ${generalMemberNum } 명</button>
-     
-      <button type="button" class="member" onclick="location.href='/admin/adminWithdrawMember'">
+      <br>
+      <button type="button" class="member" onclick="location.href='/admin/adminWithdrawMember'" style="height:100px;">
       탈퇴 회원 : ${withdrawMemberNum } 명</button>
-
-
-
 </div>
 </section>
 

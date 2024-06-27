@@ -22,18 +22,17 @@
 
 <section class="section schedule">
 	<div class="container">
-	<button type="button" class="community"
+<button type="button" class="btn btn-main-md"
 		onclick="location.href='/admin/adminNotice'">공지사항</button>
-	<br>
-	<button type="button" class="community"
+	<button type="button" class="btn btn-main-md"
 		onclick="location.href='/admin/adminBulletin'">문의 게시판</button>
-	<br>
-
+		<br>
+		<br>
+		<br>
 	<div class="box-body">
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<th style="width: 10px">BNO</th>
 					<th>TILE</th>
 					<th>WRITER</th>
 					<th>REGDATE</th>
@@ -41,7 +40,6 @@
 				</tr>
 				<c:forEach var="dto" items="${nBoardList}">
 					<tr>
-						<td>${dto.notice_sub}</td>
 						<td><a href="/admin/adminNoticeContent?notice_id=${dto.notice_id }">
 						[공지]${dto.notice_sub}</a></td>
 						<td>${dto.admin_id}</td>
@@ -53,9 +51,9 @@
 
 			</tbody>
 		</table>
-	<button class="float-right" onclick="location.href='/admin/adminNoticeWrite'">글쓰기</button>
+	<button class="btn btn-main-md" onclick="location.href='/admin/adminNoticeWrite'">글쓰기</button>
 	</div>
-</div>
+	</div>
 </section>
 
 

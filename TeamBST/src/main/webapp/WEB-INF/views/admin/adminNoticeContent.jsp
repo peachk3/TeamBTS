@@ -41,8 +41,23 @@
          font-size: 16px;
       }
    </style>
-   
-   
+   <section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>NOTICE</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">공지사항</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+  
+ <section class="section schedule">
+	<div class="container">
 <c:forEach var="notice" items="${noticeOneList}">
    <div class="notice">
       <div class="post-info">
@@ -69,7 +84,10 @@
 	        <input type="submit" value="삭제">
 	    </form>   
 				
-                <button type="button" onclick="location.href='/admin/adminNotice'">목록</button>
+                <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminNotice'">목록</button>
+</c:forEach>
+      </div>
+      </section>  
    <script>
 function confirmDelete() {
     return confirm("정말로 삭제하시겠습니까?");
@@ -84,7 +102,6 @@ function confirmDelete() {
    %>
 <% } %>
 </script>
-</c:forEach>
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>

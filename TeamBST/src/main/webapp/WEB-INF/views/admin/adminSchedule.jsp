@@ -6,7 +6,7 @@
 <style>
 .btn {
 	width: 150px;
-	margin-right: -72px;
+	margin-left: -73px;
 }
 </style>
 
@@ -31,7 +31,6 @@
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<th>번호</th>
 					<th>경기장</th>
 					<th>팀</th>
 					<th>날짜</th>
@@ -41,7 +40,6 @@
 				<c:forEach var="dto" items="${gScheduleList}">
 
 					<tr>
-						<td>${dto.stad_id}</td>
 						<td>${dto.stad_id}</td>
 						<td>${dto.away_team_id} vs ${dto.home_team_id}</td>
 						<td><fmt:formatDate value="${dto.game_date}"
@@ -57,7 +55,7 @@
 
 			</tbody>
 		</table>
-      <button type="button" class="float-right btn" onclick="location.href='/admin/adminScheduleUpload'" style="margin-right:0px; ">등록</button>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminScheduleUpload'" style="margin-right:0px; ">등록</button>
       
 	</div>
 	</div>

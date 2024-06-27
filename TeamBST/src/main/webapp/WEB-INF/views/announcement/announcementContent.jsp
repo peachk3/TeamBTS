@@ -43,9 +43,8 @@
         white-space:pre-wrap;
       }
         
-      .buttons {
-	        display: flex;
-	        justify-content: flex-end;
+      .btn-main-md {
+	        float: right;
       }
       
       textarea {
@@ -63,7 +62,7 @@
 					<h3>ANNOUNCEMENT</h3>
 				</div>
 				<ol class="breadcrumb p-0 m-0">
-					<li class="breadcrumb-item active">공지사항</li>
+					<li class="breadcrumb-item active">고객센터</li>
 				</ol>
 			</div>
 		</div>
@@ -89,7 +88,7 @@
 						</div>
 
    
-				<button type="reset" class="btn btn-main-md" onclick="location.href='/announcement/announcement'">뒤로가기</button>
+				<button type="button" class="btn btn-main-md" onclick="location.href='/announcement/announcement'">뒤로가기</button>
 			</div>
 		</div>
 	</section>

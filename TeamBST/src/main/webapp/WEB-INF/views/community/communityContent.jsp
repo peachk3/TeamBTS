@@ -76,15 +76,26 @@
 	    	padding:10px;
 	    }
 	</style>
+	
+	<section class="page-title bg-title overlay-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>COMMUNICATION</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+					<li class="breadcrumb-item active">거래게시판</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
 <%-- <form action="/community/communityDelete?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }" method="post"> --%>
 <!--     <input type="hidden" name="post_id" > -->
 <!--     <input type="submit" value="삭제"> -->
 <!-- </form>	 -->
-	    <form action="/community/communityDelete?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }" method="post" onsubmit="return confirmDelete()">
-	        <input type="hidden" name="notice_id">
-	        <input type="submit" value="삭제">
-	    </form>   
-<button type="button" onclick="location.href='/community/community'">목록</button>
 
 <body>
 <!-- 본문 내용 출력 -->

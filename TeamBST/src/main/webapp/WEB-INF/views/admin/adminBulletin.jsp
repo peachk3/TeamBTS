@@ -28,13 +28,15 @@
 
 <section class="section schedule">
 	<div class="container">
-      <button type="button" class="community" onclick="location.href='/admin/adminNotice'">공지사항</button> <br>
-      <button type="button" class="community" onclick="location.href='/admin/adminBulletin'">문의 게시판</button> <br>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminNotice'">공지사항</button>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminBulletin'">문의 게시판</button>
+      <br>
+      <br>
+      <br>
 	<div class="box-body">
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<th style="width: 20px">BNO</th>
 					<th>게시글</th>
 					<th>닉네임</th>
 					<th>등록일</th>
@@ -42,7 +44,6 @@
 				</tr>
 				<c:forEach var="dto" items="${questionList}">
 					<tr>
-						<td>${dto.quest_sub}</td>
 						<td>
 				<c:choose>
 					<c:when test="${dto.quest_public.equals('Y')}">
