@@ -200,6 +200,8 @@
 
 
 <script>
+
+
 function getMemberList(page) {
     var sale_status = $('#sale_status').val();
     var stad_id = $('#stad_id').val();

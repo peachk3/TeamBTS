@@ -279,32 +279,59 @@
                 alert("AJAX 요청 실패!");
             }
         });
-   }
+
+//    }
    
-   function getBoardList(){
-      var boardTable_id = $('#boardTable_id').val();
-      console.log(boardTable_id);
+//    function getBoardList(){
+//       var boardTable_id = $('#boardTable_id').val();
+//       console.log(boardTable_id);
       
-      $('ul#write_table li.schedule-details').remove();
+//       $('ul#write_table li.schedule-details').remove();
          
-      $.ajax({
-           url : "/mypage/mywrite",
-           type : "post",
-           data : JSON.stringify({ boardTable_id: boardTable_id }),
-           contentType : "application/json",
-           dataType : "json",
-           success : function(data){
-//                 alert("JTBC 다녀옴");
-//             console.log(data);
+//       $.ajax({
+//            url : "/mypage/mywrite",
+//            type : "post",
+//            data : JSON.stringify({ boardTable_id: boardTable_id }),
+//            contentType : "application/json",
+//            dataType : "json",
+//            success : function(data){
+// //                 alert("JTBC 다녀옴");
+// //             console.log(data);
                 
-                // body 태그에 내용 추가
-                $(data).each(function(idx, item){
+//                 // body 태그에 내용 추가
+//                 $(data).each(function(idx, item){
                    
-                   $('#write_table').append('<li class="schedule-details"><div class="block"><div class="venue"><span class="time">'+ (parseInt(idx)+1) +'</span></div><div class="speaker" style="margin-left:30px"><a href="/community/communityContent?post_id='+ item.board_id +'"><span class="name">'+ item.board_sub +'</span></a></div><div class="time" style="margin-left:350px">'+ item.board_cre_date +'</div><div class="venue" style="margin-left:15px">'+ item.board_view +'</div></div></li>')
+//                    $('#write_table').append('<li class="schedule-details"><div class="block"><div class="venue"><span class="time">'+ (parseInt(idx)+1) +'</span></div><div class="speaker" style="margin-left:30px"><a href="/community/communityContent?post_id='+ item.board_id +'"><span class="name">'+ item.board_sub +'</span></a></div><div class="time" style="margin-left:350px">'+ item.board_cre_date +'</div><div class="venue" style="margin-left:15px">'+ item.board_view +'</div></div></li>')
                    
-                });
-             },
-             error: function(jqXHR, textStatus, errorThrown) {
+//                 });
+//              },
+//              error: function(jqXHR, textStatus, errorThrown) {
+	}
+	
+	function getBoardList(){
+		var boardTable_id = $('#boardTable_id').val();
+		console.log(boardTable_id);
+		
+		$('ul#write_table li.schedule-details').remove();
+			
+		$.ajax({
+        	url : "/mypage/mywrite",
+        	type : "post",
+        	data : JSON.stringify({ boardTable_id: boardTable_id }),
+        	contentType : "application/json",
+        	dataType : "json",
+        	success : function(data){
+// 	       		alert("JTBC 다녀옴");
+// 				console.log(data);
+	       		
+	       		// body 태그에 내용 추가
+	       		$(data).each(function(idx, item){
+	       			
+	       			$('#write_table').append('<li class="schedule-details"><div class="block"><div class="venue"><span class="time">'+ (parseInt(idx)+1) +'</span></div><div class="speaker" style="margin-left:30px"><a href="/community/communityContent?post_id='+ item.board_id +'"><span class="name">'+ item.board_sub +'</span></a></div><div class="time" style="margin-left:350px">'+ item.board_cre_date +'</div><div class="venue" style="margin-left:15px">'+ item.board_view +'</div></div></li>')
+	       			
+	       		});
+	       	},
+	       	error: function(jqXHR, textStatus, errorThrown) {
                console.log("AJAX 요청 실패: " + jqXHR.status + ", " + jqXHR.statusText + ", " + textStatus + ", " + errorThrown);
                alert("AJAX 요청 실패!");
            }

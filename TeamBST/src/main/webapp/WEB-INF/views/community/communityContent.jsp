@@ -103,10 +103,12 @@
                         <!-- 버튼 그룹 -->
                         <div class="buttons">
                             <button class="btn btn-main-md" onclick="location.href='/community/communityModify?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }'">수정</button>
-                            <form action="/community/communityDelete?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }" method="post" style="display:inline;">
+                            <form action="/community/communityDelete?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }" method="post"  onsubmit="return confirmDelete()" style="display:inline;">
                                 <input type="hidden" name="post_id">
                                 <button class="btn btn-main-md" type="submit">삭제</button>
                             </form>
+                            
+                            
                             <button class="btn btn-main-md" onclick="location.href='/community/community'">목록</button>
                         </div>
 
