@@ -4,11 +4,11 @@
 
 <style>
 .headings{
-   display: flex;
-   padding: 10px;
-   border-bottom: 1px solid #ccc;
-   font-weight: bold;
-   background-color: #f0f0f0;
+	display: flex;
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	font-weight: bold;
+	background-color: #f0f0f0;
 }
 </style>
 
@@ -20,18 +20,18 @@
 =================================-->
 
 <section class="page-title bg-title overlay-dark">
-   <div class="container">
-      <div class="row">
-         <div class="col-12 text-center">
-            <div class="title">
-               <h3>MY PAGE</h3>
-            </div>
-            <ol class="breadcrumb p-0 m-0">
-              <li class="breadcrumb-item active">내 정보 확인하기</li>
-            </ol>
-         </div>
-      </div>
-   </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="title">
+					<h3>MY PAGE</h3>
+				</div>
+				<ol class="breadcrumb p-0 m-0">
+				  <li class="breadcrumb-item active">내 정보 확인하기</li>
+				</ol>
+			</div>
+		</div>
+	</div>
 </section>
 
 <!--====  End of Page Title  ====-->
