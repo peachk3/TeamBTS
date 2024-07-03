@@ -175,9 +175,6 @@ public int phoneCheck(@RequestParam("user_phone")String user_phone) throws Excep
 	return result;
 }
 
-//-----------------------------------------------------------
-//이메일 본인인증 
-
 //---------------------------------------------------------
 //아이디 찾기
 @GetMapping(value = "/findId")
@@ -209,7 +206,4 @@ public String findIdPOST(HttpServletRequest request,Model model, UserDTO udto,
 public void findPwdGET() throws Exception {
 	
 }
-
-//비밀번호 찾기 실행
-
 }
