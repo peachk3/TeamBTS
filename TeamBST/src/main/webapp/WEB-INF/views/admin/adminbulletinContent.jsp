@@ -101,21 +101,31 @@ textarea {
 				</c:if>
 
 				<!-- 댓글 목록 -->
-				<div class="comments">
-					<h3>답변</h3>
-					<c:forEach var="comment" items="${CommentList}">
-						<div class="answer">
-							<p>
-								<strong>작성자:</strong> ${comment.admin_id}
-							</p>
-							<p>${comment.comm_cont}</p>
-							<p>
-								<small>${comment.comm_cre_date}</small>
-							</p>
-						</div>
-					</c:forEach>
-				</div>
-
+			<form action="/admin/adminbulletinContentDelete" method="post">
+			    <div class="comments">
+			        <h3>답변</h3>
+			        <c:forEach var="comment" items="${CommentList}">
+			            <div class="answer">
+			                <p>
+			                    <strong>작성자:</strong> ${comment.admin_id}
+			                </p>
+			                <p>${comment.comm_cont}</p>
+			                <p>
+			                    <small>${comment.comm_cre_date}</small>
+			                </p>
+			                <input type="hidden" name="comm_id" value="${comment.comm_id}">
+			                <input type="hidden" name="quest_id" value="${comment.quest_id}">
+<%-- 			                <button type="button" onclick="location.href='/admin/adminbulletinContent?quest_id=${quest_id}'">수정</button> --%>
+			                <button type="submit">삭제</button>
+			            </div>
+			        </c:forEach>
+			    </div>
+			</form>
+				
+				
+				
+				
+				
 				<!-- 댓글 입력 폼 -->
 				<c:if test="${empty commend and empty CommentList}">
 					<div class="answer" id="commentForm">

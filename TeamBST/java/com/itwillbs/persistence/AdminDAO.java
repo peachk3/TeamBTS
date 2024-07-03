@@ -129,4 +129,7 @@ public interface AdminDAO {
 	public List<Question_commendDTO> selectCommentsByQuestId(int quest_id) throws Exception;
 
     public int countAnswersByQuestId(int quest_id) throws Exception;
+
+    // 관리자 - 문의게시판 답변 삭제
+	public void deleteBulletinComment(int quest_id) throws Exception;
 }

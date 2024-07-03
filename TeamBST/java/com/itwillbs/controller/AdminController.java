@@ -669,7 +669,6 @@ public class AdminController {
 //	
 //	
 	
-	// gpt 코드
 	@GetMapping(value="/adminMemberTicket")
 	public String adminMemberticketing(@RequestParam("user_id") String user_id,
 	                                   @RequestParam(value = "page", defaultValue = "1") int page,
@@ -697,8 +696,23 @@ public class AdminController {
 
 
 	
-	
-	
+	 // 관리자 - 답변 내용 삭제
+    @PostMapping(value = "/adminbulletinContentDelete")
+    public String deleteComment(Question_commendDTO qcdto, HttpSession session,Model model) throws Exception {
+    	logger.debug(" /deleteMember -> deleteMember() 호출 ");
+    	// 전달정보 저장
+        int quest_id = qcdto.getQuest_id();  // quest_id를 받아옴
+
+    	logger.debug("세션에서 가져온 quest_id: " + quest_id);
+    	
+	    logger.debug("quest_id : "+quest_id);
+    	
+    	
+//        댓글 정보 삭제( USE -> OUT으로 상태 변경)
+    		aService.deleteBulletinComment(quest_id);
+    
+            return "redirect:/admin/adminbulletinContent?quest_id="+quest_id;
+}
 	
 	
 	

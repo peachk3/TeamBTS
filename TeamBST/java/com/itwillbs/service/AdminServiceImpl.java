@@ -316,4 +316,27 @@ public class AdminServiceImpl implements AdminService{
     public boolean isAnswered(int quest_id) throws Exception{
         return adao.countAnswersByQuestId(quest_id) > 0;
     }
+
+	@Override
+	public void deleteBulletinComment(int quest_id) throws Exception {
+		
+		adao.deleteBulletinComment(quest_id);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
