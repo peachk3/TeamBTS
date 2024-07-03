@@ -334,7 +334,14 @@ public class AdminDAOImpl implements AdminDAO{
 	@Override
 	 public int countAnswersByQuestId(int quest_id) throws Exception{
 	        return sqlSession.selectOne(NAMESPACE + "countAnswersByQuestId", quest_id);
-	    }	
+	    }
+
+	@Override
+	public void deleteBulletinComment(int quest_id) throws Exception {
+
+		
+		sqlSession.update(NAMESPACE+"deleteBulletinComment",quest_id);
+	}	
 	
 	
 	
