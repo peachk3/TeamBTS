@@ -5,6 +5,11 @@
 <%@ include file="../include/header.jsp"%>
 
 <style>
+/* .col-12 { */
+/* 	margin-top: -50px; */
+/* } */
+
+
 .headings, .schedule-details {
 	display: flex;
 	justify-content: space-between;
@@ -34,6 +39,7 @@
 .schedule-details>div a:hover {
 	text-decoration: underline;
 }
+
 </style>
 
 <section class="page-title bg-title overlay-dark">
@@ -54,40 +60,38 @@
 <body>
 	<section class="section schedule">
 		<div class="container">
-			<div class="row">
 				<div class="col-12">
 					<div class="schedule-contents bg-schedule">
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active schedule-item" id="nov20">
 								<button type="button" class="btn btn-main-md"
-									onclick="location.href='/announcement/announcement'">공지사항</button>
+									onclick="location.href='/announcement/announcement'" style="width:125px;">공지사항</button>
 								<button type="button" class="btn btn-main-md"
 									onclick="location.href='/announcement/bulletin'">문의게시판</button>
 									<br>
 									<br>
-									<br>
-								<!-- Headings -->
-								<ul class="m-0 p-0">
-									<li class="headings">
-										<div class="post">게시글</div>
-										<div class="regdate">등록일</div>
-										<div class="cnt">조회수</div>
-									</li>
-									<!-- Schedule Details -->
-									<c:forEach var="dto" items="${nBoardList}">
-										<li class="schedule-details">
-											<div class="post">
-												<a href="/announcement/announcementContent?notice_id=${dto.notice_id }">[공지]${dto.notice_sub}</a>
-											</div>
-											<div class="regdate">
-												<fmt:formatDate value="${dto.notice_cre_date}"
-													pattern="yyyy-MM-dd" />
-											</div>
-											<div class="cnt">${dto.notice_view}</div>
-										</li>
-									</c:forEach>
-								</ul>
+							<div class="box-body">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>게시글</th>
+											<th>등록일</th>
+											<th>조회수</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="dto" items="${nBoardList}">
+											<tr>
+												<td class="post"><a href="/announcement/announcementContent?notice_id=${dto.notice_id }">[공지]${dto.notice_sub}</a></td>
+												<td class="regdate"><fmt:formatDate value="${dto.notice_cre_date}" pattern="yyyy-MM-dd" /></td>
+												<td class="cnt">${dto.notice_view}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 							</div>
+
+						</div>
 						</div>
 						
 						<!-- 페이지네이션 버튼  -->
@@ -144,7 +148,6 @@
 <!-- 						</div> -->
 						
 					</div>
-				</div>
 
 			</div>
 		</div>
