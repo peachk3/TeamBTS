@@ -106,42 +106,40 @@
 									<br>
 									<br>
 								<!-- Headings -->
-								<div class="box-body">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>게시글</th>
-                <th>등록일</th>
-                <th>조회수</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="dto" items="${qBoardList}">
-                <tr>
-                    <td class="post">
-                        <c:choose>
-                            <c:when test="${dto.quest_public.equals('Y')}">
-                                <a href="/announcement/bulletinContent?quest_id=${dto.quest_id}">
-                                    [공개] ${dto.quest_sub}
-                                </a>
-                            </c:when>
-                            <c:otherwise>
-                                <a href="/announcement/bulletinContent?quest_id=${dto.quest_id}">
-                                    [비공개] ${dto.quest_sub}
-                                </a>
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                    <td class="regdate">
-                        <fmt:formatDate value="${dto.quest_cre_date}" pattern="yyyy-MM-dd" />
-                    </td>
-                    <td class="cnt">${dto.quest_view}</td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-</div>
+								<ul class="m-0 p-0">
+									<li class="headings">
+										<div class="post">게시글</div>
+										<div class="regdate">등록일</div>
+										<div class="cnt">조회수</div>
+									</li>
+									<!-- Schedule Details -->
+									<c:forEach var="dto" items="${qBoardList}">
+										<li class="schedule-details">
+											<!-- 										<div class="block"> -->
+											<div class="post">
+												<c:choose>
+													<c:when test="${dto.quest_public.equals('Y')}">
+														<a
+															href="/announcement/bulletinContent?quest_id=${dto.quest_id}">
+															[공개] ${dto.quest_sub } </a>
+													</c:when>
+													<c:otherwise>
+														<a
+															href="/announcement/bulletinContent?quest_id=${dto.quest_id}">
+															[비공개] ${dto.quest_sub } </a>
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="regdate">
+												<fmt:formatDate value="${dto.quest_cre_date}"
+													pattern="yyyy-MM-dd" />
+											</div>
+											<div class="cnt">${dto.quest_view}</div> <!-- 										</div> -->
+										</li>
+									</c:forEach>
 
+
+								</ul>
 							</div>
 						</div>
 	<!-- 페이지네이션 버튼  -->
