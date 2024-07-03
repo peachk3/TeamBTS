@@ -82,33 +82,6 @@
 					<th>등록일</th>
 					<th>조회수</th>
 				</tr>
-				
-				
-				<%-- <c:forEach var="dto" items="${pBoardList}">
-					<tr>
-						<td>${dto.post_id }</td>
-						
-						<td>
-							<c:choose>
-								<c:when test="${dto.sale_status.equals('SALE')}">
-									<a href="/community/communityContent?post_id=${dto.post_id }">
-										[판매중] ${dto.post_sub} </a>
-								</c:when>
-								<c:otherwise>
-									<a href="/community/communityContent?post_id=${dto.post_id }">
-										[판매완료] ${dto.post_sub} </a>
-								</c:otherwise>
-							</c:choose>
-						</td>
-	
-						<c:forEach var="dto_" items="${dto.userList}">
-							<td>${dto_.user_nick}</td></c:forEach>
-						<td><fmt:formatDate value="${dto.post_cre_date}"
-								pattern="yyyy-MM-dd" /></td>
-						<td>${dto.post_view }</td>
-					</tr>
-				</c:forEach> --%>
-	
 			</tbody>
 		</table>
 	<button class="btn btn-main-md" onclick="location.href='/community/communityWrite'">글쓰기</button>
