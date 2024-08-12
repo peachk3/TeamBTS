@@ -99,7 +99,7 @@
 	    $('table tbody').find('tr:not(:first)').remove(); // 테이블의 첫 번째 행(헤더 행)을 제외한 모든 행 삭제
 
 	    $.ajax({
-	        url: "/ticketing/ticketing",
+	        url: "/TeamBST/ticketing/ticketing",
 	        type: "post",
 	        data: { stad_id: stad_id },
 	        dataType: "json",
@@ -107,13 +107,13 @@
 	            $(data).each(function(idx, item) {
 	                $('table tbody').append(
 	                    "<tr>" +
-	                        "<td><a href='/ticketing/gameInfo?game_id=" + item.game_id + "'>" + (parseInt(idx) + 1) + "</a></td>" +
-	                        "<td><a href='/ticketing/gameInfo?game_id=" + item.game_id + "'>" + item.game_date + "</a></td>" +
-	                        "<td><a href='/ticketing/gameInfo?game_id=" + item.game_id + "'>" + item.game_time + "</a></td>" +
-	                        "<td><a href='/ticketing/gameInfo?game_id=" + item.game_id + "'>" + item.stad_id + "</a></td>" +
-	                        "<td><a href='/ticketing/gameInfo?game_id=" + item.game_id + "'>" + item.home_team_id + "</a></td>" +
-	                        "<td><a href='/ticketing/gameInfo?game_id=" + item.game_id + "'>" + item.away_team_id + "</a></td>" +
-	                        "<td><a href='/ticketing/stadium?stad_id=" + item.stad_id + "&game_id=" + item.game_id + "'>예매하기</a></td>" +
+	                        "<td><a href='/TeamBST/ticketing/gameInfo?game_id=" + item.game_id + "'>" + (parseInt(idx) + 1) + "</a></td>" +
+	                        "<td><a href='/TeamBST/ticketing/gameInfo?game_id=" + item.game_id + "'>" + item.game_date + "</a></td>" +
+	                        "<td><a href='/TeamBST/ticketing/gameInfo?game_id=" + item.game_id + "'>" + item.game_time + "</a></td>" +
+	                        "<td><a href='/TeamBST/ticketing/gameInfo?game_id=" + item.game_id + "'>" + item.stad_id + "</a></td>" +
+	                        "<td><a href='/TeamBST/ticketing/gameInfo?game_id=" + item.game_id + "'>" + item.home_team_id + "</a></td>" +
+	                        "<td><a href='/TeamBST/ticketing/gameInfo?game_id=" + item.game_id + "'>" + item.away_team_id + "</a></td>" +
+	                        "<td><a href='/TeamBST/ticketing/stadium?stad_id=" + item.stad_id + "&game_id=" + item.game_id + "'>예매하기</a></td>" +
 	                    "</tr>"
 	                );
 	            });

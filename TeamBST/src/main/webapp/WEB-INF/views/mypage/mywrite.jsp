@@ -5,9 +5,9 @@
     
       
       
-	<button type="button" class="community" onclick="location.href='/mypage/mypage'">회원정보 조회</button> <br>
-	<button type="button" class="community" onclick="location.href='/mypage/myticket'">MY 티켓</button> <br>
-	<button type="button" class="community" onclick="location.href='/mypage/mywrite'">MY 게시글</button><br>
+	<button type="button" class="community" onclick="location.href='/TeamBST/mypage/mypage'">회원정보 조회</button> <br>
+	<button type="button" class="community" onclick="location.href='/TeamBST/mypage/myticket'">MY 티켓</button> <br>
+	<button type="button" class="community" onclick="location.href='/TeamBST/mypage/mywrite'">MY 게시글</button><br>
 
 	<select name="boardTable_id" id="boardTable_id">
 		<option value="All">전체 게시판</option>
@@ -90,7 +90,7 @@
 		$('table td').remove();
 			
 		$.ajax({
-        	url : "/mypage/mywrite",
+        	url : "/TeamBST/mypage/mywrite",
         	type : "post",
         	data : JSON.stringify({ boardTable_id: boardTable_id }),
         	contentType : "application/json",

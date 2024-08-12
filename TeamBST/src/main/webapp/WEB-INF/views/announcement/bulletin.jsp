@@ -100,9 +100,9 @@
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active schedule-item" id="nov20">
 								<button type="button" class="btn btn-main-md"
-									onclick="location.href='/announcement/announcement'">공지사항</button>
+									onclick="location.href='/TeamBST/announcement/announcement'">공지사항</button>
 								<button type="button" class="btn btn-main-md"
-									onclick="location.href='/announcement/bulletin'">문의게시판</button>
+									onclick="location.href='/TeamBST/announcement/bulletin'">문의게시판</button>
 									<br>
 									<br>
 								<!-- Headings -->
@@ -121,12 +121,12 @@
                     <td class="post">
                         <c:choose>
                             <c:when test="${dto.quest_public.equals('Y')}">
-                                <a href="/announcement/bulletinContent?quest_id=${dto.quest_id}">
+                                <a href="/TeamBST/announcement/bulletinContent?quest_id=${dto.quest_id}">
                                     [공개] ${dto.quest_sub}
                                 </a>
                             </c:when>
                             <c:otherwise>
-                                <a href="/announcement/bulletinContent?quest_id=${dto.quest_id}">
+                                <a href="/TeamBST/announcement/bulletinContent?quest_id=${dto.quest_id}">
                                     [비공개] ${dto.quest_sub}
                                 </a>
                             </c:otherwise>
@@ -150,7 +150,7 @@
 						    <!-- 이전 페이지로 이동하는 링크 -->
 						    <c:if test="${pageDTO.prev}">
 						      <li class="page-item">
-						        <a class="page-link" href="/announcement/bulletin?page=${pageDTO.startPage-1}" aria-label="prev">
+						        <a class="page-link" href="/TeamBST/announcement/bulletin?page=${pageDTO.startPage-1}" aria-label="prev">
 						          <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
 						          <span class="sr-only">prev</span>
 						        </a>
@@ -160,14 +160,14 @@
 						    <!-- 페이지 번호를 나열하는 반복문 -->
 						    <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
 						      <li class="page-item ${pageDTO.cri.page == i ? 'active' : ''}">
-						        <a class="page-link" href="/announcement/bulletin?page=${i}">${i}</a>
+						        <a class="page-link" href="/TeamBST/announcement/bulletin?page=${i}">${i}</a>
 						      </li>
 						    </c:forEach>
 						    
 						    <!-- 다음 페이지로 이동하는 링크 -->
 						    <c:if test="${pageDTO.next && pageDTO.endPage > 0}">
 						      <li class="page-item">
-						        <a class="page-link" href="/announcement/bulletin?page=${pageDTO.endPage+1}" aria-label="Next">
+						        <a class="page-link" href="/TeamBST/announcement/bulletin?page=${pageDTO.endPage+1}" aria-label="Next">
 						          <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
 						          <span class="sr-only">Next</span>
 						        </a>
@@ -197,11 +197,11 @@
 
 								<c:if test="${pageDTO.next && pageDTO.endPage > 0 }">
 									<li><a
-										href="/announcement/bulletin?page=${pageDTO.endPage+1 }">»</a></li>
+										href="/TeamBST/announcement/bulletin?page=${pageDTO.endPage+1 }">»</a></li>
 								</c:if>
 							</ul>
 						</div>
-						<button class="float-right" onclick="location.href='/announcement/bulletinWrite'">글쓰기</button>
+						<button class="float-right" onclick="location.href='/TeamBST/announcement/bulletinWrite'">글쓰기</button>
 					</div>
 				</div>
 			</div>

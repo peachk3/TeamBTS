@@ -166,9 +166,9 @@
                     </ul>
                     
                     <div class="download-button text-center">
-                     <a href="/main/main" class="btn btn-main-md">메인으로</a>
-                     <a href="/mypage/updateForm" class="btn btn-main-md">정보수정</a>
-                     <a href="/mypage/deleteMember" class="btn btn-main-md">회원탈퇴</a>
+                     <a href="/TeamBST/main/main" class="btn btn-main-md">메인으로</a>
+                     <a href="/TeamBST/mypage/updateForm" class="btn btn-main-md">정보수정</a>
+                     <a href="/TeamBST/mypage/deleteMember" class="btn btn-main-md">회원탈퇴</a>
                   </div>
                  </div>
                  <div class="tab-pane fade schedule-item" id="nov21">
@@ -258,7 +258,7 @@
       $('ul#ticket_table li.schedule-details').remove();
          
       $.ajax({
-           url : "/mypage/myticket",
+           url : "/TeamBST/mypage/myticket",
            type : "post",
            data : JSON.stringify({ ticket_status : ticket_status}),
            contentType: 'application/json; charset=utf-8',
@@ -315,7 +315,7 @@
 		$('ul#write_table li.schedule-details').remove();
 			
 		$.ajax({
-        	url : "/mypage/mywrite",
+        	url : "/TeamBST/mypage/mywrite",
         	type : "post",
         	data : JSON.stringify({ boardTable_id: boardTable_id }),
         	contentType : "application/json",
@@ -327,7 +327,7 @@
 	       		// body 태그에 내용 추가
 	       		$(data).each(function(idx, item){
 	       			
-	       			$('#write_table').append('<li class="schedule-details"><div class="block"><div class="venue"><span class="time">'+ (parseInt(idx)+1) +'</span></div><div class="speaker" style="margin-left:30px"><a href="/community/communityContent?post_id='+ item.board_id +'"><span class="name">'+ item.board_sub +'</span></a></div><div class="time" style="margin-left:350px">'+ item.board_cre_date +'</div><div class="venue" style="margin-left:15px">'+ item.board_view +'</div></div></li>')
+	       			$('#write_table').append('<li class="schedule-details"><div class="block"><div class="venue"><span class="time">'+ (parseInt(idx)+1) +'</span></div><div class="speaker" style="margin-left:30px"><a href="/TeamBST/community/communityContent?post_id='+ item.board_id +'"><span class="name">'+ item.board_sub +'</span></a></div><div class="time" style="margin-left:350px">'+ item.board_cre_date +'</div><div class="venue" style="margin-left:15px">'+ item.board_view +'</div></div></li>')
 	       			
 	       		});
 	       	},

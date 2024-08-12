@@ -77,14 +77,14 @@
 
 <hr>
 
-              <button type="submit" onclick="location.href='/admin/adminNoticeModify?notice_id=${notice.notice_id }&admin_id=${notice.admin_id }'">수정</button>
+              <button type="submit" onclick="location.href='/TeamBST/admin/adminNoticeModify?notice_id=${notice.notice_id }&admin_id=${notice.admin_id }'">수정</button>
 
-	    <form action="/admin/adminNoticeDelete?notice_id=${notice.notice_id}&admin_id=${notice.admin_id}" method="post" onsubmit="return confirmDelete()">
+	    <form action="/TeamBST/admin/adminNoticeDelete?notice_id=${notice.notice_id}&admin_id=${notice.admin_id}" method="post" onsubmit="return confirmDelete()">
 	        <input type="hidden" name="notice_id">
 	        <input type="submit" value="삭제">
 	    </form>   
 				
-                <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminNotice'">목록</button>
+                <button type="button" class="btn btn-main-md" onclick="location.href='/TeamBST/admin/adminNotice'">목록</button>
 </c:forEach>
       </div>
       </section>  

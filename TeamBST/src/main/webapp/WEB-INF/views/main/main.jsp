@@ -48,11 +48,11 @@
 				<!-- 구장 1 : 광주 -->
 				<div class="speaker-item">
 					<div class="image">
- 					<a href="/ticketing/ticketing?stad_id=GJ&selectedStadium=GJ"><img src="/resources/stadium/gwangju.webp" alt="speaker" class="img-fluid"> </a>
+ 					<a href="/TeamBST/ticketing/ticketing?stad_id=GJ&selectedStadium=GJ"><img src="/resources/stadium/gwangju.webp" alt="speaker" class="img-fluid"> </a>
 <!-- 						<div class="team_logo no_css" style="background-image:url(/data/team/ci/2024/2002.svg"></div> -->
 					</div>
 					<div class="content text-center">
-						<h5><a href="/ticketing/ticketing?stad_id=GJ&selectedStadium=GJ">광주 챔피언스필드</a></h5>
+						<h5><a href="/TeamBST/ticketing/ticketing?stad_id=GJ&selectedStadium=GJ">광주 챔피언스필드</a></h5>
 						<p>KIA타이거즈 홈구장</p>
 					</div>
 				</div>
@@ -61,10 +61,10 @@
 				<!-- 구장 2 : 대구 -->
 				<div class="speaker-item">
 					<div class="image">
-						<a href="/ticketing/ticketing?stad_id=DG&selectedStadium=DG"><img src="/resources/stadium/daegu.webp" alt="speaker" class="img-fluid"></a>
+						<a href="/TeamBST/ticketing/ticketing?stad_id=DG&selectedStadium=DG"><img src="/resources/stadium/daegu.webp" alt="speaker" class="img-fluid"></a>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/ticketing/ticketing?stad_id=DG&selectedStadium=DG">대구 라이온즈파크</a></h5>
+						<h5><a href="/TeamBST/ticketing/ticketing?stad_id=DG&selectedStadium=DG">대구 라이온즈파크</a></h5>
 						<p>삼성라이온즈 홈구장</p>
 					</div>
 				</div>
@@ -73,10 +73,10 @@
 				<!-- 구장 3 : 대전 -->
 				<div class="speaker-item">
 					<div class="image">
-						<a href="/ticketing/ticketing?stad_id=DJ&selectedStadium=DJ"><img src="/resources/stadium/daejun.webp" alt="speaker" class="img-fluid"></a>
+						<a href="/TeamBST/ticketing/ticketing?stad_id=DJ&selectedStadium=DJ"><img src="/resources/stadium/daejun.webp" alt="speaker" class="img-fluid"></a>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/ticketing/ticketing?stad_id=DJ&selectedStadium=DJ">대전 이글스파크</a></h5>
+						<h5><a href="/TeamBST/ticketing/ticketing?stad_id=DJ&selectedStadium=DJ">대전 이글스파크</a></h5>
 						<p>한화이글스 홈구장</p>
 					</div>
 				</div>
@@ -85,10 +85,10 @@
 				<!-- 구장 4 : 부산 -->
 				<div class="speaker-item">
 					<div class="image">
-						<a href="/ticketing/ticketing?stad_id=SJ&selectedStadium=SJ"><img src="/resources/stadium/sajic.webp" alt="speaker" class="img-fluid"></a>
+						<a href="/TeamBST/ticketing/ticketing?stad_id=SJ&selectedStadium=SJ"><img src="/resources/stadium/sajic.webp" alt="speaker" class="img-fluid"></a>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/ticketing/ticketing?stad_id=SJ&selectedStadium=SJ">부산 사직야구장</a></h5>
+						<h5><a href="/TeamBST/ticketing/ticketing?stad_id=SJ&selectedStadium=SJ">부산 사직야구장</a></h5>
 						<p>롯데자이언츠 홈구장</p>
 					</div>
 				</div>
@@ -97,10 +97,10 @@
 				<!-- 구장 5 : 서울 잠실 -->
 				<div class="speaker-item">
 					<div class="image">
-						<a href="/ticketing/ticketing?stad_id=JS&selectedStadium=JS"><img src="/resources/stadium/jamsil.webp" alt="speaker" class="img-fluid"></a>
+						<a href="/TeamBST/ticketing/ticketing?stad_id=JS&selectedStadium=JS"><img src="/resources/stadium/jamsil.webp" alt="speaker" class="img-fluid"></a>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/ticketing/ticketing?stad_id=JS&selectedStadium=JS">서울 잠실야구장</a></h5>
+						<h5><a href="/TeamBST/ticketing/ticketing?stad_id=JS&selectedStadium=JS">서울 잠실야구장</a></h5>
 						<p>LG트윈스 / 두산베어스 홈구장</p>
 					</div>
 				</div>
@@ -109,10 +109,10 @@
 				<!-- 구장 6 : 서울 고척 -->
 				<div class="speaker-item">
 					<div class="image">
-						<a href="/ticketing/ticketing?stad_id=GC&selectedStadium=GC"><img src="/resources/stadium/gochuck.webp" alt="speaker" class="img-fluid"></a>
+						<a href="/TeamBST/ticketing/ticketing?stad_id=GC&selectedStadium=GC"><img src="/resources/stadium/gochuck.webp" alt="speaker" class="img-fluid"></a>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/ticketing/ticketing?stad_id=GC&selectedStadium=GC">서울 고척스카이돔</a></h5>
+						<h5><a href="/TeamBST/ticketing/ticketing?stad_id=GC&selectedStadium=GC">서울 고척스카이돔</a></h5>
 						<p>키움히어로즈 홈구장</p>
 					</div>
 				</div>
@@ -121,10 +121,10 @@
 				<!-- 구장 7 : 수원 -->
 				<div class="speaker-item">
 					<div class="image">
-						<a href="/ticketing/ticketing?stad_id=SW&selectedStadium=SW"><img src="/resources/stadium/suwon.webp" alt="speaker" class="img-fluid"></a>
+						<a href="/TeamBST/ticketing/ticketing?stad_id=SW&selectedStadium=SW"><img src="/resources/stadium/suwon.webp" alt="speaker" class="img-fluid"></a>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/ticketing/ticketing?stad_id=SW&selectedStadium=SW">수원 KT위즈파크</a></h5>
+						<h5><a href="/TeamBST/ticketing/ticketing?stad_id=SW&selectedStadium=SW">수원 KT위즈파크</a></h5>
 						<p>KT위즈 홈구장</p>
 					</div>
 				</div>
@@ -133,10 +133,10 @@
 				<!-- 구장 8 : 인천 -->
 				<div class="speaker-item">
 					<div class="image">
-						<a href="/ticketing/ticketing?stad_id=IC&selectedStadium=IC"><img src="/resources/stadium/incheon.webp" alt="speaker" class="img-fluid"></a>
+						<a href="/TeamBST/ticketing/ticketing?stad_id=IC&selectedStadium=IC"><img src="/resources/stadium/incheon.webp" alt="speaker" class="img-fluid"></a>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/ticketing/ticketing?stad_id=IC&selectedStadium=IC">인천 랜더스필드</a></h5>
+						<h5><a href="/TeamBST/ticketing/ticketing?stad_id=IC&selectedStadium=IC">인천 랜더스필드</a></h5>
 						<p>SSG랜더스 홈구장</p>
 					</div>
 				</div>
@@ -145,10 +145,10 @@
 				<!-- 구장 9 : 창원 -->
 				<div class="speaker-item">
 					<div class="image">
-						<a href="/ticketing/ticketing?stad_id=CW&selectedStadium=CW"><img src="/resources/stadium/changwon.webp" alt="speaker" class="img-fluid"></a>
+						<a href="/TeamBST/ticketing/ticketing?stad_id=CW&selectedStadium=CW"><img src="/resources/stadium/changwon.webp" alt="speaker" class="img-fluid"></a>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/ticketing/ticketing?stad_id=CW&selectedStadium=CW">창원 NC파크</a></h5>
+						<h5><a href="/TeamBST/ticketing/ticketing?stad_id=CW&selectedStadium=CW">창원 NC파크</a></h5>
 						<p>NC다이노스 홈구장</p>
 					</div>
 				</div>
@@ -188,7 +188,7 @@
 						
 					</div>
 					<div class="content text-center">
-						<h5><a href="/main/teamPage?team_id=lg">LG 트윈스</a></h5>
+						<h5><a href="/TeamBST/main/teamPage?team_id=lg">LG 트윈스</a></h5>
 					</div>
 				</div>
 			</div>
@@ -205,7 +205,7 @@
 						</div>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/main/teamPage?team_id=kt">KT 위즈</a></h5>
+						<h5><a href="/TeamBST/main/teamPage?team_id=kt">KT 위즈</a></h5>
 					</div>
 				</div>
 			</div>
@@ -222,7 +222,7 @@
 						</div>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/main/teamPage?team_id=ssg">SSG 랜더스</a></h5>
+						<h5><a href="/TeamBST/main/teamPage?team_id=ssg">SSG 랜더스</a></h5>
 					</div>
 				</div>
 			</div>
@@ -239,7 +239,7 @@
 						</div>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/main/teamPage?team_id=nc">NC 다이노스</a></h5>
+						<h5><a href="/TeamBST/main/teamPage?team_id=nc">NC 다이노스</a></h5>
 					</div>
 				</div>
 			</div>
@@ -256,7 +256,7 @@
 						</div>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/main/teamPage?team_id=dosan">두산 베어스</a></h5>
+						<h5><a href="/TeamBST/main/teamPage?team_id=dosan">두산 베어스</a></h5>
 					</div>
 				</div>
 			</div>
@@ -273,7 +273,7 @@
 						</div>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/main/teamPage?team_id=kia">KIA 타이거즈</a></h5>
+						<h5><a href="/TeamBST/main/teamPage?team_id=kia">KIA 타이거즈</a></h5>
 					</div>
 				</div>
 			</div>
@@ -290,7 +290,7 @@
 						</div>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/main/teamPage?team_id=lotte">롯데 자이언츠</a></h5>
+						<h5><a href="/TeamBST/main/teamPage?team_id=lotte">롯데 자이언츠</a></h5>
 					</div>
 				</div>
 			</div>
@@ -307,7 +307,7 @@
 						</div>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/main/teamPage?team_id=samsung">삼성 라이온즈</a></h5>
+						<h5><a href="/TeamBST/main/teamPage?team_id=samsung">삼성 라이온즈</a></h5>
 					</div>
 				</div>
 			</div>
@@ -324,7 +324,7 @@
 						</div>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/main/teamPage?team_id=hanhwa">한화 이글스</a></h5>
+						<h5><a href="/TeamBST/main/teamPage?team_id=hanhwa">한화 이글스</a></h5>
 					</div>
 				</div>
 			</div>
@@ -341,7 +341,7 @@
 						</div>
 					</div>
 					<div class="content text-center">
-						<h5><a href="/main/teamPage?team_id=kiwoom">키움 히어로즈</a></h5>
+						<h5><a href="/TeamBST/main/teamPage?team_id=kiwoom">키움 히어로즈</a></h5>
 					</div>
 				</div>
 			</div>

@@ -69,7 +69,7 @@
 </div>
 </section>		
 
-<form id="reservation-form" action="/ticketing/reservation" method="post">
+<form id="reservation-form" action="/TeamBST/ticketing/reservation" method="post">
  	   	<input type="hidden" id="selected-seats-count" name="selected_seats_count" value="0">
 		<input type="hidden" name="stad_id" value="${stad_id}">
 	    <input type="hidden" name="game_id" value="${game_id}">

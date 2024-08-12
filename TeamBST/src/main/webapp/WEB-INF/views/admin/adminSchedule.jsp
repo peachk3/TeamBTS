@@ -46,7 +46,7 @@
 								pattern="yyyy-MM-dd" /></td>
 						<td><fmt:formatDate value="${dto.game_time}"
 								pattern="HH:mm" /></td>
-						<td><a href="/admin/adminScheduleUpdate?game_id=${dto.game_id}">
+						<td><a href="/TeamBST/admin/adminScheduleUpdate?game_id=${dto.game_id}">
 	                        <button type="button" class="btn">수정</button>
 	                    </a></td>
 					</tr>
@@ -55,7 +55,7 @@
 
 			</tbody>
 		</table>
-      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminScheduleUpload'" style="margin-right:0px; ">등록</button>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/TeamBST/admin/adminScheduleUpload'" style="margin-right:0px; ">등록</button>
       
 	</div>
 	</div>
@@ -69,7 +69,7 @@
 						    <!-- 이전 페이지로 이동하는 링크 -->
 						    <c:if test="${pageDTO.prev}">
 						      <li class="page-item">
-						        <a class="page-link" href="/admin/adminSchedule?page=${pageDTO.startPage-1}" aria-label="prev">
+						        <a class="page-link" href="/TeamBST/admin/adminSchedule?page=${pageDTO.startPage-1}" aria-label="prev">
 						          <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
 						          <span class="sr-only">prev</span>
 						        </a>
@@ -79,14 +79,14 @@
 						    <!-- 페이지 번호를 나열하는 반복문 -->
 						    <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
 						      <li class="page-item ${pageDTO.cri.page == i ? 'active' : ''}">
-						        <a class="page-link" href="/admin/adminSchedule?page=${i}">${i}</a>
+						        <a class="page-link" href="/TeamBST/admin/adminSchedule?page=${i}">${i}</a>
 						      </li>
 						    </c:forEach>
 						    
 						    <!-- 다음 페이지로 이동하는 링크 -->
 						    <c:if test="${pageDTO.next && pageDTO.endPage > 0}">
 						      <li class="page-item">
-						        <a class="page-link" href="/admin/adminSchedule?page=${pageDTO.endPage+1}" aria-label="Next">
+						        <a class="page-link" href="/TeamBST/admin/adminSchedule?page=${pageDTO.endPage+1}" aria-label="Next">
 						          <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
 						          <span class="sr-only">Next</span>
 						        </a>

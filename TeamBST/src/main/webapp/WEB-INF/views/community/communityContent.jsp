@@ -102,14 +102,14 @@
 
                         <!-- 버튼 그룹 -->
                         <div class="buttons">
-                            <button class="btn btn-main-md" onclick="location.href='/community/communityModify?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }'">수정</button>
-                            <form action="/community/communityDelete?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }" method="post"  onsubmit="return confirmDelete()" style="display:inline;">
+                            <button class="btn btn-main-md" onclick="location.href='/TeamBST/community/communityModify?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }'">수정</button>
+                            <form action="/TeamBST/community/communityDelete?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }" method="post"  onsubmit="return confirmDelete()" style="display:inline;">
                                 <input type="hidden" name="post_id">
                                 <button class="btn btn-main-md" type="submit">삭제</button>
                             </form>
                             
                             
-                            <button class="btn btn-main-md" onclick="location.href='/community/community'">목록</button>
+                            <button class="btn btn-main-md" onclick="location.href='/TeamBST/community/community'">목록</button>
                         </div>
 
                         <!-- 댓글 목록 -->
@@ -125,7 +125,7 @@
                         </div>
                         <!-- 답변 입력 폼 -->
                         <div class="answer">
-                            <form action="/community/communityContent" method="post">
+                            <form action="/TeamBST/community/communityContent" method="post">
                                 <input type="hidden" name="post_id" value="${post.post_id}" />
                                 <p style="margin-bottom: 10px"><strong>답변</strong></p>
                                 <textarea name="comm_cont" placeholder="답변 내용을 입력하세요..."></textarea>

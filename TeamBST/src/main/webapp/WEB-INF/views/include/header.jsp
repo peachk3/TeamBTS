@@ -38,20 +38,20 @@
 			<c:choose>
 				<c:when test="${empty sessionScope.user_id}">
 					<!-- 로그인하지 않은 경우 -->
-					<a href="/login/loginPage">로그인</a>
-					<a href="/login/signupPage">회원가입</a>
+					<a href="/TeamBST/login/loginPage">로그인</a>
+					<a href="/TeamBST/login/signupPage">회원가입</a>
 				</c:when>
 				<c:when test="${sessionScope.user_id == 'admin'}">
 					<!-- 관리자일 경우 -->
-					<a href="/admin/admin">마이페이지</a>
-					<form id="logoutForm" action="${pageContext.request.contextPath}/login/logout" method="post" style="display: inline;">
+					<a href="/TeamBST/admin/admin">마이페이지</a>
+					<form id="logoutForm" action="${pageContext.request.contextPath}/TeamBST/login/logout" method="post" style="display: inline;">
                     <button type="submit" class="logout-button">로그아웃</button>
                     </form>
 				</c:when>
 				<c:otherwise>
 					<!-- 일반사용자일 경우 -->
-					<a href="/mypage/mypage">마이페이지</a>
-					<form id="logoutForm" action="${pageContext.request.contextPath}/login/generalLogout" method="post" style="display: inline;">
+					<a href="/TeamBST/mypage/mypage">마이페이지</a>
+					<form id="logoutForm" action="${pageContext.request.contextPath}/TeamBST/login/generalLogout" method="post" style="display: inline;">
                     <button type="submit" class="logout-button">로그아웃</button>
                     </form>
 				</c:otherwise>
@@ -77,33 +77,33 @@
       <div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item"><a class="nav-link"
-						href="/ticketing/ticketing?stad_id=All">예매하기 <span>/</span></a></li>
+						href="/TeamBST/ticketing/ticketing?stad_id=All">예매하기 <span>/</span></a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/community/community">거래게시판<span>/</span></a></li>
+						href="/TeamBST/community/community">거래게시판<span>/</span></a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/announcement/announcement">고객센터</a></li>
+						href="/TeamBST/announcement/announcement">고객센터</a></li>
 				</ul>
 				<c:choose>
 					<c:when test="${empty sessionScope.user_id}">
 						<!-- 로그인하지 않은 경우 -->
-					<button onclick="location.href='/login/loginPage';"
+					<button onclick="location.href='/TeamBST/login/loginPage';"
 							class="login-btn btn-1">로그인</button>
-					<button onclick="location.href='/login/signupPage';"
+					<button onclick="location.href='/TeamBST/login/signupPage';"
 							class="signup-btn btn-1">회원가입</button>
 					</c:when>
 					<c:when test="${sessionScope.user_id == 'admin'}">
 						<!-- 관리자일 경우 -->
-						<button onclick="location.href='/admin/admin';"
+						<button onclick="location.href='/TeamBST/admin/admin';"
 							class="login-btn btn-1">관리자페이지</button>
-						<form id="logoutForm" action="${pageContext.request.contextPath}/login/adminLogout" method="post" style="display: inline;">
+						<form id="logoutForm" action="${pageContext.request.contextPath}/TeamBST/login/adminLogout" method="post" style="display: inline;">
 	                    	<button type="submit" class="signup-btn btn-1">로그아웃</button>
 	                    </form>
 					</c:when>
 					<c:otherwise>
 						<!-- 일반사용자일 경우 -->
-						<button onclick="location.href='/mypage/mypage';"
+						<button onclick="location.href='/TeamBST/mypage/mypage';"
 							class="login-btn btn-1">마이페이지</button>
-						<form id="logoutForm" action="${pageContext.request.contextPath}/login/generalLogout" method="post" style="display: inline;">
+						<form id="logoutForm" action="${pageContext.request.contextPath}/TeamBST/login/generalLogout" method="post" style="display: inline;">
 							<button type="submit" class="signup-btn btn-1">로그아웃</button>
 						</form>
 					</c:otherwise>
@@ -116,40 +116,40 @@
 		      <span></span>
 		      <ul id="menu">
         <li class="dropdown">
-            <a class="dropdown-toggle" href="/main/main#stadium">구장  /  구단</a>
+            <a class="dropdown-toggle" href="/TeamBST/main/main#stadium">구장  /  구단</a>
             <div class="dropdown-menu">
             	<div class="dropdown-column">
-					<p><a href="/main/main#stadium" style="color:mediumslateblue;"><b>구장</b></a></p>            	
-                    <a href="/ticketing/ticketing?stad_id=GC&selectedStadium=GC">고척 스카이돔</a>
-                    <a href="/ticketing/ticketing?stad_id=GJ&selectedStadium=GJ">광주 챔피언스 필드</a>
-                    <a href="/ticketing/ticketing?stad_id=DG&selectedStadium=DG">대구 라이온즈파크</a>
-                    <a href="/ticketing/ticketing?stad_id=DJ&selectedStadium=DJ">대전 이글스파크</a>
-                    <a href="/ticketing/ticketing?stad_id=SJ&selectedStadium=SJ">부산 사직야구장</a>
-                    <a href="/ticketing/ticketing?stad_id=JS&selectedStadium=JS">서울 잠실야구장</a>
-                    <a href="/ticketing/ticketing?stad_id=SW&selectedStadium=SW">수원 KT위즈파크</a>
-                    <a href="/ticketing/ticketing?stad_id=IC&selectedStadium=IC">인천 랜더스필드</a>
-                    <a href="/ticketing/ticketing?stad_id=CW&selectedStadium=CW">창원 NC파크</a>
+					<p><a href="/TeamBST/main/main#stadium" style="color:mediumslateblue;"><b>구장</b></a></p>            	
+                    <a href="/TeamBST/ticketing/ticketing?stad_id=GC&selectedStadium=GC">고척 스카이돔</a>
+                    <a href="/TeamBST/ticketing/ticketing?stad_id=GJ&selectedStadium=GJ">광주 챔피언스 필드</a>
+                    <a href="/TeamBST/ticketing/ticketing?stad_id=DG&selectedStadium=DG">대구 라이온즈파크</a>
+                    <a href="/TeamBST/ticketing/ticketing?stad_id=DJ&selectedStadium=DJ">대전 이글스파크</a>
+                    <a href="/TeamBST/ticketing/ticketing?stad_id=SJ&selectedStadium=SJ">부산 사직야구장</a>
+                    <a href="/TeamBST/ticketing/ticketing?stad_id=JS&selectedStadium=JS">서울 잠실야구장</a>
+                    <a href="/TeamBST/ticketing/ticketing?stad_id=SW&selectedStadium=SW">수원 KT위즈파크</a>
+                    <a href="/TeamBST/ticketing/ticketing?stad_id=IC&selectedStadium=IC">인천 랜더스필드</a>
+                    <a href="/TeamBST/ticketing/ticketing?stad_id=CW&selectedStadium=CW">창원 NC파크</a>
                 </div>
                 
             	<div class="dropdown-column">
                     <p><a href="/main/team" style="color:mediumslateblue;"><b>구단</b></a></p>
-                    <a href="/main/teamPage?team_id=kia">KIA</a>
-                    <a href="/main/teamPage?team_id=lg">LG</a>
-                    <a href="/main/teamPage?team_id=samsung">삼성</a>
-                    <a href="/main/teamPage?team_id=dosan">두산</a>
-                    <a href="/main/teamPage?team_id=ssg">SSG</a>
-                    <a href="/main/teamPage?team_id=kt">KT</a>
-                    <a href="/main/teamPage?team_id=hanhwa">한화</a>
-                    <a href="/main/teamPage?team_id=lotte">롯데</a>
-                    <a href="/main/teamPage?team_id=kiwoom">키움</a>
-                    <a href="/main/teamPage?team_id=nc">NC</a>
+                    <a href="/TeamBST/main/teamPage?team_id=kia">KIA</a>
+                    <a href="/TeamBST/main/teamPage?team_id=lg">LG</a>
+                    <a href="/TeamBST/main/teamPage?team_id=samsung">삼성</a>
+                    <a href="/TeamBST/main/teamPage?team_id=dosan">두산</a>
+                    <a href="/TeamBST/main/teamPage?team_id=ssg">SSG</a>
+                    <a href="/TeamBST/main/teamPage?team_id=kt">KT</a>
+                    <a href="/TeamBST/main/teamPage?team_id=hanhwa">한화</a>
+                    <a href="/TeamBST/main/teamPage?team_id=lotte">롯데</a>
+                    <a href="/TeamBST/main/teamPage?team_id=kiwoom">키움</a>
+                    <a href="/TeamBST/main/teamPage?team_id=nc">NC</a>
                 </div>
             </div>
         </li>
-		        <a href="/main/main"><li>Home</li></a>
-		        <a href="/main/about"><li>About</li></a>
-		        <a href="https://itwillbs.co.kr/" target="_blank"><li>Info</li></a>
-		      </ul>
+						<li><a href="/TeamBST/main/main">Home</a></li>
+						<li><a href="/TeamBST/main/about">About</a></li>
+						<li><a href="https://itwillbs.co.kr/" target="_blank">Info</a></li>
+					</ul>
 	    </div>
       </div>
   </div>
@@ -157,7 +157,7 @@
 <hr>
 
 <!-- Hidden form for POST request -->
-<form id="stadiumForm" action="/ticketing/ticketing" method="post" style="display: none;">
+<form id="stadiumForm" action="/TeamBST/ticketing/ticketing" method="post" style="display: none;">
     <input type="hidden" name="stad_id" id="stadiumInput">
 </form>
 

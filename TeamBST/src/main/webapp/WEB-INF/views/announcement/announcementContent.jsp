@@ -88,7 +88,7 @@
 						</div>
 
    
-				<button type="button" class="btn btn-main-md" onclick="location.href='/announcement/announcement'">뒤로가기</button>
+				<button type="button" class="btn btn-main-md" onclick="location.href='/TeamBST/announcement/announcement'">뒤로가기</button>
 			</div>
 		</div>
 	</section>

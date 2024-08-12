@@ -57,10 +57,12 @@ public class CommunityController {
 	private CommunityService cService;
 	
 	@RequestMapping(value="/community",method=RequestMethod.GET)
-	public void coummnityMain_GET(Model model) throws Exception {
+	public String coummnityMain_GET(Model model) throws Exception {
 		logger.debug("거래 게시판 메인 호출");
 		logger.debug(" /community -> coummnityMain_GET() 호출");
 
+		
+		return "/community/community";
 	}
 	
 	// 원래 코드
@@ -236,7 +238,7 @@ public class CommunityController {
 	
 	//  거래 게시판 본문 확인하기
 	@GetMapping(value="/communityContent")
-	public void communityContent_GET(@RequestParam("post_id") int post_id,HttpSession session, Model model,HttpServletRequest request) throws Exception{
+	public String communityContent_GET(@RequestParam("post_id") int post_id,HttpSession session, Model model,HttpServletRequest request) throws Exception{
 		logger.debug("거래 게시판 본문 내용 호출");
 		logger.debug(" /communityContent -> communityContent_GET() 호출");
 
@@ -266,6 +268,7 @@ public class CommunityController {
         model.addAttribute("CommentList", commentList);
         model.addAttribute("PostOneList", PostOneList);
     	
+        return "/community/communityContent";
 	}
 	
 	// 댓글 스기

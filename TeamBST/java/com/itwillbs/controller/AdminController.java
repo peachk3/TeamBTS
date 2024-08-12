@@ -96,7 +96,7 @@ public class AdminController {
 //        return "redirect:/admin/admin";
 //    }
     @GetMapping(value = "/adminUpdateForm")
-    public void updateGET(HttpSession session, Model model) throws Exception {
+    public String updateGET(HttpSession session, Model model) throws Exception {
         String user_id = (String) session.getAttribute("user_id");
 
         // 서비스 -> DAO 회원정보 조회
@@ -106,6 +106,7 @@ public class AdminController {
         model.addAttribute("resultDTO", resultDTO);
 
         // 연결된 뷰페이지(/admin/adminUpdate.jsp)에 출력
+        return "/admin/adminUpdateForm";
     }
 
     // 관리자 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
@@ -124,15 +125,19 @@ public class AdminController {
             session.setAttribute("alertMessage", "비밀번호가 일치하지않아 수정할 수 없습니다");
             return "redirect:/admin/adminUpdateForm";
         }
+        
+        
     }
 	
     //http://localhost:8088/mypage/adminDeleteMember
     // 관리자 회원정보 삭제 - 사용자의 비밀번호 입력 / 아이디 세션
     @GetMapping(value = "/adminDeleteMember")
-    public void deleteGET(HttpSession session, Model model) throws Exception {
+    public String deleteGET(HttpSession session, Model model) throws Exception {
     	String user_id = (String) session.getAttribute("user_id");
     	AdminDTO resultDTO = aService.getMember(user_id);
     	model.addAttribute("resultDTO", resultDTO);
+    	
+    	return "/admin/adminDeleteMember";
     }
     
     // 관리자 회원정보 삭제
@@ -160,7 +165,7 @@ public class AdminController {
 
             logger.debug("비밀번호가 일치하지 않습니다");
 
-            return "admin/adminDeleteMember";  // 삭제 실패 시 다시 삭제 페이지로 이동
+            return "/admin/adminDeleteMember";  // 삭제 실패 시 다시 삭제 페이지로 이동
 	}    
 }
 	
@@ -208,7 +213,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value="/adminNoticeContent")
-	public void adminNoticeContent_GET(@RequestParam("notice_id") int notice_id, Model model,HttpSession session) throws Exception{
+	public String adminNoticeContent_GET(@RequestParam("notice_id") int notice_id, Model model,HttpSession session) throws Exception{
 		// 서비스 -> DB의 정보를 가져오기
 		logger.debug("관리자 - 공지사항 본문 내용 호출");
 		List<Notice_boardDTO> noticeOneList = aService.noticeOneList(notice_id);
@@ -233,14 +238,14 @@ public class AdminController {
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("noticeOneList", noticeOneList);
 		
-		
+		return "/admin/adminNoticeContent";
 	}
 	
 	
 	
 	
 	@RequestMapping(value="/adminNoticeWrite", method=RequestMethod.GET)
-	public void adminNoticeWrite_GET(Notice_boardDTO dto, HttpSession session) throws Exception{
+	public String adminNoticeWrite_GET(Notice_boardDTO dto, HttpSession session) throws Exception{
 	    logger.debug("관리자 공지사항 글쓰기 호출");
 	    logger.debug(" /adminNoticeWrite -> adminNoticeWrite_GET() 호출");
 	    
@@ -252,6 +257,8 @@ public class AdminController {
 	    dto.setAdmin_id(userId);
 
 	    logger.debug("dto : " + dto);
+	    
+	    return "/admin/adminNoticeWrite";
 	}
 	
 	@RequestMapping(value="/adminNoticeWrite",method=RequestMethod.POST)
@@ -462,19 +469,19 @@ public class AdminController {
 		model.addAttribute("pageDTO", pageDTO);
 		
 		
-		return "admin/adminSchedule";
+		return "/admin/adminSchedule";
 
 	}	
 	
 	@RequestMapping(value="/adminScheduleUpload",method=RequestMethod.GET)
-	public void adminScheduleUpload_GET() throws Exception{
+	public String adminScheduleUpload_GET() throws Exception{
 		logger.debug("관리자 경기일정 업로드 호출");
 		
 		
 		logger.debug(" /adminScheduleUpload -> adminScheduleUpload_GET() 호출");
 		
 		
-		
+		return "/admin/adminScheduleUpload";
 		
 		
 	}
@@ -506,7 +513,7 @@ public class AdminController {
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("gScheduleOne", gScheduleOne);
 	
-	    return "admin/adminScheduleUpdate"; 
+	    return "/admin/adminScheduleUpdate"; 
 	}
 	
 	
@@ -523,7 +530,7 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminBulletin",method=RequestMethod.GET)
-	public void adminWithdrawBulletin_GET(Criteria cri,Model model,HttpSession session) throws Exception{
+	public String adminWithdrawBulletin_GET(Criteria cri,Model model,HttpSession session) throws Exception{
 		logger.debug("관리자 문의 게시판 호출");
 	    	session.setAttribute("viewed_post_ids", new ArrayList<Integer>());	     
 
@@ -542,7 +549,7 @@ public class AdminController {
 			model.addAttribute("questionList", questionList);
 			model.addAttribute("pageDTO", pageDTO);
 			
-			
+			return "/admin/adminBulletin";
 			
 		}
 		
@@ -691,7 +698,7 @@ public class AdminController {
 	    model.addAttribute("memberTicketingList", memberTicketingList);
 	    model.addAttribute("pageDTO", pageDTO);  // pageMaker에서 pageDTO로 수정
 	    
-	    return "admin/adminMemberTicket";  // 해당 JSP 페이지로 이동
+	    return "/admin/adminMemberTicket";  // 해당 JSP 페이지로 이동
 	}
 
 

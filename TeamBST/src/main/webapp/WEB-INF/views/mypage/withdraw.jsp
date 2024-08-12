@@ -11,7 +11,7 @@
        
 
 
-    <button type="button" class="withdraw" onclick="location.href='/mypage/mypage'">회원탈퇴</button>
+    <button type="button" class="withdraw" onclick="location.href='/TeamBST/mypage/mypage'">회원탈퇴</button>
     
     
     

@@ -133,7 +133,7 @@ public class AnnouncementController {
 	
 //  공지사항 게시판 본문 확인하기
 	@GetMapping(value="/announcementContent")
-	public void communityContent_GET(@RequestParam("notice_id") int notice_id,Model model,HttpSession session) throws Exception{
+	public String communityContent_GET(@RequestParam("notice_id") int notice_id,Model model,HttpSession session) throws Exception{
 		logger.debug("본문 내용 호출");
     	logger.debug(" notice_id : " + notice_id);
 		 // 세션에서 'viewed_post_id' 속성 확인
@@ -163,6 +163,7 @@ public class AnnouncementController {
 		// 연결된 뷰페이지로 정보 전달
 		model.addAttribute("noticeOneList", noticeOneList);
     	
+		return "/announcement/announcementContent";
 	}
 	
 	// 기존코드
@@ -337,37 +338,6 @@ public String bulletinContent_GET(@RequestParam("quest_id") int quest_id, HttpSe
 	            return "redirect:/announcement/bulletinContent?quest_id="+quest_id;
 	        }
 	    }	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

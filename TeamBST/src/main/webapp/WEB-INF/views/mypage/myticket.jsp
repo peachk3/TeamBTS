@@ -4,9 +4,9 @@
     
       
       
-      <button type="button" class="community" onclick="location.href='/mypage/mypage'">회원정보 조회</button> 
-      <button type="button" class="community" onclick="location.href='/mypage/myticket'">MY 티켓</button> <br>
-      <button type="button" class="community" onclick="location.href='/mypage/mywrite'">MY 게시글</button>
+      <button type="button" class="community" onclick="location.href='/TeamBST/mypage/mypage'">회원정보 조회</button> 
+      <button type="button" class="community" onclick="location.href='/TeamBST/mypage/myticket'">MY 티켓</button> <br>
+      <button type="button" class="community" onclick="location.href='/TeamBST/mypage/mywrite'">MY 게시글</button>
       
       <br>
 
@@ -91,7 +91,7 @@
 		$('table td').remove();
 			
 		$.ajax({
-        	url : "/mypage/myticket",
+        	url : "/TeamBST/mypage/myticket",
         	type : "post",
         	data : JSON.stringify({ ticket_status : ticket_status}),
         	contentType: 'application/json; charset=utf-8',

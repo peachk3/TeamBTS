@@ -16,7 +16,7 @@
             <div class="findIdTab" id="findIdTab">아이디 찾기</div>
             <div class="findPwdTab" id="findPwdTab">비밀번호 찾기</div>
         </div>
-        <form action="/login/findId" method="post">
+        <form action="/TeamBST/login/findId" method="post">
             <div class="form-group">
                 <label for="name">이름</label>
                 <input type="text" id="user_name" name="user_name" placeholder="이름" required>

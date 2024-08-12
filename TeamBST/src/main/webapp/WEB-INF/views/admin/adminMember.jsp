@@ -59,10 +59,10 @@
 
 <section class="section schedule">
    <div class="container">
-      <button type="button" class="member" onclick="location.href='/admin/adminGeneralMember'" style="height:100px;">
+      <button type="button" class="member" onclick="location.href='/TeamBST/admin/adminGeneralMember'" style="height:100px;">
       일반 회원 : ${generalMemberNum } 명</button>
       <br>
-      <button type="button" class="member" onclick="location.href='/admin/adminWithdrawMember'" style="height:100px;">
+      <button type="button" class="member" onclick="location.href='/TeamBST/admin/adminWithdrawMember'" style="height:100px;">
       탈퇴 회원 : ${withdrawMemberNum } 명</button>
 </div>
 </section>

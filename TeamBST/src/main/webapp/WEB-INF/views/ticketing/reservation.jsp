@@ -253,7 +253,7 @@
    <div class="reserve_btn">
       <button type="submit" class="btn-main-md" onclick="goBack()">이전으로</button>
       <button type="button" class="btn-main-md" id="payment">결제하기</button>
-      <form action="/payment" method="get" id="amountForm">
+      <form action="/TeamBST/ticketing/payment" method="get" id="amountForm">
          <input type="hidden" name="totalAmount" id="hidden-total-amount">
          <input type="hidden" name="totalPrice" id="hidden-total-price">
       </form>
@@ -440,7 +440,7 @@
              var totalPrice = document.getElementById('total-price').textContent;
                   localStorage.setItem('totalPrice', totalPrice);
             // 유효성 검사 통과 시 다음 페이지로 이동
-            window.location.href = '/ticketing/payment?stad_id=${stad_id}&game_id=${game_id}&zone_ty=${zone_ty}&zone_id=${zone_id}&seat_row=${seat_row}&seat_num=${seat_num}&seat_id=${seat_id}'; // 이동할 페이지 URL을 설정
+            window.location.href = '/TeamBST/ticketing/payment?stad_id=${stad_id}&game_id=${game_id}&zone_ty=${zone_ty}&zone_id=${zone_id}&seat_row=${seat_row}&seat_num=${seat_num}&seat_id=${seat_id}'; // 이동할 페이지 URL을 설정
             
          }
       };

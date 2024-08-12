@@ -38,10 +38,10 @@ private MemberService mService;
 
 //회원가입 - 입력 받은 정보 처리(GET)
 @RequestMapping(value = "/signupPage", method = RequestMethod.GET)
-	public void signupGET() throws Exception{
+	public String signupGET() throws Exception{
     logger.debug("/views/login/signupPage.jsp");
     
-    
+    return "/login/signupPage";
 }
 
 // 회원가입 - 입력 받은 정보 처리(POST)
@@ -61,9 +61,10 @@ public String signupPOST(UserDTO udto) throws Exception{
 //-----------------------------------------------------------------------
 // 회원로그인 
 @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
-public void loginGET() throws Exception{
+public String loginGET() throws Exception{
 	logger.debug("/login -> loginGET() 호출");
 	
+	return "/lgoin/loginPage";
 }
 
 //로그인 - 입력받은 아이디, 비밀번호를 사용해서 확인
@@ -181,9 +182,11 @@ public int phoneCheck(@RequestParam("user_phone")String user_phone) throws Excep
 //---------------------------------------------------------
 //아이디 찾기
 @GetMapping(value = "/findId")
-public void findIdGET() throws Exception{
+public String findIdGET() throws Exception{
 	logger.debug("/findId -> loginGET() 호출");
 	
+	
+	return "/login/findId";
 }
 
 @RequestMapping(value = "/findId", method = RequestMethod.POST)
@@ -206,8 +209,11 @@ public String findIdPOST(HttpServletRequest request,Model model, UserDTO udto,
 
 //비밀번호 찾기 페이지로 이동 
 @RequestMapping(value = "AdminFindpw")
-public void findPwdGET() throws Exception {
+public String findPwdGET() throws Exception {
 	
+	
+	
+	return "/login/AdminFindpw";
 }
 
 //비밀번호 찾기 실행

@@ -72,7 +72,7 @@ public class MypageController {
     //http://localhost:8088/mypage/updateForm
     // 회원정보 수정 - 기존 회원정보
     @GetMapping(value = "/updateForm")
-    public void updateGET(HttpSession session, Model model) throws Exception{
+    public String updateGET(HttpSession session, Model model) throws Exception{
         String user_id = (String) session.getAttribute("user_id");
         
         // 서비스 -> DAO 회원정보 조회
@@ -82,7 +82,8 @@ public class MypageController {
         // 연결된 뷰페이지로 정보 전달
         model.addAttribute("resultDTO", resultDTO);
         
-        // 연결된 뷰페이지(/mypage/update.jsp)에 출력
+        return "/mypage/updateForm";
+        
     }
     
  // 회원정보 수정 - 변경된 내용을 DB에 전달 및 수정
@@ -100,7 +101,7 @@ public class MypageController {
             session.setAttribute("alertMessage", "비밀번호가 틀려 수정에 실패했습니다");
             UserDTO resultDTO = mService.getMember(user_id);
             model.addAttribute("resultDTO", resultDTO);
-        	return "mypage/updateForm"; // 수정 페이지로 다시 이동
+        	return "/mypage/updateForm"; // 수정 페이지로 다시 이동
         }
         
         // 비밀번호가 일치하면 회원정보 수정
@@ -113,10 +114,13 @@ public class MypageController {
     //http://localhost:8088/mypage/deleteMember
     // 회원정보 삭제 - 사용자의 비밀번호 입력 / 아이디 세션
     @GetMapping(value = "/deleteMember")
-    public void deleteGET(HttpSession session, Model model) throws Exception {
+    public String deleteGET(HttpSession session, Model model) throws Exception {
     	String user_id = (String) session.getAttribute("user_id");
     	UserDTO resultDTO = mService.getMember(user_id);
     	model.addAttribute("resultDTO", resultDTO);
+    	
+    	
+    	return "/mypage/deleteMember";
     }
     
     // 회원정보 삭제
@@ -144,7 +148,7 @@ public class MypageController {
 
             logger.debug("비밀번호가 일치하지 않습니다");
 
-            return "mypage/deleteMember";  // 삭제 실패 시 다시 삭제 페이지로 이동
+            return "/mypage/deleteMember";  // 삭제 실패 시 다시 삭제 페이지로 이동
 	}    
 }
     	
@@ -194,7 +198,7 @@ public class MypageController {
     
     // 내 게시글 본문
     @RequestMapping(value = "/pbread",method = RequestMethod.GET)
-    public void pbreadGET(@ModelAttribute("post_id") int post_id, Model model) throws Exception {
+    public String pbreadGET(@ModelAttribute("post_id") int post_id, Model model) throws Exception {
     	logger.debug(" /pbreadGET() 실행 ");
     	
     	// 전달정보 저장
@@ -210,12 +214,14 @@ public class MypageController {
     	
     	// 전달할 정보를 저장(model)
     	model.addAttribute("pbDTO", pbDTO);
+    	
+    	return "/mypage/pbread";
     }
     
     // http://localhost:8088/mypage/qbread
     // 질문글 본문보기 - qbreadGET
  	@RequestMapping(value = "/qbread",method = RequestMethod.GET)
- 	public void qbreadGET(@ModelAttribute("quest_id") int quest_id, Model model) throws Exception {
+ 	public String qbreadGET(@ModelAttribute("quest_id") int quest_id, Model model) throws Exception {
  		// @ModelAttribute("bno") int bno
  		// => 주소줄에 있는 데이터를 가져와서 사용, 연결된 뷰페이지로 이동 $ {bno}
  		//	  request.getParameter("bno") + request.setAttribute();
@@ -239,6 +245,8 @@ public class MypageController {
  		
  		// 전달할 정보를 저장(model)
  		model.addAttribute("qbDTO", qbDTO);
+ 		
+ 		return "/mypage/qbread";
  	}
     
 /*
@@ -268,10 +276,12 @@ public class MypageController {
 */
  	
  	@GetMapping(value="/myticket")
-	public void MyTicket_GET() throws Exception {
+	public String MyTicket_GET() throws Exception {
 	    
  		logger.debug("마이페이지 myTicket 리스트 호출");
 		logger.debug(" /myticket -> MyTicket_GET() 호출");
+		
+		return "/mypage/myticket";
 	}
  	
  	@ResponseBody
@@ -325,9 +335,11 @@ public class MypageController {
 	*/
 	
 	@GetMapping(value="/mywrite")
-	public void myWrite_GET() throws Exception{
+	public String myWrite_GET() throws Exception{
 		logger.debug("마이페이지 myWrite 리스트 호출");
 		logger.debug(" /mywrite -> myWrite_GET() 호출");
+	
+		return "/mypage/mywrite";
 	}
 
 	@ResponseBody

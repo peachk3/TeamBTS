@@ -99,7 +99,7 @@
                         - 유효기간이 경과되지 않은 미사용 티켓관련 정보는 유효기간 만료일까지 보관되며, 탈퇴 후에도 유효기간 내 사용하실 수 있습니다.<br>
                         - 회원탈퇴 후 서비스에 입력하신 문의 및 댓글은 삭제되지 않으며, 회원정보 삭제로 인해 작성자 본인을 확인할 수 없어 편집 및 삭제처리가 원천적으로 불가능 합니다.<br>
                         - 상품문의 및 후기, 댓글 삭제를 원하시는 경우에는 먼저 해당 게시물을 삭제하신 후 탈퇴를 신청하시기 바랍니다.<br>
-                        <form action="/mypage/deleteMember" method="post" name="fr">
+                        <form action="/TeamBST/mypage/deleteMember" method="post" name="fr">
                         	<hr>
                             <div class="agreement" style="color:blue;">
                                 <input type="checkbox" id="agreementCheckbox" onclick="toggleSubmitButton()"> 회원탈퇴 시 처리사항 안내를 확인하였음에 동의합니다.<br><br>

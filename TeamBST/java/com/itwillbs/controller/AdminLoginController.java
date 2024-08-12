@@ -32,9 +32,11 @@ public class AdminLoginController {
 	
 	//회원가입
 	@RequestMapping(value = "/AdminSignupPage", method = RequestMethod.GET)
-	public void adminSignupGET() throws Exception{
+	public String adminSignupGET() throws Exception{
 		logger.debug("adminSignupGET() --> GET호출");
 		logger.debug("/views/login/AdminSignupPage.jsp");
+		
+		return "/login/AdminSignupPage";
 		
 	}
 	@RequestMapping(value = "/AdminSignupPage", method =RequestMethod.POST)
@@ -50,10 +52,11 @@ public class AdminLoginController {
 	
 	//관리자 로그인 페이지 매핑 
 	@RequestMapping(value = "/AdminLoginPage", method = RequestMethod.GET)
-	public void adminLoginGET() throws Exception{
+	public String adminLoginGET() throws Exception{
 		logger.debug("관리자 adminLoginGET() 호출");
 		
 		
+		return "/login/AdminLoginPage";
 	}
 	//관리자 로그인-입력받은 아이디, 비밀번호 사용해서 확인
 	@RequestMapping(value = "/AdminLoginPage", method =  RequestMethod.POST )

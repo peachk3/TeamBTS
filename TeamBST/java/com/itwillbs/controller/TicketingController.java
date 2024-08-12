@@ -54,7 +54,7 @@ public class TicketingController {
 		model.addAttribute("TeamScheduleList", TeamScheduleList);
 	    model.addAttribute("selectedStadId", stad_id); // 선택된 stad_id를 모델에 추가
 
-        return "ticketing/ticketing"; // 실제 JSP 페이지 이름으로 변경하세요
+        return "/ticketing/ticketing"; // 실제 JSP 페이지 이름으로 변경하세요
     }
 	
 	
@@ -273,7 +273,7 @@ public class TicketingController {
 	
 	
 	@GetMapping(value="/payment")
-	public void payTicket(HttpSession session,
+	public String payTicket(HttpSession session,
 		@RequestParam("stad_id") String stad_id, 
 		@RequestParam("game_id") String game_id, 
 		@RequestParam("seat_row") String seat_row, 
@@ -309,11 +309,13 @@ public class TicketingController {
 	model.addAttribute("seatAdultPrice", seatAdultPrice);
 	model.addAttribute("seatChildPrice", seatChildPrice);
 	
+	
+	return "/ticketing/payment";
 	}
 	
 	
 	@PostMapping(value="/payment")
-	public void reservationDone(HttpSession session,
+	public String reservationDone(HttpSession session,
 		@RequestParam("stad_id") String stad_id, 
 		@RequestParam("game_id") String game_id, 
 		@RequestParam("seat_row") String seat_row, 
@@ -350,6 +352,8 @@ public class TicketingController {
 	model.addAttribute("seatAdultPrice", seatAdultPrice);
 	model.addAttribute("seatChildPrice", seatChildPrice);
 	
+	
+	return "/ticketing/payment";
 	}
 	
 }
