@@ -8,7 +8,7 @@
     <title>로그인</title>
    <!--  <script src="../resources/js/signup_script.js"></script>   --> <!-- 경로 안 먹어서 jsp 파일에 코드 넣음 -->
     
- 	<link href="../resources/css/login.css" rel="stylesheet">
+ 	<link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet">
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
 <body>
 	  <div  class="logo">
 		<a href="/TeamBST/main/main">
-			 <img src="../resources/images/logo1.png" alt="야모해" style="width: 100px; height: auto;">
+			 <img src="${pageContext.request.contextPath}/resources/images/logo1.png" alt="야모해" style="width: 100px; height: auto;">
 			 <span class="hi-melody-regular">야모해~!</span>
 		</a>
 	</div>	

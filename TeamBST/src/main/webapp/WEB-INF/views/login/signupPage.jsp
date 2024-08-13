@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
-    <link href="../resources/css/signup.css" rel="stylesheet"> <!--signup.css 파일 연결 -->
+    <link href="${pageContext.request.contextPath}/resources/css/signup.css" rel="stylesheet"> <!--signup.css 파일 연결 -->
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
@@ -21,7 +21,7 @@
 <body>
       <div class="signup-box">
 	     <div class="logo"> 
-	      	<a href="/TeamBST/admin/admin"> <img src="../resources/images/logo1.png"
+	      	<a href="/TeamBST/admin/admin"> <img src="${pageContext.request.contextPath}/resources/images/logo1.png"
 				alt="야모해" style="width: 100px; height: auto;"> <span
 				class="hi-melody-regular">야모해~!</span>
 			</a>

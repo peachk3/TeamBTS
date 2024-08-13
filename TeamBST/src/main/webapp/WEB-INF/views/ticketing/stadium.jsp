@@ -42,7 +42,7 @@
     	구역 선택
     </div>
 	<div class="image-map">
-		<img src="/../../resources/img/stadiumZone.PNG" usemap="#image-map" alt="Stadium Map">
+		<img src="${pageContext.request.contextPath}/resources/img/stadiumZone.PNG" usemap="#image-map" alt="Stadium Map">
 
 		<map name="image-map" class="image-map">
 			<c:forEach var="zone" items="${zones}">
