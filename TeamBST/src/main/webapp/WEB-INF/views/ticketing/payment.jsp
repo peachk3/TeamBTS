@@ -58,7 +58,7 @@
 
          <div id="paymethod" class="paymethod" onclick="kakaoPay()">
             <p>카카오페이</p>
-            <img class="kakaoPay" src="../resources/img/kakaoPay.jpg" alt="kakaoPay">
+            <img class="kakaoPay" src="${pageContext.request.contextPath}/resources/img/kakaoPay.jpg" alt="kakaoPay">
          </div>
 
       </div>

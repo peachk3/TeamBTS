@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  -->  
-	<link href="../resources/css/adminLogin.css" rel="stylesheet"  />
-     <script src="../resources/js/adminLogin_script.js"></script>
+	<link href="${pageContext.request.contextPath}/resources/css/adminLogin.css" rel="stylesheet"  />
+     <script src="${pageContext.request.contextPath}/resources/js/adminLogin_script.js"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
 </head>
 <body>
 	<div class="logo">
-		<a href="/TeamBST/admin/admin"> <img src="../resources/images/logo1.png"
+		<a href="/TeamBST/admin/admin"> <img src="${pageContext.request.contextPath}/resources/images/logo1.png"
 			alt="야모해" style="width: 100px; height: auto;"> <span
 			class="hi-melody-regular">야모해~!</span>
 		</a>

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
   <!-- adminSignup.js 파일연결 안 되서 jsp 파일에 다 집어넣음 -->
-    <link href="../resources/css/adminSignup.css" rel="stylesheet"> <!--signup.css 파일 연결 -->
+    <link href="${pageContext.request.contextPath}/resources/css/adminSignup.css" rel="stylesheet"> <!--signup.css 파일 연결 -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
 <body>
 	<div class="signup-box">
 	     <div class="logo"> 
-	      	<a href="/TeamBST/admin/admin"> <img src="../resources/images/logo1.png"
+	      	<a href="/TeamBST/admin/admin"> <img src="${pageContext.request.contextPath}/resources/images/logo1.png"
 				alt="야모해" style="width: 100px; height: auto;"> <span
 				class="hi-melody-regular">야모해~!</span>
 			</a>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -15,7 +14,7 @@
   
   <!-- PLUGINS CSS STYLE -->
   <!-- Bootstrap -->
-  <link href="${pageContext.request.contextPath }/resources/plugins/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
   <!-- Font Awesome -->
   <link href="${pageContext.request.contextPath }/resources/plugins/font-awsome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
   <!-- Magnific Popup -->
@@ -44,14 +43,14 @@
 				<c:when test="${sessionScope.user_id == 'admin'}">
 					<!-- 관리자일 경우 -->
 					<a href="/TeamBST/admin/admin">마이페이지</a>
-					<form id="logoutForm" action="${pageContext.request.contextPath}/TeamBST/login/logout" method="post" style="display: inline;">
+					<form id="logoutForm" action="/TeamBST/login/logout" method="post" style="display: inline;">
                     <button type="submit" class="logout-button">로그아웃</button>
                     </form>
 				</c:when>
 				<c:otherwise>
 					<!-- 일반사용자일 경우 -->
 					<a href="/TeamBST/mypage/mypage">마이페이지</a>
-					<form id="logoutForm" action="${pageContext.request.contextPath}/TeamBST/login/generalLogout" method="post" style="display: inline;">
+					<form id="logoutForm" action="/TeamBST/login/generalLogout" method="post" style="display: inline;">
                     <button type="submit" class="logout-button">로그아웃</button>
                     </form>
 				</c:otherwise>
@@ -68,8 +67,8 @@
 <nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
   <div class="container-fluid p-0">
       <!-- logo -->
-      <a class="navbar-brand" href="/main/main">
-        <img src="/resources/images/logo1.png" alt="logo">
+      <a class="navbar-brand" href="/TeamBST/main/main">
+        <img src="${pageContext.request.contextPath}/resources/images/logo1.png" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="fa fa-bars"></span>
@@ -95,7 +94,7 @@
 						<!-- 관리자일 경우 -->
 						<button onclick="location.href='/TeamBST/admin/admin';"
 							class="login-btn btn-1">관리자페이지</button>
-						<form id="logoutForm" action="${pageContext.request.contextPath}/TeamBST/login/adminLogout" method="post" style="display: inline;">
+						<form id="logoutForm" action="/TeamBST/login/adminLogout" method="post" style="display: inline;">
 	                    	<button type="submit" class="signup-btn btn-1">로그아웃</button>
 	                    </form>
 					</c:when>
@@ -103,7 +102,7 @@
 						<!-- 일반사용자일 경우 -->
 						<button onclick="location.href='/TeamBST/mypage/mypage';"
 							class="login-btn btn-1">마이페이지</button>
-						<form id="logoutForm" action="${pageContext.request.contextPath}/TeamBST/login/generalLogout" method="post" style="display: inline;">
+						<form id="logoutForm" action="/TeamBST/login/generalLogout" method="post" style="display: inline;">
 							<button type="submit" class="signup-btn btn-1">로그아웃</button>
 						</form>
 					</c:otherwise>
@@ -132,7 +131,7 @@
                 </div>
                 
             	<div class="dropdown-column">
-                    <p><a href="/main/team" style="color:mediumslateblue;"><b>구단</b></a></p>
+                    <p><a href="/TeamBST/main/team" style="color:mediumslateblue;"><b>구단</b></a></p>
                     <a href="/TeamBST/main/teamPage?team_id=kia">KIA</a>
                     <a href="/TeamBST/main/teamPage?team_id=lg">LG</a>
                     <a href="/TeamBST/main/teamPage?team_id=samsung">삼성</a>
