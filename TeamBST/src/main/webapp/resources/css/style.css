@@ -73,52 +73,52 @@ p, a, li, blockquote, label {
 }
  
 .slider .slide:nth-child(1) {
-   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-one-banner.jpeg');
+   background-image: url('/TeamBST/resources/images/background/homepage-one-banner.jpeg');
    animation-delay: 0.5s;
 }
 
 .slider .slide:nth-child(2) {
-   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-two-banner.jpeg');
+   background-image: url('/TeamBST/resources/images/background/homepage-two-banner.jpeg');
    animation-delay: -2.5s;
 }
 
 .slider .slide:nth-child(3) {
-   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-three-banner.jpeg');
+   background-image: url('/TeamBST/resources/images/background/homepage-three-banner.jpeg');
    animation-delay: -5.5s;
 }
 
 .slider .slide:nth-child(4) {
-   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-four-banner.jpeg');
+   background-image: url('/TeamBST/resources/images/background/homepage-four-banner.jpeg');
    animation-delay: -8.5s;
 }
 
 .slider .slide:nth-child(5) {
-   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-five-banner.jpeg');
+   background-image: url('/TeamBST/resources/images/background/homepage-five-banner.jpeg');
    animation-delay: -11.5s;
 }
 
 .slider .slide:nth-child(6) {
-   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-six-banner.jpeg');
+   background-image: url('/TeamBST/resources/images/background/homepage-six-banner.jpeg');
    animation-delay: -14.5s;
 }
 
 .slider .slide:nth-child(7) {
-   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-seven-banner.jpeg');
+   background-image: url('/TeamBST/resources/images/background/homepage-seven-banner.jpeg');
    animation-delay: -17.5s;
 }
 
 .slider .slide:nth-child(8) {
-   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-eight-banner.jpeg');
+   background-image: url('/TeamBST/resources/images/background/homepage-eight-banner.jpeg');
    animation-delay: -20.5s;
 }
 
 .slider .slide:nth-child(9) {
-   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-nine-banner.jpeg');
+   background-image: url('/TeamBST/resources/images/background/homepage-nine-banner.jpeg');
    animation-delay: -23.5s;
 }
 
 .slider .slide:nth-child(10) {
-   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-ten-banner.jpeg');
+   background-image: url('/TeamBST/resources/images/background/homepage-ten-banner.jpeg');
    animation-delay: -26.5s;
 }
 
@@ -217,7 +217,7 @@ ul.social-links li a i {
 
 .overlay:before {
   content: '';
-  background: url(../images/background/objects.png) no-repeat;
+  background: url(/TeamBST/images/background/objects.png) no-repeat;
   position: absolute;
   top: 0;
   left: 0;
@@ -336,19 +336,19 @@ button:hover {
 }
 
 .bg-banner-one {
-  background: url(../images/background/homepage-one-banner.jpeg) no-repeat;
+  background: url(/TeamBST/images/background/homepage-one-banner.jpeg) no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .bg-banner-two {
-  background: url(../images/background/banner-bg-two.jpg) no-repeat;
+  background: url(/TeamBST/images/background/banner-bg-two.jpg) no-repeat;
   background-size: cover;
   background-position: right center;
 }
 
 .bg-about {
-  background: url(../images/background/pattern-background.jpg) no-repeat;
+  background: url(/TeamBST/images/background/pattern-background.jpg) no-repeat;
   background-size: cover;
 }
 
@@ -359,7 +359,7 @@ button:hover {
 }
 
 .bg-timer {
-  background: url(../images/background/timer-bg.jpg) no-repeat;
+  background: url(/TeamBST/images/background/timer-bg.jpg) no-repeat;
   background-size: cover;
   background-position: center center;
 }
@@ -370,40 +370,40 @@ button:hover {
 }
 
 .bg-service {
-  background: url(../images/background/feature-background.jpg) no-repeat;
+  background: url(/TeamBST/images/background/feature-background.jpg) no-repeat;
   background-size: cover;
 }
 
 .bg-registration {
-  background: url(../images/background/registration-background.jpg) no-repeat;
+  background: url(/TeamBST/images/background/registration-background.jpg) no-repeat;
   background-size: cover;
 }
 
 .bg-registration-two {
-  background: url(../images/background/bg-registration-two.jpg) no-repeat;
+  background: url(/TeamBST/images/background/bg-registration-two.jpg) no-repeat;
   background-size: cover;
 }
 
 .bg-ticket {
-  background: url(../images/background/cta-ticket-bg.jpg) fixed no-repeat;
+  background: url(/TeamBST/images/background/cta-ticket-bg.jpg) fixed no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .bg-sponsors {
-  background: url(../images/background/sponsors-bg.jpg) fixed no-repeat;
+  background: url(/TeamBST/images/background/sponsors-bg.jpg) fixed no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .bg-subscribe {
-  background: url(../images/background/newsletter-bg.jpg) fixed no-repeat;
+  background: url(/TeamBST/images/background/newsletter-bg.jpg) fixed no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .bg-title {
-  background: url(../images/background/page-title-bg.jpg) no-repeat;
+  background: url(/TeamBST/images/background/page-title-bg.jpg) no-repeat;
   background-size: cover;
   background-position: center center;
 }

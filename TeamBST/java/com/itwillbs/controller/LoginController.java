@@ -64,7 +64,7 @@ public String signupPOST(UserDTO udto) throws Exception{
 public String loginGET() throws Exception{
 	logger.debug("/login -> loginGET() 호출");
 	
-	return "/lgoin/loginPage";
+	return "/login/loginPage";
 }
 
 //로그인 - 입력받은 아이디, 비밀번호를 사용해서 확인

@@ -38,7 +38,7 @@ $('#aidCheck').click(function(event) {
 		return;
 	} else {
 		$.ajax({
-			url : '/login/aidCheck?admin_id=' + id, // Controller에서 요청 받을 주소
+			url : '/TeamBST/login/aidCheck?admin_id=' + id, // Controller에서 요청 받을 주소
 			type : 'get', // get 방식으로 전달
 			success : function(res) { // 컨트롤러에서 넘어온 cnt값을 받는다
 				if (res == 0) {
@@ -107,7 +107,7 @@ $(document).ready(function() {
 		}
 
 		$.ajax({
-			url : '/login/aphoneCheck',
+			url : '/TeamBST/login/aphoneCheck',
 			type : 'get',
 			data : {
 				admin_phone : phone
@@ -149,7 +149,7 @@ $(document).ready(function() {
 		}
 
 		$.ajax({
-			url : '/login/aemailCheck?admin_email=' + email,
+			url : '/TeamBST/login/aemailCheck?admin_email=' + email,
 			type : 'get', //get 방식으로 전달
 			success : function(res) {
 				if (res == 0) {
