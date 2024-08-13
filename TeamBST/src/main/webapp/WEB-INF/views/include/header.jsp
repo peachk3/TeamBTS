@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -15,7 +14,7 @@
   
   <!-- PLUGINS CSS STYLE -->
   <!-- Bootstrap -->
-  <link href="${pageContext.request.contextPath }/resources/plugins/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
   <!-- Font Awesome -->
   <link href="${pageContext.request.contextPath }/resources/plugins/font-awsome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
   <!-- Magnific Popup -->
@@ -68,7 +67,7 @@
 <nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
   <div class="container-fluid p-0">
       <!-- logo -->
-      <a class="navbar-brand" href="/main/main">
+      <a class="navbar-brand" href="/TeamBST/main/main">
         <img src="${pageContext.request.contextPath}/resources/images/logo1.png" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -132,7 +131,7 @@
                 </div>
                 
             	<div class="dropdown-column">
-                    <p><a href="/main/team" style="color:mediumslateblue;"><b>구단</b></a></p>
+                    <p><a href="/TeamBST/main/team" style="color:mediumslateblue;"><b>구단</b></a></p>
                     <a href="/TeamBST/main/teamPage?team_id=kia">KIA</a>
                     <a href="/TeamBST/main/teamPage?team_id=lg">LG</a>
                     <a href="/TeamBST/main/teamPage?team_id=samsung">삼성</a>

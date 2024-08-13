@@ -73,52 +73,52 @@ p, a, li, blockquote, label {
 }
  
 .slider .slide:nth-child(1) {
-   background-image: url('/resources/images/background/homepage-one-banner.jpeg');
+   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-one-banner.jpeg');
    animation-delay: 0.5s;
 }
 
 .slider .slide:nth-child(2) {
-   background-image: url('/resources/images/background/homepage-two-banner.jpeg');
+   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-two-banner.jpeg');
    animation-delay: -2.5s;
 }
 
 .slider .slide:nth-child(3) {
-   background-image: url('/resources/images/background/homepage-three-banner.jpeg');
+   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-three-banner.jpeg');
    animation-delay: -5.5s;
 }
 
 .slider .slide:nth-child(4) {
-   background-image: url('/resources/images/background/homepage-four-banner.jpeg');
+   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-four-banner.jpeg');
    animation-delay: -8.5s;
 }
 
 .slider .slide:nth-child(5) {
-   background-image: url('/resources/images/background/homepage-five-banner.jpeg');
+   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-five-banner.jpeg');
    animation-delay: -11.5s;
 }
 
 .slider .slide:nth-child(6) {
-   background-image: url('/resources/images/background/homepage-six-banner.jpeg');
+   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-six-banner.jpeg');
    animation-delay: -14.5s;
 }
 
 .slider .slide:nth-child(7) {
-   background-image: url('/resources/images/background/homepage-seven-banner.jpeg');
+   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-seven-banner.jpeg');
    animation-delay: -17.5s;
 }
 
 .slider .slide:nth-child(8) {
-   background-image: url('/resources/images/background/homepage-eight-banner.jpeg');
+   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-eight-banner.jpeg');
    animation-delay: -20.5s;
 }
 
 .slider .slide:nth-child(9) {
-   background-image: url('/resources/images/background/homepage-nine-banner.jpeg');
+   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-nine-banner.jpeg');
    animation-delay: -23.5s;
 }
 
 .slider .slide:nth-child(10) {
-   background-image: url('/resources/images/background/homepage-ten-banner.jpeg');
+   background-image: url('${pageContext.request.contextPath}/resources/images/background/homepage-ten-banner.jpeg');
    animation-delay: -26.5s;
 }
 
