@@ -42,7 +42,7 @@
 	                   return;
 				} else{
 					  $.ajax({
-				            url:'/TeamBST/login/idCheck?user_id='+id, //Controller에서 요청 받을 주소
+				            url:'/login/idCheck?user_id='+id, //Controller에서 요청 받을 주소
 				            type:'get', //get 방식으로 전달
 				            success:function(res){ //컨트롤러에서 넘어온 cnt값을 받는다 
 				                if(res == 0){ 
@@ -105,7 +105,7 @@
 	         
 			} else {
 				 $.ajax({
-		             url:'/TeamBST/login/nickCheck?user_nick='+nick, //Controller에서 요청 받을 주소
+		             url:'/login/nickCheck?user_nick='+nick, //Controller에서 요청 받을 주소
 		             type:'get', //get 방식으로 전달
 		             success:function(res) { //컨트롤러에서 넘어온 cnt값을 받는다 
 		                 if(res == 0) { 
@@ -157,7 +157,7 @@
 	                }
 
 	                $.ajax({
-	                    url: '/TeamBST/login/phoneCheck',
+	                    url: '/login/phoneCheck',
 	                    type: 'get',
 	                    data: { user_phone: phone },
 	                    success: function(res) {
@@ -208,7 +208,7 @@
 			}
 
 			$.ajax({
-				url : '/TeamBST/login/emailCheck?user_email=' + email,
+				url : '/login/emailCheck?user_email=' + email,
 				type : 'get', //get 방식으로 전달
 				success : function(res) {
 					if (res == 0) {

@@ -35,7 +35,7 @@ public interface StadiumDAO {
 	// 좌석 정보 업데이트 (booked_at = 1로 업데이트)
 	public void postSelectedSeat(@RequestParam("game_id") Integer game_id, @RequestParam("seat_id") String seat_id) throws Exception;
 
-	
+	// zone -> seat 출력
 	public List<SeatDTO> getSeatsId(@RequestParam("game_id") String game_id, @RequestParam("zone_id") String zone_id) throws Exception;
 
 	// 예매 가능 좌석 및 여부 출력 

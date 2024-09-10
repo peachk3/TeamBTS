@@ -94,7 +94,7 @@
 			console.log('Selected zone type:', zone_ty);
 			console.log('Selected zone ID:', zone_id);
 
-			const url = "/TeamBST/ticketing/displaySeats?stad_id=${stad_id}&game_id=${game_id}&zone_ty="
+			const url = "/ticketing/displaySeats?stad_id=${stad_id}&game_id=${game_id}&zone_ty="
 					+ zone_ty + "&zone_id=" + zone_id;
 			window.location.href = url;
 		}

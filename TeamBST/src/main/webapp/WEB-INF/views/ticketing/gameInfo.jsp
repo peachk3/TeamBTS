@@ -74,7 +74,7 @@
                                     <td>${home.game_date}</td>
                                     <td>${home.home_team_id}</td>
                                     <td>${away.away_team_id}</td>
-                                    <td><a href="/TeamBST/ticketing/stadium?stad_id=${home.stad_id}&game_id=${home.game_id}">예매하기</a></td>
+                                    <td><a href="/ticketing/stadium?stad_id=${home.stad_id}&game_id=${home.game_id}">예매하기</a></td>
                                 </tr>
                             </c:forEach>
                         </c:forEach>

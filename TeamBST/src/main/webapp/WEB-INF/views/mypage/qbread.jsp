@@ -50,7 +50,7 @@
 		$(".btn-primary").click(function(){
 			// '.' : 선택자 사용 시 선택자 앞에 .
 			// alert("클릭!");
-			location.href="/TeamBST/mypage/mywrite";
+			location.href="/mypage/mywrite";
 			
 		});
 		

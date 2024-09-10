@@ -55,7 +55,7 @@
                            </li>
                            <!-- Schedule Details -->
                            <fieldset>
-                           		<form action="/TeamBST/mypage/updateForm" method="post" name="fr">
+                           		<form action="/mypage/updateForm" method="post" name="fr">
                            <li class="schedule-details">
                               <div class="block">
                                  <!-- time -->
@@ -157,7 +157,7 @@
 
                         <div class="download-button text-center">
                            <input type="submit" class="btn btn-main-md" value="회원정보수정하기">
-                           <input type="button" class="btn btn-main-md" value="마이페이지" onclick="location.href='/TeamBST/mypage/mypage'">
+                           <input type="button" class="btn btn-main-md" value="마이페이지" onclick="location.href='/mypage/mypage'">
                      </form>  
                      </fieldset>    
                         </div>

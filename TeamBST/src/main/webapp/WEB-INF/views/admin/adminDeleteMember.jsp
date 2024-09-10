@@ -5,7 +5,7 @@
 
 <fieldset>
     <legend>회원탈퇴</legend>
-    <form action="/TeamBST/admin/adminDeleteMember" method="post" name="fr">
+    <form action="/admin/adminDeleteMember" method="post" name="fr">
         아이디 <input type="text" name="admin_id" value="${resultDTO.admin_id}" readonly><br>
         비밀번호 <input type="password" name="admin_pwd" placeholder="비밀번호를 입력하세요" required><br>
         <input type="submit" class="btn" value="회원탈퇴">

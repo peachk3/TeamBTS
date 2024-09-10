@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<!--begin::Form-->
-		<form class="form" action="/TeamBST/community/communityModify?post_id=${post.post_id }" method="post">
+		<form class="form" action="/community/communityModify?post_id=${post.post_id }" method="post">
 			<div class="card-body">
 
 				<div class="form-group">

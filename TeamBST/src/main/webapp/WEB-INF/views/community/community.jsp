@@ -84,7 +84,7 @@
 				</tr>
 			</tbody>
 		</table>
-	<button class="btn btn-main-md" onclick="location.href='/TeamBST/community/communityWrite'">글쓰기</button>
+	<button class="btn btn-main-md" onclick="location.href='/community/communityWrite'">글쓰기</button>
 	</div>
 	</div>
 	</section>
@@ -94,7 +94,7 @@
 						    <!-- 이전 페이지로 이동하는 링크 -->
 						    <c:if test="${pageDTO.prev}">
 						      <li class="page-item">
-						        <a class="page-link" href="/TeamBST/community/community?page=${pageDTO.startPage-1}" aria-label="prev">
+						        <a class="page-link" href="/community/community?page=${pageDTO.startPage-1}" aria-label="prev">
 						          <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
 						          <span class="sr-only">prev</span>
 						        </a>
@@ -104,14 +104,14 @@
 						    <!-- 페이지 번호를 나열하는 반복문 -->
 						    <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
 						      <li class="page-item ${pageDTO.cri.page == i ? 'active' : ''}">
-						        <a class="page-link" href="/TeamBST/community/community?page=${i}">${i}</a>
+						        <a class="page-link" href="/community/community?page=${i}">${i}</a>
 						      </li>
 						    </c:forEach>
 						    
 						    <!-- 다음 페이지로 이동하는 링크 -->
 						    <c:if test="${pageDTO.next && pageDTO.endPage > 0}">
 						      <li class="page-item">
-						        <a class="page-link" href="/TeamBST/community/community?page=${pageDTO.endPage+1}" aria-label="Next">
+						        <a class="page-link" href="/community/community?page=${pageDTO.endPage+1}" aria-label="Next">
 						          <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
 						          <span class="sr-only">Next</span>
 						        </a>
@@ -187,7 +187,7 @@ function getMemberList(page) {
     };
     
     $.ajax({
-        url: "/TeamBST/community/community",
+        url: "/community/community",
         type: "post",
         data: JSON.stringify(category),
         contentType: 'application/json; charset=utf-8',
@@ -200,7 +200,7 @@ function getMemberList(page) {
             // body 태그에 내용 추가
             $(data.pBoardList).each(function(idx, item){
                 var statusLabel = item.sale_status == 'SALE' ? '[판매중]' : '[판매완료]';
-                $('table').append("<tr><td>" + (parseInt(idx)+1) + "</td><td><a href='/TeamBST/community/communityContent?post_id="+ item.post_id +"'>"+ statusLabel +" "+ item.post_sub +"</a></td><td>"+ item.userList[0].user_nick +"</td><td>"+ item.post_cre_date +"</td><td>"+ item.post_view +"</td></tr>");
+                $('table').append("<tr><td>" + (parseInt(idx)+1) + "</td><td><a href='/community/communityContent?post_id="+ item.post_id +"'>"+ statusLabel +" "+ item.post_sub +"</a></td><td>"+ item.userList[0].user_nick +"</td><td>"+ item.post_cre_date +"</td><td>"+ item.post_view +"</td></tr>");
             });
             
             var paginationHTML = ''; 

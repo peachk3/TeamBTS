@@ -71,13 +71,13 @@
                         </tr>
                         <c:forEach var="vo" items="${GameScheduleList}">
                             <tr>
-                                <td><a href="/TeamBST/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_id}</a></td>
-                                <td><a href="/TeamBST/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_date}</a></td>
-                                <td><a href="/TeamBST/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_time}</a></td>
-                                <td><a href="/TeamBST/ticketing/gameInfo?game_id=${vo.game_id}">${vo.stad_id}</a></td>
-                                <td><a href="/TeamBST/ticketing/gameInfo?game_id=${vo.game_id}">${vo.away_team_id}</a></td>
-                                <td><a href="/TeamBST/ticketing/gameInfo?game_id=${vo.game_id}">${vo.home_team_id}</a></td>
-                                <td><a href="/TeamBST/ticketing/stadium?stad_id=${vo.stad_id}&game_id=${vo.game_id}">예매하기</a></td>
+                                <td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_id}</a></td>
+                                <td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_date}</a></td>
+                                <td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.game_time}</a></td>
+                                <td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.stad_id}</a></td>
+                                <td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.away_team_id}</a></td>
+                                <td><a href="/ticketing/gameInfo?game_id=${vo.game_id}">${vo.home_team_id}</a></td>
+                                <td><a href="/ticketing/stadium?stad_id=${vo.stad_id}&game_id=${vo.game_id}">예매하기</a></td>
                             </tr>
                         </c:forEach>
                     </table>

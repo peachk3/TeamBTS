@@ -34,7 +34,7 @@
 </section> 
 
 <!--begin::Form-->
-<form class="form" action="/TeamBST/admin/adminScheduleUpdate" method="post">
+<form class="form" action="/admin/adminScheduleUpdate" method="post">
     <div class="card-body centered">
         <input type="hidden" name="game_id" value="${gScheduleOne.game_id}" />
         <div class="form-group">
@@ -88,7 +88,7 @@
         <br>
         <br>
         <button type="submit" class="btn-main-md">등록하기</button>
-        <button type="button" class="btn-main-md" onclick="location.href = '/TeamBST/admin/adminSchedule'">취소하기</button>
+        <button type="button" class="btn-main-md" onclick="location.href = '/admin/adminSchedule'">취소하기</button>
     </div>
 </form>
 <!--end::Form-->

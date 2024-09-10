@@ -83,7 +83,7 @@ textarea {
 				</div>
 
 				<hr>
-    <button type="button" onclick="location.href='/TeamBST/admin/adminBulletin'">목록</button>
+    <button type="button" onclick="location.href='/admin/adminBulletin'">목록</button>
 
 				<!-- 답변 부분 -->
 				<c:if test="${not empty commend}">
@@ -101,7 +101,7 @@ textarea {
 				</c:if>
 
 				<!-- 댓글 목록 -->
-			<form action="/TeamBST/admin/adminbulletinContentDelete" method="post">
+			<form action="/admin/adminbulletinContentDelete" method="post">
 			    <div class="comments">
 			        <h3>답변</h3>
 			        <c:forEach var="comment" items="${CommentList}">
@@ -129,7 +129,7 @@ textarea {
 				<!-- 댓글 입력 폼 -->
 				<c:if test="${empty commend and empty CommentList}">
 					<div class="answer" id="commentForm">
-						<form action="/TeamBST/admin/adminbulletinContent" method="post">
+						<form action="/admin/adminbulletinContent" method="post">
 							<input type="hidden" name="quest_id" value="${quest.quest_id}" />
 							<p>
 								<strong>댓글 작성</strong>
