@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<!--begin::Form-->
-		<form class="form" action="/TeamBST/community/communityWrite" method="post">
+		<form class="form" action="/community/communityWrite" method="post">
 			<div class="card-body">
 <%-- ?user_id=${user_id} --%>
 				<div class="form-group">
@@ -60,7 +60,7 @@
 			<div class="card-footer">
 				<button type="submit" class="btn btn-primary mr-2">Submit</button>
 				<button type="reset" class="btn btn-secondary"
-					onclick="location.href='/TeamBST/community/community'">Cancel</button>
+					onclick="location.href='/community/community'">Cancel</button>
 			</div>
 		</form>
 		<!--end::Form-->

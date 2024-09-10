@@ -21,9 +21,9 @@
 
 <section class="section schedule">
 	<div class="container">
-      <button type="button" class="btn btn-main-md" onclick="location.href='/TeamBST/admin/adminWithdrawMember'">탈퇴회원</button>
-      <button type="button" class="btn btn-main-md" onclick="location.href='/TeamBST/admin/adminGeneralMember'">일반회원</button>
-      <button type="button" class="btn btn-main-md" onclick="location.href='/TeamBST/admin/adminMember'">회원현황</button>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminWithdrawMember'">탈퇴회원</button>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminGeneralMember'">일반회원</button>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminMember'">회원현황</button>
 
  <div class="box-body">
 		<table class="table table-bordered">
@@ -37,7 +37,7 @@
 	</tr>
 	<c:forEach var="vo" items="${generalMemberList}">
 		<tr>
-			<td><a href="/TeamBST/admin/adminMemberTicket?user_id=${vo.user_id }">${vo.user_id }</a></td>
+			<td><a href="/admin/adminMemberTicket?user_id=${vo.user_id }">${vo.user_id }</a></td>
 			<td>${vo.user_name }</td>
 			<td>${vo.user_nick }</td>
 			<td>${vo.user_phone }</td>
@@ -53,7 +53,7 @@
 						    <!-- 이전 페이지로 이동하는 링크 -->
 						    <c:if test="${pageDTO.prev}">
 						      <li class="page-item">
-						        <a class="page-link" href="/TeamBST/admin/adminGeneralMember?page=${pageDTO.startPage-1}" aria-label="prev">
+						        <a class="page-link" href="/admin/adminGeneralMember?page=${pageDTO.startPage-1}" aria-label="prev">
 						          <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
 						          <span class="sr-only">prev</span>
 						        </a>
@@ -63,14 +63,14 @@
 						    <!-- 페이지 번호를 나열하는 반복문 -->
 						    <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
 						      <li class="page-item ${pageDTO.cri.page == i ? 'active' : ''}">
-						        <a class="page-link" href="/TeamBST/admin/adminGeneralMember?page=${i}">${i}</a>
+						        <a class="page-link" href="/admin/adminGeneralMember?page=${i}">${i}</a>
 						      </li>
 						    </c:forEach>
 						    
 						    <!-- 다음 페이지로 이동하는 링크 -->
 						    <c:if test="${pageDTO.next && pageDTO.endPage > 0}">
 						      <li class="page-item">
-						        <a class="page-link" href="/TeamBST/admin/adminGeneralMember?page=${pageDTO.endPage+1}" aria-label="Next">
+						        <a class="page-link" href="/admin/adminGeneralMember?page=${pageDTO.endPage+1}" aria-label="Next">
 						          <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
 						          <span class="sr-only">Next</span>
 						        </a>

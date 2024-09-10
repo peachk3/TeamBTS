@@ -58,7 +58,7 @@
 
          <div id="paymethod" class="paymethod" onclick="kakaoPay()">
             <p>카카오페이</p>
-            <img class="kakaoPay" src="${pageContext.request.contextPath}/resources/img/kakaoPay.jpg" alt="kakaoPay">
+            <img class="kakaoPay" onclick="kakaoPay()" src="${pageContext.request.contextPath}/resources/img/kakaoPay.jpg" alt="kakaoPay">
          </div>
 
       </div>
@@ -226,7 +226,7 @@
 
 
 
-    
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 
 // 총 결제 금액 받아오기 (예매 수수료 포함)
@@ -343,14 +343,72 @@ const bookFee = seatCount * 1000;
     }
 
     function kakaoPay() {
+    	
+    	IMP.init('imp42836636'); // 고객사 식별 코드를 입력합니다.
+
+        IMP.request_pay({
+                    pg: 'kakaopay',
+                    pay_method: 'card',
+                    merchant_uid: 'merchant_' + new Date().getTime(),
+                    name: 'Class Registration',
+                    amount: totalAmount,
+                    buyer_email: 'buyer@example.com',
+                    buyer_name: '구매자 이름',
+                    buyer_tel: '010-1234-5678',
+                    buyer_addr: '서울특별시 강남구 삼성동',
+                    buyer_postcode: '123-456'
+                }, function (rsp) {
+                    if (rsp.success) {
+                        const paymentInfo = {
+                            amount: rsp.paid_amount,
+                            paymentStatus: 'Paid',
+                            paymentMethod: rsp.pay_method,
+                            transactionId: rsp.imp_uid,
+                            merchantId: rsp.merchant_uid
+                        };
+
+                        const registration = {
+                            mem_no: studentNo,
+                            schedule_no: scheduleNo,
+                            registration_date: new Date().toISOString().split('T')[0] // 날짜 형식 수정
+                        };
+
+                        const requestData = {
+                            registration: registration,
+                            paymentInfo: paymentInfo
+                        };
+
+                        console.log("Sending request data: ", requestData); 
+
+                        $.ajax({
+                            url: '/mypage/mypage',
+                            method: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify(requestData),
+                            beforeSend: function(xhr) {
+                                xhr.setRequestHeader(csrfHeader, csrfToken);
+                            },
+                            success: function(response) {
+                                alert('결제가 성공적으로 완료되었습니다.');
+                                location.reload();
+                            },
+                            error: function(xhr, status, error) {
+                                alert('결제 처리 중 오류가 발생했습니다.');
+                            }
+                        });
+                    } else {
+                        alert('결제에 실패하였습니다. 에러 내용: ' + rsp.error_msg);
+                    }
+                });
+    	
        //전달할 데이터
        // 구매자명
        // 경기 일정(날짜, 해당 팀, 해당 구장, 경기 일시)
        // 좌석 정보(좌석)
        // 결제 정보 (가격(수수료를 포함한 총액))
        // 취소 가능 일자
-       const targetDiv = document.getElementById('paymethod');
-        targetDiv.classList.toggle('red-border');
+//        const targetDiv = document.getElementById('paymethod');
+//         targetDiv.classList.toggle('red-border');
     
     }
 //     document.getElementById("paymethod").addEventListener("click", function() {

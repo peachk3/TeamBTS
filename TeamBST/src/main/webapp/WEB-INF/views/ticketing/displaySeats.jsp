@@ -37,7 +37,7 @@
 			<div class="field">필드</div>
 			<!-- 좌석 배치 -->
 			<div class="seats-grid">
-				<c:forEach var="seatB" items="${seatBook }">
+				<c:forEach var="seatB" items="${seats }">
 						<div class="seat" data-row="${seatB.seatList[0].seat_row}" data-num="${seatB.seatList[0].seat_num }" data-id="${seatB.seatList[0].seat_id }" data-booked="${seatB.booked_at }">
 						 ${seatB.seatList[0].seat_row }${seatB.seatList[0].seat_num }</div>
 						 	<input type="hidden" name="seat_row" value="${seatB.seatList[0].seat_row }"> 
@@ -69,7 +69,7 @@
 </div>
 </section>		
 
-<form id="reservation-form" action="/TeamBST/ticketing/reservation" method="post">
+<form id="reservation-form" action="/ticketing/reservation" method="post">
  	   	<input type="hidden" id="selected-seats-count" name="selected_seats_count" value="0">
 		<input type="hidden" name="stad_id" value="${stad_id}">
 	    <input type="hidden" name="game_id" value="${game_id}">

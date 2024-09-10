@@ -18,22 +18,22 @@
 
 <body>
 	<nav>
-		<a href="/TeamBST/main/main"><h1>개바리조</h1></a>
+		<a href="/main/main"><h1>개바리조</h1></a>
 
 		<h6>
-			<a href="/TeamBST/login/login">로그인/</a> <a href="/TeamBST/mypage/mypage">마이페이지/</a> <a
-				href="/TeamBST/admin/admin">관리자페이지/</a> 로그인시간 ( 58: 00 )
+			<a href="/login/login">로그인/</a> <a href="/mypage/mypage">마이페이지/</a> <a
+				href="/admin/admin">관리자페이지/</a> 로그인시간 ( 58: 00 )
 		</h6>
 	</nav>
 
 
 	<ul class="nav">
 		<li class="nav-item"><a class="nav-link active"
-			aria-current="page" href="/TeamBST/ticketing/ticketing">예매</a></li>
+			aria-current="page" href="/ticketing/ticketing">예매</a></li>
 		<li class="nav-item"><a class="nav-link"
-			href="/TeamBST/community/community">거래</a></li>
+			href="/community/community">거래</a></li>
 		<li class="nav-item"><a class="nav-link"
-			href="/TeamBST/announcement/announcement">고객센터</a></li>
+			href="/announcement/announcement">고객센터</a></li>
 	</ul>
 
 	<hr>
@@ -51,7 +51,7 @@
 			</div>
 		</div>
 		<!--begin::Form-->
-		<form class="form" action="/TeamBST/announcement/bulletinWrite" method="post">
+		<form class="form" action="/announcement/bulletinWrite" method="post">
 			<div class="card-body">
 
 				<div class="form-group">

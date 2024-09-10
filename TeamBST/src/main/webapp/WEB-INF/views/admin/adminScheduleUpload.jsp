@@ -26,7 +26,7 @@
 </section> 
 
 	<!--begin::Form-->
-	<form class="form" action="/TeamBST/admin/adminScheduleUpload" method="post">
+	<form class="form" action="/admin/adminScheduleUpload" method="post">
 		<div class="card-body">
 			<div class="form-group">
 				<label>홈팀 <select name="home_team_id" id="hometeam"
@@ -76,7 +76,7 @@
 		</div>
 		<div class="card-footer">
 			<button type="submit" class="btn">등록하기</button>
-			<button type="button" class="btn" onclick="location.href = '/TeamBST/admin/adminSchedule'">취소하기</button>
+			<button type="button" class="btn" onclick="location.href = '/admin/adminSchedule'">취소하기</button>
 		</div>
 	</form>
 	<!--end::Form-->

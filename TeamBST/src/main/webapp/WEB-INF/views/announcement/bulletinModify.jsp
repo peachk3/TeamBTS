@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<!--begin::Form-->
-		<form class="form" action="/TeamBST/announcement/bulletinModify?quest_id=${quest.quest_id }" method="post">
+		<form class="form" action="/announcement/bulletinModify?quest_id=${quest.quest_id }" method="post">
 			<div class="card-body">
 
 				<div class="form-group">

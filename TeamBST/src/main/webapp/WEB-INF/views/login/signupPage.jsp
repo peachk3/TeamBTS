@@ -21,7 +21,7 @@
 <body>
       <div class="signup-box">
 	     <div class="logo"> 
-	      	<a href="/TeamBST/admin/admin"> <img src="${pageContext.request.contextPath}/resources/images/logo1.png"
+	      	<a href="/admin/admin"> <img src="${pageContext.request.contextPath}/resources/images/logo1.png"
 				alt="야모해" style="width: 100px; height: auto;"> <span
 				class="hi-melody-regular">야모해~!</span>
 			</a>
@@ -31,7 +31,7 @@
         <hr class="hr-5">
 
         <h2>회원가입</h2> <!-- signup.jsp 연결 -->
-        <form id="signupForm" action="/TeamBST/login/signupPage" method="post" >
+        <form id="signupForm" action="/login/signupPage" method="post" >
             <div class="form-group">
                <!-- 이름 -->
                 <div class="form-group">
@@ -132,7 +132,7 @@
                 <button type="submit" id="signup-btn" class="signup-btn">가입하기</button>
               </label>
               <label>
-                <button type="button" id="submit-btn" class="login-btn" onclick="location.href='/TeamBST/login/loginPage'">로그인</button>
+                <button type="button" id="submit-btn" class="login-btn" onclick="location.href='/login/loginPage'">로그인</button>
               </label>
             </div>
         </form> <!-- signupForm-->

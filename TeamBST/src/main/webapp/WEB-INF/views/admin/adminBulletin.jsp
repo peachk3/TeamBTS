@@ -28,8 +28,8 @@
 
 <section class="section schedule">
 	<div class="container">
-      <button type="button" class="btn btn-main-md" onclick="location.href='/TeamBST/admin/adminNotice'">공지사항</button>
-      <button type="button" class="btn btn-main-md" onclick="location.href='/TeamBST/admin/adminBulletin'">문의 게시판</button>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminNotice'">공지사항</button>
+      <button type="button" class="btn btn-main-md" onclick="location.href='/admin/adminBulletin'">문의 게시판</button>
       <br>
       <br>
       <br>
@@ -47,10 +47,10 @@
 						<td>
 				<c:choose>
 					<c:when test="${dto.quest_public.equals('Y')}">
-			<a href="/TeamBST/admin/adminbulletinContent?quest_id=${dto.quest_id}">	[공개] ${dto.quest_sub } </a>
+			<a href="/admin/adminbulletinContent?quest_id=${dto.quest_id}">	[공개] ${dto.quest_sub } </a>
 					</c:when>
 					<c:otherwise>
-			<a href="/TeamBST/admin/adminbulletinContent?quest_id=${dto.quest_id}">	[비공개] ${dto.quest_sub } </a>
+			<a href="/admin/adminbulletinContent?quest_id=${dto.quest_id}">	[비공개] ${dto.quest_sub } </a>
 					</c:otherwise>
 				</c:choose>						
 						
@@ -76,17 +76,17 @@
 		<ul class="pagination pagination-sm no-margin pull-right">
 			
 			<c:if test="${pageDTO.prev }">
-			<li><a href="/TeamBST/admin/adminBulletin?page=${pageDTO.startPage-1 }">«</a></li>
+			<li><a href="/admin/adminBulletin?page=${pageDTO.startPage-1 }">«</a></li>
 			</c:if>
 			
 			<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
 		
-			<li ${pageDTO.cri.page == i? 'class="active"':'' }><a href="/TeamBST/admin/adminBulletin?page=${i }">${i }</a></li>
+			<li ${pageDTO.cri.page == i? 'class="active"':'' }><a href="/admin/adminBulletin?page=${i }">${i }</a></li>
 		
 			</c:forEach>
 			
 			<c:if test="${pageDTO.next && pageDTO.endPage > 0 }">
-			<li><a href="/TeamBST/admin/adminBulletin?page=${pageDTO.endPage+1 }">»</a></li>
+			<li><a href="/admin/adminBulletin?page=${pageDTO.endPage+1 }">»</a></li>
 			</c:if>
 		</ul>
 	</div> 

@@ -38,7 +38,7 @@
 <!-- 		on s.zone_id = z.zone_id -->
 <!-- 		where s.zone_id=#{zone_id} AND  -->
 
-	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO">
+	<select id="getSeatsId" resultMap="seatBookMap">
 		select s.seat_id, s.seat_row, s.seat_num, s.seat_id, s.zone_id, z.zone_ty
 		from seat s
 		join zone z

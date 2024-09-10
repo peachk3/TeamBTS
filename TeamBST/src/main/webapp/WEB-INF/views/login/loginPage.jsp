@@ -18,7 +18,7 @@
 </head>
 <body>
 	  <div  class="logo">
-		<a href="/TeamBST/main/main">
+		<a href="/main/main">
 			 <img src="${pageContext.request.contextPath}/resources/images/logo1.png" alt="야모해" style="width: 100px; height: auto;">
 			 <span class="hi-melody-regular">야모해~!</span>
 		</a>
@@ -27,7 +27,7 @@
     <div class="login-box">
   
     <h2>Login</h2>
-     <form id="loginForm" action="/TeamBST/login/loginPage" method="post" >
+     <form id="loginForm" action="/login/loginPage" method="post" >
 
         <!-- 아이디 입력-->
         <label for="userId"></label>
@@ -49,9 +49,9 @@
 
         <!-- 아이디찾기 비밀번호찾기 회원가입 화면 이동 버튼-->
         <div class="options">
-            <a href="/TeamBST/login/findId">아이디 찾기</a> 
-            <a href="/TeamBST/login/findPwd">비밀번호 찾기</a>
-            <a href="/TeamBST/login/signupPage">회원가입</a>
+            <a href="/login/findId">아이디 찾기</a> 
+            <a href="/login/findPwd">비밀번호 찾기</a>
+            <a href="/login/signupPage">회원가입</a>
         </div>
     </form>
 

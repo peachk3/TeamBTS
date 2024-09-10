@@ -23,9 +23,9 @@
 <section class="section schedule">
 	<div class="container">
 <button type="button" class="btn btn-main-md"
-		onclick="location.href='/TeamBST/admin/adminNotice'">공지사항</button>
+		onclick="location.href='/admin/adminNotice'">공지사항</button>
 	<button type="button" class="btn btn-main-md"
-		onclick="location.href='/TeamBST/admin/adminBulletin'">문의 게시판</button>
+		onclick="location.href='/admin/adminBulletin'">문의 게시판</button>
 		<br>
 		<br>
 		<br>
@@ -40,7 +40,7 @@
 				</tr>
 				<c:forEach var="dto" items="${nBoardList}">
 					<tr>
-						<td><a href="/TeamBST/admin/adminNoticeContent?notice_id=${dto.notice_id }">
+						<td><a href="/admin/adminNoticeContent?notice_id=${dto.notice_id }">
 						[공지]${dto.notice_sub}</a></td>
 						<td>${dto.admin_id}</td>
 						<td><fmt:formatDate value="${dto.notice_cre_date}"
@@ -51,7 +51,7 @@
 
 			</tbody>
 		</table>
-	<button class="btn btn-main-md" onclick="location.href='/TeamBST/admin/adminNoticeWrite'">글쓰기</button>
+	<button class="btn btn-main-md" onclick="location.href='/admin/adminNoticeWrite'">글쓰기</button>
 	</div>
 	</div>
 </section>
@@ -68,7 +68,7 @@
 						    <!-- 이전 페이지로 이동하는 링크 -->
 						    <c:if test="${pageDTO.prev}">
 						      <li class="page-item">
-						        <a class="page-link" href="/TeamBST/admin/adminNotice?page=${pageDTO.startPage-1}" aria-label="prev">
+						        <a class="page-link" href="/admin/adminNotice?page=${pageDTO.startPage-1}" aria-label="prev">
 						          <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
 						          <span class="sr-only">prev</span>
 						        </a>
@@ -78,14 +78,14 @@
 						    <!-- 페이지 번호를 나열하는 반복문 -->
 						    <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
 						      <li class="page-item ${pageDTO.cri.page == i ? 'active' : ''}">
-						        <a class="page-link" href="/TeamBST/admin/adminNotice?page=${i}">${i}</a>
+						        <a class="page-link" href="/admin/adminNotice?page=${i}">${i}</a>
 						      </li>
 						    </c:forEach>
 						    
 						    <!-- 다음 페이지로 이동하는 링크 -->
 						    <c:if test="${pageDTO.next && pageDTO.endPage > 0}">
 						      <li class="page-item">
-						        <a class="page-link" href="/TeamBST/admin/adminNotice?page=${pageDTO.endPage+1}" aria-label="Next">
+						        <a class="page-link" href="/admin/adminNotice?page=${pageDTO.endPage+1}" aria-label="Next">
 						          <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
 						          <span class="sr-only">Next</span>
 						        </a>
