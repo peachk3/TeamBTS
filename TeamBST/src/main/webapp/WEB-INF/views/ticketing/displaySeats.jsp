@@ -35,10 +35,15 @@
 	<div class="container12">
 		<div class="seating-chart">
 			<div class="field">필드</div>
+<%-- 			${seats } -> booked_at null 출력됨 해결해야 함 ** --%>
 			<!-- 좌석 배치 -->
 			<div class="seats-grid">
 				<c:forEach var="seatB" items="${seats }">
-						<div class="seat" data-row="${seatB.seatList[0].seat_row}" data-num="${seatB.seatList[0].seat_num }" data-id="${seatB.seatList[0].seat_id }" data-booked="${seatB.booked_at }">
+						<div class="seat" 
+						data-row="${seatB.seatList[0].seat_row}" 
+						data-num="${seatB.seatList[0].seat_num }" 
+						data-id="${seatB.seatList[0].seat_id }" 
+						data-booked="${seatB.booked_at }">
 						 ${seatB.seatList[0].seat_row }${seatB.seatList[0].seat_num }</div>
 						 	<input type="hidden" name="seat_row" value="${seatB.seatList[0].seat_row }"> 
 							<input type="hidden" name="seat_num" value="${seatB.seatList[0].seat_num }">
@@ -94,35 +99,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 선택된 좌석을 담을 배열
     let selectedSeats = [];
-    
- function selectSeat(seat) {
- if (selectedSeats.includes(seat)) {
-     // 이미 선택된 좌석인 경우 선택 해제
-     deselectSeat(seat);
- } else {
-     // 새로운 좌석 선택
-     selectedSeats.push(seat);
-     seat.classList.add('selected');
+	    
+	 function selectSeat(seat) {
+	 if (selectedSeats.includes(seat)) {
+	     // 이미 선택된 좌석인 경우 선택 해제
+	     deselectSeat(seat);
+	     
+	 } else {
+	     // 새로운 좌석 선택
+	     selectedSeats.push(seat);
+	     seat.classList.add('selected');
+	
+	     // 10분 후 자동으로 선택 해제
+	     setTimeout(() => {
+	         deselectSeat(seat);
+	     }, 10 * 60 * 1000); // 10분을 밀리초로 변환
+	 }
+	}
 
-     // 10분 후 자동으로 선택 해제
-     setTimeout(() => {
-         deselectSeat(seat);
-     }, 10 * 60 * 1000); // 10분을 밀리초로 변환
- }
-}
-
-function deselectSeat(seat) {
- const index = selectedSeats.indexOf(seat);
- if (index !== -1) {
-     selectedSeats.splice(index, 1);
-     seat.classList.remove('selected');
- }
-}
+	function deselectSeat(seat) {
+	 const index = selectedSeats.indexOf(seat);
+	 if (index !== -1) {
+	     selectedSeats.splice(index, 1);
+	     seat.classList.remove('selected');
+	 }
+	}
 
     // 각 좌석에 대한 초기 설정
     seats.forEach(function(seat) {
-        var bookedAt = seat.getAttribute('data-booked');
-        if (bookedAt === '1') {
+        var bookedAt = Number(seat.getAttribute('data-booked'));
+        if (bookedAt === 1) {
             seat.classList.add('booked-seat');  // 이미 예약된 좌석 스타일 추가
             seat.setAttribute('disabled', 'disabled');  // 예약된 좌석 비활성화
         }

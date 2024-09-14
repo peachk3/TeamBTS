@@ -30,14 +30,6 @@
 		where game_id = #{game_id} 
 	</select>
  	
-	<!--  zone -> Seat 출력 -->
-	<!-- **** 원래 코드임 ******* -->
-<!-- 		select s.seat_id, s.seat_row, s.seat_num, s.seat_id, s.zone_id, z.zone_ty -->
-<!-- 		from seat s -->
-<!-- 		join zone z -->
-<!-- 		on s.zone_id = z.zone_id -->
-<!-- 		where s.zone_id=#{zone_id} AND  -->
-
 	<select id="getSeatsId" resultMap="seatBookMap">
 		select s.seat_id, s.seat_row, s.seat_num, s.seat_id, s.zone_id, z.zone_ty
 		from seat s
@@ -47,25 +39,6 @@
 		on z.stad_id = g.stad_id
 		where s.zone_id=#{zone_id} AND g.game_id=#{game_id}
 	</select>
-	
-	<!-- 예매 가능 좌석 및 여부 출력  -->
-	<select id="getSeatBooked" resultMap="seatBookMap">
-		select s.seat_row, s.seat_num, s.seat_id, s.zone_id, sb.booked_at, sb.game_id
-		from seat s
-		join seat_book sb
-		on s.seat_id = sb.seat_id
-		where s.zone_id=#{zone_id} and sb.game_id=#{game_id}
-	</select>
-			
-<!-- 	<select id="getSeatsId" resultType="com.itwillbs.domain.SeatDTO"> -->
-<!-- 		select s.seat_id, s.seat_row, s.seat_num, s.zone_id, z.zone_ty, sb.seat_id, sb.booked_at -->
-<!-- 		from seat s -->
-<!-- 		join zone z -->
-<!-- 		on s.zone_id = z.zone_id -->
-<!-- 		join seat_book sb -->
-<!-- 		on s.seat_id = sb.seat_id -->
-<!-- 		where sb.game_id=#{game_id} and s.zone_id=#{zone_id} -->
-<!-- 	</select> -->
 
 	<!-- user_id -> user_name 전달 -->
 	<select id="getUserName" resultType="com.itwillbs.domain.UserDTO">
@@ -101,6 +74,13 @@
 		SET booked_at=1
 		WHERE seat_id = #{seat_id} AND game_id = #{game_id}
 	</update>
+	
+	<!-- 예약 -->
+	<insert id="insertReser">
+		insert into reservation_info(user_id, game_id, pur_name, res_date, res_state, res_pay_price, res_fee, seat1_id)
+		value(#{user_id},#{game_id},#{pur_name},now(),#{res_state},#{res_pay_price},#{res_fee},#{seat1_id})
+	</insert>
+	
 	
 	<!-- 좌석 예매 가능 여부 확인 -->
 <!-- 	<select id="getbBookedAt" resultType="com.itwillbs.domain.Seat_bookDTO"> -->

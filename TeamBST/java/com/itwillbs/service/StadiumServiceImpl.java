@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Reservation_infoDTO;
 import com.itwillbs.domain.SeatDTO;
 import com.itwillbs.domain.Seat_bookDTO;
 import com.itwillbs.domain.Seat_priceDTO;
@@ -82,12 +83,23 @@ public class StadiumServiceImpl implements StadiumService {
 		staddao.postSelectedSeat(game_id, seat_id);
 	}
 
-	// 예매 가능 좌석 및 여부 출력 
+
 	@Override
-	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id) throws Exception{
-		logger.debug(" getSeatBooked(String zone_id) 호출 ");
+	public void updateReser(Reservation_infoDTO resInfo) throws Exception {
+		logger.debug(" %% 예약 updateReser 호출 ");
 		
-		return staddao.getSeatBooked(zone_id, game_id);
+		staddao.insertReservation(resInfo);
+		
 	}
+	
+	
+
+	// 예매 가능 좌석 및 여부 출력 
+//	@Override
+//	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id) throws Exception{
+//		logger.debug(" getSeatBooked(String zone_id) 호출 ");
+//		
+//		return staddao.getSeatBooked(zone_id, game_id);
+//	}
 	
 }

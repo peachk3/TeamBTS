@@ -170,12 +170,26 @@
     </select>
     
 	<!-- 경기일정 등록 -->
-	<insert id="scheduleJoin">
+	<insert id="scheduleJoin" useGeneratedKeys="true" keyProperty="game_id" keyColumn="game_id">
 		insert into game_schedule (game_date, game_time, stad_id, home_team_id, away_team_id)
 		values (#{game_date}, #{game_time}, (select stad_id from team_n_stadium
 		where team_id = #{home_team_id}), #{home_team_id}, #{away_team_id})
 	</insert>
 
+	<select id="getStadiumIdByGameId" resultType="String">
+	    SELECT stad_id FROM game_schedule WHERE game_id = #{gameId}
+	</select>
+
+	<insert id="seatBookJoin">
+    	INSERT INTO seat_book(seat_id, game_id, booked_at)
+    	SELECT s.seat_id, #{gameId}, 0
+    	FROM seat s
+    	JOIN team_n_stadium ts ON ts.stad_id = #{stadId}
+    	WHERE s.seat_id LIKE CONCAT(#{stadId}, '%');
+	</insert>
+	
+	
+	
 	<!-- 경기일정 수정 -->
 	<update id="scheduleUpdate">
 		update game_schedule

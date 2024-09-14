@@ -55,10 +55,33 @@ public class AdminServiceImpl implements AdminService{
 		// DAO 메서드 호출
 		adao.insertSchedule(dto);
 		
+		int gameId = dto.getGame_id();
+		
+		String stadId = adao.getStadiumIdByGameId(gameId);
+        
+        logger.debug("game_id : " + gameId);
+        logger.debug("stad_id : " + stadId);
+
+        // 좌석 등록
+        adao.seatBookJoin(gameId, stadId);
+		
 		logger.debug("경기일정 작성 성공");
 		
 	}
 	
+	
+//	
+//	@Override
+//	public void seatBookJoin(int gameId, String stadId) throws Exception {
+//		
+//		logger.debug("seatBookJoin(int gameId) 실행");
+//		
+//		adao.insertSeat(gameId, stadId);
+//		
+//		logger.debug(" 좌석 등록");
+//		
+//	}
+
 	@Override
 	public List<Game_scheduleDTO> ScheduleList() throws Exception {
 		logger.debug("경기일정 글목록 조회");

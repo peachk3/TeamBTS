@@ -55,9 +55,11 @@ body {
 	font-size: 20px;
 }
 
-.booked-seat {
+.seat.booked-seat {
     background-color: #5D5D5D; /* 예시로 색상 변경 */
-    pointer-events: none; /* 선택 불가능하도록 설정 */
+    color: #a9a9a9; /* 예약된 좌석의 텍스트 색상 */
+    cursor: not-allowed; /* 예약된 좌석의 커서 모양 */
+/*     pointer-events: none; 선택 불가능하도록 설정 */
 }
 
 .seat.occupied {

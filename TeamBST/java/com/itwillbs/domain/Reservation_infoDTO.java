@@ -15,13 +15,13 @@ public class Reservation_infoDTO {
 	private String res_state;
 	private int res_pay_price;
 	private int res_fee;
-	private long seat1_id;
-	private long seat2_id;
-	private long seat3_id;
-	private long seat4_id;
-	private long seat5_id;
-	private long seat6_id;
-	private long seat7_id;
-	private long seat8_id;
+	private String seat1_id;
+	private String seat2_id;
+	private String seat3_id;
+	private String seat4_id;
+	private String seat5_id;
+	private String seat6_id;
+	private String seat7_id;
+	private String seat8_id;
 	
 }

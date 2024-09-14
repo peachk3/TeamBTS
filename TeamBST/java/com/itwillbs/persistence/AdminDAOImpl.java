@@ -86,6 +86,40 @@ public class AdminDAOImpl implements AdminDAO{
 		
 	}
 	
+	
+	
+//	
+//	
+//	@Override
+//	public void insertSeat(int gameId, String stadId) throws Exception {
+//		
+//		logger.debug(" insertSeat(gameId) 호출");
+//		
+//		Map<String, Object> params = new HashMap<>();
+//	    params.put("gameId", gameId);
+//	    params.put("stadId", stadId);
+//
+//	    sqlSession.insert(NAMESPACE + "seatBookJoin", params);
+//		
+//		logger.debug(" DAO : 좌석 등록 성공");
+//		
+//	}
+
+	@Override
+	public void seatBookJoin(int gameId, String stadId) throws Exception {
+		 Map<String, Object> params = new HashMap<>();
+	        params.put("gameId", gameId);
+	        params.put("stadId", stadId);
+	        sqlSession.insert(NAMESPACE + "seatBookJoin", params);
+		
+	}
+
+	@Override
+	public String getStadiumIdByGameId(int gameId) throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE + "getStadiumIdByGameId", gameId);
+	}
+
 	@Override
 	public Game_scheduleDTO ScheduleOne(int game_id) throws Exception{
 		

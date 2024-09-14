@@ -493,10 +493,20 @@ public class AdminController {
 		
 		logger.debug("dto : "+ dto);
 		
+		// 경기 일정 등록
 		aService.ScheduleJoin(dto);
 		
-		return "redirect:/admin/adminSchedule";
+
 		
+		return "redirect:/admin/adminSchedule";
+//		int gameId = dto.getGame_id();
+//		String stadId = dto.getStad_id();
+//		
+//		logger.debug(" game_id : " + gameId);
+//		logger.debug(" stad_id : " + stadId);
+//		
+//		// 좌석 등록
+//		aService.seatBookJoin(gameId, stadId);
 	}
 	
 	// 경기 일정 수정 GET / 페이지 호출

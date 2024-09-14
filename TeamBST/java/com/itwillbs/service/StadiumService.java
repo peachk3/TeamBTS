@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Reservation_infoDTO;
 import com.itwillbs.domain.SeatDTO;
 import com.itwillbs.domain.Seat_bookDTO;
 import com.itwillbs.domain.Seat_priceDTO;
@@ -35,7 +36,11 @@ public interface StadiumService {
 	// 좌석 정보 업데이트 (booked_at = 1로 업데이트)
 	public void postSelectedSeat(Integer game_id, String seat_id) throws Exception;
 
+	// 좌석 예약 
+	public void updateReser(Reservation_infoDTO resInfo) throws Exception;
+
+
 	// 예매 가능 좌석 및 여부 출력 
-	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id) throws Exception;
+//	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id) throws Exception;
 	
 }

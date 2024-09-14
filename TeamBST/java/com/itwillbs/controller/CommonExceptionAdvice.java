@@ -23,6 +23,10 @@ public class CommonExceptionAdvice {
 		logger.debug(" Exception(예외) 발생!!!");
 		logger.debug(" testException() 실행 ");
 		
+		model.addAttribute("errorMessage", e.getMessage());
+		
+		logger.debug("error : "+ e.getMessage());
+		
 //		logger.debug("e : "+e);
 		
 		model.addAttribute("e", e);
