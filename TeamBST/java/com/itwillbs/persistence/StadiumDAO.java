@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Reservation_infoDTO;
 import com.itwillbs.domain.SeatDTO;
 import com.itwillbs.domain.Seat_bookDTO;
 import com.itwillbs.domain.Seat_priceDTO;
@@ -39,10 +40,12 @@ public interface StadiumDAO {
 	public List<SeatDTO> getSeatsId(@RequestParam("game_id") String game_id, @RequestParam("zone_id") String zone_id) throws Exception;
 
 	// 예매 가능 좌석 및 여부 출력 
-	public List<Seat_bookDTO> getSeatBooked(@RequestParam("zone_id") String zone_id, @RequestParam("game_id") String game_id) throws Exception;
+//	public List<Seat_bookDTO> getSeatBooked(@RequestParam("zone_id") String zone_id, @RequestParam("game_id") String game_id) throws Exception;
 
+	// 예매 
+	public void insertReservation(Reservation_infoDTO resInfo) throws Exception;
 
-    
+	
     
     
 }

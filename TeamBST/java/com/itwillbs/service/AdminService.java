@@ -131,6 +131,9 @@ public interface AdminService {
 	
 	// 관리자 - 답변 삭제
 	public void deleteBulletinComment(int quest_id) throws Exception;
+
+	
+	//public void seatBookJoin(int gameId, String stadId) throws Exception;
 	
 
 

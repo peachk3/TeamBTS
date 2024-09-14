@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Reservation_infoDTO;
 import com.itwillbs.domain.SeatDTO;
 import com.itwillbs.domain.Seat_bookDTO;
 import com.itwillbs.domain.Seat_priceDTO;
@@ -97,13 +98,23 @@ public class StadiumDAOImpl implements StadiumDAO {
 		return sqlSession.selectList(NAMESPACE + "getSeatsId", params);
 	}
 
+	
 	@Override
-	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id) throws Exception{
-		logger.debug("getSeatBooked(String zone_id) 호출");
-		Map<Object, Object> params = new HashMap<>();
-		params.put("zone_id", zone_id);
-	    params.put("game_id", game_id);
-		return sqlSession.selectList(NAMESPACE + "getSeatBooked", params);
+	public void insertReservation(Reservation_infoDTO resInfo) throws Exception {
+		logger.debug("insertReser 호출");
+		
+		sqlSession.insert(NAMESPACE + "insertReser", resInfo);
 	}
+
+
+	
+//	@Override
+//	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id) throws Exception{
+//		logger.debug("getSeatBooked(String zone_id) 호출");
+//		Map<Object, Object> params = new HashMap<>();
+//		params.put("zone_id", zone_id);
+//	    params.put("game_id", game_id);
+//		return sqlSession.selectList(NAMESPACE + "getSeatBooked", params);
+//	}
 	
 }

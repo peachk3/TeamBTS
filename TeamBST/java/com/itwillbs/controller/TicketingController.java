@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.itwillbs.domain.Game_scheduleDTO;
+import com.itwillbs.domain.Reservation_infoDTO;
 import com.itwillbs.domain.SeatDTO;
 import com.itwillbs.domain.Seat_bookDTO;
 import com.itwillbs.domain.Seat_priceDTO;
@@ -120,7 +122,6 @@ public class TicketingController {
  		
         String user_id = (String) session.getAttribute("user_id");
         logger.debug("user_id : "+ user_id);
-        
         logger.debug("game_id : "+game_id);
         
         
@@ -145,12 +146,7 @@ public class TicketingController {
             return "redirect:/login/loginPage?redirect=" + URLEncoder.encode(redirectUrl, "UTF-8");
         }
         
-        
-        
         return "/ticketing/stadium";
-        
-        
-        
 	}
 
  	
@@ -169,19 +165,17 @@ public class TicketingController {
         List<SeatDTO> seats = stadService.getSeatsId(game_id, zone_id);
         
         // 예매 가능 좌석 및 여부 출력
-        List<Seat_bookDTO> seatBook = stadService.getSeatBooked(zone_id, game_id);
+//        List<Seat_bookDTO> seatBook = stadService.getSeatBooked(zone_id, game_id);
 		
 		model.addAttribute("game_id", game_id);
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("zone_ty", zone_ty);
 		model.addAttribute("zone_id", zone_id);
 		model.addAttribute("seats", seats);
-		model.addAttribute("seatBook", seatBook);
 		
 		logger.debug("seats : " + seats);
 		logger.debug("zone_id : " + zone_id);
 		logger.debug("game_id: " + game_id);
-		logger.debug("^0^ seatBook : " + seatBook);
 		
 		return "/ticketing/displaySeats";
 	}	
@@ -224,6 +218,8 @@ public class TicketingController {
 		model.addAttribute("seat_row", seat_row);
 		model.addAttribute("seat_num", seat_num);
 		model.addAttribute("zone_id", zone_id);
+		
+		logger.debug("user^-^ : " + user);
 
 		logger.debug("bookTicket() 호출 ");
 		
@@ -270,8 +266,6 @@ public class TicketingController {
 	}	
 	// 여기까지 성공
 	
-	
-	
 	@GetMapping(value="/payment")
 	public String payTicket(HttpSession session,
 		@RequestParam("stad_id") String stad_id, 
@@ -296,7 +290,7 @@ public class TicketingController {
     
     // 초등학생 좌석 가격
     List<Seat_priceDTO> seatChildPrice = stadService.getSeatChildPrice(zone_id);
-		logger.debug("payTicket() 실행");
+		logger.debug("payTicketGET() 실행");
 		
 	model.addAttribute("stad_id", stad_id);
 	model.addAttribute("game_id", game_id);
@@ -313,47 +307,17 @@ public class TicketingController {
 	return "/ticketing/payment";
 	}
 	
-	
+	@ResponseBody
 	@PostMapping(value="/payment")
-	public String reservationDone(HttpSession session,
-		@RequestParam("stad_id") String stad_id, 
-		@RequestParam("game_id") String game_id, 
-		@RequestParam("seat_row") String seat_row, 
-		@RequestParam("seat_num") String seat_num, 
-		@RequestParam("zone_ty") String zone_ty, 
-		@RequestParam("seat_id") String seat_id, 
-		@RequestParam("zone_id")String zone_id,  Model model) throws Exception{
-			
-	// user_id 전달
-	String user_id = (String) session.getAttribute("user_id");
-    logger.debug("(●'◡'●) user_id : "+ user_id);
+	public String reservationDone(@RequestBody Reservation_infoDTO resInfo) throws Exception{
     
-    // game_id 비교해서 gameSchedulelist 가져오기 (경기 정보 출력)
-    List<Game_scheduleDTO> gameSchedule = stadService.getGameSche(game_id);
-    
-    // user_id 비교해서 user_name 가져오기 (예매자명 출력)
-    List<UserDTO> user = stadService.getUserName(user_id);
-    
-    // 성인 좌석 가격
-    List<Seat_priceDTO> seatAdultPrice = stadService.getSeatAdultPrice(zone_id);
-    
-    // 초등학생 좌석 가격
-    List<Seat_priceDTO> seatChildPrice = stadService.getSeatChildPrice(zone_id);
-		logger.debug("(●'◡'●) payTicket() 실행");
+	logger.debug("request Data : " + resInfo);
+	logger.debug("userID : " + resInfo.getUser_id());
+		
+	stadService.updateReser(resInfo);
 	
-	model.addAttribute("stad_id", stad_id);
-	model.addAttribute("game_id", game_id);
-	model.addAttribute("zone_ty", zone_ty);
-	model.addAttribute("seat_row", seat_row);
-	model.addAttribute("seat_num", seat_num);
-	model.addAttribute("user", user);
-	model.addAttribute("seat_id", seat_id);
-	model.addAttribute("gameSchedule", gameSchedule);
-	model.addAttribute("seatAdultPrice", seatAdultPrice);
-	model.addAttribute("seatChildPrice", seatChildPrice);
+	return "/mypage/mypage";
 	
-	
-	return "/ticketing/payment";
 	}
 	
 }

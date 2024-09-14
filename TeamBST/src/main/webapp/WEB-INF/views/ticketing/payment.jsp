@@ -160,7 +160,30 @@
                   </tr>
                   <tr>
                      <th>예매자명</th>
-                     <td><c:forEach var="use" items="${user }">${use.user_name}</c:forEach></td>
+                     <td><c:forEach var="use" items="${user }"> ${use.user_name}
+                     <script> var userName = '${use.user_name}'</script>
+                     </c:forEach></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <th>예매자 아이디</th>
+                     <td><c:forEach var="use" items="${user }"> ${use.user_id}
+                     <script> var userId = '${use.user_id}'</script>
+                     </c:forEach></td>
+                     <td></td>
+                  </tr>
+				  <tr>
+                     <th>이메일</th>
+                     <td><c:forEach var="use" items="${user }"> ${use.user_email}
+                     <script> var userEmail = '${use.user_email}'</script>
+                     </c:forEach></td>
+                     <td></td>
+                  </tr>
+                   <tr>
+                     <th>전화번호</th>
+                     <td><c:forEach var="use" items="${user }"> ${use.user_phone}
+                     <script> var userPhone = '${use.user_phone}'</script>
+                     </c:forEach></td>
                      <td></td>
                   </tr>
 
@@ -267,6 +290,7 @@ window.onload = openModal1;
 
 const currentUrl = window.location.href;
 
+
 // URL에서 seat_id 추출
 const seatIdsIndex = currentUrl.lastIndexOf('&') + 1;
 const seatIdsString = currentUrl.substring(seatIdsIndex);
@@ -287,7 +311,18 @@ const bookFee = seatCount * 1000;
 // document.getElementById('booking-fee').innerText = bookFee;
 // ****** 예매 수수료  출력 완료 ************
 
-      
+const urlParams = new URLSearchParams(window.location.search);
+
+const gameId = urlParams.get('game_id');
+
+const zoneId = urlParams.get('zone_id');
+
+const seatRow = urlParams.get('seat_row');
+
+const seatNum = urlParams.get('seat_num');
+
+const seatId = zoneId + seatRow + seatNum;
+
       // 예매 취소 수수료 팝업창
       // 모달 요소
        var modal2 = document.getElementById("myModal");
@@ -350,47 +385,38 @@ const bookFee = seatCount * 1000;
                     pg: 'kakaopay',
                     pay_method: 'card',
                     merchant_uid: 'merchant_' + new Date().getTime(),
-                    name: 'Class Registration',
+                    name: 'ticket',
                     amount: totalAmount,
-                    buyer_email: 'buyer@example.com',
-                    buyer_name: '구매자 이름',
-                    buyer_tel: '010-1234-5678',
-                    buyer_addr: '서울특별시 강남구 삼성동',
-                    buyer_postcode: '123-456'
+                    buyer_email: userEmail,
+                    buyer_name: userName,
+                    buyer_tel: userPhone,
+//                     buyer_addr: '서울특별시 강남구 삼성동',
+//                     buyer_postcode: '123-456'
                 }, function (rsp) {
                     if (rsp.success) {
-                        const paymentInfo = {
-                            amount: rsp.paid_amount,
-                            paymentStatus: 'Paid',
-                            paymentMethod: rsp.pay_method,
-                            transactionId: rsp.imp_uid,
-                            merchantId: rsp.merchant_uid
-                        };
-
-                        const registration = {
-                            mem_no: studentNo,
-                            schedule_no: scheduleNo,
-                            registration_date: new Date().toISOString().split('T')[0] // 날짜 형식 수정
-                        };
+                    	console.log(rsp);
 
                         const requestData = {
-                            registration: registration,
-                            paymentInfo: paymentInfo
+                        		res_fee : bookFee,
+                                res_pay_price: totalPrice,
+                                res_state: 'rd',
+                                paymentMethod: rsp.pay_method,
+                        		user_id : userId,
+                            	seat1_id : seatId,
+                                pur_name : userName,
+                                game_id : gameId,
                         };
 
                         console.log("Sending request data: ", requestData); 
 
                         $.ajax({
-                            url: '/mypage/mypage',
+                            url: '/ticketing/payment',
                             method: 'POST',
                             contentType: 'application/json',
                             data: JSON.stringify(requestData),
-                            beforeSend: function(xhr) {
-                                xhr.setRequestHeader(csrfHeader, csrfToken);
-                            },
                             success: function(response) {
                                 alert('결제가 성공적으로 완료되었습니다.');
-                                location.reload();
+                                window.location.href = response;
                             },
                             error: function(xhr, status, error) {
                                 alert('결제 처리 중 오류가 발생했습니다.');

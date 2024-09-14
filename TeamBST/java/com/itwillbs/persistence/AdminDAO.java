@@ -25,6 +25,11 @@ public interface AdminDAO {
 	// 경기일정 등록
 	public void insertSchedule(Game_scheduleDTO dto) throws Exception;
 	
+	public void seatBookJoin(int gameId, String stad_id) throws Exception;
+	
+	// stad_id 가져오기
+	public String getStadiumIdByGameId(int gameId) throws Exception;
+		
 	// 경기일정 수정
 	public void updateSchedule(Game_scheduleDTO dto) throws Exception;
 	
@@ -132,4 +137,10 @@ public interface AdminDAO {
 
     // 관리자 - 문의게시판 답변 삭제
 	public void deleteBulletinComment(int quest_id) throws Exception;
+
+	
+
+	
+
+	//public void insertSeat(int gameId, String stadId) throws Exception;
 }

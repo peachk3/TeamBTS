@@ -313,7 +313,7 @@ public class MypageController {
         
         String jsonMyTiketList = mapper.writeValueAsString(mTicketList);
         logger.debug("jsonMyTiketList : " + jsonMyTiketList);
-
+        
         return jsonMyTiketList;
  		
  	}

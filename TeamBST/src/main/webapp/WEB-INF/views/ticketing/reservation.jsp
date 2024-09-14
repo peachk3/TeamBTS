@@ -194,7 +194,7 @@
                   </tr>
                   <tr>
                      <th>예매자명</th>
-                     <td><c:forEach var="use" items="${user }">${use.user_name}</c:forEach></td>
+                     <td><c:forEach var="use" items="${user}">${use.user_name}</c:forEach></td>
                      <td></td>
                   </tr>
 
@@ -334,12 +334,6 @@
       console.log('seatIds의 수:', seatCount);
       document.getElementById('seat-count').innerText = ' '+ seatCount;
 
-      
-      
-      
-      
-      
-      
       // ***** 여기까지 문제 없음 ******* 
 
       
@@ -494,8 +488,6 @@
            }
        }
       
-       
-       
        function displayParameters() {
             var params = new URLSearchParams(window.location.search);
 
@@ -517,7 +509,6 @@
             displayParameters();
         });
        
-        
         
         function goBack() {
             history.back();
