@@ -298,7 +298,6 @@ const seatIdsString = currentUrl.substring(seatIdsIndex);
 
 // seat_id 문자열을 쉼표(,)로 분리하여 배열로 생성
 const seatIds = seatIdsString.split(',');
-//   const 
 
 // 선택된 좌석 수를 계산
 let seatCount = seatIds.length;
@@ -314,14 +313,30 @@ const bookFee = seatCount * 1000;
 const urlParams = new URLSearchParams(window.location.search);
 
 const gameId = urlParams.get('game_id');
-
+const seatRowsString = urlParams.get('seat_row');  
+const seatNumsString = urlParams.get('seat_num');  
 const zoneId = urlParams.get('zone_id');
 
-const seatRow = urlParams.get('seat_row');
+const seatRows = seatRowsString ? seatRowsString.split(',') : [];
+const seatNums = seatNumsString ? seatNumsString.split(',') : [];
 
-const seatNum = urlParams.get('seat_num');
+let finalSeatIds = [];
 
-const seatId = zoneId + seatRow + seatNum;
+for (let i = 0; i < seatRows.length; i++) {
+ const finalSeatId = zoneId + seatRows[i] + seatNums[i];  // Construct seat_id
+ finalSeatIds.push(finalSeatId);
+}
+
+const resultString = finalSeatIds.join(',');
+
+console.log(resultString);
+
+console.log(finalSeatIds);
+console.log(seatRows);
+console.log(seatNums);
+console.log(zoneId);
+
+
 
       // 예매 취소 수수료 팝업창
       // 모달 요소
@@ -402,7 +417,7 @@ const seatId = zoneId + seatRow + seatNum;
                                 res_state: 'rd',
                                 paymentMethod: rsp.pay_method,
                         		user_id : userId,
-                            	seat1_id : seatId,
+                        		seats: finalSeatIds,
                                 pur_name : userName,
                                 game_id : gameId,
                         };

@@ -1,6 +1,7 @@
 package com.itwillbs.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Data;
 
@@ -24,4 +25,5 @@ public class Reservation_infoDTO {
 	private String seat7_id;
 	private String seat8_id;
 	
+	private List<String> seats;	
 }

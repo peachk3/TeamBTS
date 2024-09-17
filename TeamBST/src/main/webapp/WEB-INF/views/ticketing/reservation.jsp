@@ -292,25 +292,6 @@
       // 현재 URL
       const currentUrl = window.location.href;
 
-//       // URL에서 seat_id 추출
-//       const seatIdsIndex = currentUrl.lastIndexOf('&') + 1;
-//       const seatIdsString = currentUrl.substring(seatIdsIndex);
-// //       const seatRowIndex = currentUrl.
-
-//       // seat_id 문자열을 쉼표(,)로 분리하여 배열로 생성
-//       const seatIds = seatIdsString.split(',');
-// //       const 
-
-//       // 선택된 좌석 수를 계산
-//       let seatCount = seatIds.length;
-
-//       // 콘솔 출력
-//       console.log(seatCount);
-
-//       // 선택된 좌석 수를 화면에 출력
-//       document.getElementById('seat-count').innerText = '선택하신 좌석의 수: '+ seatCount;
-      // seatIds가 포함된 부분을 찾기 위해 'seatIds='의 위치를 찾음
-
       // URL에서 '?' 이후의 쿼리 문자열을 추출
       const queryString = currentUrl.split('?')[1];
       
@@ -371,59 +352,6 @@
          document.getElementById('total-amount').innerText = allTotalPrice;
       }
       // **** 총 가격 금액 성공 ********
-
-      //     // 성인 수 선택 요소
-      //        const adultSelect = document.getElementById('adultNum');
-      //        // 청소년 수 선택 요소
-      //        const childSelect = document.getElementById('childNum');
-
-      //        // 선택된 성인 수를 화면에 업데이트하는 함수
-      //        function updateSelectedAdultCount() {
-      //            const selectedAdultCount = document.getElementById('selectedAdult');
-      //            selectedAdultCount.textContent = adultSelect.value;
-      //        }
-
-      //         // 모든 select 요소에 change 이벤트 리스너 추가
-      //         document.querySelectorAll('select').forEach(select => {
-      //             select.addEventListener('change', () => {
-      //                 calculateTotal();
-      //                 updateSelectedAdultCount();
-      //             });
-      //         });
-      // //     // 선택된 청소년 수를 화면에 업데이트하는 함수
-      // //     function updateSelectedChildCount() {
-      // //         const selectedChildCount = document.getElementById('selectedChild');
-      // //         selectedChildCount.textContent = childSelect.value;
-      // //     }
-
-      // //     // 성인 수 선택 요소의 변경 이벤트 리스너 추가
-      // //     adultSelect.addEventListener('change', updateSelectedAdultCount);
-      // //     // 청소년 수 선택 요소의 변경 이벤트 리스너 추가
-      // //     childSelect.addEventListener('change', updateSelectedChildCount);
-
-      // //     // 초기 페이지 로딩 시 선택된 값으로 업데이트
-      // //     updateSelectedAdultCount();
-      // //     updateSelectedChildCount();   
-
-      // //     document.querySelectorAll('select').forEach(select => {
-      // //             select.addEventListener('change', updateTotal);
-      // //         });
-
-      // //         function updateTotal() {
-      // //             let total = 0;
-      // //             document.querySelectorAll('select').forEach(select => {
-      // //                const label = document.querySelector(`label[for="${select.id}"]`);
-      // //                 const price = parseFloat(label.getAttribute('data-price')) || 1;
-      // //                 total += (parseFloat(select.value) || 0) * price;
-      // //             });
-      // //             document.getElementById('total-price').innerText = total;
-      // //         }
-
-      // //         // Initialize the total on page load
-      // //         updateTotal();
-
-      // 기존에 등록된 onclick 이벤트 핸들러 제거
-      // document.getElementById('payment').onclick = null;
 
       // 결제 버튼에 onclick 이벤트 핸들러 추가
       document.getElementById('payment').onclick = function() {
@@ -513,29 +441,6 @@
         function goBack() {
             history.back();
         }
-      // ******* 선택한 좌석 수 = 권종 수 확인 ******** 
-
-      //                function validateSeatSelection() {
-      //                   const adultCount = parseInt(document
-      //                         .getElementById('adultNum').value, 10);
-      //                   const childCount = parseInt(document
-      //                         .getElementById('childNum').value, 10);
-      //                   const totalSelectedCount = adultCount + childCount;
-
-      //                   // 여기서 selectedSeats 변수가 어디서 온 것인지 명확하지 않으므로 확인이 필요합니다.
-      //                   // 선택된 좌석 수와 티켓 수가 맞는지 비교하는 조건문에서 이를 어떻게 설정해야 하는지에 대한 추가 정보가 필요합니다.
-
-      //                   if (seatCount !== totalSelectedCount) {
-      //                      alert("선택된 좌석 수와 티켓 수가 맞지 않습니다.");
-      //                      history.back();
-      //                      return false;
-      //                   } else {
-      //                      alert("선택된 좌석 수와 티켓 수 동일함 확인되었습니다")
-
-      //                   }
-      //                }
-
-      //   }
    </script>
 <%@ include file="../include/footer.jsp"%>
 </body>

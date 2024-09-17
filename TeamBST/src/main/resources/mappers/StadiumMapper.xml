@@ -76,10 +76,29 @@
 	</update>
 	
 	<!-- 예약 -->
-	<insert id="insertReser">
-		insert into reservation_info(user_id, game_id, pur_name, res_date, res_state, res_pay_price, res_fee, seat1_id)
-		value(#{user_id},#{game_id},#{pur_name},now(),#{res_state},#{res_pay_price},#{res_fee},#{seat1_id})
-	</insert>
+<insert id="insertReser">
+    insert into reservation_info(user_id, game_id, pur_name, res_date, res_state, res_pay_price, res_fee
+    , seat1_id
+    <if test="seat2_id != null">, seat2_id</if>
+    <if test="seat3_id != null">, seat3_id</if>
+    <if test="seat4_id != null">, seat4_id</if>
+    <if test="seat5_id != null">, seat5_id</if>
+    <if test="seat6_id != null">, seat6_id</if>
+    <if test="seat7_id != null">, seat7_id</if>
+    <if test="seat8_id != null">, seat8_id</if>
+    )
+    values(#{user_id}, #{game_id}, #{pur_name}, now(), #{res_state}, #{res_pay_price}, #{res_fee}
+    , #{seat1_id}
+    <if test="seat2_id != null">, #{seat2_id}</if>
+    <if test="seat3_id != null">, #{seat3_id}</if>
+    <if test="seat4_id != null">, #{seat4_id}</if>
+    <if test="seat5_id != null">, #{seat5_id}</if>
+    <if test="seat6_id != null">, #{seat6_id}</if>
+    <if test="seat7_id != null">, #{seat7_id}</if>
+    <if test="seat8_id != null">, #{seat8_id}</if>
+    )
+</insert>
+
 	
 	
 	<!-- 좌석 예매 가능 여부 확인 -->
