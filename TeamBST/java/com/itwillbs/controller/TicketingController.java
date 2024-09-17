@@ -313,6 +313,39 @@ public class TicketingController {
     
 	logger.debug("request Data : " + resInfo);
 	logger.debug("userID : " + resInfo.getUser_id());
+	
+	List<String> seats = resInfo.getSeats();  // 좌석 ID 배열을 DTO에서 직접 가져오도록 수정 필요
+
+    // 좌석 ID 배열을 DTO의 개별 필드에 매핑
+    if (seats.size() > 0) resInfo.setSeat1_id(seats.size() > 0 ? seats.get(0) : null);
+    if (seats.size() > 1) resInfo.setSeat2_id(seats.size() > 1 ? seats.get(1) : null);
+    if (seats.size() > 2) resInfo.setSeat3_id(seats.size() > 2 ? seats.get(2) : null);
+    if (seats.size() > 3) resInfo.setSeat4_id(seats.size() > 3 ? seats.get(3) : null);
+    if (seats.size() > 4) resInfo.setSeat5_id(seats.size() > 4 ? seats.get(4) : null);
+    if (seats.size() > 5) resInfo.setSeat6_id(seats.size() > 5 ? seats.get(5) : null);
+    if (seats.size() > 6) resInfo.setSeat7_id(seats.size() > 6 ? seats.get(6) : null);
+    if (seats.size() > 7) resInfo.setSeat8_id(seats.size() > 7 ? seats.get(7) : null);
+
+    // 좌석 ID들이 제대로 매핑되었는지 확인
+    logger.debug("seat1_id: " + resInfo.getSeat1_id());
+    logger.debug("seat2_id: " + resInfo.getSeat2_id());
+    logger.debug("seat3_id: " + resInfo.getSeat3_id());
+    logger.debug("seat4_id: " + resInfo.getSeat4_id());
+    logger.debug("seat5_id: " + resInfo.getSeat5_id());
+    logger.debug("seat6_id: " + resInfo.getSeat6_id());
+    logger.debug("seat7_id: " + resInfo.getSeat7_id());
+    logger.debug("seat8_id: " + resInfo.getSeat8_id());
+	 // 좌석 ID들을 하나씩 확인하면서 비어있지 않은 좌석만 처리
+//    String[] seats = {resInfo.getSeat1_id(), resInfo.getSeat2_id(), resInfo.getSeat3_id(),
+//                      resInfo.getSeat4_id(), resInfo.getSeat5_id(), resInfo.getSeat6_id(),
+//                      resInfo.getSeat7_id(), resInfo.getSeat8_id()};
+//
+//    for (String seatId : seats) {
+//        if (seatId != null && !seatId.isEmpty()) {
+//            logger.debug("Processing seat ID: " + seatId);
+//            // 각 좌석 ID에 대한 처리 로직 작성
+//        }
+//    }
 		
 	stadService.updateReser(resInfo);
 	
