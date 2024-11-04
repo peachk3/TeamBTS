@@ -38,9 +38,6 @@
 <%--     <h3>game ID: ${game_id }</h3> --%>
 
 
-    <div class="zone">
-    	구역 선택
-    </div>
 	<div class="image-map">
 		<img src="${pageContext.request.contextPath}/resources/img/stadiumZone.PNG" usemap="#image-map" alt="Stadium Map">
 

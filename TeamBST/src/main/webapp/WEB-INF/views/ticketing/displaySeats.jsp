@@ -38,17 +38,18 @@
 <%-- 			${seats } -> booked_at null 출력됨 해결해야 함 ** --%>
 			<!-- 좌석 배치 -->
 			<div class="seats-grid">
-				<c:forEach var="seatB" items="${seats }">
+				<c:forEach var="seatB" items="${seats }" varStatus="status">
+					<c:set var="seatBook" value="${seatBook }"/>
 						<div class="seat" 
 						data-row="${seatB.seatList[0].seat_row}" 
 						data-num="${seatB.seatList[0].seat_num }" 
 						data-id="${seatB.seatList[0].seat_id }" 
-						data-booked="${seatB.booked_at }">
+						data-booked="${seatBook[status.index].booked_at }">
 						 ${seatB.seatList[0].seat_row }${seatB.seatList[0].seat_num }</div>
 						 	<input type="hidden" name="seat_row" value="${seatB.seatList[0].seat_row }"> 
 							<input type="hidden" name="seat_num" value="${seatB.seatList[0].seat_num }">
 							<input type="hidden" name="seat_id" value="${seatB.seatList[0].seat_id }">
-							<input type="hidden" name="booked_at" value="${seatB.booked_at }">
+							<input type="hidden" name="booked_at" value="${seatBook[status.index].booked_at }">
 				</c:forEach>
 			</div>
 		</div>
@@ -111,9 +112,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	     seat.classList.add('selected');
 	
 	     // 10분 후 자동으로 선택 해제
-	     setTimeout(() => {
-	         deselectSeat(seat);
-	     }, 10 * 60 * 1000); // 10분을 밀리초로 변환
+// 	     setTimeout(() => {
+// 	         deselectSeat(seat);
+// 	     }, 10 * 60 * 1000); // 10분을 밀리초로 변환
 	 }
 	}
 
@@ -127,24 +128,60 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 각 좌석에 대한 초기 설정
     seats.forEach(function(seat) {
-        var bookedAt = Number(seat.getAttribute('data-booked'));
+    	
+    	 var bookedAt = seat.getAttribute('data-booked');
+    	    
+    	    // bookedAt이 숫자인지 확인
+    	    if (bookedAt === null || bookedAt.trim() === "") {
+    	        console.log("data-booked 값이 설정되지 않았습니다.");
+    	        return; // 값을 사용할 수 없으므로 종료
+    	    }
+
+    	    bookedAt = Number(bookedAt);
+    	    if (isNaN(bookedAt)) {
+    	        console.log("data-booked 값이 숫자가 아닙니다:", bookedAt);
+    	        return; // NaN일 경우 추가 로직 실행 방지
+    	    }
+
+    	    // 이후 bookedAt이 숫자인 경우에만 로직 실행
+    	    console.log("예약 상태:", bookedAt);
+    	    // 예약 처리 로직
+    	    
+       // var bookedAt = Number(seat.getAttribute('data-booked'));
         if (bookedAt === 1) {
             seat.classList.add('booked-seat');  // 이미 예약된 좌석 스타일 추가
             seat.setAttribute('disabled', 'disabled');  // 예약된 좌석 비활성화
+            seat.addEventListener('click', function() {
+                alert('이미 선택된 좌석입니다.');
+            });
+        }else{
+        	selectOrDeselect(seat);  // 각 좌석에 클릭 이벤트 추가
         }
-        selectOrDeselect(seat);  // 각 좌석에 클릭 이벤트 추가
+        
     });
 
     // 좌석 선택 또는 해제 처리 함수
     function selectOrDeselect(seat) {
         seat.addEventListener('click', function() {
-            if (seat.classList.contains('booked-seat')) {
-                // 예약된 좌석을 클릭했을 때의 처리
-                console.log('이 좌석은 이미 예약되었습니다.');
-                return;  // 예약된 좌석이면 함수 종료
-            }
+//             if (seat.classList.contains('booked-seat')) {
+//                 // 예약된 좌석을 클릭했을 때의 처리
+//                 console.log('이 좌석은 이미 예약되었습니다.');
+//                 return;  // 예약된 좌석이면 함수 종료
+//             }
 
-            // 클릭 시 선택된 상태를 토글
+//             // 클릭 시 선택된 상태를 토글
+//             seat.classList.toggle('selected');
+
+//             // 선택된 좌석 배열 업데이트
+//             if (seat.classList.contains('selected')) {
+//                 selectedSeats.push(seat);
+//             } else {
+//                 selectedSeats = selectedSeats.filter(selectedSeat => selectedSeat !== seat);
+//             }
+
+//             updateSelectedSeatsList();
+//         });
+        	// 클릭 시 선택된 상태를 토글
             seat.classList.toggle('selected');
 
             // 선택된 좌석 배열 업데이트

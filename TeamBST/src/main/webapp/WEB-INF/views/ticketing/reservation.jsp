@@ -280,7 +280,7 @@
    <p>Zone ID : ${zone_id }</p>   --%>
 <%--    <p>Seat ID : ${param.seatIds }</p> --%>
 
-    <% String[] seatIds = request.getParameterValues("seatIds"); %>
+    <% String[] seatIds = request.getParameterValues("seatIds2"); %>
     <% for (String seatId : seatIds) { %>
 <%--       <p>Seat ID: <%= seatId %><p> --%>
     <% } %>   
@@ -298,21 +298,21 @@
       // 추출한 쿼리 문자열을 '&'로 분리하여 배열로 만듦
       const paramsArray = queryString.split('&');
       
-      let seatIds = [];
+      let seatIds2 = [];
       
       // 각 파라미터를 순회하며 seatIds 파라미터를 찾아 값을 추출
       paramsArray.forEach(param => {
-          if (param.startsWith('seatIds=')) {
+          if (param.startsWith('seatIds2=')) {
               // 'seatIds='로 시작하는 파라미터의 값을 추출
               const value = param.split('=')[1];
               // 추출한 값을 ','로 분리하여 seatIds 배열에 추가
-              seatIds.push(...value.split(','));
+              seatIds2.push(...value.split(','));
           }
       });
       
       // seatIds 배열의 길이를 출력하여 seatIds의 개수를 얻음
-      const seatCount = seatIds.length;
-      console.log('seatIds의 수:', seatCount);
+      const seatCount = seatIds2.length;
+      console.log('seatIds2의 수:', seatCount);
       document.getElementById('seat-count').innerText = ' '+ seatCount;
 
       // ***** 여기까지 문제 없음 ******* 

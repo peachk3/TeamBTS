@@ -79,11 +79,11 @@ public class StadiumDAOImpl implements StadiumDAO {
 
 	// 좌석 정보 업데이트 (booked_at = 1로 업데이트)
 	@Override
-	public void postSelectedSeat(Integer game_id, String seat_id) throws Exception{
+	public void postSelectedSeat(Integer game_id, List<String> seatIds2) throws Exception{
 		logger.debug("postSelectedSeat(String game_id, String seat_id) 호출");
 		Map<Object, Object> params = new HashMap<>();
 	    params.put("game_id", game_id);
-	    params.put("seat_id", seat_id);
+	    params.put("seatIds2", seatIds2);
 		sqlSession.update(NAMESPACE + "postSelectedSeat" , params);
 	}
 	
@@ -108,13 +108,13 @@ public class StadiumDAOImpl implements StadiumDAO {
 
 
 	
-//	@Override
-//	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id) throws Exception{
-//		logger.debug("getSeatBooked(String zone_id) 호출");
-//		Map<Object, Object> params = new HashMap<>();
-//		params.put("zone_id", zone_id);
-//	    params.put("game_id", game_id);
-//		return sqlSession.selectList(NAMESPACE + "getSeatBooked", params);
-//	}
+	@Override
+	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id) throws Exception{
+		logger.debug("getSeatBooked(String zone_id) 호출");
+		Map<Object, Object> params = new HashMap<>();
+	    params.put("game_id", game_id);
+	    params.put("zone_id", zone_id);
+		return sqlSession.selectList(NAMESPACE + "getSeatBooked", params);
+	}
 	
 }

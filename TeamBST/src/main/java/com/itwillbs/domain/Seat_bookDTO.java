@@ -11,5 +11,7 @@ public class Seat_bookDTO {
 	private Integer game_id;
 	private Integer booked_at;
 	
+	private List<String> seatIds2;
+	
 	private List<SeatDTO> seatList;
 }

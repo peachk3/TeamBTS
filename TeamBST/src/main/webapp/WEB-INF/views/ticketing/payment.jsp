@@ -427,11 +427,11 @@ console.log(zoneId);
                         $.ajax({
                             url: '/ticketing/payment',
                             method: 'POST',
-                            contentType: 'application/json',
+                            contentType: 'application/json; charset=utf-8',
                             data: JSON.stringify(requestData),
                             success: function(response) {
                                 alert('결제가 성공적으로 완료되었습니다.');
-                                window.location.href = response;
+                                window.location.href = "/mypage/mypage";
                             },
                             error: function(xhr, status, error) {
                                 alert('결제 처리 중 오류가 발생했습니다.');
