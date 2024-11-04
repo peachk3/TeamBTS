@@ -1,5 +1,7 @@
 package com.itwillbs.domain;
 
+import java.util.List;
+
 /*
   게시판 카테고리 설정을 위해 생성된 객체
   - 판매상태, 구장
@@ -13,7 +15,9 @@ public class Category {
 	private String ticket_status;
 	private String boardTable_id;
 	private String user_id;
+	private String game_id;
 	
+	private List<Reservation_infoDTO> seatList;
 	
 	public Category(){
 		this.sale_status = "ALL";
@@ -61,7 +65,23 @@ public class Category {
 	@Override
 	public String toString() {
 		return "Category [sale_status=" + sale_status + ", stad_id=" + stad_id + ", ticket_status=" + ticket_status
-				+ ", boardTable_id=" + boardTable_id + ", user_id=" + user_id + "]";
+				+ ", boardTable_id=" + boardTable_id + ", user_id=" + user_id + ", game_id=" + game_id +", seatList=" + seatList + "]";
+	}
+
+	public List<Reservation_infoDTO> getSeatList() {
+		return seatList;
+	}
+
+	public void setSeatList(List<Reservation_infoDTO> seatList) {
+		this.seatList = seatList;
+	}
+
+	public String getGame_id() {
+		return game_id;
+	}
+
+	public void setGame_id(String game_id) {
+		this.game_id = game_id;
 	}
 
 	

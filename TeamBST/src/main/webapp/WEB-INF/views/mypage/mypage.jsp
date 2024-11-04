@@ -53,7 +53,7 @@
                    </a>
                  </li>
                  <li class="nav-item" id="ticket">
-                   <a class="nav-link" href="#nov21" data-toggle="pill">
+                   <a class="nav-link"  href="#nov21" data-toggle="pill">
                      MY 티켓
                    </a>
                  </li>
@@ -223,13 +223,23 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 <script>
-   
    $(document).ready(function(){
-      
+	   
       $("#ticket").click(function(){
          $('ul#ticket_table li.schedule-details').remove();
          getTicketList();
       });
+      
+      $("#Past").click(ticketPastStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
+      $("#Upcoming").click(ticketUpcomingStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
+      
+      $("#write").click(function(){
+         $('ul#write_table li.schedule-details').remove();
+         getBoardList();
+      });
+      
+      $("#boardTable_id").change(getBoardList);
+      
       
       $("#Past").click(ticketPastStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
       $("#Upcoming").click(ticketUpcomingStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
@@ -261,7 +271,7 @@
            url : "/mypage/myticket",
            type : "post",
            data : JSON.stringify({ ticket_status : ticket_status}),
-           contentType: 'application/json; charset=utf-8',
+           contentType: 'application/json',
            dataType : "json",
            success : function(data){
 //               alert("JTBC 다녀옴");
@@ -269,8 +279,8 @@
               
               // body 태그에 내용 추가
               $(data).each(function(idx, item){
-                 
-                 $('#ticket_table').append('<li class="schedule-details"><div class="block"><div class="time"><span class="time">'+ item.game_date +'</span></div><div class="time"><span class="time">'+ item.game_time +'</span></div><div class="venue"><span class="time">'+ item.stad_id +'</span></div><div class="venue" style="margin-left:180px"><span class="time">'+ item.home_team_id +'</span></div><div class="venue" style="margin-left:180px">'+ item.away_team_id +'</div></div></li>')
+            
+                 $('#ticket_table').append('<li class="schedule-details"><div class="block"><div class="time"><span class="time">'+ item.game_date +'</span></div><div class="time"><span class="time">'+ item.game_time +'</span></div><div class="time"><span class="time">'+ item.stad_id +'</span></div><div class="time"><span class="time">'+ item.home_team_id +'</span></div><div class="time"><span class="time">'+ item.away_team_id + '</span></div></div></li>')
                  
               });
            },

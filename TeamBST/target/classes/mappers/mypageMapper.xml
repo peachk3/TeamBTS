@@ -156,7 +156,58 @@
    <!-- 내 예매 내역 -->
    <select id="ticketList" resultType="com.itwillbs.domain.Game_scheduleDTO">
 		<![CDATA[
-			select game_date, game_time, stad_id, home_team_id, away_team_id
+			SELECT 
+			    ri.game_id,
+			    gs.game_date,
+			    gs.game_time,
+			    gs.stad_id,
+			    gs.home_team_id,
+			    gs.away_team_id,
+			    GROUP_CONCAT(ri.seat1_id ORDER BY ri.seat1_id) AS seat1_id,
+			    GROUP_CONCAT(ri.seat2_id ORDER BY ri.seat2_id) AS seat2_id,
+			    GROUP_CONCAT(ri.seat3_id ORDER BY ri.seat3_id) AS seat3_id,
+			    GROUP_CONCAT(ri.seat4_id ORDER BY ri.seat4_id) AS seat4_id,
+			    GROUP_CONCAT(ri.seat5_id ORDER BY ri.seat5_id) AS seat5_id,
+			    GROUP_CONCAT(ri.seat6_id ORDER BY ri.seat6_id) AS seat6_id,
+			    GROUP_CONCAT(ri.seat7_id ORDER BY ri.seat7_id) AS seat7_id,
+			    GROUP_CONCAT(ri.seat8_id ORDER BY ri.seat8_id) AS seat8_id
+			FROM reservation_info ri
+			JOIN game_schedule gs ON ri.game_id = gs.game_id 
+			JOIN user u ON ri.user_id = u.user_id 
+			WHERE u.user_id = #{user_id} 
+			  AND (
+			    (#{ticket_status} = 'Upcoming' AND (gs.game_date > CURDATE() OR (gs.game_date = CURDATE() AND gs.game_time > CURTIME())))
+			    OR
+			    (#{ticket_status} = 'Past' AND (gs.game_date < CURDATE() OR (gs.game_date = CURDATE() AND gs.game_time < CURTIME())))
+			  )
+			GROUP BY ri.game_id, gs.game_date, gs.game_time, gs.stad_id, gs.home_team_id, gs.away_team_id;
+
+		]]>
+  	</select>
+  	
+  	
+  	<select id="getReserSeatList" resultType="com.itwillbs.domain.Reservation_infoDTO">
+  		SELECT ri.seat1_id, ri.seat2_id 
+		FROM reservation_info ri
+		JOIN game_schedule gs ON ri.game_id = gs.game_id 
+		JOIN user u ON ri.user_id = u.user_id 
+		WHERE u.user_id = #{user_id}
+	</select>
+  			
+<!-- 			SELECT ri.game_id, gs.game_date, gs.game_time, gs.stad_id, gs.home_team_id, gs.away_team_id -->
+<!-- 			FROM reservation_info ri -->
+<!-- 			JOIN game_schedule gs ON ri.game_id = gs.game_id  -->
+<!-- 			JOIN user u ON ri.user_id = u.user_id  -->
+<!-- 			WHERE u.user_id = #{user_id} -->
+<!-- 			  AND ( -->
+<!-- 			    (#{ticket_status} = 'Upcoming' AND (gs.game_date > CURDATE() OR (gs.game_date = CURDATE() AND gs.game_time > CURTIME())))  -->
+<!-- 			    OR  -->
+<!-- 			    (#{ticket_status} = 'Past' AND (gs.game_date < CURDATE() OR (gs.game_date = CURDATE() AND gs.game_time < CURTIME())))  -->
+<!-- 			  ) -->
+<!-- 			GROUP BY ri.game_id -->
+  	
+  	
+  	<!-- select ri1.game_id, game_date, game_time, stad_id, home_team_id, away_team_id
 			from (reservation_info ri1 join game_schedule gs
 			on ri1.game_id = gs.game_id), 
 			(reservation_info ri2 join user u
@@ -167,9 +218,7 @@
 						when #{ticket_status} = 'Upcoming' then (gs.game_date > curdate()or(gs.game_date = curdate() and gs.game_time > curtime()))
 						when #{ticket_status} = 'Past' then (gs.game_date < curdate()or(gs.game_date = curdate() and gs.game_time < curtime()))
 					end
-				)
-		]]>
-  	</select>
+				) -->
   
 
 </mapper>
