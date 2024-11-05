@@ -625,12 +625,34 @@ select.form-control:not([size]):not([multiple]) {
   
 }
 
+.btn-main-mdd {
+  padding: 13px 30px;
+  border-radius: 0;
+  background: white;
+  color: #aac1f9;
+  outline: none;
+  font-size: 0.9375rem;
+  border: 1px solid white;
+  float: right !important;
+  
+}
+
+.btn-main-mdd:hover{
+	color: white;
+	background: #aac1f9;
+}
+
 .btn-main-md:hover {
   color: #fff;
   background: #e65c00;
 }
 
 .btn-main-md:focus {
+  color: #fff;
+  box-shadow: none;
+}
+
+.btn-main-mdd:focus {
   color: #fff;
   box-shadow: none;
 }

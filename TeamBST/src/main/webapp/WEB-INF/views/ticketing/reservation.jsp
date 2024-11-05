@@ -251,8 +251,8 @@
       </div>
    </div>
    <div class="reserve_btn">
-      <button type="submit" class="btn-main-md" onclick="goBack()">이전으로</button>
       <button type="button" class="btn-main-md" id="payment">결제하기</button>
+      <button type="submit" class="btn-main-md" onclick="goBack()">이전으로</button>
       <form action="/ticketing/payment" method="get" id="amountForm">
          <input type="hidden" name="totalAmount" id="hidden-total-amount">
          <input type="hidden" name="totalPrice" id="hidden-total-price">

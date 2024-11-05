@@ -3,10 +3,24 @@
 <%@ include file="../include/adminheader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<style>
+body{
+	background-color: white;
+	text-align: center;
+}
+th{
+	text-align: center;
+}
+.box-body{
+	margin-left: 30px;
+	margin-right: 30px;
+}
+</style>
+<body>
+<main>
 <section class="section speakers bg-speaker overlay-lighter">
 
-	<div class="box-body">
+	<div class="box-body" style="background-color: white">
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
@@ -30,6 +44,7 @@
 </div>
 
 </section>
+</main>
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>

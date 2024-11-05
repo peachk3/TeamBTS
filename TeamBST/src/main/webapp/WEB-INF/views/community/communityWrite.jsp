@@ -2,6 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
+<style>
+
+
+</style>
+
+<body>
+<main>
 	<!--begin::Card-->
 	<div class="card card-custom gutter-b example example-compact">
 		<div class="card-header">
@@ -58,14 +65,15 @@
 
 			
 			<div class="card-footer">
-				<button type="submit" class="btn btn-primary mr-2">Submit</button>
+				<button type="submit" class="btn btn-primary mr-2">제출</button>
 				<button type="reset" class="btn btn-secondary"
-					onclick="location.href='/community/community'">Cancel</button>
+					onclick="location.href='/community/community'">취소</button>
 			</div>
 		</form>
 		<!--end::Form-->
 	</div>
 	<!--end::Card-->
+</main>
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>

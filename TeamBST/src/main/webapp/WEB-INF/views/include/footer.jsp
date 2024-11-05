@@ -1,8 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+html, body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
 
+main {
+    flex: 1; /* 메인 콘텐츠가 남은 공간을 차지하도록 설정 */
+}
 
+.subfooter {
+    position: relative;
+    padding: 10px 0;
+    width: 100%;
+    }
+    
+
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <!--============================

@@ -20,7 +20,7 @@
 </head>
 
 <body>
-
+<main>
 <section class="page-title bg-title overlay-dark">
 	<div class="container">
 		<div class="row">
@@ -85,7 +85,7 @@
 			</tr>
 		</c:forEach> --%>
 
-
+</main>
 	<script>
 	$(document).ready(function() {
 	    getMemberList();
