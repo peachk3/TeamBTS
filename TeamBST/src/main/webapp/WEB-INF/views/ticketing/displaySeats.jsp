@@ -69,8 +69,8 @@
  <%-- 		${seats } --%> 
 <%-- 	</c:forEach> --%>
 		<div class="reserve_btn">
-		<button type="button" class="btn_goback" onclick="goBack()">이전으로</button>
-        <button type="submit" class="btn_reservation" onclick="handleReservation(event)">다음으로</button>
+        <button type="submit" class="btn-main-md" onclick="handleReservation(event)">다음으로</button>
+		<button type="submit" class="btn-main-md" onclick="goBack()">이전으로</button>
 		</div>	
 </div>
 </section>		
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const seats = document.querySelectorAll('.seat');  // 모든 좌석 요소 선택
     const selectedSeatsList = document.getElementById('selected-seats-list');  // 선택된 좌석 목록을 표시할 요소
     const noSeatsMessage = document.getElementById('no-seats');  // 좌석이 선택되지 않았을 때 표시할 메시지 요소
-    const reserveButton = document.querySelector('.btn_reservation');  // 예약 버튼 요소
+    const reserveButton = document.querySelector('.btn-main-md');  // 예약 버튼 요소
 
     // 선택된 좌석을 담을 배열
     let selectedSeats = [];
