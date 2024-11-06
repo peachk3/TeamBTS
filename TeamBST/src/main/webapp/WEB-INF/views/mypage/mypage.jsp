@@ -173,7 +173,7 @@
                  </div>
                  <div class="tab-pane fade schedule-item" id="nov21">
                  <button type="button" class="btn btn-main-md" id="Upcoming" value="Upcoming">예정 경기</button>
-                    <button type="button" class="btn btn-main-md" id="Past" value="Past">지난 경기</button>
+                    <button type="button" class="btn btn-white-md" id="Past" value="Past">지난 경기</button>
                     <br>
                     <br>
                     <br>

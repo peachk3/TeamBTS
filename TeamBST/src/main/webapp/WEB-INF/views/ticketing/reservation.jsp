@@ -37,7 +37,7 @@
 
 
 <body>
-
+<main>
 <section class="section schedule">
 <div class="container">
    <div class="reserve_content">
@@ -226,12 +226,12 @@
                      <td><button id="myBtn">상세보기</button>
                         <div id="myModal" class="modal">
                            <div class="modal-content">
-                              <span class="close" style="margin-bottom:10px;"> &times;</span>
+                              <span class="close" style="margin-bottom:10px; text-align: right;"> &times;</span>
                                <h5> 취소 수수료 상세 보기 </h5>
                               <p>
                               * 예매취소 안내(경기 당일 3시간 전까지 취소 가능)
                               <br>
-                              * 예매 당일 취소 = 수수료 부과 없음
+                              * 예매 당일 취소 = 수수료 부과 없음 <br>
                               * 본인이 예매한 다음 날(0시 기준)부터 경기 당일 3시간 전 취소 = 예매 수수료 + 취소 수수료 제외한 나머지 환불 이후 취소 불가 <br>
                               * 예매한 내역의 부분 취소 및 날짜, 좌석변경, 권종변경은 불가합니다.
                               </p>
@@ -252,7 +252,7 @@
    </div>
    <div class="reserve_btn">
       <button type="button" class="btn-main-md" id="payment">결제하기</button>
-      <button type="submit" class="btn-main-md" onclick="goBack()">이전으로</button>
+      <button type="submit" class="btn-white-md" onclick="goBack()">이전으로</button>
       <form action="/ticketing/payment" method="get" id="amountForm">
          <input type="hidden" name="totalAmount" id="hidden-total-amount">
          <input type="hidden" name="totalPrice" id="hidden-total-price">
@@ -260,6 +260,7 @@
    </div>
 </div>
 </section>
+</main>
 
    <%-- 
 //     String zone_ty = request.getParameter("zone_ty");

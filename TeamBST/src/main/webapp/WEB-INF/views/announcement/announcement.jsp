@@ -5,10 +5,6 @@
 <%@ include file="../include/header.jsp"%>
 
 <style>
-/* .col-12 { */
-/* 	margin-top: -50px; */
-/* } */
-
 
 .headings, .schedule-details {
 	display: flex;
@@ -66,7 +62,7 @@
 							<div class="tab-pane fade show active schedule-item" id="nov20">
 								<button type="button" class="btn btn-main-md"
 									onclick="location.href='/announcement/announcement'" style="width:125px;">공지사항</button>
-								<button type="button" class="btn btn-main-md"
+								<button type="button" class="btn btn-white-md"
 									onclick="location.href='/announcement/bulletin'">문의게시판</button>
 									<br>
 									<br>

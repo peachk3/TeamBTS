@@ -613,33 +613,20 @@ select.form-control:not([size]):not([multiple]) {
   box-shadow: none;
 }
 
+.reserve_btn {
+	text-align: center;
+}
+
 .btn-main-md {
-  padding: 13px 30px;
+  padding: 13px 25px;
   border-radius: 0;
   background: #aac1f9;
   color: #fff;
   outline: none;
   font-size: 0.9375rem;
-  border: 1px solid white;
+  border: 1px solid #aac1f9;
   float: right !important;
   
-}
-
-.btn-main-mdd {
-  padding: 13px 30px;
-  border-radius: 0;
-  background: white;
-  color: #aac1f9;
-  outline: none;
-  font-size: 0.9375rem;
-  border: 1px solid white;
-  float: right !important;
-  
-}
-
-.btn-main-mdd:hover{
-	color: white;
-	background: #aac1f9;
 }
 
 .btn-main-md:hover {
@@ -647,12 +634,8 @@ select.form-control:not([size]):not([multiple]) {
   background: #e65c00;
 }
 
-.btn-main-md:focus {
-  color: #fff;
-  box-shadow: none;
-}
 
-.btn-main-mdd:focus {
+.btn-main-md:focus {
   color: #fff;
   box-shadow: none;
 }
@@ -692,10 +675,15 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .btn-white-md {
-  background: #fff;
-  color: #222222;
-  padding: 15px 40px;
+  padding: 13px 25px;
   border-radius: 0;
+  background: white;
+  color: #aac1f9;
+  outline: none;
+  font-size: 0.9375rem;
+  border: 1px solid #aac1f9;
+  float: right !important;
+  margin-right: 5px;
 }
 
 .btn-white-md:hover {
@@ -3424,9 +3412,9 @@ ul.pagination li {
 ul.pagination li a {
   font-size: 16px;
   padding: 0;
-  height: 50px;
-  width: 50px;
-  line-height: 50px;
+  height: 35px;
+  width: 35px;
+  line-height: 35px;
   text-align: center;
   border-color: transparent;
   color: #848484;

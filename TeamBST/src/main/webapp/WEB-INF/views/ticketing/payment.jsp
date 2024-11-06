@@ -29,29 +29,29 @@
 
 <section class="section schedule">
 <div class="container">
-   <div class="modal1" id="termsModal">
-      <div class="modal1-content">
-         <span class="close1" onclick="closeModal1()">&times;</span>
-         <h5>결제 약관 동의</h5>
-         <table>
-            <tr>
-               <td><p>전자금융거래 이용약관</p></td>
-               <td></td>
-               <td><p>개인정보 수집 및 이용 안내</p></td>
-            </tr>
-            <tr>
-               <td><p>고유식별정보 수집 및 이용안내</p></td>
-               <td></td>
-               <td><p>개인정보 제공 및 위탁안내</p></td>
-            </tr>
-         </table>
+<!--    <div class="modal1" id="termsModal"> -->
+<!--       <div class="modal1-content"> -->
+<!--          <span class="close1" onclick="closeModal1()">&times;</span> -->
+<!--          <h5>결제 약관 동의</h5> -->
+<!--          <table> -->
+<!--             <tr> -->
+<!--                <td><p>전자금융거래 이용약관</p></td> -->
+<!--                <td></td> -->
+<!--                <td><p>개인정보 수집 및 이용 안내</p></td> -->
+<!--             </tr> -->
+<!--             <tr> -->
+<!--                <td><p>고유식별정보 수집 및 이용안내</p></td> -->
+<!--                <td></td> -->
+<!--                <td><p>개인정보 제공 및 위탁안내</p></td> -->
+<!--             </tr> -->
+<!--          </table> -->
 
-         <label><input type="checkbox" id="termsCheckbox" value="Y"> 위의 약관에 동의하시겠습니까? </label>
-         <div>
-            <button type="button" id="modalButton" onclick="agreeTerms()">동의하기</button>
-         </div>
-      </div>
-   </div>
+<!--          <label><input type="checkbox" id="termsCheckbox" value="Y"> 위의 약관에 동의하시겠습니까? </label> -->
+<!--          <div> -->
+<!--             <button type="button" id="modalButton" onclick="agreeTerms()">동의하기</button> -->
+<!--          </div> -->
+<!--       </div> -->
+<!--    </div> -->
 
    <div class="reserve_content">
       <div class="reserve_left">
@@ -215,12 +215,12 @@
                      <td><button id="myBtn">상세보기</button>
                         <div id="myModal" class="modal">
                            <div class="modal-content">
-                              <span class="close"> &times;</span>
+                              <span class="close" style="margin-bottom:10px; text-align: right;"> &times;</span>
                                <h5> 취소 수수료 상세 보기 </h5>
                               <p>
                               * 예매취소 안내(경기 당일 3시간 전까지 취소 가능)
                               <br>
-                              * 예매 당일 취소 = 수수료 부과 없음
+                              * 예매 당일 취소 = 수수료 부과 없음 <br>
                               * 본인이 예매한 다음 날(0시 기준)부터 경기 당일 3시간 전 취소 = 예매 수수료 + 취소 수수료 제외한 나머지 환불 이후 취소 불가 <br>
                               * 예매한 내역의 부분 취소 및 날짜, 좌석변경, 권종변경은 불가합니다.
                               </p>
@@ -240,8 +240,8 @@
       </div>
    </div>
    <div class="reserve_btn">
-      <button type="submit" class="btn" onclick="goBack()" style="background-color:transparent; border: 1px solid black;">이전으로</button>      
-      <button type="button" class="btn">결제하기</button> <!-- 결제하기 버튼 생성 -->
+      <button type="submit" class="btn-white-md" onclick="goBack()">이전으로</button>      
+<!--       <button type="button" class="btn">결제하기</button> 결제하기 버튼 생성 -->
    </div>
 </div>
 </section>
@@ -260,33 +260,33 @@ var totalPrice = localStorage.getItem('totalPrice');
 document.getElementById('total-price').textContent = totalPrice;
 
 //JavaScript로 모달 보이기/감추기 및 동작 정의
-const modal1 = document.getElementById('termsModal');
+// const modal1 = document.getElementById('termsModal');
 
-// 모달 열기
-function openModal1() {
-  modal1.style.display = 'block';
-}
+// // 모달 열기
+// function openModal1() {
+//   modal1.style.display = 'block';
+// }
 
-// 모달 닫기
-function closeModal1() {
-  modal1.style.display = 'none';
-}
+// // 모달 닫기
+// function closeModal1() {
+//   modal1.style.display = 'none';
+// }
 
-const checkbox = document.getElementById('termsCheckbox');
-const submitButton = document.getElementById('modalButton');
+// const checkbox = document.getElementById('termsCheckbox');
+// const submitButton = document.getElementById('modalButton');
 
-checkbox.addEventListener('change', function() {
-    submitButton.disabled = !this.checked;
-});
+// checkbox.addEventListener('change', function() {
+//     submitButton.disabled = !this.checked;
+// });
 
-// 약관 동의 처리
-function agreeTerms() {
-  // 여기에 동의를 처리하는 로직을 추가할 수 있습니다.
-  alert('결제 약관에 동의하셨습니다.');
-  closeModal1(); // 동의 후 모달을 닫습니다.
-}
+// // 약관 동의 처리
+// function agreeTerms() {
+//   // 여기에 동의를 처리하는 로직을 추가할 수 있습니다.
+//   alert('결제 약관에 동의하셨습니다.');
+//   closeModal1(); // 동의 후 모달을 닫습니다.
+// }
 
-window.onload = openModal1;
+// window.onload = openModal1;
 
 const currentUrl = window.location.href;
 
@@ -387,7 +387,6 @@ console.log(zoneId);
     });
     
     
-    
     function goBack() {
         history.back();
     }
@@ -400,7 +399,7 @@ console.log(zoneId);
                     pg: 'kakaopay',
                     pay_method: 'card',
                     merchant_uid: 'merchant_' + new Date().getTime(),
-                    name: 'ticket',
+                    name: '야모해 ticket',
                     amount: totalAmount,
                     buyer_email: userEmail,
                     buyer_name: userName,
