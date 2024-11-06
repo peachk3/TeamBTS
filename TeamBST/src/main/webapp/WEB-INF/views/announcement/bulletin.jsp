@@ -101,7 +101,7 @@
 							<div class="tab-pane fade show active schedule-item" id="nov20">
 								<button type="button" class="btn btn-main-md"
 									onclick="location.href='/announcement/announcement'">공지사항</button>
-								<button type="button" class="btn btn-main-md"
+								<button type="button" class="btn btn-white-md" style=""
 									onclick="location.href='/announcement/bulletin'">문의게시판</button>
 									<br>
 									<br>
@@ -201,7 +201,7 @@
 								</c:if>
 							</ul>
 						</div>
-						<button class="float-right" onclick="location.href='/announcement/bulletinWrite'">글쓰기</button>
+						<button class="btn-main-md"  onclick="location.href='/announcement/bulletinWrite'">글쓰기</button>
 					</div>
 				</div>
 			</div>

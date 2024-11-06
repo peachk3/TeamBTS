@@ -82,6 +82,7 @@
 <!-- </form>	 -->
 
 <body>
+<main>
 <!-- 본문 내용 출력 -->
 <section class="section schedule">
     <div class="container">
@@ -102,10 +103,11 @@
 
                         <!-- 버튼 그룹 -->
                         <div class="buttons">
-                            <button class="btn btn-main-md" onclick="location.href='/community/communityModify?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }'">수정</button>
+                            <button class="btn btn-main-md" style="margin-right: 5px;" onclick="location.href='/community/communityModify?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }'">수정</button>
+                           
                             <form action="/community/communityDelete?post_id=${post.post_id }&post_writer_id=${post.post_writer_id }" method="post"  onsubmit="return confirmDelete()" style="display:inline;">
                                 <input type="hidden" name="post_id">
-                                <button class="btn btn-main-md" type="submit">삭제</button>
+                                <button class="btn btn-white-md" type="submit">삭제</button>
                             </form>
                             
                             
@@ -130,7 +132,7 @@
                                 <p style="margin-bottom: 10px"><strong>답변</strong></p>
                                 <textarea name="comm_cont" placeholder="답변 내용을 입력하세요..."></textarea>
                                 <div class="buttons">
-                                    <button class="btn btn-main-md"  onclick="window.history.back();">취소</button>
+                                    <button class="btn btn-white-md"  onclick="window.history.back();">취소</button>
                                     <button class="btn btn-main-md"  type="submit">등록</button>
                                 </div>
                             </form>
@@ -156,7 +158,7 @@
            %>
         <% } %>
     </script>
-
+</main>
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>
