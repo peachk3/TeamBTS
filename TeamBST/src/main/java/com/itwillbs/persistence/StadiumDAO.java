@@ -1,5 +1,6 @@
 package com.itwillbs.persistence;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +35,14 @@ public interface StadiumDAO {
 	public List<Seat_priceDTO> getSeatChildPrice(@RequestParam("zone_id") String zone_id) throws Exception;
 
 	// 좌석 정보 업데이트 (booked_at = 1로 업데이트)
-	public void postSelectedSeat(@RequestParam("game_id") Integer game_id, List<String> seatIds2) throws Exception;
+	public void postSelectedSeat(@RequestParam("game_id") Integer game_id, List<String> seatIds2, Integer booked_at) throws Exception;
 
+	// 
+	public void setReservationTime(@RequestParam("game_id") Integer game_id, List<String> seatIds2, LocalDateTime reservedAt) throws Exception;
+	
+	//
+	public void updateExpiredRes(String reserved_at) throws Exception;
+	
 	// zone -> seat 출력
 	public List<SeatDTO> getSeatsId(@RequestParam("game_id") String game_id, @RequestParam("zone_id") String zone_id) throws Exception;
 
@@ -44,6 +51,10 @@ public interface StadiumDAO {
 
 	// 예매 
 	public void insertReservation(Reservation_infoDTO resInfo) throws Exception;
+
+
+
+
 
 	
     

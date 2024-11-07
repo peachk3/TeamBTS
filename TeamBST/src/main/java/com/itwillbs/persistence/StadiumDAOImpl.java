@@ -1,5 +1,7 @@
 package com.itwillbs.persistence;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,16 +79,41 @@ public class StadiumDAOImpl implements StadiumDAO {
 		return sqlSession.selectList(NAMESPACE + "getSeatChildPrice", zone_id);
 	}
 
-	// 좌석 정보 업데이트 (booked_at = 1로 업데이트)
+	// 좌석 정보 업데이트 (booked_at = 2로 업데이트)
 	@Override
-	public void postSelectedSeat(Integer game_id, List<String> seatIds2) throws Exception{
+	public void postSelectedSeat(Integer game_id, List<String> seatIds2, Integer booked_at) throws Exception{
 		logger.debug("postSelectedSeat(String game_id, String seat_id) 호출");
 		Map<Object, Object> params = new HashMap<>();
 	    params.put("game_id", game_id);
 	    params.put("seatIds2", seatIds2);
+	    params.put("booked_at", booked_at);
 		sqlSession.update(NAMESPACE + "postSelectedSeat" , params);
 	}
 	
+	@Override
+	public void setReservationTime(Integer game_id, List<String> seatIds2, LocalDateTime reservedAt) {
+		logger.debug(" setReservationTime 호출 ");
+		Map<Object, Object> params = new HashMap<>();
+		params.put("game_id", game_id);
+        params.put("seatIds2", seatIds2);
+        params.put("reservedAt", reservedAt);
+        sqlSession.update(NAMESPACE + "setReservationTime", params);
+	}
+
+	@Override
+	public void updateExpiredRes(String reserved_at) throws Exception {
+		logger.debug(" updateExpiredRes 호출 ");
+		
+		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	    //String reservedAtString = reserved_at.format(formatter);
+		
+	    //Map<String, Object> params = new HashMap<>();
+	    //params.put("reserved_at", reservedAtString);
+        
+		sqlSession.update(NAMESPACE + "releaseExpiredReservations", reserved_at);
+		
+	}
+
 	@Override
 	public List<SeatDTO> getSeatsId(String game_id, String zone_id) throws Exception{
 		
@@ -116,5 +143,8 @@ public class StadiumDAOImpl implements StadiumDAO {
 	    params.put("zone_id", zone_id);
 		return sqlSession.selectList(NAMESPACE + "getSeatBooked", params);
 	}
+
+	
+	
 	
 }

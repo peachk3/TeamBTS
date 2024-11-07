@@ -3,6 +3,8 @@ package com.itwillbs.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +42,7 @@ import com.itwillbs.domain.ZoneDTO;
 import com.itwillbs.service.ScheduleService;
 import com.itwillbs.service.StadiumService;
 
+@EnableScheduling
 @Controller
 @RequestMapping(value="/ticketing/*")
 public class TicketingController {
@@ -170,6 +174,9 @@ public class TicketingController {
         // 예매 가능 좌석 및 여부 출력
         List<Seat_bookDTO> seatBook = stadService.getSeatBooked(zone_id, game_id);
         
+		// 10분 경과시 좌석 선점 삭제
+		stadService.releaseExpiredReservations();
+        
 		model.addAttribute("game_id", game_id);
 		model.addAttribute("stad_id", stad_id);
 		model.addAttribute("zone_ty", zone_ty);
@@ -258,7 +265,7 @@ public class TicketingController {
 		
 		List<String> seatIds2 = Arrays.asList(seat_id.split(","));
 		
-		stadService.postSelectedSeat(gameIdInteger, seatIds2);
+		stadService.postSelectedSeat(gameIdInteger, seatIds2, 2);
 		
 		logger.debug("(●'◡'●) seat_id 출력 : "+ seatIds2);
 		
@@ -321,11 +328,14 @@ public class TicketingController {
 	@PostMapping(value="/payment")
 	public String reservationDone(@RequestBody Reservation_infoDTO resInfo) throws Exception{
     
+	logger.debug("reservationDone POST 실행 ");
 	logger.debug("request Data : " + resInfo);
 	logger.debug("userID : " + resInfo.getUser_id());
 	
 	List<String> seats = resInfo.getSeats();  // 좌석 ID 배열을 DTO에서 직접 가져오도록 수정 필요
 
+	Integer gameIdInteger = resInfo.getGame_id();
+	
     // 좌석 ID 배열을 DTO의 개별 필드에 매핑
     if (seats.size() > 0) resInfo.setSeat1_id(seats.size() > 0 ? seats.get(0) : null);
     if (seats.size() > 1) resInfo.setSeat2_id(seats.size() > 1 ? seats.get(1) : null);
@@ -360,7 +370,7 @@ public class TicketingController {
  // 현재 페이지 정보 설정
     
 	stadService.updateReser(resInfo);
-	
+	stadService.postSelectedSeat(gameIdInteger, seats, 1);
 	return "/mypage/mypage";
 	
 	}

@@ -76,44 +76,45 @@
 	 
 	 <script>
 	
-	 $(document).ready(function(){
-		$('table td').remove();
-		 getBoardList();
+// 	 $(document).ready(function(){
+// 		$('table td').remove();
+// 		 getBoardList();
 		
-		$("#boardTable_id").change(getBoardList); //id="listButton"인 태그에 click하면 function getMemberList() 실행
-	});
+// 		$("#boardTable_id").change(function(){
+// 			$('table td').remove();
+// 			getBoardList(); //id="listButton"인 태그에 click하면 function getMemberList() 실행
+// 		});
+// 	});
 	
-	function getBoardList(){
-		var boardTable_id = $('#boardTable_id').val();
-		console.log(boardTable_id);
+// 	function getBoardList(){
+// 		var boardTable_id = $('#boardTable_id').val();
+// 		console.log('boId : ' + boardTable_id);
 		
-		$('table td').remove();
-			
-		$.ajax({
-        	url : "/mypage/mywrite",
-        	type : "post",
-        	data : JSON.stringify({ boardTable_id: boardTable_id }),
-        	contentType : "application/json",
-        	dataType : "json",
-        	success : function(data){
-// 	       		alert("JTBC 다녀옴");
+// 		$.ajax({
+//         	url : "/mypage/mywrite",
+//         	type : "post",
+//         	data : JSON.stringify({ boardTable_id: boardTable_id }),
+//         	contentType : "application/json; charset=utf-8",
+//         	dataType : "json",
+//         	success : function(data){
+// // 	       		alert("JTBC 다녀옴");
 // 				console.log(data);
 	       		
-	       		// body 태그에 내용 추가
-	       		$(data).each(function(idx, item){
+// 	       		// body 태그에 내용 추가
+// 	       		$(data).each(function(idx, item){
 	       			
-	       			$('table').append("<tr><td>"+ (parseInt(idx)+1) +"</td><td>"+ item.board_sub +"</td><td>"+ item.board_cre_date +"</td><td>"+ item.board_view +"</td></tr>")
+// 	       			$('table').append("<tr><td>"+ (parseInt(idx)+1) +"</td><td>"+ item.board_sub +"</td><td>"+ item.board_cre_date +"</td><td>"+ item.board_view +"</td></tr>")
 	       			
-	       		});
-	       	},
-	       	error: function(jqXHR, textStatus, errorThrown) {
-               console.log("AJAX 요청 실패: " + jqXHR.status + ", " + jqXHR.statusText + ", " + textStatus + ", " + errorThrown);
-               alert("AJAX 요청 실패!");
-	        }
-	    });
-	}
+// 	       		});
+// 	       	},
+// 	       	error: function(jqXHR, textStatus, errorThrown) {
+//                console.log("AJAX 요청 실패: " + jqXHR.status + ", " + jqXHR.statusText + ", " + textStatus + ", " + errorThrown);
+//                alert("AJAX 요청 실패!");
+// 	        }
+// 	    });
+// 	}
 	
-	</script>
+<!-- 	</script> -->
 
 
 
