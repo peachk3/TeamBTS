@@ -151,6 +151,7 @@ p, a, li, blockquote, label {
 
 .pagination-sm .page-item {
 	margin: 0 2px;
+	padding: 0 5px;
 }
 
 .pagination-sm .page-item .page-link {
@@ -626,7 +627,6 @@ select.form-control:not([size]):not([multiple]) {
   font-size: 0.9375rem;
   border: 1px solid #aac1f9;
   float: right !important;
-  
 }
 
 .btn-main-md:hover {
@@ -673,7 +673,7 @@ select.form-control:not([size]):not([multiple]) {
   color: #fff;
   box-shadow: none;
 }
-
+  
 .btn-white-md {
   padding: 13px 25px;
   border-radius: 0;
@@ -683,7 +683,6 @@ select.form-control:not([size]):not([multiple]) {
   font-size: 0.9375rem;
   border: 1px solid #aac1f9;
   float: right !important;
-  margin-right: 5px;
 }
 
 .btn-white-md:hover {
@@ -3411,8 +3410,8 @@ ul.pagination li {
 
 ul.pagination li a {
   font-size: 16px;
-  padding: 0;
-  height: 35px;
+  padding: 10px;
+  height: 35x;
   width: 35px;
   line-height: 35px;
   text-align: center;

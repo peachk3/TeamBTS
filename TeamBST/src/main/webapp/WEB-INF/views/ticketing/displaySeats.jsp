@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
     	    // 예약 처리 로직
     	    
        // var bookedAt = Number(seat.getAttribute('data-booked'));
-        if (bookedAt === 1) {
+        if (bookedAt === 1 || bookedAt === 2) {
             seat.classList.add('booked-seat');  // 이미 예약된 좌석 스타일 추가
             seat.setAttribute('disabled', 'disabled');  // 예약된 좌석 비활성화
             seat.addEventListener('click', function() {

@@ -34,12 +34,16 @@ public interface StadiumService {
 	public List<Seat_priceDTO> getSeatChildPrice(String zone_id) throws Exception;
 
 	// 좌석 정보 업데이트 (booked_at = 1로 업데이트)
-	public void postSelectedSeat(Integer game_id, List<String> seatIds2) throws Exception;
+	public void postSelectedSeat(Integer game_id, List<String> seatIds2, Integer booked_at) throws Exception;
+	
+	// 
+	public void releaseExpiredReservations() throws Exception;
 
 	// 좌석 예약 
 	public void updateReser(Reservation_infoDTO resInfo) throws Exception;
 
 	// 예매 가능 좌석 및 여부 출력 
 	public List<Seat_bookDTO> getSeatBooked(String zone_id, String game_id) throws Exception;
+
 	
 }

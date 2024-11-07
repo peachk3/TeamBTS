@@ -230,16 +230,6 @@
          getTicketList();
       });
       
-      $("#Past").click(ticketPastStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
-      $("#Upcoming").click(ticketUpcomingStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
-      
-      $("#write").click(function(){
-         $('ul#write_table li.schedule-details').remove();
-         getBoardList();
-      });
-      
-      $("#boardTable_id").change(getBoardList);
-      
       
       $("#Past").click(ticketPastStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
       $("#Upcoming").click(ticketUpcomingStatusSet); //id="listButton"인 태그에 click하면 function getMemberList() 실행
@@ -320,7 +310,7 @@
 	
 	function getBoardList(){
 		var boardTable_id = $('#boardTable_id').val();
-		console.log(boardTable_id);
+		console.log('boardId : ' + boardTable_id);
 		
 		$('ul#write_table li.schedule-details').remove();
 			

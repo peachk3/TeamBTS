@@ -71,12 +71,26 @@
 	<!-- 선택된 좌석 정보 변경 -->
 	<update id="postSelectedSeat" parameterType="com.itwillbs.domain.Seat_bookDTO">
 		UPDATE seat_book
-		SET booked_at=1
-		WHERE seat_id IN 
-   <foreach item="seat_id" collection="seatIds2" open="(" separator="," close=")">
+		SET booked_at=#{booked_at}
+		WHERE game_id = #{game_id} AND seat_id IN 
+   <foreach item="seat_id" index="index" collection="seatIds2" open="(" separator="," close=")">
         #{seat_id}
     </foreach>
-		AND game_id = #{game_id}
+	</update>
+	
+	<update id="setReservationTime" parameterType="com.itwillbs.domain.Seat_bookDTO">
+	    UPDATE seat_book
+	    SET reserved_at = #{reservedAt}
+	    WHERE game_id = #{game_id} AND seat_id IN 
+	   <foreach item="seat_id" index="index" collection="seatIds2" open="(" separator="," close=")">
+	        #{seat_id}
+	   </foreach>
+	</update>
+	
+	<update id="releaseExpiredReservations" parameterType="string">
+	    UPDATE seat_book
+	    SET booked_at = 0, reserved_at = NULL
+	    <![CDATA[WHERE booked_at = 2 AND reserved_at <=]]> #{reservedAtString}
 	</update>
 	
 	<!-- 예약 -->

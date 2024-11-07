@@ -122,26 +122,6 @@
 						  </ul>
 						</nav>
 						<!-- 페이지네이션 버튼 끝 -->
-
-				
-<!-- 						<div class="box-footer clearfix"> -->
-<!-- 							<ul class="pagination pagination-sm no-margin pull-right"> -->
-
-<%-- 								<c:if test="${pageDTO.prev }"> --%>
-<%-- 									<li><a href="/announcement/announcement?page=${pageDTO.startPage-1 }">«</a></li> --%>
-<%-- 								</c:if> --%>
-
-<%-- 								<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1"> --%>
-
-<%-- 									<li ${pageDTO.cri.page == i? 'class="active"':'' }><a href="/announcement/announcement?page=${i }">${i }</a></li> --%>
-
-<%-- 								</c:forEach> --%>
-
-<%-- 								<c:if test="${pageDTO.next && pageDTO.endPage > 0 }"> --%>
-<%-- 									<li><a href="/announcement/announcement?page=${pageDTO.endPage+1 }">»</a></li> --%>
-<%-- 								</c:if> --%>
-<!-- 							</ul> -->
-<!-- 						</div> -->
 						
 					</div>
 
